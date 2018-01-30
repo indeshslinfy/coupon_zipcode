@@ -1,0 +1,71 @@
+@media screen and (max-width:1499px){
+	.error_wrapper img{width:400px;}
+	.error_wrapper h1{font-size:40px;}
+	.error_wrapper h4{font-size:18px;max-width:420px;}
+	.error_wrapper ul li a{font-size:15px;}
+}
+@media screen and (min-width:768px){
+	.search_form_wrap{
+		display: initial;
+	}
+}
+@media screen and (max-width:1199px){
+	/*---------index-page-css-------------*/
+	.popup_bg{background-size:cover;}
+	.nearby{width: 120px;}
+	.city_box{width:150px;}
+	.navigation_bar .navbar-default li a { font-size: 14px;padding: 15px 19px;}
+	/*---------index-page-css-end-------------*/
+}
+@media screen and (max-width:991px){
+	/*---------index-page-css-------------*/
+	.navigation_bar .navbar-default li a {font-size: 13px; padding: 15px 9px;}
+	.exclusive_coupan a .hover_div .hover_text_wrap h3 {font-size: 19px;line-height: 20px;}
+	.exclusive_coupan a .hover_div .hover_text_wrap h4 {font-size: 16px;line-height: 20px;}
+	.exclusive_coupan a .hover_div .hover_text_wrap h5 {font-size: 14px;}
+	.online_coupan_link{margin-bottom: 30px}
+	.search_form_wrap .form-group .input_box_wrap{width:150px;}
+	/*---------index-page-css-end-------------*/
+}
+@media screen and (max-width:767px){
+	/*---------index-page-css-------------*/
+	.topheader { padding-top: 15px;padding-bottom: 15px;}
+	.topheader .col-xs-7 a { float:left;width:120px;}
+	.mobile_to_center{text-align: center; padding-top: 12px;}
+	.navbar-toggle{padding: 5px 6px;}
+	.navbar-toggle .icon-bar{width:15px;}
+	.navbar{min-height:auto;}
+	.search_form_wrap .form-group .input_box_wrap{width:100%;}
+	.online_coupan_link ul{width: 100%}
+	.left_side_line::before{display: none}
+	.city_box,.nearby,.search_form_wrap .btn{width: 100%;margin: 10px 0 0 0;float: left;}
+	.location_button {float: left;margin-left: 15px;color: #fff;font-size: 15px;padding: 2px 7px 1px;margin-bottom: 0px; margin-top: 7px;}
+	.location_button:hover{color: #888;}
+	.heading_text_wrap h2{font-size:20px; margin-bottom: 10px;}
+	.heading_text_wrap .btn {font-size: 14px;line-height: 12px;}
+	.how_it_work_page_content h2{font-size: 28px;}
+	.how_it_work_page_content p{font-size: 16px}
+	.heading_page h2{font-size: 42px;}
+	.coupon_post::after{display: none;}
+	.product_title{padding-top: 0px;font-size: 36px;}
+	.post_coupon_detail .coupon_button{font-size: 16px;margin-bottom: 10px;padding: 4px 10px;}
+	.post_coupon_detail .print_button {font-size: 16px;padding: 2px 17px;width: 37px;padding: 4px 10px;overflow: hidden;}
+	.post_coupon_detail .print_button .fa{margin-right: 12px;}
+	.post_coupon_detail .post_menu_button .ylew_btn{font-size: 14px;padding: 3px 6px;}
+	.post_coupon_detail .post_note{margin-bottom: 20px}
+	.post_coupon_detail .post_menu_button .map_btn{font-size: 14px;}
+	.post_coupon_detail .post_menu_button .post_like_unlike button { font-size: 14px; margin-top: 8px;}
+	.post_detail h3{font-size: 22px;}
+	.post_detail p{font-size: 16px;}
+	.review_section h2{font-size: 28px; margin:10px 0px }
+	.post_detail h3 {font-size: 21px;}
+	.post_address p{font-size: 20px;line-height: 26px}
+	.post_address p a{font-size: 18px;}
+	/*---------index-page-css-end-------------*/
+}
+
+@media screen and (max-width:419px){
+	.select_city{width:100%;margin-bottom:10px;}
+	.select_city_form .btn{width:100%;}
+
+}
