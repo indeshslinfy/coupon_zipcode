@@ -10,17 +10,29 @@
 
 		<?php
 			$general_settings = get_settings('general_settings');
+
+			$favicon = 'assets/img/favicon.ico';
+			if (array_key_exists('company_favicon', $general_settings))
+			{
+				$favicon = $general_settings['company_favicon'];
+			}
+
+			$company_logo = 'assets/img/logo.png';
+			if (array_key_exists('company_logo', $general_settings))
+			{
+				$company_logo = $general_settings['company_logo'];
+			}
+
 			echo css('backend/bootstrap.css');
 			echo css('backend/style.css');
 			echo css('backend/style-responsive.css');
+			echo iplugin('datatable', array('file_name' => 'dataTables.bootstrap.min', 'file_type' => 'css'));
 
 			echo js('backend/jquery-3.2.1.min.js');
 		?>
 		
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+		<link rel="icon" href="<?php echo base_url($favicon); ?>" >
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-		<link rel="icon" href="<?php echo isset($general_settings['company_favicon']) ? $general_settings['company_favicon'] : ''; ?>" >
 
 		<script type="text/javascript">
 			var BASEURL = '<?php echo base_url(); ?>';
@@ -34,7 +46,12 @@
 			{
 			?>
 				<header class="header black-bg">
-					<a href="<?php echo base_url(ADMIN_PREFIX); ?>" class="logo">Coupon Zipcode<small><small>&nbsp;Admin</small></small></a>
+					<a href="<?php echo base_url(ADMIN_PREFIX); ?>" class="logo">
+						<?php echo $general_settings['company_name']; ?>
+						<small>
+							<small>&nbsp;Admin</small>
+						</small>
+					</a>
 
 					<div class="top-menu">
 						<ul class="nav pull-right top-menu">

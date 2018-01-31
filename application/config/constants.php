@@ -112,14 +112,15 @@ defined('STORE_STATUS_INACTIVE') OR define('STORE_STATUS_INACTIVE', 0);
 
 defined('STORE_ATCH_MENU') OR define('STORE_ATCH_MENU', 3);
 defined('STORE_ATCH_MENU_FOLDER') OR define('STORE_ATCH_MENU_FOLDER', 'uploads' . DS . 'store_menus');
-
 defined('STORE_ATCH_IMAGE') OR define('STORE_ATCH_IMAGE', 1);
 defined('STORE_ATCH_IMAGE_FOLDER') OR define('STORE_ATCH_IMAGE_FOLDER', 'uploads' . DS . 'store_images');
-
 defined('STORE_ATCH_VIDEO') OR define('STORE_ATCH_VIDEO', 2);
 
 defined('STORE_UNLIKE') OR define('STORE_UNLIKE', 0);
 defined('STORE_LIKE') OR define('STORE_LIKE', 1);
+
+defined('CATEGORY_SRC_GROUPON') OR define('CATEGORY_SRC_GROUPON', 1);
+defined('CATEGORY_SRC_EBAY') OR define('CATEGORY_SRC_EBAY', 2);
 
 // COUPONS
 defined('COUPON_STATUS_INACTIVE') OR define('COUPON_STATUS_INACTIVE', 0);

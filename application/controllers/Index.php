@@ -158,23 +158,6 @@ class Index extends CI_Controller
 		$this->db->query($query);*/
 	}
 
-	public function expire_old_coupons()
-	{
-		$current_date = date('Y-m-d H:i:s');
-
- 		$previous_date = date('Y-m-d', (strtotime('-1 day', strtotime($current_date))));
- 		$between_date_strt = $previous_date . " 00:00:00";
- 		$between_date_end = $previous_date . " 23:59:59";
-
- 		$this->db->where(array('status !=' => COUPON_STATUS_EXPIRED ,
- 							'coupon_end_date >=' => $between_date_strt ,
- 							'coupon_end_date <=' => $between_date_end));
- 		
- 		$this->db->update('coupons', array('status' => COUPON_STATUS_EXPIRED,
- 											'updated_at' => $current_date));
- 		return $this->db->affected_rows();
-	}
-
 	public function static_page()
 	{
 		if ($this->uri->segment(1) == 'how-it-works') 

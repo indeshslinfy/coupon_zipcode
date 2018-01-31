@@ -172,10 +172,10 @@ if (!function_exists('slugify'))
 	}
 }
 
-
-if (!function_exists('xss_clean')) {
-
-    function xss_clean($data) {
+if (!function_exists('xss_clean'))
+{
+    function xss_clean($data)
+    {
         // Fix &entity\n;
         $data = str_replace(array('&amp;', '&lt;', '&gt;'), array('&amp;amp;', '&amp;lt;', '&amp;gt;'), $data);
         $data = preg_replace('/(&#*\w+)[\x00-\x20]+;/u', '$1;', $data);
@@ -198,30 +198,32 @@ if (!function_exists('xss_clean')) {
         // Remove namespaced elements (we do not need them)
         $data = preg_replace('#</*\w+:\w[^>]*+>#i', '', $data);
 
-        do {
+        do
+        {
             // Remove really unwanted tags
             $old_data = $data;
             $data = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $data);
-        } while ($old_data !== $data);
+        }
+        while ($old_data !== $data);
 
-        // we are done...
         return $data;
     }
-
 }
 
-if (!function_exists('debug')) {
-
-    function debug($data = array()) {
+if (!function_exists('debug'))
+{
+    function debug($data = array())
+    {
         print '<pre>';
         print_r($data);
         print '</pre>';
     }
-
 }
 
-if (!function_exists('limit_string')) {
-    function limit_string($string, $limit) {
+if (!function_exists('limit_string'))
+{
+    function limit_string($string, $limit)
+    {
         return strlen($string) >$limit ? substr($string,0,$limit).'...' :$string;
     }
 }

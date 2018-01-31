@@ -11,10 +11,10 @@ if ($this->session->userdata('admin_logged_in'))
 			echo js('backend/bootstrap.min.js');
 			echo js('backend/jquery.dcjqaccordion.2.7.js');
 			echo js('backend/common-scripts.js');
-		?>
 
-		<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-		<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+			echo iplugin('datatable', array('file_name' => 'jquery.dataTables.min', 'file_type' => 'js'));
+			echo iplugin('datatable', array('file_name' => 'dataTables.bootstrap.min', 'file_type' => 'js'));
+		?>
 	</footer>
 <?php
 }
