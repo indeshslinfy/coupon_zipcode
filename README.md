@@ -14,5 +14,5 @@ Goto directory where you want to setup the project i.e. wamp/www or xampp/htdocs
 Run below command:
 
 ```bash
-	git clone git@bitbucket.org:VivekKerni/coupon_zipcode.git
+	git clone git@bitbucket.org:indeshslinfy/coupon_zipcode.git
 ```
