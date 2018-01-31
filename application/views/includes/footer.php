@@ -134,50 +134,54 @@
 	</footer>
 </div>
 </div>
+
 <!-- Modal-for-select-location -->
 <div class="modal fade select_location_popup" id="select_location_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Pick a City</h4>
-        <p>To find awesome Deals around you</p>
-      </div>
-      <div class="modal-body text-center">
-        <div class="container">
-        	<div class="select_city_form">
-        		<div class="select_city">
-        			<i class="fa fa-map-marker"></i>
-        			<input type="text" class="form-control" placeholder="Enter Your City">
-        		</div>
-        		<a href="javascript:void(0);" class="btn ylew_btn"><i class="fa fa-location-arrow"></i>
-Use My Current Location</a>
-        	</div>
-        	<div class="top_cities_wrap">
-        		<h2>Top Cities</h2>
-        		<a href="javascript:void(0);">New Delhi</a>
-        		<a href="javascript:void(0);">Gurgaon</a>
-        		<a href="javascript:void(0);">Bengaluru</a>
-        		<a href="javascript:void(0);">Mumbai</a>
-        		<a href="javascript:void(0);">Kolkata</a>
-        		<a href="javascript:void(0);">Hyderabad</a>
-        		<a href="javascript:void(0);">Chennai</a>
-        		<a href="javascript:void(0);">Chandigarh</a>
-        		<a href="javascript:void(0);">Jaipur</a>
-        		<a href="javascript:void(0);">Pune</a>
-        		<a href="javascript:void(0);">Ahmedabad</a>
-        		<a href="javascript:void(0);">Goa</a>
-        		
-        	</div>
-        	<div class="popup_logo">
-        		<img src="http://112.196.33.86:8080/demo/coupon_zipcode/assets/img/logo.png" alt="Coupon Zipcode">
-        	</div>
-        </div>
-      </div>
-     </div>
-  </div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Pick a Location</h4>
+				<p>To find awesome deals around you</p>
+			</div>
+			<div class="modal-body text-center">
+				<div class="container">
+					<div class="select_city_form">
+						<div class="select_city">
+							<i class="fa fa-map-marker"></i>
+							<input type="text" class="form-control" placeholder="Enter Your Zipcode">
+						</div>
+						<a href="javascript:void(0);" class="btn ylew_btn">
+							<i class="fa fa-location-arrow"></i>
+							Use My Current Location
+						</a>
+					</div>
+					<div class="top_cities_wrap">
+						<h2>Top Cities</h2>
+						<a href="javascript:void(0);">New Delhi</a>
+						<a href="javascript:void(0);">Gurgaon</a>
+						<a href="javascript:void(0);">Bengaluru</a>
+						<a href="javascript:void(0);">Mumbai</a>
+						<a href="javascript:void(0);">Kolkata</a>
+						<a href="javascript:void(0);">Hyderabad</a>
+						<a href="javascript:void(0);">Chennai</a>
+						<a href="javascript:void(0);">Chandigarh</a>
+						<a href="javascript:void(0);">Jaipur</a>
+						<a href="javascript:void(0);">Pune</a>
+						<a href="javascript:void(0);">Ahmedabad</a>
+						<a href="javascript:void(0);">Goa</a>
+					</div>
+					<div class="popup_logo">
+						<img src="http://112.196.33.86:8080/demo/coupon_zipcode/assets/img/logo.png" alt="Coupon Zipcode">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<!-- Modal-for-select-location-end -->
+
 <div class="cssload-container">
 	<div class="cssload-loader"></div>
 </div>
