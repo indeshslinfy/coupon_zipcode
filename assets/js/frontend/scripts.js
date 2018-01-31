@@ -1,5 +1,7 @@
 $(document).ready(function()
 {
+	getLocation();
+
 	$("body").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
 	$(".ticketing_chatbox_wrap").niceScroll({cursorborder:"", cursorcolor:"#2C3E50"});
 
@@ -25,3 +27,37 @@ $(document).ready(function()
 
 	$('.cssload-container').css('display', 'none');
 });
+
+function getLocation() 
+{
+	if (navigator.geolocation)
+	{
+		navigator.geolocation.getCurrentPosition(showPosition);
+	}
+	else
+	{ 
+		alert("Geolocation is not supported by this browser.");
+	}
+}
+
+function showPosition(position) 
+{
+	$.ajax({
+		type: "GET",
+		datatype: "JSON",
+		url: BASEURL+"home/get_geo_location?lat="+position.coords.latitude+"&long="+position.coords.longitude,
+		success: function(data)
+		{
+			if (data.status == 0)
+			{
+				alert(data.message);
+			}
+			else
+			{
+				console.log(data);
+				// var obj = JSON.parse(data.data);
+				localStorage.setItem("user_current_location", JSON.stringify(JSON.parse(data.data)));
+			}
+		}
+	});
+}

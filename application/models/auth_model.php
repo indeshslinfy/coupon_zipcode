@@ -35,6 +35,7 @@ class auth_model extends CI_model
 							'auth/signup',
 							'error/show_404',
 							'home/get_cities',
+							'home/get_geo_location',
 							'home/get_zipcode_stores',
 							'home/save_new_zipcode',
 							'tickets/ticket_details',
