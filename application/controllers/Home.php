@@ -84,9 +84,11 @@ class Home extends CI_Controller
 
 	public function get_geo_location()
 	{
+		// (array)json_decode($this->input->cookie('user_current_location'));
+
 		$cookie_expiry_time = '86400';
-		$geolocation = $this->input->get('lat').','.$this->input->get('long');
-		$request = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.$geolocation.'&sensor=false'; 
+		$geolocation = $this->input->get('lat') . ',' . $this->input->get('long');
+		$request = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $geolocation . '&sensor=false'; 
 		$file_contents = file_get_contents($request);
 		$json_decode = json_decode($file_contents);
 		
@@ -94,18 +96,12 @@ class Home extends CI_Controller
 		{
 			$user_current_location['lat'] = $this->input->get('lat');
 			$user_current_location['long'] = $this->input->get('long');
-			$user_current_location['country'] = $json_decode->results[0]->address_components[8]->long_name;
-			$user_current_location['state'] = $json_decode->results[0]->address_components[7]->long_name;
-			$user_current_location['city'] = $json_decode->results[0]->address_components[5]->long_name;
-			$user_current_location['zipcode'] = $json_decode->results[0]->address_components[9]->long_name;
+			$user_current_location['country'] = @$json_decode->results[0]->address_components[6]->long_name;
+			$user_current_location['state'] = @$json_decode->results[0]->address_components[5]->long_name;
+			$user_current_location['city'] = @$json_decode->results[0]->address_components[4]->long_name;
+			$user_current_location['zipcode'] = @$json_decode->results[0]->address_components[7]->long_name;
 
-			$this->input->set_cookie('country', $user_current_location['country'], $cookie_expiry_time);
-			$this->input->set_cookie('state', $user_current_location['state'], $cookie_expiry_time);
-			$this->input->set_cookie('city', $user_current_location['city'], $cookie_expiry_time);
-			$this->input->set_cookie('zipcode', $user_current_location['zipcode'], $cookie_expiry_time);
-			$this->input->set_cookie('latitude', $user_current_location['lat'], $cookie_expiry_time);
-			$this->input->set_cookie('longitude', $user_current_location['long'], $cookie_expiry_time);
-
+			$this->input->set_cookie('user_current_location', json_encode($user_current_location), $cookie_expiry_time);
 			echo json_encode(array("status" => 1, "data" => $user_current_location)); die;
 		}
 		else

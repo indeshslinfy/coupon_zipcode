@@ -54,9 +54,8 @@ function showPosition(position)
 			}
 			else
 			{
-				console.log(data);
-				// var obj = JSON.parse(data.data);
-				localStorage.setItem("user_current_location", JSON.stringify(JSON.parse(data.data)));
+				var data = JSON.parse(data);
+				localStorage.setItem("user_current_location", JSON.stringify(data.data));
 			}
 		}
 	});
