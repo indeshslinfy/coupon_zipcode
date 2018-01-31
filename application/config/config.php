@@ -29,7 +29,7 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')
 {
 	$http_protocol = 'https://';
 }
-$config['base_url'] = $http_protocol . $_SERVER['HTTP_HOST'];
+$config['base_url'] = $http_protocol . $_SERVER['HTTP_HOST'] . '/coupon_zipcode/trunk';
 
 /*
 |--------------------------------------------------------------------------

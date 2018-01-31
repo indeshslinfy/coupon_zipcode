@@ -19,24 +19,22 @@ $vals = array('img_path' => plugin_path() . 'captcha/',
 $cap = create_captcha($vals);*/
 ?>
 <div class="row">
-	<section class="heading_page">
+	<section class="heading_page cntct_us_wrap">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2>
 						<?php
 						if ($this->uri->segment(1) == 'contact-us')
 						{
 							$ticket_type = TICKET_TYPE_CONTACT;
-							echo "CONTACT US<p>If you still can't find an answer to your question, write to us using the form below and we'll try our best to get back to you.</p>";
+							echo "<h2>CONTACT US</h2><p>If you still can't find an answer to your question, write to us using the form below and we'll try our best to get back to you.</p>";
 						}
 						elseif ($this->uri->segment(1) == 'advertise')
 						{
 							$ticket_type = TICKET_TYPE_ADVERTISE;
-							echo "Advertise With Us<p>Interested in advertise with us? Come join us.</p>";
+							echo "<h2>Advertise With Us</h2><p>Interested in advertise with us? Come join us.</p>";
 						}
 						?>
-					</h2>
 				</div>
 			</div>
 		</div>

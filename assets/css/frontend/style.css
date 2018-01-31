@@ -1,5 +1,8 @@
-body{
-	font-family: 'Rajdhani', sans-serif;
+body,html{
+	/*font-family: 'Rajdhani', sans-serif;*/
+	font-family: 'Open Sans', sans-serif;
+	font-size:13px;
+	height:100%;
 }
 h1,h2,h3,h4,h5,h6,ul,li,a,p{
 	margin:0px;
@@ -24,19 +27,14 @@ img{
 	background-size: cover;
 }
 .get_start_wrap_box{
-	display:block;
+	display:inline-block;
 	position:relative;
 	margin:10% auto 7.5%;
 	max-width:580px;
 	width:100%;
-	padding:30px 58px 12px;
+	padding:30px 20px 12px;
 	box-shadow:0px 0px 10px rgba(0,0,0,.9);
 	background:rgba(0,0,0,.9);
-	border-radius:6px;
-	-webkit-border-radius:6px;
-	-moz-border-radius:6px;
-	-ms-border-radius:6px;
-	-o-border-radius:6px;
 }
 .get_start_wrap_box h3{
 	font-size:20px;
@@ -50,21 +48,21 @@ img{
 	font-weight:500;
 }
 .form_wrap{
-	display:block;
-	margin:16px auto 0px;
-	max-width:365px;
+	float:left;
+	margin:50px auto 0px;
 	width:100%;
 }
 .form_wrap .form-group{
+	float: left;
+	width: 100%;
 	margin-bottom:25px;
 }
 .form_wrap .form-control{
 	background:none;
 	box-shadow: none;
-	height:46px;
 	font-size:15px;
-	font-weight:600;
-	color:#484848;
+	font-weight:400;
+	color:#fcfcfc;
 	border:1px solid #333332;
 }
 .form_wrap .form-control::-webkit-input-placeholder { 
@@ -95,12 +93,6 @@ img{
 	background:#1A5006;
 	color: #ffffff;
 }
-.form_wrap .form-group .btn{
-	padding:10px 20px;
-	font-size:16px;
-	font-weight:600;
-	color:#fff;
-}
 .form_wrap .btn .fa{
 	font-size:22px;
 	margin-left:13px;
@@ -123,6 +115,9 @@ img{
 }
 /*---------index-page-css-end-------------*/
 /*---------Home-page-css-start-------------*/
+.navbar{
+	min-height:auto;
+}
 .topheader{
 	padding-top:24px;
 	padding-bottom:24px;
@@ -144,7 +139,7 @@ img{
 	width: 40px;
 	text-align: center;
 	color:#226f05;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight:600;
 	line-height: 18px;
 }
@@ -154,7 +149,6 @@ img{
 	border:none;
 	box-shadow:none;
 	color:#5c5c5c;
-	font-size: 16px;
 	height:32px;
 	/*font-weight:600;*/
 
@@ -168,7 +162,7 @@ img{
 	margin-right:10px;
 }
 .search_form_wrap .btn{
-	font-size:14px;
+	font-size:13px;
 	line-height:20px;
 	font-weight:600;
 	color:#fff;
@@ -215,17 +209,19 @@ img{
 	height: auto;
 }
 .navigation_bar .navbar-default li a{
-	font-size:16px;
-	font-weight:600;
+	font-size:14px;
+	font-weight:400;
 	color:#fff;
-	padding:15px 18px;
+	padding:10px 15px 6px;
+	border-bottom:4px solid transparent;
 }
 .navigation_bar .navbar-default li a:hover,
 .navigation_bar .navbar-default .navbar-nav  .active  a,
 .navigation_bar .navbar-default .navbar-nav  .active  a:focus, 
 .navigation_bar .navbar-default .navbar-nav  .active  a:hover{
 	color:#fff;
-	background:#1A5006;
+	background:rgba(26,80,6,.4);
+	border-bottom:4px solid #1A5006;
 }
 .navbar-default .navbar-toggle .icon-bar{
 	background-color: #f5eded;
@@ -238,20 +234,22 @@ section{
 .heading_text_wrap{
 	float:left;
 	width:100%;
-	margin-bottom:25px;
+	margin-bottom:15px;
 }
 .heading_text_wrap h2{
 	float:left;
-	font-size:27px;
+	font-size:22px;
 	font-weight:700;
 	color:#2D3E50;
 }
 .heading_text_wrap .btn{
-	font-size:18px;
-	line-height:17px;
-	font-weight:600;
-	color:#fff;
+	font-size:13px;
+	line-height:14px;
+	font-weight:500;
 	text-transform: uppercase;
+	color: #727772;
+	background: none;
+	padding-right:0px;
 }
 .exclusive_coupan .cpn_adjst_img{
 	display: table;
@@ -300,7 +298,7 @@ section{
 	filter: blur(5px);
 }
 .exclusive_coupan.cat_coupons a:hover img{
-	transform: scale(1);
+	transform:skew(5deg,5deg) scale(1);
 	-webkit-filter: blur(0px) grayscale(100%);
 	filter: blur(0px) grayscale(100%);
 	-webkit-transition: .3s ease-in-out;
@@ -326,27 +324,40 @@ section{
 	font-size: 20px;
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div .hover_text_wrap h3{
-	font-size:26px;
-	font-weight: 700;
-	line-height:30px;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 25px;
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div .hover_text_wrap h4{
-	font-size:20px;
+	font-size:15px;
 	font-weight: 500;
 	line-height:30px;
 	color: #8DD81B;
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div .hover_text_wrap h5{
-	font-size:15px;
+	font-size:13px;
 	font-weight: 500;
 }
 .gery_bg{
 	background:#f2f6f9;
 }
+.top_rstrnt_deal .col-sm-3 {
+	float:left;
+	margin-bottom:15px;
+}
+.top_rstrnt_deal .col-sm-3 a{
+	float:left;
+	width:100%;
+	transition:all ease .25s;
+}
+.top_rstrnt_deal .col-sm-3 a:hover{
+	position:relative;
+	transform:translate(0px,-5px);
+	box-shadow: 0px 3px 12px rgba(128,128,128,.2);
+}
 .top_rstrnt_deal_wrap{
 	float:left;
 	width:100%;
-	margin-bottom:15px;
 }
 .top_rstrnt_deal_wrap img{
 	margin:0 auto;
@@ -363,7 +374,6 @@ section{
 	float:left;
 	width:100%;
 	padding:5px 7px;
-	font-size:14px;
 	font-weight:500;
 	color:#fff;
 	line-height: 1.7;
@@ -388,12 +398,16 @@ section{
 	box-shadow:0px 3px 12px rgba(128,128,128,.2);
 }
 .restrnt_desp_text_box h3{
-	font-size:18px;
-	font-weight:700;
+	font-size:15px;
+	font-weight:500;
 	color:#4b4e5c;
+	margin-bottom: 4px;
+}
+.restrnt_desp_text_box p{
+	font-size:13px;
 }
 .restrnt_desp_text_box a{
-	font-size:16px;
+	font-size:13px;
 	color:#226f05;
 	font-weight:600;
 	line-height:30px;
@@ -408,14 +422,14 @@ footer{
 	padding-bottom: 60px;
 }
 .footer_wrap h3{
-	font-size:20px;
-	font-weight:700;
+	font-size:18px;
+	font-weight:600;
 	color:#fff;
-	margin-bottom:20px;
+	margin-bottom:10px;
 }
 
 .footer_wrap ul li a{
-	font-size:16px;
+	font-size:13px;
 	line-height:30px;
 	font-weight:500;
 	color:#dfe8f8;
@@ -455,7 +469,7 @@ footer{
     width: 100%;
     background: #195402;
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
     padding: 6px 15px;
 }
 .footer_copy_right a{
@@ -486,15 +500,15 @@ footer{
 	border:1px solid #b4b4b4;
 }
 .login_form_section h2{
-	font-size:36px;
+	font-size:24px;
 	color:#23394c;
 	font-weight:700;
 	margin-bottom:30px;
 }
 .login_form_section .form-control{
-	font-size:16px;
+	font-size:13px;
 	font-weight:500;
-	height:47px;
+	height:40px;
 	box-shadow:none;
 }
 .login_form_section .btn{
@@ -504,11 +518,13 @@ footer{
 	text-transform: uppercase;
 	background:#f69c14;
 	color:#fff;
-	font-size:18px;
+	font-size:13px;
 	font-weight:600;
+	position: relative;
+	z-index: 1;
 }
 .login_form_section .checkbox{
-	font-size:16px;
+	font-size:13px;
 	color:#5c5c5c;
 	font-weight:500;
 }
@@ -541,10 +557,15 @@ footer{
 	padding-right: 30px;
 }
 .login_benefits{
-	margin-bottom: 0px;
+	min-height: 40px;
+	padding: 10px 15px;
+	margin-bottom:0px;
 }
 .login_form_section .login-btn{
-	margin-top: 34px;
+	margin-top: 41px;
+}
+.login_form_section .btn:hover{
+	background:#db8708;
 }
 
 /*---------How-it-work-page-css-start----*/
@@ -556,11 +577,15 @@ footer{
 	padding: 0px;
 }
 .heading_page h2{
-    font-size: 48px;
+    font-size:22px;
     color: #23394c;
     font-weight: bold;
     border-bottom: 1px solid #cecece;
     padding: 30px 0;
+}
+.heading_page.cntct_us_wrap h2{
+     padding: 30px 0 10px;
+     border-bottom:none;
 }
 .heading_page h2 p {
     font-size: 20px;
@@ -604,13 +629,13 @@ footer{
 /*---------Contact-Us-Page-Css-Start-----*/
 .contact_us_page .form-control {
     height: auto;
-    font-size: 20px;
+    font-size:13px;
     font-weight: 600;
     color: #5c5c5c;
     outline: none;
 }
 .contact_us_page textarea.form-control {
-	height: 116px;
+	height: 96px;
 }
 .contact_us_page .form-control:focus{
 	border-color:#ccc;
@@ -645,18 +670,18 @@ footer{
   color: #5c5c5c;
 }
 .contact_us_page .btn {
-    font-size: 20px;
-    font-weight: 600;
-    padding:6px 25px;
+    font-size: 13px;
+	font-weight: 600;
+	padding: 6px 20px;
     border-radius: 0px;
 }
 /*---------Contact-Us-Page-Css-End-------*/
 /*---------Update-Page-Css-Start---------*/
 .product_title{
-	font-size: 48px;
+	font-size: 30px;
     color: #23394c;
     font-weight: bold;
-    padding: 30px 0;
+    padding: 20px 0;
 }
 .coupon_post {
     width: 100%;
@@ -690,7 +715,7 @@ footer{
 	margin: 10px auto
 }
 .post_address p {
-	font-size: 18px;
+	font-size: 15px;
     color: #3c4044;
     font-weight: 500;
     margin: 0px 0 5px;
@@ -745,7 +770,7 @@ footer{
     padding: 15px 0;
 }
 .post_coupon_detail .post_content p {
-    font-size: 26px;
+    font-size: 20px;
     text-transform: uppercase;
     font-weight: bold;
     color: #23394c;
@@ -753,7 +778,7 @@ footer{
 }
 .post_coupon_detail .post_content table{
 	width: 100%;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
 }
 .post_coupon_detail .post_content table td:first-child{
@@ -766,7 +791,7 @@ footer{
 .post_coupon_detail .post_discruiption {
     width: 100%;
     padding: 15px 0;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
     color: #3c4044;
     margin-bottom: 15px;
@@ -799,7 +824,7 @@ footer{
     color: #23394c
 }
 .post_coupon_detail .post_menu_button .ylew_btn{
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 600;	
     outline: none;
     box-shadow: none;    
@@ -820,7 +845,7 @@ footer{
     padding: 30px 0 0;
 }
 .post_detail h3{
-	font-size: 28px;
+	font-size: 25px;
 	color: #3c4044;
 	font-weight: 600;
 	margin: 20px 0;
@@ -835,7 +860,7 @@ footer{
 	 width: 100%;
 	 float: left;
 	 margin: 15px 0;
-	 font-size: 18px;
+	 font-size: 16px;
 	 font-weight: 600;
 	 color: #3c4044;
 }
@@ -866,10 +891,10 @@ footer{
     margin: 20px 0;
 }
 .review_section h2{
-	font-size: 36px;
+	font-size: 28px;
 	color: #23394c;
 	font-weight: bold;
-	margin: 30px 0;
+	margin: 30px 0 20px;
 }
 .review_section h3{
 	color: #3c4044;
@@ -903,17 +928,17 @@ footer{
 	margin-top: 60px;
 }
 .post_map h3{
-	font-size: 20px;
+	font-size: 16px;
 	font-weight: bold;
 	margin-bottom: 0px;
 }
 .post_map p{
 	margin: 0px;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;
 }
 .post_map a{
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 600;
 	margin-top: 20px;
 }
@@ -1093,14 +1118,16 @@ button,
 
 /*---------Privacy-policy-Page-Css-start---------*/
 .privay_policy_wrap h3{
+	font-size:20px;
 	font-weight:700;
 	color:#226f05;
 	text-transform: uppercase;
-	margin-bottom:30px;
+	margin-bottom:20px;
 }
 .privay_policy_wrap h4{
 	float: left;
 	width: 100%;
+	font-size:16px;
 	font-weight:600;
 	margin-top:15px;
 }
@@ -1297,7 +1324,7 @@ button,
 .cat_coupons_wrapper .restrnt_desp_text_box h4{
 	font-weight: 600;
 	color: #4b4e5c;
-	font-size: 17px;
+	font-size: 16px;
 	margin-bottom: 5px;
 }
 .cat_coupons_wrapper .cpn_adjst_img{
@@ -1305,6 +1332,9 @@ button,
 }
 .cat_coupons_wrapper .top_rstrnt_deal_wrap{
 	margin-bottom: 0px;
+}
+.filter_inner_wrap .filter_btns_div .btn{
+	font-size:13px;
 }
 .sorting-div {
     position: absolute;
@@ -1330,7 +1360,7 @@ button,
 .sorting-div-inner h4{
 	display: inline-block;
 	color: #fff;
-	font-size: 16px;
+	font-size: 13px;
 }
 .sorting-div-inner .form-group{
 	width:27%;
@@ -1352,9 +1382,9 @@ button,
 }
 .sorting-div-inner .btn{
 	font-weight: 600;
-	font-size: 16px;
+	font-size: 13px;
 	line-height: 1;
-	padding: 4px 20px;
+	padding: 5px 20px;
 	letter-spacing: 0.3px;
 }
 .no-coupons-div{
@@ -1492,11 +1522,16 @@ input[type="radio"]:checked + span:after {
 .popular_coupon_wrap{
 	padding-bottom: 10px;
 	border-bottom: 1px solid #cecece;
+	margin-bottom: 10px;
+}
+.popular_coupon_wrap h4{
+	font-size:15px;
 }
 .popular_coupon_wrap p{
 	margin-bottom: 5px;
 }
 .categories_wrapper .right-pane .header h4{
+	font-size:16px;
 	margin-bottom: 10px;
 	background-color: #2D3E50;
 	padding: 10px 0;
@@ -1783,6 +1818,7 @@ span.menu_icon_down {
 	width: 15px;
 }
 .groupon_deal_popup h3{
+	font-size:20px;
 	line-height:25px;
 	font-weight:700;
 	color:#4b4e5c;
@@ -1807,7 +1843,7 @@ span.menu_icon_down {
 }
 .groupon_deal_popup #get_deal_btn{
 	width:100%;
-	font-size:18px;
+	font-size:15px;
 	margin-top:10px;
 	line-height:30px;
 	color:#fff;
@@ -1820,7 +1856,7 @@ span.menu_icon_down {
 	padding-bottom:10px;
 }
 .groupon_deal_popup p{
-	font-size:15px;
+	font-size:13px;
 	color:#62646e;
 	font-weight:500;
 }
@@ -1830,14 +1866,14 @@ span.menu_icon_down {
 	width:100%;
 }
 .groupon_deal_popup .left-lower-wrap p strike{
-	font-size:20px;
+	font-size:16px;
 }
 .groupon_deal_popup .left-lower-wrap p label{
-	font-size:18px;
+	font-size:14px;
 	color:#226f05;
 }
 .groupon_deal_popup .left-lower-wrap p span{
-	font-size:15px;
+	font-size:13px;
 }
 .groupon_deal_popup .left-lower-wrap p span.discount_prcnt{
 	color: white;
@@ -1877,11 +1913,11 @@ span.menu_icon_down {
 	color:#4b4e5c;
 }
 .groupon_deal_popup .popup_body_text_wrap h4{
-	font-size:22px;
+	font-size:18px;
 	font-weight:600;
 }
 .groupon_deal_popup .popup_body_text_wrap ul li{
-	font-size:16px;
+	font-size:13px;
 	font-weight:600;
 	color:#62646e;
 	position: relative;
@@ -2060,42 +2096,69 @@ color: #2c3e50;
 /*----------css-for-select-location-popup-------------*/
 .select_location_popup{
 	padding:0px !important;
+	background-repeat:no-repeat !important;
+	background-position: center center !important;
+	background-size:cover !important;
+
 }
 .select_location_popup .modal-dialog{
-	margin:0 auto;
-	max-width:1366px;
+	display:flex;
+	flex-direction: column;
+	height:100%;
 	width:100%;
+	margin:0 auto;
+}
+.select_location_popup .modal-dialog .modal-content{
+	background:none;
+	box-shadow:none;
+	border:none;
+	text-align:center;
+	flex:1;
+	display: flex;
+	flex-direction: column; 
+	justify-content: center;
 }
 .select_location_popup .modal-header{
 	border:none;
 	padding-top:30px;
 }
 .select_location_popup .modal-header h4{
-	font-size:27px;
+	font-size:20px;
 	color:#4b4e5c;
 	font-weight:600;
 	text-transform:uppercase;
 }
 .select_location_popup .modal-header p{
-	font-size:16px;
+	font-size:13px;
 	color:#757577;
 	font-weight:400;
 	text-transform:capitalize;
 }
+.select_location_popup .close {
+    font-weight: 100;
+    font-size: 40px;
+    position: absolute;
+    right: 57px;
+    top: 15px;
+    text-shadow: none;
+	color: #2a2c2a;
+	opacity: 1;
+}
 .select_city_form{
-	max-width:600px;
+	max-width:430px;
 	width:100%;
 	margin:0 auto;
 }
 .select_city{
 	float:left;
-	width:calc(100% - 250px);
+	width:calc(100% - 220px);
 	border:1px solid #b4b4b4;
 }
 .select_city .fa{
 	float:left;
 	padding:0px 5px;
 	line-height:34px;
+	color:#fdfdfd;
 }
 .select_city .form-control{
 	float:right;
@@ -2106,14 +2169,30 @@ color: #2c3e50;
 .select_city .form-control:focus{
 	box-shadow:none;
 }
+.optional_text{
+	float:left;
+	width:30px;
+	text-align:center;
+	padding: 8px 0px;
+	color:#757577;
+}
 .select_city_form .btn{
 	float:right;
-	width:240px;
-	font-size: 16px;
+	width:190px;
+	font-size: 14px;
 	font-weight: 600;
 }
 .select_city_form .btn .fa{
-	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 22px;
+	float: left;
+}
+.select_city_form .btn.get_started_btn{
+	float:none;
+	width:auto;
+}
+.select_city_form .btn.get_started_btn .fa{
+	margin-right:0px;
 	font-size: 22px;
 	float: left;
 }
@@ -2124,32 +2203,37 @@ color: #2c3e50;
 }
 .top_cities_wrap h2{
 	color:#4b4e5c;
-	font-size:22px;
+	font-size:20px;
 	font-weight:600;
 	text-transform:uppercase;
 	margin-bottom:20px;
 }
 .top_cities_wrap a{
-	font-size:15px;
+	font-size:12px;
 	font-weight:500;
 	margin:0px 15px 20px 0px;
 	padding:6px 10px;
 	display:inline-block;
 	color:#2c3e50;
-	background:#f3f5f6;
-	border:1px solid #e8ebed;
+	border:1px solid #d5d6d7;
+	-webkit-transition: color 1s; 
+	transition: color 1s;
+	-webkit-transition: border 1s;
+	transition: border 1s;
 }
 .top_cities_wrap a:last-child{
 	margin-right:0px;
 }
 .top_cities_wrap a:focus,
 .top_cities_wrap a:hover{
-	background:#e1e4e6;
+	color:#226f05;
+	border:1px solid #226f05;
 }
 .popup_logo {
-	max-width: 140px;
-    clear: both;
-    margin: 0 auto 20px;
-    opacity:.8;
+	max-width: 120px;
+	clear: both;
+	margin: 20px auto 0px;
+	opacity: .8;
+	display: inline-block;
 
 }
