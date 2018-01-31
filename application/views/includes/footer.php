@@ -149,11 +149,14 @@
 							<div class="form-group">
 				        		<div class="select_city">
 				        			<i class="fa fa-map-marker"></i>
-				        			<input type="text" class="form-control" placeholder="Enter Your Zip Code">
+				        			<input type="text" id="zipcode" class="form-control" placeholder="Enter Your Zip Code">
 				        		</div>
-				        		<span class="optional_text">or</span>
-			        			<a href="javascript:void(0);" class="btn ylew_btn">Use My Current Location</a>
+			        			<a href="javascript:void(0);" class="btn ylew_btn" id="search_zipcode">Select</a>
 			        		</div>
+			        		<div class="form-group">
+			        			<span class="optional_text">or</span>
+		        				<a href="javascript:void(0);" class="btn ylew_btn">Use My Current Location</a>
+		        			</div>
 			        	</div>
 					</form>
 				</div>

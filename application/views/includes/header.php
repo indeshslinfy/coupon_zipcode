@@ -10,7 +10,6 @@
 	<title><?php echo isset($title) && $title != "" ? $title . "&nbsp;-&nbsp;" : ""; ?>Coupon Zipcode</title>
 
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<!-- <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700" rel="stylesheet"> --> 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<?php
@@ -40,6 +39,7 @@
 	</script>
 </head>
 <body>
+	<?php echo $this->input->cookie('user_current_location'); ?>
 	<div class="container-fluid">
 		<div class="row header_location_bar">
 			<div class="container">
@@ -48,8 +48,17 @@
 						<div class="login_signup_btn_box">
 							<ul class="pull-left header_location_ul">
 								<li>
-									<span><i class="fa fa-map-marker"></i>&nbsp;Select location</span>
-									<a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">New York</a>
+									<a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">
+										<span><i class="fa fa-map-marker"></i>&nbsp;Select location</span>
+										<?php
+										if($this->input->cookie('user_current_location'))
+										{
+										?>
+											<?php echo  $_COOKIE['zipcode']; ?>
+										<?php
+										}
+										?>
+									</a>
 								</li>
 							</ul>
 							<ul class="pull-right">

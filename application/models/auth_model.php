@@ -28,6 +28,7 @@ class auth_model extends CI_model
 
 	public function authenticate_login()
 	{
+		// check_location_cookie();
 		if (!$this->session->userdata('logged_in'))
 		{
 			$allowed = array('home/index',
@@ -38,6 +39,7 @@ class auth_model extends CI_model
 							'home/get_geo_location',
 							'home/get_zipcode_stores',
 							'home/save_new_zipcode',
+							'home/search_zipcode',
 							'tickets/ticket_details',
 							'tickets/ticket_save',
 							'coupons/list_categories',

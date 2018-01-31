@@ -84,25 +84,73 @@ class Home extends CI_Controller
 
 	public function get_geo_location()
 	{
-		// (array)json_decode($this->input->cookie('user_current_location'));
-
 		$cookie_expiry_time = '86400';
 		$geolocation = $this->input->get('lat') . ',' . $this->input->get('long');
 		$request = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $geolocation . '&sensor=false'; 
 		$file_contents = file_get_contents($request);
 		$json_decode = json_decode($file_contents);
-		
+
 		if (sizeof($json_decode->results) > 0)
 		{
 			$user_current_location['lat'] = $this->input->get('lat');
 			$user_current_location['long'] = $this->input->get('long');
-			$user_current_location['country'] = @$json_decode->results[0]->address_components[6]->long_name;
-			$user_current_location['state'] = @$json_decode->results[0]->address_components[5]->long_name;
-			$user_current_location['city'] = @$json_decode->results[0]->address_components[4]->long_name;
-			$user_current_location['zipcode'] = @$json_decode->results[0]->address_components[7]->long_name;
+
+			foreach ($json_decode->results[0]->address_components as $keyAC => $valueAC)
+			{
+				switch ($valueAC->types[0])
+				{
+					case 'country':
+						$user_current_location['country'] = $valueAC->long_name;
+						break;
+
+					case 'locality':
+					case 'administrative_area_level_2':
+						$user_current_location['city'] = $valueAC->long_name;
+						break;
+
+					case 'administrative_area_level_1':
+						$user_current_location['state'] = $valueAC->long_name;
+						break;
+
+					case 'postal_code':
+						$user_current_location['zipcode'] = $valueAC->long_name;
+						break;
+					
+					default:
+						# code...
+						break;
+				}
+			}
 
 			$this->input->set_cookie('user_current_location', json_encode($user_current_location), $cookie_expiry_time);
 			echo json_encode(array("status" => 1, "data" => $user_current_location)); die;
+		}
+		else
+		{
+			echo json_encode(array("status" => 0, "message" => "Error occured while getting location.")); die;
+		}
+	}
+
+	public function search_zipcode()
+	{
+		$zipcode_details = $this->db->select('countries.country_name as country,
+									states.state_name as state,
+									cities.city_name as city,
+									zipcodes.zipcode,
+									zipcodes.latitude as lat,
+									zipcodes.longitude as long')
+						->from('zipcodes')
+						->where(array('zipcode' => $this->input->get('zipcode')))
+						->join('cities', 'zipcodes.place_id=cities.id')
+						->join('states', 'cities.state_id=states.id')
+						->join('countries', 'countries.id=states.country_id')
+						->get()
+						->row_array();
+
+		if (sizeof($zipcode_details) > 0)
+		{
+			$this->input->set_cookie('user_current_location', json_encode($zipcode_details), '86400');
+			echo json_encode(array("status" => 1, "data" => $zipcode_details)); die;
 		}
 		else
 		{
