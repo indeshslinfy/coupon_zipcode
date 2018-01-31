@@ -141,7 +141,7 @@ class Coupons extends CI_Controller {
 					$ebay_deals = array();
 					foreach ($_GET['cat'] as $keyCAT => $valueCAT)
 					{
-						$deals = $this->fetch_ebay_deals('category', $valueCAT, array('offset' => 0, 'limit' => 5));
+						$deals = $this->fetch_ebay_deals('category', $valueCAT, array('offset' => 1, 'limit' => 5));
 						if ($deals['ack'] == 'Success')
 						{
 							$ebay_deals = array_merge($ebay_deals, $deals['searchResult']['item']);
@@ -276,74 +276,54 @@ class Coupons extends CI_Controller {
 		}
 	}
 
-	public function fetch_ebay_deals($type, $type_val, $paginate)
+	public function fetch_ebay_deals($type, $type_val, $filters)
 	{
+		$filters['min_price'] = '5.00';
+		$filters['max_price'] = '50.00';
+
 		$ebay_details = $this->settings_model->get_settings('ebay');
 
-		$api_url = 'http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD';
 		$trackingId = '5338251126';
-
-		$sortOrder = 'EndTime';
-		if (isset($sortOrder)) 
-		{
-			$sortOrder = $sortOrder;
-		}
+		$api_url = 'http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD';
 
 		$currency = 'USD';
-		$min_price = '11.00';
-		$max_price = '25.00';
-		if (isset($min_price) && isset($currency) && isset($max_price)) 
+		if (array_key_exists('min_price', $filters) && array_key_exists('max_price', $filters))
 		{
-			$currency = $currency;
-			$min_price = $min_price;
-			$max_price = $max_price;
+			$api_url .= '&itemFilter(0).name=MinPrice&itemFilter(0).value=' . $filters['min_price'] . '&itemFilter(0).paramName=Currency&itemFilter(0).paramValue=' . $currency . '&itemFilter(1).name=MaxPrice&itemFilter(1).value=' . $filters['max_price'] . '&itemFilter(1).paramName=Currency&itemFilter(1).paramValue=' . $currency;
 		}
 
-		$per_page = '5';
-		if (isset($per_page)) 
+		if (!array_key_exists('limit', $filters)) 
 		{
-			$per_page = $per_page;
+			$filters['limit'] = '5';
+		}
+		if (!array_key_exists('offset', $filters)) 
+		{
+			die('here');
+			$filters['offset'] = '1';
 		}
 
-		$page_number = '1';
-		if (isset($page_number)) 
+		if (array_key_exists('sort_order', $filters)) 
 		{
-			$page_number = $page_number;
+			$api_url .= '&sortOrder='. $filters['sort_order'];
 		}
 
-		$api_url .= '&paginationInput.entriesPerPage=' . $per_page . '&paginationInput.pageNumber='. $page_number;
-		$api_url .= '&affiliate.networkId=9&affiliate.trackingId=' . $trackingId . '&affiliate.customId=123';
-		
-		if (!empty($sortOrder)) 
-		{
-			$api_url .= '&sortOrder='. $sortOrder;
-		}
-		if (isset($min_price) && isset($currency) && isset($max_price)) 
-		{	
-			$api_url .= '&itemFilter(0).name=MinPrice&itemFilter(0).value=' . $min_price . '&itemFilter(0).paramName=Currency&itemFilter(0).paramValue=' . $currency . '&itemFilter(1).name=MaxPrice&itemFilter(1).value=' . $max_price . '&itemFilter(1).paramName=Currency&itemFilter(1).paramValue=' . $currency;
-		}
+		$api_url .= '&paginationInput.entriesPerPage=' . $filters['limit'] . '&paginationInput.pageNumber='. $filters['offset'] . '&affiliate.networkId=9&affiliate.trackingId=' . $trackingId . '&affiliate.customId=123';
+
 		switch ($type)
 		{
 			case 'category':
-				$api_url .= '&categoryId='. $type_val;
-				$api_operation = '&OPERATION-NAME=findItemsByCategory';
-				//$pagination = '&paginationInput.entriesPerPage=' . $per_page . '&paginationInput.pageNumber=' . $page_number;
+				$api_url .= '&categoryId=' . $type_val . '&OPERATION-NAME=findItemsByCategory';
 				break;
 
 			case 'keywords':
-				$api_url .= '&keywords='. $type_val;
-				$api_operation = '&OPERATION-NAME=findItemsByKeywords';
+				$api_url .= '&keywords=' . $type_val . '&OPERATION-NAME=findItemsByKeywords';
 				break;
 
 			default:
 				return false;
 				break;
 		}
-
-		$api_url .= $api_operation;
-		$res = json_decode(file_get_contents($api_url));
-		print_r($res); die;
-		return $res;
-		//print_r($api_url);die();
+		
+		return json_decode(json_encode(simplexml_load_file($api_url)), true);
 	}
 }
