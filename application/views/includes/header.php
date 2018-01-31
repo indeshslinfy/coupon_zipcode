@@ -38,7 +38,7 @@
 	</script>
 </head>
 <body>
-	<?php echo $this->input->cookie('user_current_location'); ?>
+	<?php //echo $this->input->cookie('user_current_location'); ?>
 	<div class="container-fluid">
 		<div class="row header_location_bar">
 			<div class="container">

@@ -48,15 +48,45 @@ function showPosition(position)
 		url: BASEURL+"home/get_geo_location?lat="+position.coords.latitude+"&long="+position.coords.longitude,
 		success: function(data)
 		{
+			var data = JSON.parse(data);
 			if (data.status == 0)
 			{
 				alert(data.message);
 			}
 			else
 			{
-				var data = JSON.parse(data);
 				localStorage.setItem("user_current_location", JSON.stringify(data.data));
+
+				var loc_html = '<li>\
+									<a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">\
+										<span><i class="fa fa-map-marker"></i>&nbsp;Select location</span>' + data.data.zipcode + '\
+									</a>\
+								</li>';
+				$(".header_location_ul").html(loc_html);
 			}
 		}
 	});
 }
+
+$("#search_zipcode").click(function()
+{
+	$.ajax({
+		type: "GET",
+		datatype: "JSON",
+		url: BASEURL+"home/search_zipcode?zipcode="+$('#zipcode').val(),
+		success: function(data)
+		{
+			var data = JSON.parse(data);
+			if (data.status == 0)
+			{
+				alert(data.message);
+			}
+			else
+			{
+				localStorage.setItem("user_current_location", JSON.stringify(data.data));
+
+				window.location.reload();
+			}
+		}
+	});
+});
