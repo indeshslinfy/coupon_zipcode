@@ -126,6 +126,32 @@ class Coupons extends CI_Controller {
 				}
 			}
 		}
+		else if ($_GET['src'] == 'ebay')
+		{
+			$_GET['cat'] = '15032';
+			if (isset($_GET['cat']) && $_GET['cat'] != '')
+			{
+				if (!is_array($_GET['cat']))
+				{
+					$_GET['cat'] = (array)$_GET['cat'];
+				}
+
+				if (sizeof($_GET['cat']) > 0)
+				{
+					$ebay_deals = array();
+					foreach ($_GET['cat'] as $keyCAT => $valueCAT)
+					{
+						$deals = $this->fetch_ebay_deals('category', $valueCAT, array('offset' => 0, 'limit' => 5));
+						if ($deals['ack'] == 'Success')
+						{
+							$ebay_deals = array_merge($ebay_deals, $deals['searchResult']['item']);
+						}
+					}
+					$data['coupons']['ebay'] = $ebay_deals;
+					$total_coupons_fetched = sizeof($data['coupons']['ebay']);
+				}
+			}
+		}
 		else
 		{
 			$this->load->model(ADMIN_PREFIX . '/stores_model');
@@ -244,6 +270,45 @@ class Coupons extends CI_Controller {
 				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&filters=category:' . $type_val . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
 				break;
 			
+			default:
+				return false;
+				break;
+		}
+	}
+
+	public function fetch_ebay_deals($type, $type_val, $paginate)
+	{
+		$ebay_details = $this->settings_model->get_settings('ebay');
+
+
+		/*$url = "http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByCategory&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=Couponzi-couponzi-PRD-05d80d3bd-0327d4a8&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&keywords=ebay&paginationInput.entriesPerPage=5&paginationInput.pageNumber=2&categoryId=12576";
+		$resp = simplexml_load_file($apicall);
+		if ($resp->ack == "Success") 
+		{
+			print_r($resp->searchResult->item); die;
+		}
+
+		array('app_id' => 'Couponzi-couponzi-PRD-05d80d3bd-0327d4a8');*/
+
+		switch ($type)
+		{
+			// case 'location':
+			// 	return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&division_id=' . $type_val . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
+			// 	break;
+			
+			case 'category':
+				//print_r(('http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByCategory&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&keywords=ebay&paginationInput.entriesPerPage=5&paginationInput.pageNumber=2&categoryId='.$type_val));
+				//die();
+				return json_decode(json_encode(simplexml_load_file('http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByCategory&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&keywords=ebay&paginationInput.entriesPerPage=5&paginationInput.pageNumber=2&categoryId='. $type_val)),true);
+				//return json_decode(json_encode(simplexml_load_file("http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=Couponzi-couponzi-PRD-05d80d3bd-0327d4a8&GLOBAL-ID=EBAY-US&keywords=jeans&paginationInput.entriesPerPage=10&paginationInput.pageNumber=2&categoryId=156955&itemFilter(0).name=MaxPrice&itemFilter(0).value=25&itemFilter(0).paramName=Currency&itemFilter(0).paramValue=USD&itemFilter(1).name=FreeShippingOnly&itemFilter(1).value=true&itemFilter(2).name=ListingType&itemFilter(2).value(0)=AuctionWithBIN&itemFilter(2).value(1)=FixedPrice&itemFilter(2).value(2)=StoreInventory")),true);
+				break;
+
+			case 'keywords':
+				//print_r(('http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByCategory&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&keywords=ebay&paginationInput.entriesPerPage=5&paginationInput.pageNumber=2&categoryId='.$type_val));
+				//die();
+				return json_decode(json_encode(simplexml_load_file('http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.9.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&paginationInput.entriesPerPage=5&paginationInput.pageNumber=2&keywords='. $type_val)),true);
+				//return json_decode(json_encode(simplexml_load_file("http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=Couponzi-couponzi-PRD-05d80d3bd-0327d4a8&GLOBAL-ID=EBAY-US&keywords=jeans&paginationInput.entriesPerPage=10&paginationInput.pageNumber=2&categoryId=156955&itemFilter(0).name=MaxPrice&itemFilter(0).value=25&itemFilter(0).paramName=Currency&itemFilter(0).paramValue=USD&itemFilter(1).name=FreeShippingOnly&itemFilter(1).value=true&itemFilter(2).name=ListingType&itemFilter(2).value(0)=AuctionWithBIN&itemFilter(2).value(1)=FixedPrice&itemFilter(2).value(2)=StoreInventory")),true);
+				break;
 			default:
 				return false;
 				break;

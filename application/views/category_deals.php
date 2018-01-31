@@ -43,6 +43,10 @@
 											<input type="radio" name="src" value="groupon" <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'checked' : ''; ?>>&nbsp;
 											<span>Groupon</span>
 										</li>
+										<li>
+											<input type="radio" name="src" value="ebay" <?php echo isset($_GET['src']) && $_GET['src'] == 'ebay' ? 'checked' : ''; ?>>&nbsp;
+											<span>Ebay</span>
+										</li>
 									</ul>
 									<hr>
 								</div>
@@ -236,6 +240,38 @@
 																	}
 																?>
 																</i>
+															</p>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<?php
+										echo $cnt == 4 ? '</div>' : '';
+										$cnt == 4 ? $cnt = 1 : $cnt++;
+									}
+								}
+								elseif (array_key_exists('ebay', $coupons))
+								{
+									foreach ($coupons['ebay'] as $keyCC => $valueCC)
+									{
+										echo $cnt == 1 ? '<div class="row">' : '';
+									?>
+										<div class="col-sm-3 cpn_adjst_img">
+											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="javascript:void(0);">
+												<div class="top_rstrnt_deal_wrap">
+													<div class="cat_img_div">
+														<img src="<?php echo $valueCC['galleryURL']; ?>" alt="<?php echo $valueCC['subtitle']; ?>">
+													</div>
+													<div class="rstrnt_des_wrap">
+														<div class="location_box light_green_bg">
+															<i class="fa fa-map-marker"></i>&nbsp;
+															<?php echo strlen($valueCC['location']) > 30 ? substr($valueCC['location'], 0, 30) . "..." : $valueCC['location']; ?>
+														</div>
+														<div class="restrnt_desp_text_box">
+															<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
+															<p>
+																Price:&nbsp;<?php echo $valueCC['sellingStatus']['currentPrice']; ?>
 															</p>
 														</div>
 													</div>
