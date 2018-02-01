@@ -17,8 +17,8 @@
 
 			<div class="row">
 				<div class="section_main">
-					<div class="col-sm-2 left-pane">
-						<div class="filters_header text-center"><h4>Filters</h4></div>
+					<div class="col-sm-3 col-md-2 left-pane">
+						<div class="filters_header text-center"><h4>Filters<a class="pull-right filter_toggle visible-xs" href="javascript:void(0);"><i class="fa fa-filter"></i></a></h4></div>
 
 						<div class="filter_inner_wrap">
 							<div class="selected_filters_div"></div>
@@ -170,7 +170,7 @@
 						</div>
 					</div>
 
-					<div class="col-sm-10 right-pane">
+					<div class="col-sm-9 col-md-10 right-pane">
 						<div class="exclusive_coupan cat_coupons">
 							<?php
 							if ($total_coupons_fetched > 0)
@@ -182,7 +182,7 @@
 									{
 										echo $cnt == 1 ? '<div class="row">' : '';
 									?>
-										<div class="col-sm-3 cpn_adjst_img">
+										<div class="col-sm-6 col-md-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>" data-placement="left" href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">

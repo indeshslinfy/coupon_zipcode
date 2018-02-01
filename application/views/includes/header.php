@@ -14,6 +14,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<?php
 		echo css('frontend/style.css');
+		echo css('frontend/owl.carousel.css');
 		echo css('frontend/responsive.css');
 
 		$general_settings = get_settings('general_settings');
@@ -49,13 +50,15 @@
 							<ul class="pull-left header_location_ul">
 								<li>
 									<a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">
-										<span><i class="fa fa-map-marker"></i>&nbsp;Select location</span>
-										<?php
-										if($current_location)
-										{
-											echo $current_location['zipcode'];
-										}
-										?>
+										<i class="fa fa-map-marker"></i>&nbsp;Select location&nbsp;
+										<span>
+											<?php
+											if($current_location)
+											{
+												echo $current_location['zipcode'];
+											}
+											?>
+										</span>
 									</a>
 								</li>
 							</ul>

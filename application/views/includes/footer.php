@@ -142,21 +142,23 @@
 	    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	    	<div class="get_start_wrap_box text-center">
 				<h3>Why search the web? We have done all the work for you! All deals from all places under one roof!</h3>
-				<p>(Groupon, Yelp, CouponZipcode Deals)</p>
+				<p>(Groupon, ebay, CouponZipcode Deals)</p>
 				<div class="form_wrap">
 					<form>
 						<div class="select_city_form">
 							<div class="form-group">
-				        		<div class="select_city">
+				        		<div class="select_city selct_location_wrap">
 				        			<i class="fa fa-map-marker"></i>
 				        			<input type="text" id="zipcode" class="form-control" placeholder="Enter Your Zip Code">
 				        		</div>
 			        			<a href="javascript:void(0);" class="btn ylew_btn" id="search_zipcode">Select</a>
 			        		</div>
 			        		<div class="form-group">
-			        			<span class="optional_text">or</span>
-		        				<a href="javascript:void(0);" class="btn ylew_btn">Use My Current Location</a>
-		        			</div>
+			        			<div class="selct_location_wrap">
+			        				<span class="optional_text">or</span>
+			        				<a href="javascript:void(0);" class="btn ylew_btn currnt_loc_btn">Use My Current Location</a>
+			        			</div>
+			        		</div>
 			        	</div>
 					</form>
 				</div>
@@ -172,6 +174,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <?php
 	echo js('frontend/jquery.nicescroll.min.js');
+	echo js('frontend/owl.carousel.min.js');
 	echo js('frontend/scripts.js');
 ?>
 </body>

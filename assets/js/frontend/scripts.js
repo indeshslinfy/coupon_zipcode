@@ -34,6 +34,36 @@ $(document).ready(function()
 	});
 
 	$('.cssload-container').css('display', 'none');
+
+	
+ 	$('#exclusive_coupan_carousel').owlCarousel({
+		    loop:true,
+		    items : 3,
+		    autoplay:false,
+		    autoplayTimeout:100,
+		    smartSpeed:1000,
+		    nav:true,
+		    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+		    responsiveClass:true,
+		    responsive:{
+		        0:{
+		            items:1,
+		            nav:true
+		        },
+		        600:{
+		            items:2,
+		            nav:true
+		        },
+		        800:{
+		            items:3,
+		            nav:true
+		        }
+		    }
+		});
+ 	$(document).on('click','.filter_toggle',function(){
+ 		$('.filter_inner_wrap').slideToggle();
+ 	})
+
 });
 
 function getLocation() 

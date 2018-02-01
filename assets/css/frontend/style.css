@@ -194,7 +194,9 @@ img{
 	margin-right:5px;
 }
 .header_location_ul li a{
-	margin-left:5px;
+	padding:0px 7px 0px 0px;
+}
+.header_location_ul li a span{
 	padding:0px 7px;
 	border:1px solid #cecece;
 }
@@ -251,6 +253,38 @@ section{
 	background: none;
 	padding-right:0px;
 }
+.heading_text_wrap .btn:focus,.heading_text_wrap .btn:hover{
+	color:#6c6e6c !important;
+	background:none;
+	box-shadow:none;
+}
+#exclusive_coupan_carousel{
+	float:left;
+}
+#exclusive_coupan_carousel .item{
+	padding:0px 15px;
+}
+#exclusive_coupan_carousel .owl-nav{
+	position:absolute;
+	top:45%;
+	width:100%;
+	padding: 0px 15px;
+}
+#exclusive_coupan_carousel .owl-nav div{
+	background: rgba(0,0,0,.5);
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	color: #fff;
+	line-height: 27px;
+	font-size: 25px;
+}
+#exclusive_coupan_carousel .owl-nav div.owl-prev{
+	float:left;
+}
+#exclusive_coupan_carousel .owl-nav div.owl-next{
+	float:right;
+}
 .exclusive_coupan .cpn_adjst_img{
 	display: table;
 }
@@ -298,7 +332,7 @@ section{
 	filter: blur(5px);
 }
 .exclusive_coupan.cat_coupons a:hover img{
-	transform:skew(5deg,5deg) scale(1);
+	transform:scale(1);
 	-webkit-filter: blur(0px) grayscale(100%);
 	filter: blur(0px) grayscale(100%);
 	-webkit-transition: .3s ease-in-out;
@@ -348,12 +382,12 @@ section{
 .top_rstrnt_deal .col-sm-3 a{
 	float:left;
 	width:100%;
-	transition:all ease .25s;
+	transition:all ease .50s;
 }
 .top_rstrnt_deal .col-sm-3 a:hover{
 	position:relative;
-	transform:translate(0px,-5px);
-	box-shadow: 0px 3px 12px rgba(128,128,128,.2);
+	transform:translate(0px,-2px);
+	box-shadow: 0px 3px 12px rgba(128,128,128,.7);
 }
 .top_rstrnt_deal_wrap{
 	float:left;
@@ -1490,6 +1524,7 @@ input[type="radio"] + span {
 input[type="radio"] + span:before {
 	content: '';
 	margin-right: 10px;
+	margin-top:2px;
 	display: inline-block;
 	vertical-align: text-top;
 	width: 15px;
@@ -1508,7 +1543,7 @@ input[type="radio"]:checked + span:after {
 	content: '';
 	position: absolute;
 	left: 4px;
-	top: 4px;
+	top: 6px;
 	background: #226F05;
 	width: 7px;
 	height: 7px;
@@ -2154,6 +2189,10 @@ color: #2c3e50;
 	width:calc(100% - 220px);
 	border:1px solid #b4b4b4;
 }
+.selct_location_wrap{
+	float:left;
+	width:calc(100% - 220px);
+}
 .select_city .fa{
 	float:left;
 	padding:0px 5px;
@@ -2171,16 +2210,23 @@ color: #2c3e50;
 }
 .optional_text{
 	float:left;
-	width:30px;
-	text-align:center;
-	padding: 8px 0px;
-	color:#757577;
+	width:100%;
+	text-align: center;
+	padding: 0px 0px 20px;
+	color: #757577;
+	font-size: 16px;
 }
 .select_city_form .btn{
-	float:right;
-	width:190px;
+	float:left;
+	width:115px;
 	font-size: 14px;
 	font-weight: 600;
+	margin-left:20px;
+}
+.select_city_form .btn.currnt_loc_btn{
+	float:left;
+	width:100%;
+	margin-left:0px;
 }
 .select_city_form .btn .fa{
 	margin-right: 10px;

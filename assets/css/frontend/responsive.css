@@ -25,6 +25,11 @@
 	.exclusive_coupan a .hover_div .hover_text_wrap h5 {font-size: 14px;}
 	.online_coupan_link{margin-bottom: 30px}
 	.search_form_wrap .form-group.serach_ct_field{width:140px;}
+	.sorting-div{width:76%; left: 25.2%;}
+	.sorting-div-inner .form-group:nth-child(1) .form-control {width: 55%;}
+	.cat_coupons_wrapper .sorting-div-inner .form-control{font-size:12px;padding:0px 10px !important;}
+	.sorting-div-inner .form-group:nth-child(2) .form-control{width:58%;}
+	.sorting-div-inner .form-group:nth-child(3) .form-control{width:58%;}
 	/*---------index-page-css-end-------------*/
 }
 @media screen and (max-width:767px){
@@ -36,7 +41,8 @@
 	.navbar-toggle:hover,.navbar-toggle:focus{background:#1A5006!important;color:#fff;}
 	.navbar-toggle .icon-bar{width:15px;}
 	.search_form_wrap .form-group.serach_ct_field{width:100%;}
-	.navigation_bar .navbar-default li a {font-size: 13px;padding: 10px 15px;border-bottom: 1px solid #1A5006;}
+	.navigation_bar .navbar-default .nav.navbar-nav{margin-top:0px;}
+	.navigation_bar .navbar-default li a {font-size: 13px;padding: 10px 15px;}
 	.online_coupan_link ul{width: 100%}
 	.left_side_line::before{display: none}
 	.city_box,.nearby,.search_form_wrap .btn{width: 100%;margin: 10px 0 0 0;float: left;}
@@ -62,11 +68,23 @@
 	.post_address p{font-size: 20px;line-height: 26px}
 	.post_address p a{font-size: 18px;}
 	.exclusive_coupan .cpn_adjst_img {width: 100%;margin-bottom: 20px;}
+	.filter_toggle{padding-right:15px; color:#fff;}
+	.filter_toggle:hover,.filter_toggle:focus{padding-right:15px; color:#F69C13;}
+	.filter_inner_wrap{display:none;}
+	.sorting-div{position:relative;width: 100%;top:15px;left: 0%;padding-left: 0px;}
+	.sorting-div .sorting-div-inner{padding:15px 15px 0px;}
+	.sorting-div .sorting-div-inner .form-group{float:left;width:100% !important;}
+	.sorting-div .sorting-div-inner h4{float:left;width:50px;line-height: 22px;}
+	.sorting-div .sorting-div-inner .form-group .form-control{float:right;width:calc(100% - 65px)!important;margin:0px;}
+	.sorting-div .sorting-div-inner .form-group .btn{float:right;}
+	.cat_coupons_wrapper .right-pane .exclusive_coupan{padding-top:20px;}
 	/*---------index-page-css-end-------------*/
 }
 
-@media screen and (max-width:419px){
-	.select_city{width:100%;margin-bottom:10px;}
+@media screen and (max-width:479px){
+	.select_city{width:100%;margin-bottom:20px;}
+	.selct_location_wrap{width:100%;}
+	.select_city_form .btn{margin-left:0px;}
 	.select_city_form .btn,.optional_text{width:100%;}
 
 }
