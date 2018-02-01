@@ -29,6 +29,8 @@
 		{
 			$company_logo = $general_settings['company_logo'];
 		}
+
+		$current_location = json_decode($this->input->cookie('user_current_location'), true);
 	?>
 
 	<link rel="icon" href="<?php echo base_url($favicon); ?>">
@@ -38,7 +40,6 @@
 	</script>
 </head>
 <body>
-	<?php //echo $this->input->cookie('user_current_location'); ?>
 	<div class="container-fluid">
 		<div class="row header_location_bar">
 			<div class="container">
@@ -50,11 +51,9 @@
 									<a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">
 										<span><i class="fa fa-map-marker"></i>&nbsp;Select location</span>
 										<?php
-										if($this->input->cookie('user_current_location'))
+										if($current_location)
 										{
-										?>
-											<?php echo  $_COOKIE['zipcode']; ?>
-										<?php
+											echo $current_location['zipcode'];
 										}
 										?>
 									</a>
@@ -73,19 +72,16 @@
 								{
 								?>
 									<li>
-										<a href="<?php //echo base_url('logout'); ?>" >Logout</a>
+										<a href="<?php echo base_url('logout'); ?>" >Logout</a>
 									</li>
 								<?php
 								}
 								else
 								{
 								?>
-									<!-- <li>
-										<a href="<?php //echo base_url('login'); ?>" class="btn lg_btn">Login</a>
-									</li> -->
 									<li>
-										<a href="<?php //echo base_url('login') . '#signup'; ?>" class="visible-xs"><i class="fa fa-lock"></i>Login / Signup</a>
-										<a href="<?php //echo base_url('login'); ?>" class="hidden-xs"><i class="fa fa-lock"></i>Login / Signup</a>
+										<a href="<?php echo base_url('login') . '#signup'; ?>" class="visible-xs"><i class="fa fa-lock"></i>Login / Signup</a>
+										<a href="<?php echo base_url('login'); ?>" class="hidden-xs"><i class="fa fa-lock"></i>Login / Signup</a>
 									</li>
 								<?php
 								}
@@ -106,34 +102,6 @@
 								<img src="<?php echo base_url($company_logo); ?>" alt="Coupon Zipcode">
 							</a>
 						</div>
-						<!-- <div class="col-xs-5 col-sm-9 col-md-1 col-md-push-9 col-lg-1 col-lg-push-9">
-							<div class="login_signup_btn_box">
-								<ul>
-									<?php
-									if ($this->session->userdata('logged_in'))
-									{
-									?>
-										<li>
-											<a href="<?php //echo base_url('logout'); ?>" class="btn green_btn">Logout</a>
-										</li>
-									<?php
-									}
-									else
-									{
-									?>
-										<li>
-											<a href="<?php //echo base_url('login'); ?>" class="btn lg_btn">Login</a>
-										</li>
-										<li>
-											<a href="<?php //echo base_url('login') . '#signup'; ?>" class="btn green_btn visible-xs">Signup</a>
-											<a href="<?php //echo base_url('login'); ?>" class="btn green_btn hidden-xs">Signup</a>
-										</li>
-									<?php
-									}
-									?>
-								</ul>
-							</div>
-						</div> -->
 						<div class="collapse col-xs-12 col-sm-9 col-lg-10 col-md-10 mobile_to_center search_form_wrap">
 							<form class="form-inline" action="<?php echo base_url('deals'); ?>">
 								<div class="form-group serach_ct_field">

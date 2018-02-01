@@ -128,7 +128,7 @@ class Coupons extends CI_Controller {
 		}
 		else if ($_GET['src'] == 'ebay')
 		{
-			$_GET['cat'] = '15032';
+			$_GET['cat'] = '267';
 			if (isset($_GET['cat']) && $_GET['cat'] != '')
 			{
 				if (!is_array($_GET['cat']))
@@ -280,7 +280,7 @@ class Coupons extends CI_Controller {
 	{
 		$filters['min_price'] = '5.00';
 		$filters['max_price'] = '50.00';
-
+		$filters['sort_order'] = 'PricePlusShippingLowest';
 		$ebay_details = $this->settings_model->get_settings('ebay');
 
 		$trackingId = '5338251126';
@@ -316,6 +316,7 @@ class Coupons extends CI_Controller {
 				break;
 
 			case 'keywords':
+			$type_val = 'books';
 				$api_url .= '&keywords=' . $type_val . '&OPERATION-NAME=findItemsByKeywords';
 				break;
 
