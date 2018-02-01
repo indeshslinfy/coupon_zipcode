@@ -1,6 +1,14 @@
 $(document).ready(function()
 {
-	getLocation();
+	var user_current_location = JSON.parse(localStorage.getItem("user_current_location"));
+	if (user_current_location == null)
+	{
+		getLocation();
+	}
+	else if (user_current_location.zipcode != "")
+	{
+		getLocation();
+	}
 
 	$("body").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
 	$(".ticketing_chatbox_wrap").niceScroll({cursorborder:"", cursorcolor:"#2C3E50"});

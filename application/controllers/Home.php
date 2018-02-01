@@ -8,6 +8,7 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->library('Excel');
          $this->load->helper('cookie');
+         
     }
 	/**
 	 * Index Page for this controller.

@@ -224,6 +224,16 @@ if (!function_exists('limit_string'))
 {
     function limit_string($string, $limit)
     {
-        return strlen($string) >$limit ? substr($string,0,$limit).'...' :$string;
+        return strlen($string) >$limit ? substr($string, 0, $limit) . '...' : $string;
+    }
+}
+
+if (!function_exists('popular_stores'))
+{
+    function popular_stores($limit=5)
+    {
+    	$CI =& get_instance();
+        $CI->load->model(ADMIN_PREFIX . '/stores_model');
+		return $CI->stores_model->popular_stores($limit);
     }
 }

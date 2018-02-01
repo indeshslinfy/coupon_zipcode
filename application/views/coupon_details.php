@@ -45,8 +45,17 @@
 									<ul>
 										<li><a title="<?php echo $coupon_details['store_email'] ? $coupon_details['store_email'] : ''; ?>" href="<?php echo $coupon_details['store_email'] ? 'mailto:' . $coupon_details['store_email'] : 'javascript:void(0);'; ?>"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
 										<li><a target="_blank" href="<?php echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+
 										<li><a target="_blank" href="<?php echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 									</ul>
+									<iframe src="https://www.facebook.com/plugins/share_button.php?href=http://www.slinfy.com/blog/outsourcing-the-content-writing-services-to-india&layout=button_count&size=large&mobile_iframe=true&width=106&height=28&appId" width="106" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+											<script>(function(d, s, id) {
+											var js, fjs = d.getElementsByTagName(s)[0];
+											if (d.getElementById(id)) return;
+											js = d.createElement(s); js.id = id;
+											js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12';
+											fjs.parentNode.insertBefore(js, fjs);
+											}(document, 'script', 'facebook-jssdk'));</script>
 								</div>
 							</div>
 

@@ -72,17 +72,18 @@
 					</div>
 
 					<div class="col-xs-12 col-sm-2 right-pane">
-						<div class="header text-center"><h4>Popular Coupons</h4></div>
+						<div class="header text-center"><h4>Popular Stores</h4></div>
 
 						<?php
-						foreach ($popular_coupons as $keyPC => $valuePC)
+						foreach ($popular_stores as $keyPS => $valuePS)
 						{
 						?>
-							<div class="popular_coupon_wrap">
-								<h4><?php echo $valuePC['coupon_title']; ?></h4>
-								<p>Deal ends on <?php echo date("d M", strtotime($valuePC['coupon_end_date'])); ?></p>
-								<a href="<?php echo base_url('deal/' . $valuePC['id']); ?>" class="ylew_btn btn btn-block btn-sm">Get the deal now</a>
-							</div>
+							<a href="<?php echo base_url('coupon/' . $valuePS['coupon_id']); ?>">
+								<div class="popular_coupon_wrap">
+									<img src="<?php echo base_url($valuePS['store_image']); ?>" alt="image">
+									<h4><?php echo $valuePS['store_name']; ?></h4>
+								</div>
+							</a>
 						<?php
 						}
 						?>

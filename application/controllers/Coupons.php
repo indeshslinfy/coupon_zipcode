@@ -42,7 +42,7 @@ class Coupons extends CI_Controller {
 			$data['all_categories'][strtoupper($valueAC['store_category_name'][0])][] = $valueAC;
 		}
 
-		$data['popular_coupons'] = $this->coupons_model->popular_coupons();
+		$data['popular_stores'] = popular_stores();
 
 		$this->load->template('categories', $data);
 	}

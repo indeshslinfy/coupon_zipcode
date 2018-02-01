@@ -283,8 +283,6 @@ class stores_model extends CI_model
 
 		if (array_key_exists('city', $filters) && $filters['city'] != '')
 		{
-			
-// print_r($filters);die;
 			// $records = $records->join('(SELECT scat.id, scat.store_category_name FROM address as scat WHERE scat.store_category_slug IN ("' . $cats . '") AND scat.deleted_at IS NULL AND scat.status = 1) as store_cat', 's.store_category_id = store_cat.id');
 
 			// $records = $records->join('address as adr', 'adr.id = s.store_address_id');
@@ -320,5 +318,18 @@ class stores_model extends CI_model
 		
 		$records = $records->group_by('c.id');
 		return $records->get('coupons as c')->result_array();
+	}
+
+	public function popular_stores($limit)
+	{
+		return $this->db->select('stores.id, stores.store_name, stores.store_rating, img.attachment_path as store_image, cpn.id as coupon_id')
+					->from('stores')
+					->order_by("store_rating", "DESC")
+					->limit($limit)
+					->join('stores_attachment as img', 'stores.id=img.store_id')
+					->join('coupons as cpn', 'stores.id=cpn.coupon_store_id')
+					->where(array('img.attachment_type' => STORE_ATCH_IMAGE))
+					->get()
+					->result_array();
 	}
 }

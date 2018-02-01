@@ -40,6 +40,7 @@ class auth_model extends CI_model
 							'home/get_zipcode_stores',
 							'home/save_new_zipcode',
 							'home/search_zipcode',
+							'home/popular_stores',
 							'tickets/ticket_details',
 							'tickets/ticket_save',
 							'coupons/list_categories',
