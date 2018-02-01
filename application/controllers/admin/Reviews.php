@@ -47,6 +47,29 @@ class Reviews extends CI_Controller
 
 		$this->reviews_model->update_review($update_arr, $params['id']);
 
+		//Get the average rating
+		$this->db->select_avg('rating');
+		$this->db->from('reviews');
+		$this->db->where(array('review_type' => REVIEW_TYPE_STORE, 'status' => REVIEW_STATUS_APPROVE, 'deleted_at' => NULL, 'receiver_id' => $params['store_id']));
+		$query = $this->db->get(); 
+		$result = $query->row_array();
+		$avg_rating = number_format($result['rating'],2);
+		$avg_explode = explode('.', $avg_rating);
+		if ($avg_explode[1] == 50 || $avg_explode[1] == 00) 
+		{
+			$avg_rating = $avg_rating;
+		}
+		else if ($avg_explode[1] > 00 && $avg_explode[1] <= 50) 
+		{
+			$avg_rating = $avg_explode[0] + 0.50;
+		}
+		elseif ($avg_explode[1] >= 51 && $avg_explode[1] <= 99) 
+		{
+			$avg_rating = $avg_explode[0] + 1;
+		}
+		$this->db->where(array("id" => $params['store_id']))
+				->update('stores', array('store_rating' => number_format($avg_rating, 2),
+										'updated_at' => date('Y-m-d H:i:s')));
 		$this->session->set_flashdata('flash_message', 'Review updated successfully.');
 		echo json_encode(array('status' => 1, 'message' => 'Review updated successfully'));
 	}

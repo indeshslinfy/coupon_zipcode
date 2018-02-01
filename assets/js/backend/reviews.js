@@ -24,10 +24,10 @@ function review_delete(id)
 
 function review_update(ele, id)
 {
-	$.ajax({
+    $.ajax({
         url: BASEURL + ADMIN_PREFIX + "/update-review",
         method: 'POST',
-        data: {'id': id, 'act': 'status', 'status': $(ele).val()},
+        data: {'id': id, 'act': 'status', 'status': $(ele).val(), 'store_id' : $(ele).attr('data-strid')},
         dataType: 'json',
         success: function(result)
         {

@@ -145,17 +145,13 @@
 
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
-									<li>
-										<a href="javascript:void(0);">Recommended</a>
-									</li>
-
 									<?php
-									$menu_categories = menu_categories();
+									$menu_categories = get_settings('frontend_menu');
 									foreach ($menu_categories as $keyMC => $valueMC)
 									{
 									?>
-										<li class="<?php echo $this->uri->segment(2) == $valueMC['store_category_slug'] ? 'active' : ''; ?>">
-											<a href="<?php echo base_url('category/' . $valueMC['store_category_slug']); ?>"><?php echo $valueMC['store_category_name']; ?></a>
+										<li class="<?php echo $this->uri->segment(2) == $valueMC['slug'] ? 'active' : ''; ?>">
+											<a href="<?php echo base_url('category/' . $valueMC['slug']); ?>"><?php echo $valueMC['name']; ?></a>
 										</li>
 									<?php
 									}

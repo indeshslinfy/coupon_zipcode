@@ -120,19 +120,6 @@ if (!function_exists('user_login_data'))
 	}
 }
 
-if (!function_exists('menu_categories'))
-{
-	function menu_categories($limit=7)
-	{
-		$CI =& get_instance();
-		return $CI->db->select('id, store_category_name, store_category_slug')
-					->where(array('is_menu' => true, 'deleted_at' => NULL, 'status' => 1))
-					->limit($limit)
-					->get('stores_category')
-					->result_array();
-	}
-}
-
 if (!function_exists('slug_to_readable'))
 {
 	function slug_to_readable($slug)

@@ -24,6 +24,8 @@ class Settings extends CI_Controller
 
 		$data['email'] = $this->settings_model->get_settings('email');
 		$data['google_map_key'] = $this->settings_model->get_settings('google_map_key');
+		$data['groupon'] = $this->settings_model->get_settings('groupon');
+		$data['ebay'] = $this->settings_model->get_settings('ebay');
 		$data['general_settings'] = $this->settings_model->get_settings('general_settings');
 		$data['zipcode_search_radius'] = $this->settings_model->get_settings('zipcode_search_radius');
 
@@ -71,7 +73,6 @@ class Settings extends CI_Controller
 						}
 
 						$data = $this->upload->data();
-					// print_r($data);die;
 						$params['general_settings']['company_logo'] = 'assets/img/' . $data['file_name'];
 					}
 
@@ -89,6 +90,16 @@ class Settings extends CI_Controller
 					}
 					break;
 
+				case 'frontend_menus':
+					if ($params['action'] == 'add')
+					{
+						$old_menus = get_settings('frontend_menu');
+						$final_arr = array_merge($old_menus, $params['frontend_menu']);
+						$params['frontend_menu'] = array_map("unserialize", array_unique(array_map("serialize", $final_arr)));
+					}
+
+					unset($params['action']);
+					break;
 				case 'third_party':
 				case 'settype_misc':
 				case 'settype_email':

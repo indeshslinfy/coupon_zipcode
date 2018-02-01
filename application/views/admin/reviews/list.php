@@ -75,7 +75,7 @@
                                     <td><a href="<?php echo base_url(ADMIN_PREFIX . '/edit-store') . '/' . $valueAR['receiver_id']; ?>"><?php echo $valueAR['store_name']; ?></a></td>
                                     <td><?php echo date('d-m-Y H:i', strtotime($valueAR['created_at'])); ?></td>
                                     <td>
-                                        <select class="form-contol" onchange="review_update(this, <?php echo $valueAR['id']; ?>);">
+                                        <select class="form-contol" onchange="review_update(this, <?php echo $valueAR['id']; ?>);" data-strid="<?php echo $valueAR['receiver_id']; ?>">
                                             <option value="<?php echo REVIEW_STATUS_DISAPPROVE; ?>" <?php echo $valueAR['status'] == REVIEW_STATUS_DISAPPROVE ? 'selected=selected' : ''; ?>>Disapprove</option>
                                             <option value="<?php echo REVIEW_STATUS_APPROVE; ?>" <?php echo $valueAR['status'] == REVIEW_STATUS_APPROVE ? 'selected=selected' : ''; ?>>Approve</option>
                                             <option value="<?php echo REVIEW_STATUS_ABUSE; ?>" <?php echo $valueAR['status'] == REVIEW_STATUS_ABUSE ? 'selected=selected' : ''; ?>>Spam</option>

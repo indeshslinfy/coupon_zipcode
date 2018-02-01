@@ -187,8 +187,9 @@ class Index extends CI_Controller
 		$query = $this->db->get(); 
 		$value = $query->row_array();
 		$value = number_format($value['rating'],2);
-		
+
 		$value_part = explode('.', $value);
+		// print_r($value_part); die;
 		if ($value_part[1] == 50 || $value_part[1] == 00) 
 		{
 			$value = $value;
@@ -201,7 +202,7 @@ class Index extends CI_Controller
 		{
 			$value = $value[0] + 1;
 		}
-
+		print_r(number_format($value,2)); die;
 		print_r($value); die;
 	}
 }

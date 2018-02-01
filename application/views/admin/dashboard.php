@@ -33,8 +33,8 @@
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="<?php echo base_url(ADMIN_PREFIX . '/tickets'); ?>" class="total_earnig">
-                                        <i class="fa fa-money"></i>
+                                    <a href="<?php echo base_url(ADMIN_PREFIX . '/tickets'); ?>" class="total_drivers">
+                                        <i class="fa fa-ticket"></i>
                                         <span class="stats_info_text">Total Tickets</span>
                                         <span class="stats_info_total"><?php echo $total_tickets; ?></span>
                                     </a>

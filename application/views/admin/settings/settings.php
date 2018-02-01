@@ -140,11 +140,46 @@
                             <form class="mt-20" action="<?php echo base_url(ADMIN_PREFIX . '/save-settings'); ?>" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="setting_type" value="settype_third_party" class="form-control">
                                 <div class="col-lg-12">
+                                    <h4>Google</h4>
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Google Map API Key&nbsp;<small class="text-danger">*</small></label>
                                                 <input type="text" name="google_map_key" value="<?php echo $google_map_key; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    
+                                    <h4>Groupon</h4>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Groupon Api Key&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="groupon[groupon_id]" value="<?php echo $groupon['groupon_id']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Groupon Media ID&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="groupon[media_id]" value="<?php echo $groupon['media_id']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <h4>Ebay</h4>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Ebay APP ID&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="ebay[app_id]" value="<?php echo $ebay['app_id']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Ebay Camp ID&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="ebay[camp_id]" value="<?php echo $ebay['camp_id']; ?>" class="form-control" required="">
                                             </div>
                                         </div>
                                     </div>
