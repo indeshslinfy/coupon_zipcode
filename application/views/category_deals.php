@@ -18,7 +18,11 @@
 			<div class="row">
 				<div class="section_main">
 					<div class="col-sm-3 col-md-2 left-pane">
-						<div class="filters_header text-center"><h4>Filters<a class="pull-right filter_toggle visible-xs" href="javascript:void(0);"><i class="fa fa-filter"></i></a></h4></div>
+						<div class="filters_header text-center">
+							<h4>Filters
+								<a class="pull-right filter_toggle visible-xs" href="javascript:void(0);"><i class="fa fa-filter"></i></a>
+							</h4>
+						</div>
 
 						<div class="filter_inner_wrap">
 							<div class="selected_filters_div"></div>
