@@ -16,7 +16,7 @@
 		echo css('frontend/style.css');
 		echo css('frontend/owl.carousel.css');
 		echo css('frontend/responsive.css');
-
+		echo iplugin('easy_autocomplete', array('file_name' => 'easy-autocomplete', 'file_type' => 'css'));
 		$general_settings = get_settings('general_settings');
 
 		$favicon = 'assets/img/favicon.ico';

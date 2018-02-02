@@ -1,3 +1,6 @@
+<script type="text/javascript">
+	var all_zipcodes ='<?php echo json_encode(get_zipcodes()); ?>';
+</script>
 <div class="row">
 	<footer>
 		<div class="container">
@@ -149,14 +152,14 @@
 							<div class="form-group">
 				        		<div class="select_city selct_location_wrap">
 				        			<i class="fa fa-map-marker"></i>
-				        			<input type="text" id="zipcode" class="form-control" placeholder="Enter Your Zip Code">
+				        			<input type="text" id="zipcode" class="form-control zpcde_auto" placeholder="Enter Your Zip Code" value="">
 				        		</div>
 			        			<a href="javascript:void(0);" class="btn ylew_btn" id="search_zipcode">Select</a>
 			        		</div>
 			        		<div class="form-group">
 			        			<div class="selct_location_wrap">
 			        				<span class="optional_text">or</span>
-			        				<a href="javascript:void(0);" class="btn ylew_btn currnt_loc_btn">Use My Current Location</a>
+			        				<a href="javascript:void(0);" onclick="getLocation();" class="btn ylew_btn currnt_loc_btn">Use My Current Location</a>
 			        			</div>
 			        		</div>
 			        	</div>
@@ -176,6 +179,7 @@
 	echo js('frontend/jquery.nicescroll.min.js');
 	echo js('frontend/owl.carousel.min.js');
 	echo js('frontend/scripts.js');
+	echo iplugin('easy_autocomplete', array('file_name' => 'jquery.easy-autocomplete', 'file_type' => 'js'));
 ?>
 </body>
 </html>

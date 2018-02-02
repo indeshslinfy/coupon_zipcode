@@ -28,6 +28,8 @@
 			echo css('backend/style-responsive.css');
 			echo iplugin('datatable', array('file_name' => 'dataTables.bootstrap.min', 'file_type' => 'css'));
 
+			echo iplugin('easy_autocomplete', array('file_name' => 'easy-autocomplete', 'file_type' => 'css'));
+
 			echo js('backend/jquery-3.2.1.min.js');
 		?>
 		

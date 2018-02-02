@@ -14,6 +14,8 @@ if ($this->session->userdata('admin_logged_in'))
 
 			echo iplugin('datatable', array('file_name' => 'jquery.dataTables.min', 'file_type' => 'js'));
 			echo iplugin('datatable', array('file_name' => 'dataTables.bootstrap.min', 'file_type' => 'js'));
+
+			echo iplugin('easy_autocomplete', array('file_name' => 'jquery.easy-autocomplete', 'file_type' => 'js'));
 		?>
 	</footer>
 <?php

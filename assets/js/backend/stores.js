@@ -4,6 +4,35 @@ $(document).ready(function()
 	{
 		get_cities($("#address_state_id")[0]);
 	}
+
+	var autocomp_options = {
+		data: JSON.parse(all_zipcodes),
+		getValue: "zipcode",
+		template: {
+			type: "id",
+			fields: {description: "id"}
+		},
+		list: {
+			maxNumberOfElements: 10,
+			sort: {enabled: true},
+			showAnimation: {
+				type: "fade",
+				time: 200,
+				callback: function() {}
+			},
+			hideAnimation: {
+				type: "slide",
+				time: 200,
+				callback: function() {}
+			},
+			match: {enabled: true},
+			onChooseEvent: function() {
+                $("#store_zipcode_id").val($("#store_zipcode").getSelectedItemData().id);
+            }
+        },
+		theme: "plate-dark"};
+
+	$("#store_zipcode").easyAutocomplete(autocomp_options);
 });
 
 function navigate_show_tabs(destination_tab)

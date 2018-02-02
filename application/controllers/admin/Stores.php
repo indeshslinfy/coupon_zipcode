@@ -69,19 +69,19 @@ class Stores extends CI_Controller
 		$insert_arr['basic'] = $params;
 		if ($this->uri->segment(3))
 		{
+			// print_r($insert_arr); die;
 			/***UPDATE EXISTING***/
 			$insert_id = $this->stores_model->store_save($insert_arr, $this->uri->segment(3));
 		}
 		else
 		{
+			// print_r($insert_arr); die;
 			/***SAVE NEW***/
 			$insert_id = $this->stores_model->store_save($insert_arr);
 		}
 
 		if ($insert_id)
 		{
-			$zipcode_insert_id = $this->stores_model->save_zipcode($insert_arr['basic']['store_zipcode_id']);
-
 			$this->session->set_flashdata('flash_message', 'Store saved successfully.');
 			redirect(ADMIN_PREFIX . '/edit-store/' . $insert_id);
 		}

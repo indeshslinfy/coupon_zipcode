@@ -1,3 +1,7 @@
+<script type="text/javascript">
+    var all_zipcodes ='<?php echo json_encode(get_zipcodes()); ?>';
+</script>
+
 <section class="wrapper stores_wrapper">
     <div class="row">
         <div class="col-lg-12 main-chart">
@@ -202,7 +206,8 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="store_latitude">Zipcode&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="store_zipcode_id" value="<?php echo $store_details['store_zipcode']; ?>" class="form-control" required="">
+                                                <input type="text" id="store_zipcode" value="<?php echo $store_details['store_zipcode']; ?>" class="form-control" required="">
+                                                <input type="hidden" name="store_zipcode_id" id="store_zipcode_id" class="form-control" value="<?php echo $store_details['store_zipcode_id']; ?>">
                                             </div>
                                         </div>
 

@@ -1,3 +1,7 @@
+<script type="text/javascript">
+    var all_zipcodes ='<?php echo json_encode(get_zipcodes()); ?>';
+</script>
+
 <section class="wrapper coupons_wrapper">
     <div class="row">
         <div class="col-lg-12 main-chart">
@@ -42,11 +46,11 @@
                                 <div class="form-group">
                                     <label>Zipcode&nbsp;
                                         <small class="text-danger">*</small>
-                                        <a class="pull-right btn btn-xs btn-default" onclick="toggle_new_div_zip();">
+<!--                                         <a class="pull-right btn btn-xs btn-default" onclick="toggle_new_div_zip();">
                                             <small><i class="fa fa-plus text-success"></i>&nbsp;Add New</small>
-                                        </a>
+                                        </a> -->
                                     </label>
-                                    <select name="coupon_zipcode_id" class="form-control" required="" onchange="get_zipcode_stores(this);" id="coupon_zipcode_id">
+                                    <!-- <select name="coupon_zipcode_id" class="form-control" required="" onchange="get_zipcode_stores(this);" id="coupon_zipcode_id">
                                         <option value="" >--Select Zipcode--</option>
                                         <?php
                                         foreach($all_zipcodes as $keyAZ => $valueAZ)
@@ -56,7 +60,10 @@
                                         <?php
                                         }
                                         ?>
-                                    </select>
+                                    </select> -->
+
+                                    <input type="text" class="form-control coupon_zipcode" id="coupon_zipcode" required="">
+                                    <input type="hidden" name="coupon_zipcode_id" id="coupon_zipcode_id" class="form-control" value="">
                                 </div>
                             </div>
 

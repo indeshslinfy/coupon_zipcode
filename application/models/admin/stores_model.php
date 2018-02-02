@@ -16,7 +16,7 @@ class stores_model extends CI_model
 
 	public function store_edit($store_id)
 	{
-		$store_details = $this->db->select('zip.zipcode as store_zipcode, s.*')
+		$store_details = $this->db->select('zip.zipcode as store_zipcode, zip.zipcode as store_zipcode, s.*')
 								->where(array('s.deleted_at' => NULL, 's.id' => $store_id))
 								->join('zipcodes as zip', 'zip.id = s.store_zipcode_id', 'left')
 								->get('stores as s')
@@ -36,12 +36,6 @@ class stores_model extends CI_model
 	{
 		try
 		{
-			if ($data['basic']['store_zipcode_id'] != '')
-			{
-				$zipcode = save_zipcode($data['basic']['store_zipcode_id']);
-				$data['basic']['store_zipcode_id'] = $zipcode['zipcode']['id'];
-			}
-
 			if ($id)
 			{
 				// UPDATE ADDRESS

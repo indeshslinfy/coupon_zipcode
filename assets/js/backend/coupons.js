@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-	// code...
+	bind_zipcode_autocomp();
 });
 
 function coupon_delete(id)
@@ -95,4 +95,38 @@ function save_new_zip()
 		    }
 		});
 	}
+}
+
+function bind_zipcode_autocomp()
+{
+	var autocomp_options = {
+		data: JSON.parse(all_zipcodes),
+		getValue: "zipcode",
+		template: {
+			type: "id",
+			fields: {description: "id"}
+		},
+		list: {
+			maxNumberOfElements: 10,
+			sort: {enabled: true},
+			showAnimation: {
+				type: "fade",
+				time: 200,
+				callback: function() {}
+			},
+			hideAnimation: {
+				type: "slide",
+				time: 200,
+				callback: function() {}
+			},
+			match: {enabled: true},
+			onChooseEvent: function() {
+                $("#coupon_zipcode_id").val($("#coupon_zipcode").getSelectedItemData().id);
+
+                get_zipcode_stores($("#coupon_zipcode_id")[0]);
+            }
+        },
+		theme: "plate-dark"};
+
+	$("#coupon_zipcode").easyAutocomplete(autocomp_options);
 }

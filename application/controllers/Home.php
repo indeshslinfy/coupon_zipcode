@@ -31,6 +31,7 @@ class Home extends CI_Controller
 
 		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "limit" => 3));
 		$data['coupons_by_location'] = $this->fetch_deals('location', 'new-york', array('offset' => 0, 'limit' => 8));
+		// $data['coupons_by_location'] = $this->fetch_deals('latlong', array('lat' => '30.20', 'long' => '-70.02'), array('offset' => 0, 'limit' => 8));
 		
 		$this->load->template('index', $data);
 	}
@@ -71,6 +72,10 @@ class Home extends CI_Controller
 		{
 			case 'location':
 				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&division_id=' . $type_val . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
+				break;
+
+			case 'latlong':
+				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&lat=' . $type_val['lat'] . '&lng=' . $type_val['long'] . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
 				break;
 			
 			case 'category':

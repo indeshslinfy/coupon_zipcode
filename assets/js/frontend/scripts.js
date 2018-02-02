@@ -5,10 +5,6 @@ $(document).ready(function()
 	{
 		getLocation();
 	}
-	else if (user_current_location.zipcode != "")
-	{
-		getLocation();
-	}
 
 	$("body").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
 	$(".ticketing_chatbox_wrap").niceScroll({cursorborder:"", cursorcolor:"#2C3E50"});
@@ -34,7 +30,6 @@ $(document).ready(function()
 	});
 
 	$('.cssload-container').css('display', 'none');
-
 	
  	$('#exclusive_coupan_carousel').owlCarousel({
 		    loop:true,
@@ -59,12 +54,44 @@ $(document).ready(function()
 		            nav:true
 		        }
 		    }
-		});
+	});
+
  	$(document).on('click','.filter_toggle',function(){
  		$('.filter_inner_wrap').slideToggle();
- 	})
+ 	});
 
+ 	bind_zipcode_autocomplete();
 });
+
+function bind_zipcode_autocomplete()
+{
+	
+	var autocomp_options = {
+		data: JSON.parse(all_zipcodes),
+		getValue: "zipcode",
+		template: {
+			type: "id",
+			fields: {description: "id"}
+		},
+		list: {
+			maxNumberOfElements: 10,
+			sort: {enabled: true},
+			showAnimation: {
+				type: "fade",
+				time: 200,
+				callback: function() {}
+			},
+			hideAnimation: {
+				type: "slide",
+				time: 200,
+				callback: function() {}
+			},
+			match: {enabled: true}
+        },
+		theme: "dark"};
+
+	$(".zpcde_auto").easyAutocomplete(autocomp_options);
+}
 
 function getLocation() 
 {
@@ -73,8 +100,10 @@ function getLocation()
 		navigator.geolocation.getCurrentPosition(showPosition);
 	}
 	else
-	{ 
-		alert("Geolocation is not supported by this browser.");
+	{
+		alert("Either you have blocked location access or geolocation is not supported by this browser. Setting location default to New York City");
+		var new_york_location = {coords: {'latitude': '40.71', 'longitude': '74.00'}};
+		showPosition(new_york_location);
 	}
 }
 
@@ -83,13 +112,15 @@ function showPosition(position)
 	$.ajax({
 		type: "GET",
 		datatype: "JSON",
-		url: BASEURL+"home/get_geo_location?lat="+position.coords.latitude+"&long="+position.coords.longitude,
+		url: BASEURL+"home/get_geo_location?lat=" + position.coords.latitude + "&long=" + position.coords.longitude,
 		success: function(data)
 		{
 			var data = JSON.parse(data);
 			if (data.status == 0)
 			{
-				alert(data.message);
+				alert('Something went wrong while fetching your location. Setting location default to New York City');
+				var new_york_location = {coords: {'latitude': '40.71', 'longitude': '74.00'}};
+				showPosition(new_york_location);
 			}
 			else
 			{
@@ -101,6 +132,8 @@ function showPosition(position)
 									</a>\
 								</li>';
 				$(".header_location_ul").html(loc_html);
+
+				window.location.reload();
 			}
 		}
 	});
@@ -108,23 +141,25 @@ function showPosition(position)
 
 $("#search_zipcode").click(function()
 {
-	$.ajax({
-		type: "GET",
-		datatype: "JSON",
-		url: BASEURL+"home/search_zipcode?zipcode="+$('#zipcode').val(),
-		success: function(data)
-		{
-			var data = JSON.parse(data);
-			if (data.status == 0)
+	if ($('#zipcode').val() != '')
+	{
+		$.ajax({
+			type: "GET",
+			datatype: "JSON",
+			url: BASEURL + "home/search_zipcode?zipcode=" + $('#zipcode').val(),
+			success: function(data)
 			{
-				alert(data.message);
+				var data = JSON.parse(data);
+				if (data.status == 0)
+				{
+					alert(data.message);
+				}
+				else
+				{
+					localStorage.setItem("user_current_location", JSON.stringify(data.data));
+					window.location.reload();
+				}
 			}
-			else
-			{
-				localStorage.setItem("user_current_location", JSON.stringify(data.data));
-
-				window.location.reload();
-			}
-		}
-	});
+		});
+	}
 });
