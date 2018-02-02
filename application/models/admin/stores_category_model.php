@@ -36,11 +36,16 @@ class stores_category_model extends CI_model
 		return $this->db->insert_id();
 	}
 
-	public function store_cat_slug_exist($slug)
+	public function store_cat_slug_exist($slug, $cat_id=false)
 	{
-		return $this->db->where(array('store_category_slug' => $slug))
-						->get('stores_category')
-						->row_array();
+		$slug_exist = $this->db->where(array('store_category_slug' => $slug));
+		if ($cat_id)
+		{
+			$slug_exist = $slug_exist->where('id !=', $cat_id);
+		}
+
+		return $slug_exist->get('stores_category')->row_array();
+		
 	}
 
 	public function store_category_names($cat_ids)

@@ -65,7 +65,7 @@ class settings_model extends CI_model
 				}
 			}
 
-			return $count;						
+			return true;						
 		}
 
 		return false;

@@ -2708,3 +2708,24 @@ div.alert{
 .chat_bg_even{
     background:#F4FAFF;
 }
+.frntnd_mnubg{
+    float:left;
+    width:100%;
+    padding-top:15px;
+    min-height:400px;
+    background:#F5F5F5;
+}
+.main-chart ul {
+    padding: 0px;
+    margin-top: 10px;
+}
+.main-chart ul li {
+    line-height:24px;
+}
+.main-chart ul li input[type=checkbox] {
+    margin-right:7px;
+}
+.box_shadow_div{
+    border-left: 1px solid #ccc;
+    padding-left: 30px;
+}

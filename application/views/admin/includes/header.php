@@ -119,6 +119,13 @@
 							</li>
 
 							<li>
+								<a class="<?php echo $this->uri->segment(2) == 'menus' ? 'active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/menus'); ?>">
+									<i class="fa fa-bars"></i>
+									<span>Menu Management</span>
+								</a>
+							</li>
+
+							<li>
 								<a class="<?php echo $this->uri->segment(2) == 'settings' ? 'active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/settings'); ?>">
 									<i class="fa fa-gears"></i>
 									<span>Settings Management</span>

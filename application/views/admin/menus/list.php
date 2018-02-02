@@ -31,64 +31,65 @@
             <div class="content_title">
                 <h2><small>Menus</small></h2>
             </div>
-
-            <div class="col-md-6">
-                <form>
-                    <input type="hidden" name="category_remove" value="1">
-                    <input type="button" name="remove" value="remove" onclick="add_rem_menus('remove', this);">
-                    <ul>
-                    <?php
-                    $menus = get_settings('frontend_menu');
-                    if (sizeof($menus) > 0)
-                    {
-                        foreach ($menus as $keyM => $valueM)
+            <div class="frntnd_mnubg">
+                <div class="col-md-6 ">
+                    <form>
+                        <input type="hidden" name="category_remove" value="1">
+                        <button class="btn btn-danger" type="button" name="remove" onclick="add_rem_menus('remove', this);">Remove Menu</button>
+                        <ul>
+                        <?php
+                        $menus = get_settings('frontend_menu');
+                        if (sizeof($menus) > 0)
                         {
-                    ?>
-                        <li data-slug="<?php echo $valueM['slug']; ?>" data-name="<?php echo $valueM['name']; ?>" data-id="<?php echo $valueM['id']; ?>">
-                            <span><?php echo $keyM+1; ?>.&nbsp;</span>
-                            <span><input type="checkbox" class="menu-cat" name="category_remove" value="<?php echo $valueM['id']; ?>"><?php echo $valueM['name']; ?></span>
-                        </li>
-                    <?php
-                        }
-                    }
-                    else
-                    {
-                    ?>
-                        <li><i>-- No Menus Added yet. --</i></li>
-                    <?php
-                    }
-                    ?>
-                    </ul>
-                </form>
-            </div>
-
-            <div class="col-md-6">
-                <form>
-                    <input type="hidden" name="category_add" value="1">
-                    <input type="button" name="add" value="add" onclick="add_rem_menus('add', this);">
-                    <ul>
-                    <?php
-                    if (sizeof($all_records) > 0)
-                    {
-                        foreach ($all_records as $keyAR => $valueAR)
-                        {
-                    ?>
-                            <li data-slug="<?php echo $valueAR['store_category_slug']; ?>" data-name="<?php echo $valueAR['store_category_name']; ?>" data-id="<?php echo $valueAR['id']; ?>" >
-                                <span><?php echo $keyAR+1; ?>.&nbsp;</span>
-                                <span><input type="checkbox" class="menu-cat" name="add_category" value="<?php echo $valueAR['id']; ?>"><?php echo $valueAR['store_category_name']; ?></span>
+                            foreach ($menus as $keyM => $valueM)
+                            {
+                        ?>
+                            <li data-slug="<?php echo $valueM['slug']; ?>" data-name="<?php echo $valueM['name']; ?>" data-id="<?php echo $valueM['id']; ?>">
+                                <span><?php echo $keyM+1; ?>.&nbsp;</span>
+                                <input type="checkbox" class="menu-cat" name="category_remove" value="<?php echo $valueM['id']; ?>"><?php echo $valueM['name']; ?>
                             </li>
-                    <?php
+                        <?php
+                            }
                         }
-                    }
-                    else
-                    {
-                    ?>
-                        <li><i>-- No Categories Added yet. --</i></li>
-                    <?php
-                    }
-                    ?>
-                    </ul>
-                </form>
+                        else
+                        {
+                        ?>
+                            <li><i>-- No Menus Added yet. --</i></li>
+                        <?php
+                        }
+                        ?>
+                        </ul>
+                    </form>
+                </div>
+
+                <div class="col-md-6 box_shadow_div">
+                    <form>
+                        <input type="hidden" name="category_add" value="1">
+                        <button class="btn btn-success" type="button" name="add" onclick="add_rem_menus('add', this);">Add To Menus</button>
+                        <ul>
+                        <?php
+                        if (sizeof($all_records) > 0)
+                        {
+                            foreach ($all_records as $keyAR => $valueAR)
+                            {
+                        ?>
+                                <li data-slug="<?php echo $valueAR['store_category_slug']; ?>" data-name="<?php echo $valueAR['store_category_name']; ?>" data-id="<?php echo $valueAR['id']; ?>" >
+                                    <span><?php echo $keyAR+1; ?>.&nbsp;</span>
+                                    <span><input type="checkbox" class="menu-cat" name="add_category" value="<?php echo $valueAR['id']; ?>"><?php echo $valueAR['store_category_name']; ?></span>
+                                </li>
+                        <?php
+                            }
+                        }
+                        else
+                        {
+                        ?>
+                            <li><i>-- No Categories Added yet. --</i></li>
+                        <?php
+                        }
+                        ?>
+                        </ul>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -97,37 +98,40 @@
 <script type="text/javascript">
     function add_rem_menus(action, ele)
     {
-        var cat_menus = [];
-        if (action == 'add')
+        if (confirm("Are you sure?"))
         {
-            var li_eles = $(ele).siblings('ul').find(".menu-cat:checked");
-        }
-        else
-        {
-            var li_eles = $(ele).siblings('ul').find(".menu-cat").not(':checked');
-        }
+            var cat_menus = [];
+            if (action == 'add')
+            {
+                var li_eles = $(ele).siblings('ul').find(".menu-cat:checked");
+            }
+            else
+            {
+                var li_eles = $(ele).siblings('ul').find(".menu-cat").not(':checked');
+            }
 
-        li_eles.each(function() 
-        {
-            var cat = {'slug' : $(this).parents('li').attr('data-slug'),
-                        'name' : $(this).parents('li').attr('data-name'),
-                        'id' : $(this).parents('li').attr('data-id')};
+            li_eles.each(function() 
+            {
+                var cat = {'slug' : $(this).parents('li').attr('data-slug'),
+                            'name' : $(this).parents('li').attr('data-name'),
+                            'id' : $(this).parents('li').attr('data-id')};
 
-            cat_menus.push(cat);
-        });
+                cat_menus.push(cat);
+            });
 
-        if (cat_menus.length > 0)
-        {
-            $.ajax({
-                url : BASEURL + ADMIN_PREFIX + '/save-settings',
-                data : {'frontend_menu' : cat_menus, 'setting_type' : 'frontend_menus', 'action': action},
-                type: 'POST',
-                datatype: 'JSON',
-                success: function(result)
-                {
-                    window.location.reload();
-                }
-            }); 
+            if (cat_menus.length > 0)
+            {
+                $.ajax({
+                    url : BASEURL + ADMIN_PREFIX + '/save-settings',
+                    data : {'frontend_menu' : cat_menus, 'setting_type' : 'frontend_menus', 'action': action},
+                    type: 'POST',
+                    datatype: 'JSON',
+                    success: function(result)
+                    {
+                        window.location.reload();
+                    }
+                }); 
+            }
         }
     }
 </script>
