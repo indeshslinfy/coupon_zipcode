@@ -56,8 +56,9 @@ class settings_model extends CI_model
 							->row_array();
 				if ($key_exist)
 				{
-					$this->db->set('setting_value', serialize($valueS))->where('setting_key', $keyS)
-																		->update('settings');
+					$this->db->set('setting_value', serialize($valueS))
+								->where('setting_key', $keyS)
+								->update('settings');
 				}
 				else
 				{

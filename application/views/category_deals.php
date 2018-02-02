@@ -38,7 +38,7 @@
 
 								<div class="filter_src_div">
 									<h5 class="filter_heading">Source</h5>
-									<ul class="filters-ul">
+									<ul class="filters-ul" id="src_filters_ul">
 										<li>
 											<input type="radio" name="src" value="local" <?php echo isset($_GET['src']) && $_GET['src'] == 'local' ? 'checked' : ''; ?>>&nbsp;
 											<span>Coupon Zipcode</span>
@@ -50,6 +50,29 @@
 										<li>
 											<input type="radio" name="src" value="ebay" <?php echo isset($_GET['src']) && $_GET['src'] == 'ebay' ? 'checked' : ''; ?>>&nbsp;
 											<span>Ebay</span>
+										</li>
+									</ul>
+									<hr>
+								</div>
+
+								<div class="filter_range_div">
+									<h5 class="filter_heading">Price Range</h5>
+									<ul class="filters-ul" id="src_filters_ul">
+										<li>
+											Min&nbsp;<input type="number" value="<?php echo isset($_GET['range_min']) ? $_GET['range_min'] : ''; ?>" class="form-control">
+										</li>
+										<li>
+											Max&nbsp;<input type="number" value="<?php echo isset($_GET['range_max']) ? $_GET['range_max'] : ''; ?>" class="form-control">
+										</li>
+									</ul>
+									<hr>
+								</div>
+
+								<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hide' : ''; ?>">
+									<h5 class="filter_heading">Search by Keyword</h5>
+									<ul class="filters-ul">
+										<li>
+											<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
 										</li>
 									</ul>
 									<hr>
@@ -101,32 +124,51 @@
 									<hr>
 								</div>
 
-								<?php
-								// if ($this->uri->segment(1) != 'category')
-								// {
-								?>
-									<div class="filter_cat_div">
-										<h5 class="filter_heading">Categories</h5>
-										<ul class="filters-ul">
+								<div class="filter_cat_div">
+									<h5 class="filter_heading">Categories</h5>
+									<?php
+									foreach ($all_categories as $keyAC => $valueAC)
+									{
+									?>
+										<ul class="filters-ul hide" id="<?php echo $keyAC . '_cat_ul'; ?>">
 											<?php
-											foreach ($all_categories as $keyAC => $valueAC)
+											foreach ($valueAC as $keySub => $valueSub)
 											{
+												$cls_str = '';
+												if ($keySub > 4)
+												{
+													$cls_str = 'hid_ul';
+												}
+
+												$src_cat_str = 'local-cat';
+												$cat_val = $valueSub['store_category_slug'];
+												if (isset($valueSub['category_source']))
+												{
+													if ($valueSub['category_source'] == CATEGORY_SRC_EBAY)
+													{
+														$src_cat_str = 'ebay-cat';
+														$cat_val = $valueSub['category_uid'];
+													}
+													elseif ($valueSub['category_source'] == CATEGORY_SRC_GROUPON)
+													{
+														$src_cat_str = 'groupon-cat';
+														$cat_val = $valueSub['store_category_slug'];
+													}
+												}
 											?>
-												<li class="<?php echo $keyAC > 4 ? 'hide hid_ul' : ''; ?>">
-													<input type="checkbox" name="cat[]" value="<?php echo $valueAC['store_category_slug']; ?>" <?php echo isset($_GET['cat']) && in_array($valueAC['store_category_slug'], $_GET['cat']) ? 'checked' : ''; ?>>&nbsp;
-													<span><?php echo $valueAC['store_category_name']; ?></span>
+												<li class="<?php echo $cls_str; ?>" data-src="<?php echo $src_cat_str; ?>">
+													<input type="checkbox" name="cat[]" value="<?php echo $cat_val; ?>" <?php echo isset($_GET['cat']) && in_array($cat_val, $_GET['cat']) ? 'checked' : ''; ?>>&nbsp;
+													<span><?php echo $valueSub['store_category_name']; ?></span>
 												</li>
 											<?php
 											}
 											?>
 										</ul>
-										<a class="toggle_cats_anch" href="javascript:void(0);" onclick="toggle_categories_list(this);">See All Categories&nbsp;<i class="fa fa-caret-down"></i></a>
-										<a class="toggle_cats_anch hide" href="javascript:void(0);" onclick="toggle_categories_list(this);">See Less Categories&nbsp;<i class="fa fa-caret-up"></i></a>
-										<hr>
-									</div>
-								<?php
-								// }
-								?>
+									<?php
+									}
+									?>
+									<hr>
+								</div>
 								
 								<div class="filter_btns_div">
 									&nbsp;<button type="button" class="btn default_btn" style="width: 46%;" onclick="clear_filters(this, 'all');">Clear All</button>
@@ -174,7 +216,7 @@
 						</div>
 					</div>
 
-					<div class="col-sm-9 col-md-10 right-pane">
+					<div class="col-sm-10 right-pane">
 						<div class="exclusive_coupan cat_coupons">
 							<?php
 							if ($total_coupons_fetched > 0)
@@ -186,7 +228,7 @@
 									{
 										echo $cnt == 1 ? '<div class="row">' : '';
 									?>
-										<div class="col-sm-6 col-md-3 cpn_adjst_img">
+										<div class="col-sm-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>" data-placement="left" href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
@@ -319,13 +361,15 @@ $(document).ready(function()
 {
 	$('[data-toggle="tooltip"]').tooltip();
 
-	$(document).on('click', $('.filters-ul li input[type="checkbox"]'), function(e)
+	$($('#src_filters_ul li input[type="radio"]')).on('click', function(e)
 	{
 		if (e.which == 1)
 		{
 			toggle_filters($(e.target));
 		}
 	});
+
+	toggle_filters($('#src_filters_ul li input:checked'));
 
 	$(document).on('click', $('.filter-clearable input'), function(e)
 	{
@@ -359,21 +403,46 @@ function bind_rating(target, rating)
 	$(target).css('display', 'inline-block');
 }
 
-function toggle_categories_list(ele)
-{
-	$(ele).siblings('ul').children(".hid_ul").toggleClass('hide');
-	$(".toggle_cats_anch").toggleClass('hide');
-}
-
 function render_selected_filters()
 {
 	$(".filters-ul li input[type=checkbox]:checked").parent('li').children('span').html();
 }
 
-function toggle_filters()
+function toggle_filters(ele)
 {
-	if ($('.filter_src_div ul.filters-ul li:not(:first-child) input[type=radio]:checked').length > 0)
+	var selected_src = $(".filters-ul").find($('input[name=src]:checked'));
+	$('.filter_cat_div ul').children('li').addClass('hide');
+
+	$(".filter_cat_div .filters-ul").addClass('hide');
+	$(".filter_cat_div .filters-ul li").addClass('hide');
+	$('#' + selected_src.val() + '_cat_ul').removeClass('hide');
+
+	if (selected_src.val() == 'local')
 	{
+		$('.filter_keyword_div').removeClass('hide');
+
+		$('.filter_dt_div').removeClass('hide');
+		$('.filter_dt_div').find('input[type=radio]').attr('name', $('.filter_dt_div').find('input[type=radio]').attr('data-name'));
+		$('.filter_dt_div').find('input[type=radio]').removeAttr('data-name');
+
+		$('.filter_rvws_div').removeClass('hide');
+		$('.filter_rvws_div').find('input[type=radio]').attr('name', $('.filter_rvws_div').find('input[type=radio]').attr('data-name'));
+		$('.filter_rvws_div').find('input[type=radio]').removeAttr('data-name');
+		$('.filter_cat_div ul').children('li[data-src=local-cat]').removeClass('hide');
+	}
+	else
+	{
+		if (selected_src.val() == 'groupon')
+		{
+			$('.filter_keyword_div').addClass('hide');
+			$('.filter_cat_div ul').children('li[data-src=groupon-cat]').removeClass('hide');
+		}
+		else if (selected_src.val() == 'ebay')
+		{
+			$('.filter_keyword_div').removeClass('hide');
+			$('.filter_cat_div ul').children('li[data-src=ebay-cat]').removeClass('hide');
+		}
+
 		$('.filter_dt_div').addClass('hide');
 		$('.filter_dt_div').find('input[type=radio]').attr('data-name', $('.filter_dt_div').find('input[type=radio]').attr('name'));
 		$('.filter_dt_div').find('input[type=radio]').removeAttr('name');
@@ -382,19 +451,10 @@ function toggle_filters()
 		$('.filter_rvws_div').find('input[type=radio]').attr('data-name', $('.filter_rvws_div').find('input[type=radio]').attr('name'));
 		$('.filter_rvws_div').find('input[type=radio]').removeAttr('name');
 	}
-	else
-	{
-		$('.filter_dt_div').removeClass('hide');
-		$('.filter_dt_div').find('input[type=radio]').attr('name', $('.filter_dt_div').find('input[type=radio]').attr('data-name'));
-		$('.filter_dt_div').find('input[type=radio]').removeAttr('data-name');
 
-		$('.filter_rvws_div').removeClass('hide');
-		$('.filter_rvws_div').find('input[type=radio]').attr('name', $('.filter_rvws_div').find('input[type=radio]').attr('data-name'));
-		$('.filter_rvws_div').find('input[type=radio]').removeAttr('data-name');
-	}
-
-	// $("body").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
-	$("body").getNiceScroll().resize()
+	$(".filter_cat_div .filters-ul").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
+	$(".filter_cat_div .filters-ul").getNiceScroll().resize();
+	$("body").getNiceScroll().resize();
 }
 
 function clear_filters(ele, target)

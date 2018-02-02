@@ -27,22 +27,6 @@
 								</a>
 							</div>
 			        	</div>
-			        	<div class="item">
-			            	<div class="cpn_adjst_img">
-								<a href="<?php echo base_url('coupon' . '/' . $valueALC['id']); ?>">
-									<img src="<?php echo base_url($valueALC['store_image']); ?>" alt="<?php echo $valueALC['coupon_title']; ?>">
-									<div class="hover_div">
-										<div class="hover_text_wrap">
-											<div class="hover_text">
-												<h3><?php echo $valueALC['store_name']; ?>&nbsp;<i class="fa fa-long-arrow-right"></i> </h3>
-												<h4><?php echo $valueALC['coupon_title']; ?></h4>
-												<h5><?php echo substr($valueALC['coupon_description'], 0, 150) . '...'; ?></h5>
-											</div>
-										</div>
-									</div>
-								</a>
-							</div>
-			        	</div>
 					<?php
 					}
 					?>

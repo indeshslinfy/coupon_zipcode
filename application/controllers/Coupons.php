@@ -53,7 +53,9 @@ class Coupons extends CI_Controller {
 		$total_coupons_fetched = 0;
 
 		$this->load->model(ADMIN_PREFIX . '/stores_category_model');
-		$data['all_categories'] = $this->stores_category_model->all_records();
+		$data['all_categories']['local'] = $this->stores_category_model->all_records();
+		$data['all_categories']['groupon'] = affiliate_categories(CATEGORY_SRC_GROUPON);
+		$data['all_categories']['ebay'] = affiliate_categories(CATEGORY_SRC_EBAY);
 
 		// 'CATEGORY PAGE' SEARCH
 		if ($this->uri->segment(1) == 'category')
@@ -128,7 +130,6 @@ class Coupons extends CI_Controller {
 		}
 		else if ($_GET['src'] == 'ebay')
 		{
-			$_GET['cat'] = '267';
 			if (isset($_GET['cat']) && $_GET['cat'] != '')
 			{
 				if (!is_array($_GET['cat']))
@@ -136,20 +137,45 @@ class Coupons extends CI_Controller {
 					$_GET['cat'] = (array)$_GET['cat'];
 				}
 
-				if (sizeof($_GET['cat']) > 0)
+				$_GET['limit'] = '5';
+				$_GET['offset'] = '1';
+				$_GET['min_price'] = '5.00';
+				$_GET['max_price'] = '50.00';
+				$_GET['currency'] = 'USD';
+
+				$ebay_deals = array();
+				if ((sizeof($_GET['cat']) > 0) && (array_key_exists('keyword', $_GET) && $_GET['keyword'] != ''))
 				{
-					$ebay_deals = array();
+					// ADVANCED SEARCH - both category and keyword
+					$deals = $this->fetch_ebay_deals('advanced', $_GET['keyword'], $_GET);
+					if ($deals['ack'] == 'Success')
+					{
+						$ebay_deals = $deals['searchResult']['item'];
+					}
+				}
+				elseif (sizeof($_GET['cat']) > 0)
+				{
 					foreach ($_GET['cat'] as $keyCAT => $valueCAT)
 					{
-						$deals = $this->fetch_ebay_deals('category', $valueCAT, array('offset' => 1, 'limit' => 5));
+						$deals = $this->fetch_ebay_deals('category', $valueCAT, $_GET);
 						if ($deals['ack'] == 'Success')
 						{
 							$ebay_deals = array_merge($ebay_deals, $deals['searchResult']['item']);
 						}
 					}
-					$data['coupons']['ebay'] = $ebay_deals;
-					$total_coupons_fetched = sizeof($data['coupons']['ebay']);
+
 				}
+				elseif (array_key_exists('keyword', $_GET) && $_GET['keyword'] != '')
+				{
+					$deals = $this->fetch_ebay_deals('keyword', $_GET['keyword'], $_GET);
+					if ($deals['ack'] == 'Success')
+					{
+						$ebay_deals = $deals['searchResult']['item'];
+					}
+				}
+				
+				$data['coupons']['ebay'] = $ebay_deals;
+				$total_coupons_fetched = sizeof($data['coupons']['ebay']);
 			}
 		}
 		else
@@ -278,36 +304,13 @@ class Coupons extends CI_Controller {
 
 	public function fetch_ebay_deals($type, $type_val, $filters)
 	{
-		$filters['min_price'] = '5.00';
-		$filters['max_price'] = '50.00';
-		$filters['sort_order'] = 'PricePlusShippingLowest';
 		$ebay_details = $this->settings_model->get_settings('ebay');
 
-		$trackingId = '5338251126';
-		$api_url = 'http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD';
-
-		$currency = 'USD';
-		if (array_key_exists('min_price', $filters) && array_key_exists('max_price', $filters))
-		{
-			$api_url .= '&itemFilter(0).name=MinPrice&itemFilter(0).value=' . $filters['min_price'] . '&itemFilter(0).paramName=Currency&itemFilter(0).paramValue=' . $currency . '&itemFilter(1).name=MaxPrice&itemFilter(1).value=' . $filters['max_price'] . '&itemFilter(1).paramName=Currency&itemFilter(1).paramValue=' . $currency;
-		}
-
-		if (!array_key_exists('limit', $filters)) 
-		{
-			$filters['limit'] = '5';
-		}
-		if (!array_key_exists('offset', $filters)) 
-		{
-			die('here');
-			$filters['offset'] = '1';
-		}
-
+		$api_url = 'http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&itemFilter(0).name=MinPrice&itemFilter(0).value=' . $filters['min_price'] . '&itemFilter(0).paramName=Currency&itemFilter(0).paramValue=' . $filters['currency'] . '&itemFilter(1).name=MaxPrice&itemFilter(1).value=' . $filters['max_price'] . '&itemFilter(1).paramName=Currency&itemFilter(1).paramValue=' . $filters['currency'] . '&paginationInput.entriesPerPage=' . $filters['limit'] . '&paginationInput.pageNumber='. $filters['offset'] . '&affiliate.networkId=9&affiliate.trackingId=' . $ebay_details['camp_id'] . '&affiliate.customId=123';
 		if (array_key_exists('sort_order', $filters)) 
 		{
 			$api_url .= '&sortOrder='. $filters['sort_order'];
 		}
-
-		$api_url .= '&paginationInput.entriesPerPage=' . $filters['limit'] . '&paginationInput.pageNumber='. $filters['offset'] . '&affiliate.networkId=9&affiliate.trackingId=' . $trackingId . '&affiliate.customId=123';
 
 		switch ($type)
 		{
@@ -315,9 +318,12 @@ class Coupons extends CI_Controller {
 				$api_url .= '&categoryId=' . $type_val . '&OPERATION-NAME=findItemsByCategory';
 				break;
 
-			case 'keywords':
-			$type_val = 'books';
+			case 'keyword':
 				$api_url .= '&keywords=' . $type_val . '&OPERATION-NAME=findItemsByKeywords';
+				break;
+
+			case 'advanced':
+				$api_url .= '&categoryId=' . $filters['cat'][0] . '&keywords=' . $filters['keyword'] . '&OPERATION-NAME=findItemsAdvanced';
 				break;
 
 			default:

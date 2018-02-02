@@ -1,6 +1,11 @@
+<?php
+	$general_settings = get_settings('general_settings');
+?>
+
 <script type="text/javascript">
 	var all_zipcodes ='<?php echo json_encode(get_zipcodes()); ?>';
 </script>
+
 <div class="row">
 	<footer>
 		<div class="container">
@@ -128,7 +133,7 @@
 			</div>
 		</div>
 		<div class="footer_copy_right">
-			<span class="pull-left">&copy;&nbsp;<?php echo date('Y'); ?>&nbsp;Coupon Cipcode Inc.</span>
+			<span class="pull-left">&copy;&nbsp;<?php echo date('Y'); ?>&nbsp;<?php echo $general_settings['company_name']; ?></span>
 			<span class="pull-right">
 				<small>Designed by:&nbsp;</small>
 				<a href="http://www.slinfy.com" target="_blank">Solitaire Infosys</a>
@@ -145,7 +150,7 @@
 	    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	    	<div class="get_start_wrap_box text-center">
 				<h3>Why search the web? We have done all the work for you! All deals from all places under one roof!</h3>
-				<p>(Groupon, ebay, CouponZipcode Deals)</p>
+				<p>(<?php echo $general_settings['company_name']; ?>, Groupon, Ebay and many more deals)</p>
 				<div class="form_wrap">
 					<form>
 						<div class="select_city_form">

@@ -9,7 +9,6 @@ $(document).ready(function()
 	$("body").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
 	$(".ticketing_chatbox_wrap").niceScroll({cursorborder:"", cursorcolor:"#2C3E50"});
 
-
 	var height_calc = $(window).height();
 	$('.popup_bg').height(height_calc);
 
@@ -128,7 +127,7 @@ function showPosition(position)
 
 				var loc_html = '<li>\
 									<a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">\
-										<span><i class="fa fa-map-marker"></i>&nbsp;Select location</span>' + data.data.zipcode + '\
+										<i class="fa fa-map-marker"></i>&nbsp;Select location<span>' + data.data.zipcode + '</span>\
 									</a>\
 								</li>';
 				$(".header_location_ul").html(loc_html);

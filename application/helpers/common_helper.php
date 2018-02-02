@@ -224,3 +224,22 @@ if (!function_exists('popular_stores'))
 		return $CI->stores_model->popular_stores($limit);
     }
 }
+
+if (!function_exists('affiliate_categories'))
+{
+    function affiliate_categories($source=false)
+    {
+    	$where_arr = array('deleted_at' => NULL);
+    	if ($source)
+    	{
+    		$where_arr['category_source'] = $source;
+    	}
+
+    	$CI =& get_instance();
+		return $CI->db->select('*, category_name as store_category_name, category_slug as store_category_slug')
+								->where($where_arr)
+								->order_by('category_name', 'ASC')
+								->get('affiliate_categories')
+								->result_array();
+    }
+}

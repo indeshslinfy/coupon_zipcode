@@ -189,7 +189,6 @@ class Index extends CI_Controller
 		$value = number_format($value['rating'],2);
 
 		$value_part = explode('.', $value);
-		// print_r($value_part); die;
 		if ($value_part[1] == 50 || $value_part[1] == 00) 
 		{
 			$value = $value;

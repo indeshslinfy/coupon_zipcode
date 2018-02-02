@@ -1299,6 +1299,13 @@ button,
 	padding: 0px 0px 15px 15px;
 	position: initial;
 }
+.filter_range_div,
+.filter_keyword_div{
+	padding: 0 5px 0 0;
+}
+.filters-ul input[type="radio"]{
+	margin-top: 2px 0 0;
+}
 .cat_coupons_wrapper .left-pane .filters-ul li{
 	position: relative;
 	margin-bottom: 2px;
@@ -1369,6 +1376,11 @@ button,
 }
 .filter_inner_wrap .filter_btns_div .btn{
 	font-size:13px;
+}
+.filter_cat_div .filters-ul {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
 }
 .sorting-div {
     position: absolute;
@@ -1500,7 +1512,7 @@ input[type="checkbox"]:checked + span:after {
 	content: '\2713';
 	position: absolute;
 	left: 2px;
-	top: 0px;
+	top: -1px;
 	width: 2px;
 	height: 2px;
 	color:#fff;
@@ -2281,7 +2293,6 @@ color: #2c3e50;
 	margin: 20px auto 0px;
 	opacity: .8;
 	display: inline-block;
-
 }
 .select_city.selct_location_wrap .easy-autocomplete {
 	width:100% !important;
