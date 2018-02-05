@@ -186,5 +186,12 @@
 	echo js('frontend/scripts.js');
 	echo iplugin('easy_autocomplete', array('file_name' => 'jquery.easy-autocomplete', 'file_type' => 'js'));
 ?>
+<script>
+      window.___gcfg = {
+        lang: 'en-US',
+        parsetags: 'onload'
+      };
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>
