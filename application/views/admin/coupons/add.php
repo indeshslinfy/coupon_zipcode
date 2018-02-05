@@ -141,7 +141,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group text-right">
                                     <a type="button" class="btn btn-default" href="<?php echo base_url(ADMIN_PREFIX . '/coupons'); ?>">Cancel</a>
-                                    <button type="submit" class="btn btn-success" id="update_coupon_btn">Update</button>
+                                    <button type="submit" class="btn btn-success" id="update_coupon_btn">Save</button>
                                 </div>
                             </div>
                         </div>

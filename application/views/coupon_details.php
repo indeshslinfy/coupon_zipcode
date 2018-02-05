@@ -41,7 +41,7 @@
 									</div>
 									<p><?php echo str_replace(", ,", ", ", $coupon_details['address_line1'] . ', ' . $coupon_details['address_line2'] . ', ' . $coupon_details['address_line3'] . ', ' . $coupon_details['city_name'] . ', ' . $coupon_details['state_name'] . ', ' . $coupon_details['country_name'] . '. ' . $coupon_details['coupon_zipcode']); ?></p>
 									<p><a href="tel:<?php echo $coupon_details['store_phone']; ?>"><?php echo $coupon_details['store_phone']; ?></a></p>
-									<p><a target="_blank" href="<?php echo $coupon_details['store_website']; ?>"><?php echo $coupon_details['store_website']; ?></a></p>
+									<p><a style="word-wrap: break-word;" target="_blank" href="<?php echo $coupon_details['store_website']; ?>"><?php echo $coupon_details['store_website']; ?></a></p>
 									<!-- <ul>
 										<li><a title="<?php //echo $coupon_details['store_email'] ? $coupon_details['store_email'] : ''; ?>" href="<?php //echo $coupon_details['store_email'] ? 'mailto:' . $coupon_details['store_email'] : 'javascript:void(0);'; ?>"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
 										<li><a target="_blank" href="<?php //echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>

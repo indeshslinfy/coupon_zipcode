@@ -40,8 +40,8 @@
 	<section class="top_rstrnt_deal gery_bg">
 		<div class="container">
 			<div class="heading_text_wrap">
-				<!-- <h2>Top Restaurant Deals Near You</h2> -->
-				<h2>Top Restaurant Deals in New York</h2>
+				<h2>Top Restaurant Deals Near You</h2>
+				<!-- <h2>Top Restaurant Deals in New York</h2> -->
 				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
 			</div>
 

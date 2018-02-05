@@ -101,7 +101,7 @@ function getLocation()
 	else
 	{
 		alert("Either you have blocked location access or geolocation is not supported by this browser. Setting location default to New York City");
-		var new_york_location = {coords: {'latitude': '40.71', 'longitude': '74.00'}};
+		var new_york_location = {coords: {'latitude': '40.71', 'longitude': '-73.99'}};
 		showPosition(new_york_location);
 	}
 }
@@ -118,7 +118,7 @@ function showPosition(position)
 			if (data.status == 0)
 			{
 				alert('Something went wrong while fetching your location. Setting location default to New York City');
-				var new_york_location = {coords: {'latitude': '40.71', 'longitude': '74.00'}};
+				var new_york_location = {coords: {'latitude': '40.71', 'longitude': '-73.99'}};
 				showPosition(new_york_location);
 			}
 			else

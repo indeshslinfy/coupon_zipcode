@@ -30,9 +30,20 @@ class Home extends CI_Controller
 		$this->load->model(ADMIN_PREFIX . '/stores_model');
 
 		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "limit" => 3));
-		$data['coupons_by_location'] = $this->fetch_deals('location', 'new-york', array('offset' => 0, 'limit' => 8));
-		// $data['coupons_by_location'] = $this->fetch_deals('latlong', array('lat' => '30.20', 'long' => '-70.02'), array('offset' => 0, 'limit' => 8));
-		
+		$cookie_data = new stdClass();
+		$cookie_data = json_decode(get_cookie('user_current_location'));
+		if(isset($cookie_data->lat)) 
+		{
+			$lat = $cookie_data->lat;
+			$long = $cookie_data->long;
+		}
+		else
+		{
+			$lat = '40.71';
+			$long = '-73.99';
+
+		}
+		$data['coupons_by_location'] = $this->fetch_deals('latlong', array('lat' => $lat, 'long' => $long), array('offset' => 0, 'limit' => 8));		
 		$this->load->template('index', $data);
 	}
 

@@ -105,6 +105,21 @@ if (!function_exists('save_zipcode'))
 	}
 }
 
+if (!function_exists('get_zipcode_name'))
+{
+	function get_zipcode_name($zipcode_id)
+	{
+		$CI =& get_instance();
+		$zipcode_exist = $CI->db->where(array('id' => $zipcode_id))
+					->get('zipcodes')
+					->row_array();
+		if ($zipcode_exist)
+		{
+			return $zipcode_exist['zipcode'];
+		}
+	}
+}
+
 if (!function_exists('user_login_data'))
 {
 	function user_login_data($index=false)

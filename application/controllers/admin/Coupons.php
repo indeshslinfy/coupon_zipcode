@@ -81,6 +81,7 @@ class Coupons extends CI_Controller
 		{
 			/***SAVE NEW***/
 			$insert_arr['created_at'] = date('Y-m-d H:i:s');
+			// print_r($insert_arr); die;
 			$insert_id = $this->coupons_model->coupon_save($insert_arr);
 			$this->session->set_flashdata('flash_message', 'Coupon saved successfully.');
 		}
