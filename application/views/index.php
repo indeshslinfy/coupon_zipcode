@@ -108,7 +108,9 @@
 		</div>			
 	</section>
 </div>
-
+<a href="javascript:void(0);" class="move_to_top" onclick="topFunction()" id="myBtn" title="Go to top">
+	<i class="fa fa-arrow-up"></i>
+</a>
 <div class="row">
 	<section class="top_rstrnt_deal">
 		<div class="container">
@@ -279,5 +281,26 @@
 	function toggle_copy_input()
 	{
 		$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').toggle();
+	}
+
+	window.onscroll = function() {scrollFunction()};
+
+	//Scroll function
+	function scrollFunction() {
+	    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+	        document.getElementById("myBtn").style.display = "block";
+	    } else {
+	        document.getElementById("myBtn").style.display = "none";
+	    }
+	}
+
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() 
+	{
+		$('body,html').animate({
+	        scrollTop: 0
+	    }, 1500);
+	    
+	    return false;
 	}
 </script>

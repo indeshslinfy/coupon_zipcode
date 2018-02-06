@@ -2338,3 +2338,16 @@ color: #2c3e50;
 	margin:0px !important;
 	text-align:left !important;
 }
+.move_to_top{
+	display: none;
+	position: fixed;
+	right: 20px;
+	font-size: 20px;
+	color: #045112;
+	bottom: 30px;
+	background: #fff;
+	border-radius: 50% !important;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+}

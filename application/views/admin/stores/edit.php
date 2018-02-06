@@ -211,19 +211,19 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6">
+                                        <!-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="store_latitude">Latitude&nbsp;<small class="text-danger">*</small></label>
                                                 <input type="text" name="store_latitude" value="<?php echo $store_details['store_latitude']; ?>" class="form-control" required="">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
-                                        <div class="col-sm-6">
+                                        <!-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="store_longitude">Longitude&nbsp;<small class="text-danger">*</small></label>
                                                 <input type="text" name="store_longitude" value="<?php echo $store_details['store_longitude']; ?>" class="form-control" required="">
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
 

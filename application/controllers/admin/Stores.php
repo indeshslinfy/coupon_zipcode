@@ -40,7 +40,9 @@ class Stores extends CI_Controller
 			$data['store_details'] = $this->stores_model->store_edit($this->uri->segment(3));
 			if (sizeof($data['store_details']) == 0)
 			{
-				redirect('404');
+				$this->session->set_flashdata('flash_error', 'Store does not exist');
+				redirect(ADMIN_PREFIX .'/stores');
+				// redirect('404');
 			}
 
 			$data['store_details']['store_menus'] = $this->stores_attachment_model->store_attachments($this->uri->segment(3), STORE_ATCH_MENU);
@@ -66,10 +68,30 @@ class Stores extends CI_Controller
 		$insert_arr['address'] = $params['address'];
 		unset($params['address']);
 
+		//Get Lat Long of choosen Zipcode
+		$get_lat_long = get_zipcode_details($params['store_zipcode_id']);
+		if (sizeof($get_lat_long) > 0) 
+		{
+			$params['store_latitude'] = $get_lat_long['latitude'];
+			$params['store_longitude'] = $get_lat_long['longitude'];
+		}
+		else
+		{
+			if ($this->uri->segment(3)) 
+			{
+				$this->session->set_flashdata('flash_error', 'Error occured while saving Store. Zipcode Incorrect.');
+				redirect(ADMIN_PREFIX . '/edit-store/' . $this->uri->segment(3));
+			}
+			else
+			{
+				$this->session->set_flashdata('flash_error', 'Error occured while saving Store. Zipcode Incorrect.');
+				redirect(ADMIN_PREFIX . '/add-store');
+			}
+		}
+
 		$insert_arr['basic'] = $params;
 		if ($this->uri->segment(3))
 		{
-			// print_r($insert_arr); die;
 			/***UPDATE EXISTING***/
 			$insert_id = $this->stores_model->store_save($insert_arr, $this->uri->segment(3));
 		}
