@@ -22,17 +22,19 @@ class Cron extends CI_Controller {
 	{
 		$current_date = date('Y-m-d H:i:s');
 
- 		$previous_date = date('Y-m-d', (strtotime('-1 day', strtotime($current_date))));
- 		$between_date_strt = $previous_date . " 00:00:00";
- 		$between_date_end = $previous_date . " 23:59:59";
+ 		$previous_date = date('Y-m-d', (strtotime('-100 days', strtotime($current_date))));
+ 		$strt_date = $previous_date . " 00:00:00";
+ 		$end_date = $previous_date . " 23:59:59";
 
- 		$this->db->where(array('status !=' => COUPON_STATUS_EXPIRED ,
- 							'coupon_end_date >=' => $between_date_strt ,
- 							'coupon_end_date <=' => $between_date_end));
+ 		$this->db->where(array('status !=' => COUPON_STATUS_EXPIRED,
+ 							'coupon_end_date >=' => $strt_date ,
+ 							'coupon_end_date <=' => $end_date));
  		
- 		$this->db->update('coupons', array('status' => COUPON_STATUS_EXPIRED,
+ 		$this->db->update('coupons', array('coupon_publish' => 0,
+ 											'status' => COUPON_STATUS_EXPIRED,
  											'updated_at' => $current_date));
- 		return $this->db->affected_rows();
+
+ 		echo "Total&nbsp;" . $this->db->affected_rows() . "&nbsp;records updated.";
 	}
 
 	public function sync_ebay_categories()

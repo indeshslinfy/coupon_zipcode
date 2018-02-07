@@ -216,7 +216,7 @@
 						</div>
 					</div>
 
-					<div class="col-sm-10 right-pane">
+					<div class="col-sm-9 col-md-10 right-pane">
 						<div class="exclusive_coupan cat_coupons">
 							<?php
 							if ($total_coupons_fetched > 0)

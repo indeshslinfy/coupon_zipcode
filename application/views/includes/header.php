@@ -110,7 +110,8 @@
 									<div class="input_box_wrap">
 										<span><i class="fa fa-search"></i></span>
 										<input type="hidden" name="search_src" value="header">
-										<input type="text" class="form-control" placeholder="Category" name="cat_name" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : ''; ?>">
+										<input type="text" class="form-control top-srch-cat" placeholder="Category" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : ''; ?>" id="top-srch-cat-name">
+										<input type="hidden" id="top-srch-cat" name="cat_name" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : ''; ?>">
 									</div>
 								</div>
 								<div class="form-group city_box">
@@ -122,7 +123,7 @@
 								<div class="form-group nearby">
 									<div class="input_box_wrap">
 										<span>Near</span>
-										<input type="text" class="form-control" placeholder="Zipcode" name="store_zipcode" value="<?php echo isset($_GET['store_zipcode']) ? $_GET['store_zipcode'] : ''; ?>">
+										<input type="text" class="form-control top-srch-zipcode" placeholder="Zipcode" name="store_zipcode" value="<?php echo isset($_GET['store_zipcode']) ? $_GET['store_zipcode'] : ''; ?>">
 									</div>
 								</div>
 

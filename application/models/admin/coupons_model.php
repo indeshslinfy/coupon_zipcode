@@ -9,9 +9,10 @@ class coupons_model extends CI_model
 
 	public function all_records()
 	{
-		return $this->db->select('c.*, s.store_name, z.zipcode as coupon_zipcode')
+		return $this->db->select('c.*, s.store_name, z.zipcode as coupon_zipcode, cat.store_category_name')
 						->where(array('c.deleted_at' => NULL))
 						->join('stores as s', 's.id = c.coupon_store_id')
+						->join('stores_category as cat', 'cat.id = s.store_category_id')
 						->join('zipcodes as z', 'z.id = c.coupon_zipcode_id')
 						->get('coupons as c')
 						->result_array();

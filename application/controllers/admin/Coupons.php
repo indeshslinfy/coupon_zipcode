@@ -35,7 +35,8 @@ class Coupons extends CI_Controller
 			$data['coupon_details'] = $this->coupons_model->coupon_edit($this->uri->segment(3));
 			if (sizeof($data['coupon_details']) == 0)
 			{
-				redirect('404');
+				$this->session->set_flashdata('flash_error', 'Coupon does not exist');
+				redirect(ADMIN_PREFIX .'/coupons');
 			}
 
 			$this->load->admin_template('coupons/edit', $data);

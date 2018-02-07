@@ -4,6 +4,7 @@
 
 <script type="text/javascript">
 	var all_zipcodes ='<?php echo json_encode(get_zipcodes()); ?>';
+	var all_store_cats ='<?php echo json_encode(get_stores_categories()); ?>';
 </script>
 
 <div class="row">

@@ -59,12 +59,47 @@ $(document).ready(function()
  		$('.filter_inner_wrap').slideToggle();
  	});
 
- 	bind_zipcode_autocomplete();
+ 	bind_cat_autocomplete('.top-srch-cat');
+
+ 	bind_zipcode_autocomplete('.zpcde_auto', {'theme': 'dark'});
+ 	bind_zipcode_autocomplete('.top-srch-zipcode', {'theme': 'bootstrap'});
 });
 
-function bind_zipcode_autocomplete()
+function bind_cat_autocomplete(target_class)
 {
-	
+	var autocomp_options = {
+		data: JSON.parse(all_store_cats),
+		getValue: "store_category_name",
+		template: {
+			type: "id",
+			fields: {description: "id"}
+		},
+		list: {
+			maxNumberOfElements: 10,
+			sort: {enabled: true},
+			showAnimation: {
+				type: "fade",
+				time: 200,
+				callback: function() {}
+			},
+			hideAnimation: {
+				type: "slide",
+				time: 200,
+				callback: function() {}
+			},
+			match: {enabled: true},
+			onChooseEvent: function() {
+                $("#top-srch-cat").val($(".top-srch-cat").getSelectedItemData().store_category_slug);
+            }
+        },
+		theme: 'bootstrap'
+	};
+
+	$(target_class).easyAutocomplete(autocomp_options);
+}
+
+function bind_zipcode_autocomplete(target_class, options)
+{
 	var autocomp_options = {
 		data: JSON.parse(all_zipcodes),
 		getValue: "zipcode",
@@ -87,9 +122,10 @@ function bind_zipcode_autocomplete()
 			},
 			match: {enabled: true}
         },
-		theme: "dark"};
+		theme: options.theme
+	};
 
-	$(".zpcde_auto").easyAutocomplete(autocomp_options);
+	$(target_class).easyAutocomplete(autocomp_options);
 }
 
 function getLocation() 

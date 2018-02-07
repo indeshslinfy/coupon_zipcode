@@ -41,8 +41,8 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Code</th>
                             <th>Store Name</th>
+                            <th>Category</th>
                             <th>Zipcode</th>
                             <th>Start Date</th>
                             <th>End Date</th>
@@ -61,8 +61,8 @@
                                 <tr>
                                     <td><?php echo $keyAR+1; ?></td>
                                     <td><?php echo $valueAR['coupon_title']; ?></td>
-                                    <td><?php echo $valueAR['coupon_code']; ?></td>
                                     <td><?php echo $valueAR['store_name']; ?></td>
+                                    <td><?php echo $valueAR['store_category_name']; ?></td>
                                     <td><?php echo $valueAR['coupon_zipcode']; ?></td>
                                     <td><?php echo date("d-m-Y", strtotime($valueAR['coupon_start_date'])); ?></td>
                                     <td><?php echo date("d-m-Y", strtotime($valueAR['coupon_end_date'])); ?></td>

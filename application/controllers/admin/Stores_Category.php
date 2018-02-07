@@ -34,7 +34,8 @@ class Stores_Category extends CI_Controller
 			$data['store_cat_details'] = $this->stores_category_model->stores_cat_edit($this->uri->segment(3));
 			if (sizeof($data['store_cat_details']) == 0)
 			{
-				redirect('404');
+				$this->session->set_flashdata('flash_error', 'Store category does not exist');
+				redirect(ADMIN_PREFIX .'/stores-category');
 			}
 			
 			$this->load->admin_template('stores_category/edit', $data);

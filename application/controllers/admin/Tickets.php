@@ -34,7 +34,8 @@ class Tickets extends CI_Controller
 			$data['ticket_details'] = $this->tickets_model->ticket_edit($this->uri->segment(3));
 			if (sizeof($data['ticket_details']) == 0)
 			{
-				redirect('404');
+				$this->session->set_flashdata('flash_error', 'Ticket does not exist');
+				redirect(ADMIN_PREFIX .'/tickets');
 			}
 
 			if ($data['ticket_details']['status'] == TICKET_STATUS_OPEN) 

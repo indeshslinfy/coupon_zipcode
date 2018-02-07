@@ -42,7 +42,6 @@ class Stores extends CI_Controller
 			{
 				$this->session->set_flashdata('flash_error', 'Store does not exist');
 				redirect(ADMIN_PREFIX .'/stores');
-				// redirect('404');
 			}
 
 			$data['store_details']['store_menus'] = $this->stores_attachment_model->store_attachments($this->uri->segment(3), STORE_ATCH_MENU);

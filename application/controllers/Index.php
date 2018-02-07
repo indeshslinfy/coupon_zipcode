@@ -180,6 +180,8 @@ class Index extends CI_Controller
 
 	public function average()
 	{
+		/*$test = get_zipcode_by_city('47036');
+		print_r($test); die;*/
 		$store_id = 1;
 		$this->db->select_avg('rating');
 		$this->db->from('reviews');

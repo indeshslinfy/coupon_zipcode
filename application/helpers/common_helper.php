@@ -71,6 +71,18 @@ if (!function_exists('get_zipcodes'))
 	}
 }
 
+if (!function_exists('get_stores_categories'))
+{
+	function get_stores_categories()
+	{
+		$CI =& get_instance();
+		return $CI->db->where(array('deleted_at' => NULL))
+		              ->order_by('store_category_name', 'ASC')
+		              ->get('stores_category')
+		              ->result_array();
+	}
+}
+
 if (!function_exists('get_zipcode_stores'))
 {
 	function get_zipcode_stores($zipcode_id)
@@ -78,6 +90,17 @@ if (!function_exists('get_zipcode_stores'))
 		$CI =& get_instance();
 		return $CI->db->where(array('store_zipcode_id' => $zipcode_id, 'deleted_at' => NULL, 'status' => STORE_STATUS_ACTIVE))
 					->get('stores')
+					->result_array();
+	}
+}
+
+if (!function_exists('get_zipcode_by_city'))
+{
+	function get_zipcode_by_city($city_id)
+	{
+		$CI =& get_instance();
+		return $CI->db->where(array('place_id' => $city_id))
+					->get('zipcodes')
 					->result_array();
 	}
 }

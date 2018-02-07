@@ -265,12 +265,14 @@ section{
 	padding:0px 15px;
 }
 #exclusive_coupan_carousel .owl-nav{
-	position:absolute;
-	top:45%;
+	/*position:absolute;
+	top:45%;*/
 	width:100%;
 	padding: 0px 15px;
 }
 #exclusive_coupan_carousel .owl-nav div{
+	position:absolute;
+	top:45%;
 	background: rgba(0,0,0,.5);
 	width: 30px;
 	height: 30px;
@@ -284,6 +286,7 @@ section{
 }
 #exclusive_coupan_carousel .owl-nav div.owl-next{
 	float:right;
+	right:15px;
 }
 .exclusive_coupan .cpn_adjst_img{
 	display: table;
@@ -2287,4 +2290,13 @@ color: #2c3e50;
 }
 .select_city.selct_location_wrap .easy-autocomplete.eac-dark input{
 	background:none !important;
+}
+.search_form_wrap .easy-autocomplete-container{
+	top:36px;
+}
+.search_form_wrap .easy-autocomplete-container ul li{
+	text-align:left;
+}
+.search_form_wrap .easy-autocomplete{
+	width:100% !important;
 }

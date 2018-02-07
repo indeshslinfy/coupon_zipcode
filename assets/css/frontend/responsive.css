@@ -79,6 +79,8 @@
 	.sorting-div .sorting-div-inner .form-group .btn{float:right;}
 	.cat_coupons_wrapper .right-pane .exclusive_coupan{padding-top:20px;}
 	/*---------index-page-css-end-------------*/
+	/*-----category-page----*/
+	.cat_coupons_wrapper .left-pane{padding-left: 0px;}
 }
 
 @media screen and (max-width:479px){

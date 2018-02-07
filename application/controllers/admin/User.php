@@ -41,7 +41,8 @@ class User extends CI_Controller
 			$data['user_details'] = $this->user_model->user_edit($this->uri->segment(3));
 			if (sizeof($data['user_details']) == 0)
 			{
-				redirect('404');
+				$this->session->set_flashdata('flash_error', 'User does not exist');
+				redirect(ADMIN_PREFIX .'/users');
 			}
 
 			$this->load->admin_template('user/edit', $data);

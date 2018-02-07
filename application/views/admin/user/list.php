@@ -20,6 +20,15 @@
                 </div>
             <?php
             }
+
+            if($this->session->flashdata('flash_error'))
+            {
+            ?>
+                <div class="alert alert-danger">
+                    <p class="text-center"><?php echo $this->session->flashdata('flash_error'); ?></p>
+                </div>
+            <?php
+            }
             ?>
 
             <div class="content_title">
