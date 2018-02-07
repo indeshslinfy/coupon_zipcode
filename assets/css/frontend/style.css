@@ -761,40 +761,10 @@ footer{
 }
 .post_address ul li {
     display: inline-block;
-    padding: 0 0px 0px 0px;
-    height:28px;
-    overflow:hidden;
-}
-.post_address ul li iframe{
-	width:83px;
-	height:auto;
-}
-.post_address ul li:last-child iframe{
-	height:29px !important;
-	opacity:0;
-}
-.post_address ul li:last-child iframe .ozWidgetRioButton_{
-	height:29px !important;
-	padding-top:5px !important;
+    padding: 0 7px 0px 0px;
 }
 .post_address ul li a{
 	font-size: 25px;
-}
-.post_address ul li:last-child a{
-	    position: absolute;
-   		 width: 59px;
-   		 z-index: -1;
-   		 font-size: 12px;
-   		 color:#333;
-	    border: 1px solid #ccc;
-	    padding: 4px 0px 5px 5px;
-}
-.post_address ul li:last-child a .fa{
-	float:left;
-	color:#ff0000;
-	margin-right: 2px;
-    margin-top: 4px;
-    font-size:10px;
 }
 .post_coupon_detail{
 	padding-top:15px;
@@ -1329,13 +1299,6 @@ button,
 	padding: 0px 0px 15px 15px;
 	position: initial;
 }
-.filter_range_div,
-.filter_keyword_div{
-	padding: 0 5px 0 0;
-}
-.filters-ul input[type="radio"]{
-	margin-top: 2px 0 0;
-}
 .cat_coupons_wrapper .left-pane .filters-ul li{
 	position: relative;
 	margin-bottom: 2px;
@@ -1406,11 +1369,6 @@ button,
 }
 .filter_inner_wrap .filter_btns_div .btn{
 	font-size:13px;
-}
-.filter_cat_div .filters-ul {
-    max-height: 200px;
-    overflow-y: auto;
-    margin-bottom: 10px;
 }
 .sorting-div {
     position: absolute;
@@ -1542,7 +1500,7 @@ input[type="checkbox"]:checked + span:after {
 	content: '\2713';
 	position: absolute;
 	left: 2px;
-	top: -1px;
+	top: 0px;
 	width: 2px;
 	height: 2px;
 	color:#fff;
@@ -2237,13 +2195,13 @@ color: #2c3e50;
 }
 .select_city .fa{
 	float:left;
-	padding:0px 7px;
+	padding:0px 5px;
 	line-height:34px;
 	color:#fdfdfd;
 }
 .select_city .form-control{
 	float:right;
-	width: calc(100% - 22px);
+	width: calc(100% - 18px);
 	border: none;
 	padding-left:2px;
 }
@@ -2329,25 +2287,4 @@ color: #2c3e50;
 }
 .select_city.selct_location_wrap .easy-autocomplete.eac-dark input{
 	background:none !important;
-
-}
-.select_city.selct_location_wrap .easy-autocomplete .easy-autocomplete-container{
-	top:36px;
-}
-.select_city.selct_location_wrap .easy-autocomplete .easy-autocomplete-container ul li{
-	margin:0px !important;
-	text-align:left !important;
-}
-.move_to_top{
-	display: none;
-	position: fixed;
-	right: 20px;
-	font-size: 20px;
-	color: #045112;
-	bottom: 30px;
-	background: #fff;
-	border-radius: 50% !important;
-	width: 30px;
-	height: 30px;
-	text-align: center;
 }
