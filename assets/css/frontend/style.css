@@ -846,10 +846,11 @@ footer{
     color: #3c4044;
     font-weight: 500;
     margin: 0px 0 5px;
+    word-break:break-all;
 }
 .post_address p a{
     color: #226f05;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
 }
 /*.post_address ul li {
@@ -2453,4 +2454,43 @@ color: #2c3e50;
 	bottom:30px;
 	position:fixed;
 	right: 20px;
+}
+.top_rstrnt_deal.gery_bg{
+	padding-bottom:100px;
+}
+.newsletter_wrap{
+	float: left;
+	width: 100%;
+	padding:0px 15px;
+	margin-top: -107px;
+	background: #fff;
+	margin-bottom: 40px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+}
+.newsletter_wrap .news_letter_content_wrap{
+	padding-top:40px;
+}
+.newsletter_wrap h3{
+	float:left;
+	font-size:22px;
+	font-weight:700;
+	color:#2c3d50;
+	margin-right: 30px;
+}
+.newsletter_wrap p{
+	float:left;
+	line-height: 34px;
+}
+.newsletter_wrap form{
+	float:left;
+	width:100%;
+	margin-top:8px;
+	margin-bottom:15px;
+}
+.newsletter_wrap form .form-group{
+	margin-right:20px;
+	width:40%;
+}
+.newsletter_wrap form .form-group .form-control{
+	width:100%;
 }

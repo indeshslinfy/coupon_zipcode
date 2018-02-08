@@ -114,6 +114,26 @@
 <div class="row">
 	<section class="top_rstrnt_deal">
 		<div class="container">
+			<div class="newsletter_wrap">
+				<div class="row">
+					<div class="col-xs-12 col-sm-2">
+						<img src="<?php echo base_url('assets/img/emailCZ.png'); ?>" alt="News Letter">
+					</div>
+					<div class="col-xs-12 col-sm-10 news_letter_content_wrap">
+						<h3>Newsletter</h3>
+						<p>Subscribe to our newsletter to find out more about Coupon Zipcode !</p>
+						<form class="form-inline">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Name">
+							</div>
+							<div class="form-group">
+								<input type="email" class="form-control" placeholder="Email">
+							</div>
+							<button type="submit" class="btn ylew_btn">SUBSCRIBE</button>
+						</form>
+					</div>
+				</div>
+			</div>
 			<div class="heading_text_wrap">
 				<h2>Deals You May Like</h2>
 				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>

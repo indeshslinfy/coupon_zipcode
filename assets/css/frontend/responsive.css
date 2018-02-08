@@ -15,11 +15,12 @@
 	.nearby{width: 120px;}
 	.city_box{width:150px;}
 	.navigation_bar .navbar-default li a { font-size: 14px;padding: 15px 19px;}
+	.newsletter_wrap .news_letter_content_wrap { padding-top: 14px;}
 	/*---------index-page-css-end-------------*/
 }
 @media screen and (max-width:991px){
 	/*---------index-page-css-------------*/
-	section{padding:0px 0px 20px;}
+	section{padding:20px 0px 20px;}
 	.navigation_bar .navbar-default li a {font-size: 13px;padding: 10px 5px;}
 	.exclusive_coupan a .hover_div .hover_text_wrap h3 {font-size: 19px;line-height: 20px;}
 	.exclusive_coupan a .hover_div .hover_text_wrap h4 {font-size: 16px;line-height: 20px;}
@@ -31,6 +32,12 @@
 	.cat_coupons_wrapper .sorting-div-inner .form-control{font-size:12px;padding:0px 10px !important;}
 	.sorting-div-inner .form-group:nth-child(2) .form-control{width:58%;}
 	.sorting-div-inner .form-group:nth-child(3) .form-control{width:58%;}
+	.newsletter_wrap{margin-top:-70px;}
+	.newsletter_wrap .news_letter_content_wrap{padding-top:10px;}
+	.newsletter_wrap h3{font-size:18px;}
+	.newsletter_wrap form .form-group{width:auto;}
+	.newsletter_wrap p {line-height: 22px;}
+	.newsletter_wrap img{margin-top:10px;}
 	/*---------index-page-css-end-------------*/
 	/*---coupon-detail-page-css-start----------*/
 	.post_address .store-pic{height:auto;}
@@ -85,6 +92,7 @@
 	.deals_event h3{font-size:30px; transform:rotate(0deg); margin-top:20px;}
 	.deals_event:hover .deals_you_like:hover{width:100%; height:auto;}
 	.deals_event:hover .deals_you_like{	width:100%;}
+	.newsletter_wrap img{margin:0 auto;display:block;}
 	/*---------index-page-css-end-------------*/
 	/*---coupon-deatil-page-css- start---*/
 	.cat_coupons_wrapper .left-pane{padding-right: 15px;}
