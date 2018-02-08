@@ -108,9 +108,9 @@
 		</div>			
 	</section>
 </div>
-<a href="javascript:void(0);" class="move_to_top" onclick="topFunction()" id="myBtn" title="Go to top">
-	<i class="fa fa-arrow-up"></i>
-</a>
+
+<a href="javascript:void(0);" class="move_to_top" onclick="topFunction()" id="myBtn" title="Go to top"><?php echo img('move-to-top.png'); ?></a>
+
 <div class="row">
 	<section class="top_rstrnt_deal">
 		<div class="container">

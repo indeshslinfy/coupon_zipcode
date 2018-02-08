@@ -1,6 +1,8 @@
 <?php
 	echo css('frontend' . DS . 'magnific-popup.css');
 	echo js('frontend' . DS . 'jquery.magnific-popup.min.js');
+	
+	$social_platform = get_settings('social_platform');
 ?>
 
 <script type="text/javascript">
@@ -39,68 +41,24 @@
 											<img class="img-responsive" alt="Store Logo" src="<?php echo base_url($coupon_details['store_image']); ?>">
 										</div>
 									</div>
-									<p><?php echo str_replace(", ,", ", ", $coupon_details['address_line1'] . ', ' . $coupon_details['address_line2'] . ', ' . $coupon_details['address_line3'] . ', ' . $coupon_details['city_name'] . ', ' . $coupon_details['state_name'] . ', ' . $coupon_details['country_name'] . '. ' . $coupon_details['coupon_zipcode']); ?></p>
-									<p><a href="tel:<?php echo $coupon_details['store_phone']; ?>"><?php echo $coupon_details['store_phone']; ?></a></p>
+									<p>
+										<?php echo str_replace(", ,", ", ", $coupon_details['address_line1'] . ', ' . $coupon_details['address_line2'] . ', ' . $coupon_details['address_line3'] . ', ' . $coupon_details['city_name'] . ', ' . $coupon_details['state_name'] . ', ' . $coupon_details['country_name'] . '. ' . $coupon_details['coupon_zipcode']); ?>
+										<a href="#post_map" class="map_btn"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;Map It</a>
+									</p>
 									<p><a style="word-break: break-all;" target="_blank" href="<?php echo $coupon_details['store_website']; ?>"><?php echo $coupon_details['store_website']; ?></a></p>
+									<p><a href="tel:<?php echo $coupon_details['store_phone']; ?>"><?php echo $coupon_details['store_phone']; ?></a></p>
 									<p>Email us at: <?php echo $coupon_details['store_email']; ?></p>
 									<ul>
-										<li><a target="_blank" href="<?php echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-										<li><a target="_blank" href="<?php echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+										<li><a target="_blank" href="<?php echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+										<li><a target="_blank" href="<?php echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
 									</ul>
 									<ul>
-										<li>
-											<iframe src="https://www.facebook.com/plugins/share_button.php?href=http://www.slinfy.com/blog/outsourcing-the-content-writing-services-to-india&layout=button_count&size=large&mobile_iframe=true&width=106&height=28&appId" width="106" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-											<script>(function(d, s, id) {
-											var js, fjs = d.getElementsByTagName(s)[0];
-											if (d.getElementById(id)) return;
-											js = d.createElement(s); js.id = id;
-											js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12';
-											fjs.parentNode.insertBefore(js, fjs);
-											}(document, 'script', 'facebook-jssdk'));</script>
-										</li>
-										<li>
-											<iframe
-											src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=<?php echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>&via=twitterdev&related=twitterapi%2Ctwitter&text=<?php echo str_replace(", ", ", ", ', ' . $coupon_details['address_line2'] . ', ' . $coupon_details['address_line3'] . ', ' . $coupon_details['city_name'] . ', ' . $coupon_details['state_name'] . ', ' . $coupon_details['country_name'] . '. ' . $coupon_details['coupon_zipcode']); ?>	text&"
-											width="140"
-											height="28"
-											title="Twitter Tweet Button"
-											style="border: 0; overflow: hidden;">
-											</iframe>
-										</li>
-										<li>
-										<a href="javascript:void:(0);">
-											<i class="fa fa-google-plus"></i>
-											share
-										</a>
-											<head>
-												<title>Share Demo: Deferred execution with language code</title>
-												<link rel="canonical" href="http://www.slinfy.com/php-development" />
-											</head>
-											<body>
-											<g:plus action="share"></g:plus>
-
-											<script>
-												window.___gcfg = {
-													lang: 'en-US',
-													parsetags: 'onload'
-												};
-											</script>
-											<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-										</li>
+										<!-- http://112.196.33.86:8080/demo/coupon_zipcode/coupon/6 -->
+										<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo base_url('coupon/' . $coupon_details['id']); ?>" target="_blank">Share on FB</a></li>
+										<li><a href="https://twitter.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>&via=<?php echo $social_platform['twitter']; ?>&hashtags=CouponZipcode&text=<?php echo $coupon_details['coupon_title']; ?>">Tweet</a></li>
+										<li><a href="https://plus.google.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>">plus</a></li>
 									</ul>
 								</div>
-								
-								<!-- <iframe src="https://www.facebook.com/plugins/share_button.php?href=<?php //echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>&layout=button_count&size=large&mobile_iframe=true&width=106&height=28&appId" width="106" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-									<iframe
-										src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=http://slinfy.com/&via=<?php //echo $coupon_details['store_name']; ?>&related=twitterapi%2Ctwitter&text=<?php //echo str_replace('%', ' ',$coupon_details['coupon_title']); ?>&"
-										width="140"
-										height="28"
-										title="Twitter Tweet Button"
-										style="border: 0; overflow: hidden;">
-									</iframe>
-									<label>local</label>
-									<a target=”_blank” href=”https://plus.google.com/share?url=http://logicum.co/creating-custom-share-buttons-facebook-twitter-google”><img src=”http://logicum.co/wp-content/uploads/2013/01/googleshare.jpg”></a> -->
 							</div>
 
 							<div class="col-xs-12 col-sm-7 post_coupon_detail">
@@ -163,8 +121,6 @@
 												<?php
 												}
 												?>
-
-												<a href="#post_map" class="btn map_btn"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;Map It</a>
 
 												<div class="post_like_unlike pull-right">
 													<button title="Like Store" data-strid="<?php echo $coupon_details['coupon_store_id']; ?>" data-act="<?php echo STORE_LIKE; ?>" class="<?php echo intval($coupon_details['is_liked']) ? 'liked-by-user' : ''; ?>">
