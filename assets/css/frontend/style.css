@@ -136,7 +136,7 @@ img{
 .search_form_wrap .form-group span{
 	float:left;
 	padding:7px;
-	width: 40px;
+	width:auto;
 	text-align: center;
 	color:#226f05;
 	font-size: 13px;
@@ -145,17 +145,18 @@ img{
 }
 .search_form_wrap .form-group .form-control{
 	float:left;
-	width:calc(100% - 40px);
+	width:calc(100% - 45px);
 	border:none;
 	box-shadow:none;
 	color:#5c5c5c;
 	height:32px;
+	padding-left:0px;
 	/*font-weight:600;*/
 
 }
 .city_box{
 	width:180px;
-	margin:0px 10px;
+	margin:0px 10px 0px 0px;
 }
 .nearby{
 	width:130px;
@@ -265,8 +266,6 @@ section{
 	padding:0px 15px;
 }
 #exclusive_coupan_carousel .owl-nav{
-	/*position:absolute;
-	top:45%;*/
 	width:100%;
 	padding: 0px 15px;
 }
@@ -358,10 +357,10 @@ section{
 	border-left:5px solid #8DD81B;
 }
 .hover_text .fa-long-arrow-right{
-	font-size: 20px;
+	font-size: 18px;
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div .hover_text_wrap h3{
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 600;
 	line-height: 25px;
 }
@@ -392,6 +391,7 @@ section{
 	transform:translate(0px,-2px);
 	box-shadow: 0px 3px 12px rgba(128,128,128,.7);
 }
+
 .top_rstrnt_deal_wrap{
 	float:left;
 	width:100%;
@@ -448,6 +448,96 @@ section{
 	color:#226f05;
 	font-weight:600;
 	line-height:30px;
+}
+/*----event-box--*/
+.deals_you_like{
+	float: left;
+	width: 25%;
+	height: 500px;
+	padding: 25px;
+	border-right: 10px solid #fff;
+	border-left: 10px solid #fff;
+	text-align: center;
+	-webkit-transition: width 1s;
+	transition: width 1s;
+	color: white;
+	overflow: hidden;
+	position: relative;
+	background-repeat: no-repeat!important;
+	background-position: center center !important;
+	background-size:cover !important;
+}
+.deals_you_like.rstrnt_deal{
+	background:url(../../img/3.jpg);
+}
+.deals_you_like.food_deal{
+	background:url(../../img/1.jpg);
+}
+.deals_you_like.beauty_deal{
+	background:url(../../img/2.jpg);
+}
+.deals_you_like.baby_product_deal{
+	background:url(../../img/main-image.jpg);
+}
+.deals_you_like:after{
+	position: absolute;
+	height:100%;
+	width:100%;
+	top:0px;
+	left:0;
+	content:'';
+	background:rgba(0,0,0,.6);
+
+}
+.deals_event h3{
+	position:relative;
+	z-index: 1;
+	display: block;
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	font-size: 62px;
+	font-weight: 700;
+	color: #eee;
+	padding: 0;
+	margin-top: 180px;
+}
+.deals_you_like_des{
+	position:relative;
+	z-index:1;
+	opacity:0;
+	transform: scale(0);
+	transition: all .001s;
+}
+.deals_you_like_des h4{
+	font-size:30px;
+	font-weight:700;
+}
+.deals_you_like_des p{
+	font-size:16px;
+	line-height:30px;
+	margin-bottom:20px;
+
+}
+.deals_event:hover .deals_you_like:hover{
+	width:50%;
+}
+.deals_you_like:hover h3{
+	display:none;
+
+}
+.deals_you_like:hover .deals_you_like_des{
+	opacity:1;
+	transform: scale(1);
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+    transition-delay: 0s;
+	-webkit-transition-delay: .6s;
+	transition-delay: .6s;
+}
+.deals_event:hover .deals_you_like{
+	width:16.6666%;
 }
 footer{
 	background:#226f05;
@@ -506,7 +596,7 @@ footer{
     width: 100%;
     background: #195402;
     color: #fff;
-    font-size: 12px;
+    font-size: 11px;
     padding: 6px 15px;
 }
 .footer_copy_right a{
@@ -715,7 +805,7 @@ footer{
 /*---------Contact-Us-Page-Css-End-------*/
 /*---------Update-Page-Css-Start---------*/
 .product_title{
-	font-size: 30px;
+	font-size:22px;
     color: #23394c;
     font-weight: bold;
     padding: 20px 0;
@@ -743,7 +833,7 @@ footer{
     background: #d9d9d9;
     top: 0px;
     bottom: 0px;
-    right: 15.65%;
+    right: 15.69%;
     height: 100%;
     display: inline-block;
     position: absolute;
@@ -759,26 +849,67 @@ footer{
 }
 .post_address p a{
     color: #226f05;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 }
-.post_address ul li {
+/*.post_address ul li {
     display: inline-block;
     padding: 0 7px 0px 0px;
 }
 .post_address ul li a{
 	font-size: 25px;
+}*/
+.post_address ul li {
+    display: inline-block;
+    padding: 0 0px 0px 0px;
+    height:28px;
+    overflow:hidden;
+}
+.post_address ul li iframe{
+ width:86px;
+ height:auto;
+}
+.post_address ul li:nth-child(2) iframe{
+ width:75px;
+ height:auto;
+}
+.post_address ul li:last-child iframe{
+ height:29px !important;
+ opacity:0;
+}
+.post_address ul li:last-child iframe .ozWidgetRioButton_{
+ height:29px !important;
+ padding-top:5px !important;
+}
+.post_address ul li a{
+ font-size: 25px;
+}
+.post_address ul li:last-child a{
+     position: absolute;
+      width: 59px;
+      z-index: -1;
+      font-size: 12px;
+      color:#333;
+     border: 1px solid #ccc;
+     padding: 4px 0px 5px 5px;
+}
+.post_address ul li:last-child a .fa{
+ float:left;
+ color:#ff0000;
+ margin-right: 2px;
+    margin-top: 4px;
+    font-size:10px;
 }
 .post_coupon_detail{
 	padding-top:15px;
 	padding-bottom: 15px;
 }
 .post_coupon_detail .btn{
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 500;
 	border-radius: 0px;
     color: #fff;
-    padding: 2px 17px;
+    padding: 0px 17px 4px;
 }
 .post_coupon_detail .btn{
 	cursor: default;
@@ -786,13 +917,18 @@ footer{
 .post_coupon_detail .green_border{
 	background: none;
 	border:1px dashed #226f05;
-	color: #226f05
+	color: #226f05;
+	vertical-align: middle;
+	font-size: 16px;
+	font-weight: 500;
+	padding: 2px 17px;
+	line-height: 1.42857143;
 }
 .post_coupon_detail .print_button{
     color: #fff;
     float: right;
 	cursor: pointer;
-    padding: 2px 15px;
+    padding: 0px 15px 4px;
     background: #415363;
     border-color: #415363;
 }
@@ -807,7 +943,7 @@ footer{
     padding: 15px 0;
 }
 .post_coupon_detail .post_content p {
-    font-size: 20px;
+    font-size:16px;
     text-transform: uppercase;
     font-weight: bold;
     color: #23394c;
@@ -815,12 +951,12 @@ footer{
 }
 .post_coupon_detail .post_content table{
 	width: 100%;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
 }
 .post_coupon_detail .post_content table td:first-child{
 	color: #23394c;
-	width: 135px;
+	width: 125px;
 }
 .post_coupon_detail .post_content table td:last-child{
 	color: #f66414;
@@ -828,7 +964,7 @@ footer{
 .post_coupon_detail .post_discruiption {
     width: 100%;
     padding: 15px 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     color: #3c4044;
     margin-bottom: 15px;
@@ -843,7 +979,7 @@ footer{
     margin-bottom: 35px;
     border: 2px dashed #226f06;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     color: #3c4044;
 }
@@ -861,7 +997,7 @@ footer{
     color: #23394c
 }
 .post_coupon_detail .post_menu_button .ylew_btn{
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;	
     outline: none;
     box-shadow: none;    
@@ -879,16 +1015,16 @@ footer{
 .post_detail {
     float: left;
     width: 100%;
-    padding: 30px 0 0;
+    padding:15px 0 0;
 }
 .post_detail h3{
-	font-size: 25px;
+	font-size: 22px;
 	color: #3c4044;
 	font-weight: 600;
 	margin: 20px 0;
 }
 .post_detail p{
-	font-size: 20px;
+	font-size:16px;
 	color: #3c4044;
 	font-weight: 600;
 	margin: 20px 0;
@@ -897,7 +1033,7 @@ footer{
 	 width: 100%;
 	 float: left;
 	 margin: 15px 0;
-	 font-size: 16px;
+	 font-size: 14px;
 	 font-weight: 600;
 	 color: #3c4044;
 }
@@ -928,25 +1064,25 @@ footer{
     margin: 20px 0;
 }
 .review_section h2{
-	font-size: 28px;
+	font-size:22px;
 	color: #23394c;
 	font-weight: bold;
 	margin: 30px 0 20px;
 }
 .review_section h3{
 	color: #3c4044;
-	font-size: 28px;
+	font-size:20px;
 	font-weight: 600;
 }
 .review_section p{
-	font-size: 20px;
-	font-weight: 600;
+	font-size: 14px;
+	font-weight: 500;
 	color: #3c4044;
 	margin: 0px;
 }
 .review_section p strong{
-	font-size: 20px;
-	font-weight: 900;
+	font-size:15px;
+	font-weight: 700;
 	color: #3c4044;
 	margin: 0px;
 }
@@ -966,16 +1102,16 @@ footer{
 }
 .post_map h3{
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: 600;
 	margin-bottom: 0px;
 }
 .post_map p{
 	margin: 0px;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500;
 }
 .post_map a{
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;
 	margin-top: 20px;
 }
@@ -1564,6 +1700,9 @@ input[type="radio"]:checked + span:after {
 }
 .popular_coupon_wrap h4{
 	font-size:15px;
+	margin-top: 5px;
+	font-weight: 600;
+	color: #2D3E50;
 }
 .popular_coupon_wrap p{
 	margin-bottom: 5px;
@@ -1614,13 +1753,15 @@ input[type="radio"]:checked + span:after {
     font-size: 14px;
     font-weight: 600;
     border-left: 4px solid transparent;
-    box-shadow: 0px 0px 1px #333
+    box-shadow: 0px 0px 1px #333;
+    transition:background 1s;
 }
 .categories_wrapper .tab-content>.tab-pane .cat_div a:hover,
 .categories_wrapper .tab-content>.tab-pane .cat_div a:focus,
 .categories_wrapper .tab-content>.tab-pane .cat_div a.active{
 	background: none;
 	border-left: 4px solid #226f05;
+	background:#e4fbdb;
 }
 .categories_wrapper .tab-content>.tab-pane>.row{
 	margin-right: -5px;
@@ -1639,7 +1780,7 @@ span.menu_icon_down {
     text-align: center;
     position: absolute;
     right: 0;
-    bottom: 0px;
+    top: 0px;
     font-size: 20px;
     color: #fff;
 }
@@ -2285,18 +2426,25 @@ color: #2c3e50;
 	opacity: .8;
 	display: inline-block;
 }
+.move_to_top {
+	position: absolute;
+	right: 15px;
+	bottom: 30px;
+	background: #fff;
+	border-radius: 50% !important;
+	font-size: 20px;
+	color: #226F05;
+	z-index: 11111;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+}
+.move_to_top:hover{
+	color: #144402;
+}
 .select_city.selct_location_wrap .easy-autocomplete {
 	width:100% !important;
 }
 .select_city.selct_location_wrap .easy-autocomplete.eac-dark input{
 	background:none !important;
-}
-.search_form_wrap .easy-autocomplete-container{
-	top:36px;
-}
-.search_form_wrap .easy-autocomplete-container ul li{
-	text-align:left;
-}
-.search_form_wrap .easy-autocomplete{
-	width:100% !important;
 }

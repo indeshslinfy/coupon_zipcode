@@ -73,14 +73,14 @@
             <?php
             }
             ?>
-            <section class="wrapper login-main-body" style="background: url(<?php echo base_url('assets/img/login-bg.jpg'); ?>) no-repeat center center;">
+            <section class="wrapper login-main-body" style="background: url(<?php echo base_url('assets/img/admin_login_bg.jpg'); ?>) no-repeat center center;">
                 <div class="row">
                     <div class="col-lg-5 exact_center">
                         <form class="form-login" action="<?php echo base_url('admin/login'); ?>" method="POST">
                             <a href="javascript:void(0);" class="login_for_logo">
                                 <img src="<?php echo base_url($company_logo); ?>" alt="Logo">
                             </a>
-
+                            <h4 class="text-center col-xs-12">Welcome to Admin Panel</h4>
                             <div class="login-wrap">
                                 <input type="text" class="form-control" name="email" placeholder="Email">
                                 <br>
@@ -94,5 +94,14 @@
                 </div>
             </section>
         </section>
+        <footer class="site-footer">
+            <div class="col-xs-12">
+                <span class="pull-left">&#169;&nbsp;2018&nbsp;Coupon Zipcode</span>
+                <span class="pull-right">
+                    <small>Designed by:&nbsp;</small>
+                    <a href="http://www.slinfy.com" target="_blank">Solitaire Infosys</a>
+                </span>
+            </div>
+        </footer>
     </body>
 </html>

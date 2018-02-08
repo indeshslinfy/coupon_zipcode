@@ -106,7 +106,7 @@
 						</div>
 						<div class="collapse col-xs-12 col-sm-9 col-lg-10 col-md-10 mobile_to_center search_form_wrap">
 							<form class="form-inline" action="<?php echo base_url('deals'); ?>">
-								<div class="form-group serach_ct_field">
+								<div class="form-group serach_ct_field city_box">
 									<div class="input_box_wrap">
 										<span><i class="fa fa-search"></i></span>
 										<input type="hidden" name="search_src" value="header">

@@ -19,6 +19,7 @@
 }
 @media screen and (max-width:991px){
 	/*---------index-page-css-------------*/
+	section{padding:0px 0px 20px;}
 	.navigation_bar .navbar-default li a {font-size: 13px;padding: 10px 5px;}
 	.exclusive_coupan a .hover_div .hover_text_wrap h3 {font-size: 19px;line-height: 20px;}
 	.exclusive_coupan a .hover_div .hover_text_wrap h4 {font-size: 16px;line-height: 20px;}
@@ -31,6 +32,8 @@
 	.sorting-div-inner .form-group:nth-child(2) .form-control{width:58%;}
 	.sorting-div-inner .form-group:nth-child(3) .form-control{width:58%;}
 	/*---------index-page-css-end-------------*/
+	/*---coupon-detail-page-css-start----------*/
+	.post_address .store-pic{height:auto;}
 }
 @media screen and (max-width:767px){
 	/*---------index-page-css-------------*/
@@ -53,20 +56,19 @@
 	.how_it_work_page_content p{font-size: 16px}
 	.heading_page h2{font-size: 42px;}
 	.coupon_post::after{display: none;}
-	.product_title{padding-top: 0px;font-size:20px;}
-	.post_coupon_detail .coupon_button{font-size: 16px;margin-bottom: 10px;padding: 4px 10px;}
-	.post_coupon_detail .print_button {font-size: 16px;padding: 2px 17px;width: 37px;padding: 4px 10px;overflow: hidden;}
+	.product_title{font-size:20px;}
+	.post_coupon_detail .coupon_button{display:inline-block;font-size: 14px;margin-bottom: 10px;padding: 4px 10px;}
+	.post_coupon_detail .print_button {font-size: 14px;padding: 2px 17px;/*width: 37px;*/padding: 4px 10px;overflow: hidden;}
 	.post_coupon_detail .print_button .fa{margin-right: 12px;}
 	.post_coupon_detail .post_menu_button .ylew_btn{font-size: 14px;padding: 3px 6px;}
 	.post_coupon_detail .post_note{margin-bottom: 20px}
 	.post_coupon_detail .post_menu_button .map_btn{font-size: 14px;}
 	.post_coupon_detail .post_menu_button .post_like_unlike button { font-size: 14px; margin-top: 8px;}
-	.post_detail h3{font-size: 22px;}
+	.post_detail h3{margin-bottom:6px;}
 	.post_detail p{font-size: 16px;}
-	.review_section h2{font-size: 28px; margin:10px 0px }
-	.post_detail h3 {font-size: 21px;}
-	.post_address p{font-size: 20px;line-height: 26px}
-	.post_address p a{font-size: 18px;}
+	.review_section h2{margin:10px 0px }
+	.post_address p{font-size: 14px;line-height:20px}
+	.post_address p a{font-size: 15px;}
 	.exclusive_coupan .cpn_adjst_img {width: 100%;margin-bottom: 20px;}
 	.filter_toggle{padding-right:15px; color:#fff;}
 	.filter_toggle:hover,.filter_toggle:focus{padding-right:15px; color:#F69C13;}
@@ -78,9 +80,19 @@
 	.sorting-div .sorting-div-inner .form-group .form-control{float:right;width:calc(100% - 65px)!important;margin:0px;}
 	.sorting-div .sorting-div-inner .form-group .btn{float:right;}
 	.cat_coupons_wrapper .right-pane .exclusive_coupan{padding-top:20px;}
+	.left_side_line{margin:30px 0px;}
+	.deals_you_like{width:100%; height:150px;border-right:none;border-left:none;border-bottom:10px solid #fff; transition:height .25s;}
+	.deals_event h3{font-size:30px; transform:rotate(0deg); margin-top:20px;}
+	.deals_event:hover .deals_you_like:hover{width:100%; height:auto;}
+	.deals_event:hover .deals_you_like{	width:100%;}
 	/*---------index-page-css-end-------------*/
-	/*-----category-page----*/
-	.cat_coupons_wrapper .left-pane{padding-left: 0px;}
+	/*---coupon-deatil-page-css- start---*/
+	.cat_coupons_wrapper .left-pane{padding-right: 15px;}
+	.coupon_post{border:none;}
+	.coupon_post:before,.coupon_post:after {display:none;}
+	.post_address{padding-right:15px;}
+	.post_address .col-xs-12{padding:0px;}
+	.post_coupon_listing{padding-left:15px;}
 }
 
 @media screen and (max-width:479px){
@@ -89,4 +101,7 @@
 	.select_city_form .btn{margin-left:0px;}
 	.select_city_form .btn,.optional_text{width:100%;}
 
+}
+@media screen and (max-width:327px){
+.post_coupon_detail .print_button{float:none;display:inline-block;}
 }

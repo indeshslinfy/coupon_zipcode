@@ -118,50 +118,92 @@
 				<h2>Deals You May Like</h2>
 				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
 			</div>
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="top_rstrnt_deal_wrap">
-						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
-						<div class="rstrnt_des_wrap">
-							<div class="location_box light_green_bg">
-								<i class="fa fa-map-marker"></i> Your Location
-							</div>
-							<div class="restrnt_desp_text_box">
-								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
-								<a href="#">exercitation ullamco </a>
-							</div>
+			<div class="deals_event">
+				<div class="deals_you_like rstrnt_deal">
+					<div class="deals_you_like_wrap">
+						<h3>Lorem </h3>
+						<div class="deals_you_like_des">
+							<h4>Lorem ipsum</h4>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<a href="javascript:void(0);" class="btn btn-success">View Deals</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4">
-					<div class="top_rstrnt_deal_wrap">
-						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
-						<div class="rstrnt_des_wrap">
-							<div class="location_box light_green_bg">
-								<i class="fa fa-map-marker"></i> Your Location
-							</div>
-							<div class="restrnt_desp_text_box">
-								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
-								<a href="#">exercitation ullamco </a>
-							</div>
+				<div class="deals_you_like food_deal">
+					<div class="deals_you_like_wrap">
+						<h3>Lorem</h3>
+						<div class="deals_you_like_des">
+							<h4>Lorem ipsum</h4>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<a href="javascript:void(0);" class="btn btn-success">View Deals</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4">
-					<div class="top_rstrnt_deal_wrap">
-						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
-						<div class="rstrnt_des_wrap">
-							<div class="location_box light_green_bg">
-								<i class="fa fa-map-marker"></i> Your Location
-							</div>
-							<div class="restrnt_desp_text_box">
-								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
-								<a href="#">exercitation ullamco </a>
-							</div>
+				<div class="deals_you_like beauty_deal">
+					<div class="deals_you_like_wrap">
+						<h3>Lorem </h3>
+						<div class="deals_you_like_des">
+							<h4>Lorem ipsum</h4>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<a href="javascript:void(0);" class="btn btn-success">View Deals</a>
+						</div>
+					</div>
+				</div>
+				<div class="deals_you_like baby_product_deal">
+					<div class="deals_you_like_wrap">
+						<h3>Lorem </h3>
+						<div class="deals_you_like_des">
+							<h4>Lorem ipsum</h4>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<a href="javascript:void(0);" class="btn btn-success">View Deals</a>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!-- <div class="row">
+				<div class="col-sm-4">
+					<div class="top_rstrnt_deal_wrap">
+						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
+						<div class="rstrnt_des_wrap">
+							<div class="location_box light_green_bg">
+								<i class="fa fa-map-marker"></i> Your Location
+							</div>
+							<div class="restrnt_desp_text_box">
+								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
+								<a href="#">exercitation ullamco </a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="top_rstrnt_deal_wrap">
+						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
+						<div class="rstrnt_des_wrap">
+							<div class="location_box light_green_bg">
+								<i class="fa fa-map-marker"></i> Your Location
+							</div>
+							<div class="restrnt_desp_text_box">
+								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
+								<a href="#">exercitation ullamco </a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="top_rstrnt_deal_wrap">
+						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
+						<div class="rstrnt_des_wrap">
+							<div class="location_box light_green_bg">
+								<i class="fa fa-map-marker"></i> Your Location
+							</div>
+							<div class="restrnt_desp_text_box">
+								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
+								<a href="#">exercitation ullamco </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
 		</div>			
 	</section>
 </div>

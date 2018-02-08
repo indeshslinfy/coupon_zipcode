@@ -17,6 +17,7 @@ body {
     padding: 0px !important;
     margin: 0px !important;
     font-size:13px;
+    height:100%;
 }
 
 ul li {
@@ -1923,7 +1924,7 @@ label {
 .form-login {
 	max-width: 330px;
     margin:0 auto;
-	background: #fff;
+	/*background: #fff;*/
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
@@ -1945,8 +1946,10 @@ label {
     border-color: #2196F3;
 }
 .login-wrap {
+    float:left;
+    width:100%;
 	padding: 20px;
-    background: #2196F3;
+    /*background: #2196F3;*/
     border-radius: 0px 0px 5px 5px;
 }
 .login-wrap .registration {
@@ -2218,9 +2221,13 @@ label {
 
 /*footer*/
 .site-footer {
-    background: #449D44;
-    color: #fff;
-    padding: 10px 0;
+        float: left;
+        width: 100%;
+        background: #449D44;
+        color: #fff;
+        padding: 10px 0;
+        font-size:12px;
+
 }
 .site-footer p{
     margin-right:30px;
@@ -2369,9 +2376,9 @@ th.sorting::after, th.sorting_asc::after, th.sorting_desc::after{
 }
 .login-main-body{
     min-height: 644px;
-    background: url(../../img/login-bg.jpg) no-repeat center center;
-    background-size:cover;
+    background-size:cover!important;
     margin-top: 0px;
+    
 }
 .exact_center{
     position: absolute !important;
