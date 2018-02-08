@@ -2448,3 +2448,9 @@ color: #2c3e50;
 .select_city.selct_location_wrap .easy-autocomplete.eac-dark input{
 	background:none !important;
 }
+.move_to_top{
+	display:none;
+	bottom:30px;
+	position:fixed;
+	right: 20px;
+}

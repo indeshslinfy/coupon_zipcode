@@ -27,6 +27,7 @@ class Settings extends CI_Controller
 		$data['groupon'] = $this->settings_model->get_settings('groupon');
 		$data['ebay'] = $this->settings_model->get_settings('ebay');
 		$data['general_settings'] = $this->settings_model->get_settings('general_settings');
+		$data['social_platform'] = $this->settings_model->get_settings('social_platform');
 		$data['zipcode_search_radius'] = $this->settings_model->get_settings('zipcode_search_radius');
 
 		$this->load->admin_template('settings/settings', $data);
@@ -54,6 +55,8 @@ class Settings extends CI_Controller
 			switch ($setting_type)
 			{
 				case 'settype_general':
+					$gen_setts = $this->settings_model->get_settings('general_settings');
+
 					$config['max_width'] = 700;
 					$config['overwrite'] = true;
 					$config['max_height'] = 700;
@@ -62,10 +65,10 @@ class Settings extends CI_Controller
 					$config['upload_path'] = './assets/img/';
 					$config['allowed_types'] = 'jpg|png|ico|x-icon';
 					$this->load->library('upload', $config);
-					
+
 					// upload logo
 					if(!$_FILES['company_logo']['error'])
-					{	
+					{
 						if (!$this->upload->do_upload('company_logo'))
 						{
 							$this->session->set_flashdata('flash_error', $this->upload->display_errors());
@@ -74,6 +77,10 @@ class Settings extends CI_Controller
 
 						$data = $this->upload->data();
 						$params['general_settings']['company_logo'] = 'assets/img/' . $data['file_name'];
+					}
+					else
+					{
+						$params['general_settings']['company_logo'] = $gen_setts['company_logo'];
 					}
 
 					//upload favicon
@@ -87,6 +94,10 @@ class Settings extends CI_Controller
 
 						$data = $this->upload->data();
 						$params['general_settings']['company_favicon'] = 'assets/img/' . $data['file_name'];
+					}
+					else
+					{
+						$params['general_settings']['company_favicon'] = $gen_setts['company_favicon'];
 					}
 					break;
 

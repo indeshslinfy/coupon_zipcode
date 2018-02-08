@@ -111,6 +111,7 @@ $route[ADMIN_PREFIX . '/delete-store'] = ADMIN_PREFIX . '/stores/store_delete';
 
 // STORES CATEGORY CONTROLLER
 $route[ADMIN_PREFIX . '/stores-category'] = ADMIN_PREFIX . '/stores_category';
+$route[ADMIN_PREFIX . '/featured-categories'] = ADMIN_PREFIX . '/stores_category/featured_categories';
 $route[ADMIN_PREFIX . '/add-store-category'] = ADMIN_PREFIX . '/stores_category/stores_cat_edit';
 $route[ADMIN_PREFIX . '/edit-store-category/(:any)'] = ADMIN_PREFIX . '/stores_category/stores_cat_edit/$1';
 $route[ADMIN_PREFIX . '/save-store-category'] = ADMIN_PREFIX . '/stores_category/stores_cat_save/';

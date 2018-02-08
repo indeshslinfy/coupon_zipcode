@@ -85,11 +85,26 @@
 									<span>Stores Management</span>
 								</a>
 								<ul class="dropdown-menu">
-									<li>
-										<a class="<?php echo $this->uri->segment(2) == 'stores-category' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores-category'); ?>">
+									<li class="dropdown-submenu">
+										<a class="<?php echo $this->uri->segment(2) == 'stores-category' ? 'sub-cat-active' : ''; ?>">
 											<i class="fa fa-tags"></i>
 											<span>Categories</span>
 										</a>
+
+										<ul>
+											<li>
+												<a class="<?php echo $this->uri->segment(2) == 'stores-category' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores-category'); ?>">
+													<i class="fa fa-tags"></i>
+													<span>List All</span>
+												</a>
+											</li>
+											<li>
+												<a class="<?php echo $this->uri->segment(2) == 'featured-categories' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/featured-categories'); ?>">
+													<i class="fa fa-certificate"></i>
+													<span>Featured</span>
+												</a>
+											</li>
+										</ul>
 									</li>
 									<li>
 										<a class="<?php echo $this->uri->segment(2) == 'stores' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores'); ?>">
