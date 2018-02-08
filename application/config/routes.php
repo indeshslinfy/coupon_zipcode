@@ -111,7 +111,6 @@ $route[ADMIN_PREFIX . '/delete-store'] = ADMIN_PREFIX . '/stores/store_delete';
 
 // STORES CATEGORY CONTROLLER
 $route[ADMIN_PREFIX . '/stores-category'] = ADMIN_PREFIX . '/stores_category';
-$route[ADMIN_PREFIX . '/featured-categories'] = ADMIN_PREFIX . '/stores_category/featured_categories';
 $route[ADMIN_PREFIX . '/add-store-category'] = ADMIN_PREFIX . '/stores_category/stores_cat_edit';
 $route[ADMIN_PREFIX . '/edit-store-category/(:any)'] = ADMIN_PREFIX . '/stores_category/stores_cat_edit/$1';
 $route[ADMIN_PREFIX . '/save-store-category'] = ADMIN_PREFIX . '/stores_category/stores_cat_save/';
@@ -139,3 +138,7 @@ $route[ADMIN_PREFIX . '/delete-ticket'] = ADMIN_PREFIX . '/tickets/ticket_delete
 // SETTINGS CONTROLLER
 $route[ADMIN_PREFIX . '/settings'] = ADMIN_PREFIX . '/settings';
 $route[ADMIN_PREFIX . '/save-settings'] = ADMIN_PREFIX . '/settings/save_settings';
+
+// FEATURED CONTROLLER
+$route[ADMIN_PREFIX . '/featured-stores'] = ADMIN_PREFIX . '/featured/featured_stores';
+$route[ADMIN_PREFIX . '/popular-categories'] = ADMIN_PREFIX . '/featured/featured_categories';

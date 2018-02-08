@@ -120,46 +120,4 @@ class Stores_Category extends CI_Controller
 
 		return $slug;
 	}
-
-	public function featured_categories()
-	{
-		$data['page_title'] = 'Featured Categories';
-
-		$featured_ids = array();
-		$data['featured_cats'] = $this->stores_category_model->get_featured_categories();
-		foreach ($data['featured_cats'] as $keyEM => $valueEM)
-		{
-			array_push($featured_ids, $valueEM['id']);
-		}
-
-		$this->load->model(ADMIN_PREFIX . '/menus_model');
-		$data['all_records'] = $this->menus_model->unselected_categories($featured_ids);
-		$this->load->admin_template('stores_category/featured_categories', $data);
-	}
-
-	public function update_featured_cats()
-	{
-		$params = $this->input->post();
-		$update_arr['updated_at'] = date("Y-m-d H:i:s");
-		if (array_key_exists('add_category', $params))
-		{
-			$cat_ids = $params['add_category'];
-			$update_arr['is_featured'] = 1;
-		}
-		else if (array_key_exists('remove_category', $params))
-		{
-			$cat_ids = $params['remove_category'];
-			$update_arr['is_featured'] = 0;
-		}
-
-		if (sizeof($cat_ids) > 0)
-		{
-			$this->stores_category_model->update_featured_cats($cat_ids, $update_arr);
-			$this->session->set_flashdata('flash_message', 'Featured list updated successfully');
-			redirect(ADMIN_PREFIX . '/featured-categories');
-		}
-
-		$this->session->set_flashdata('flash_error', 'Select atleast one category');
-		redirect(ADMIN_PREFIX . '/featured-categories');
-	}
 }
