@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="heading_text_wrap">
 				<h2>Coupon Zipcode Exclusive</h2>
-				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
+				<a href="<?php echo base_url('deals?search_src=search_pg&src=local'); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
 			</div>
 			<div class="row exclusive_coupan">
 				<div id="exclusive_coupan_carousel"  class="owl-carousel">

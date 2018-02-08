@@ -70,7 +70,9 @@
                             <script type="text/javascript">
                                 $(document).ready(function()
                                 {
-                                    $('#stores_table').DataTable();
+                                    $('#stores_table').DataTable({
+                                        "pageLength": 50
+                                    });
                                 });
                             </script>
                         <?php

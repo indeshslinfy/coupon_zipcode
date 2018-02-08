@@ -95,7 +95,9 @@
                             <script type="text/javascript">
                                 $(document).ready(function()
                                 {
-                                    $('#coupons_table').DataTable();
+                                    $('#coupons_table').DataTable({
+                                        "pageLength": 100
+                                    });
                                 });
                             </script>
                         <?php

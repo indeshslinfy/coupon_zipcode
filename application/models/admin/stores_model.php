@@ -209,7 +209,7 @@ class stores_model extends CI_model
 							's.status' => STORE_STATUS_ACTIVE,
 							's.deleted_at' => NULL);
 
-		if (array_key_exists("cat", $filters))
+		if (array_key_exists("cat", $filters) && sizeof($filters['cat']) > 0)
 		{
 			$select_str .= ', store_cat.id as store_cat_id, store_cat.store_category_name';
 		}
@@ -265,9 +265,9 @@ class stores_model extends CI_model
 		}
 
 		$records = $records->join('stores as s', 's.id = c.coupon_store_id')
-						->join('(SELECT atch.store_id, atch.attachment_path FROM stores_attachment as atch WHERE atch.attachment_type = ' . STORE_ATCH_IMAGE . ' AND atch.deleted_at IS NULL ORDER BY atch.created_at DESC) as store_atch', 's.id = store_atch.store_id', 'left');
+							->join('(SELECT atch.store_id, atch.attachment_path FROM stores_attachment as atch WHERE atch.attachment_type = ' . STORE_ATCH_IMAGE . ' AND atch.deleted_at IS NULL ORDER BY atch.created_at DESC) as store_atch', 's.id = store_atch.store_id', 'left');
 
-		if (array_key_exists("cat", $filters))
+		if (array_key_exists("cat", $filters) && sizeof($filters['cat']) > 0)
 		{
 			// $filters['cat'] should contain slugs of categories
 			$cats = implode(",", $filters['cat']);

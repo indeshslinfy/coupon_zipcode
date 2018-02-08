@@ -110,7 +110,9 @@
                             <script type="text/javascript">
                                 $(document).ready(function()
                                 {
-                                    $('#tickets_table').DataTable();
+                                    $('#tickets_table').DataTable({
+                                        "pageLength": 100
+                                    });
                                 });
                             </script>
                         <?php

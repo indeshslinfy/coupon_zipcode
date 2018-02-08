@@ -35,7 +35,7 @@
                 <div class="col-md-6 ">
                     <form>
                         <input type="hidden" name="category_remove" value="1">
-                        <button class="btn btn-danger" type="button" name="remove" onclick="add_rem_menus('remove', this);">Remove Menu</button>
+                        <button class="btn btn-danger" type="button" name="remove" onclick="add_rem_menus('remove', this);">Remove From Menu</button>
                         <ul>
                         <?php
                         $menus = get_settings('frontend_menu');
@@ -65,7 +65,7 @@
                 <div class="col-md-6 box_shadow_div">
                     <form>
                         <input type="hidden" name="category_add" value="1">
-                        <button class="btn btn-success" type="button" name="add" onclick="add_rem_menus('add', this);">Add To Menus</button>
+                        <button class="btn btn-success" type="button" name="add" onclick="add_rem_menus('add', this);">Add To Menu</button>
                         <ul>
                         <?php
                         if (sizeof($all_records) > 0)
@@ -83,7 +83,7 @@
                         else
                         {
                         ?>
-                            <li><i>-- No Categories Added yet. --</i></li>
+                            <li><i>-- No categories added yet. --</i></li>
                         <?php
                         }
                         ?>

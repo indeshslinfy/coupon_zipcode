@@ -42,12 +42,11 @@
 									<p><?php echo str_replace(", ,", ", ", $coupon_details['address_line1'] . ', ' . $coupon_details['address_line2'] . ', ' . $coupon_details['address_line3'] . ', ' . $coupon_details['city_name'] . ', ' . $coupon_details['state_name'] . ', ' . $coupon_details['country_name'] . '. ' . $coupon_details['coupon_zipcode']); ?></p>
 									<p><a href="tel:<?php echo $coupon_details['store_phone']; ?>"><?php echo $coupon_details['store_phone']; ?></a></p>
 									<p><a style="word-break: break-all;" target="_blank" href="<?php echo $coupon_details['store_website']; ?>"><?php echo $coupon_details['store_website']; ?></a></p>
-									<!-- <ul>
-										<li><a title="<?php //echo $coupon_details['store_email'] ? $coupon_details['store_email'] : ''; ?>" href="<?php //echo $coupon_details['store_email'] ? 'mailto:' . $coupon_details['store_email'] : 'javascript:void(0);'; ?>"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-										<li><a target="_blank" href="<?php //echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-
-										<li><a target="_blank" href="<?php //echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-									</ul> -->
+									<p>Email us at: <?php echo $coupon_details['store_email']; ?></p>
+									<ul>
+										<li><a target="_blank" href="<?php echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+										<li><a target="_blank" href="<?php echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									</ul>
 									<ul>
 										<li>
 											<iframe src="https://www.facebook.com/plugins/share_button.php?href=http://www.slinfy.com/blog/outsourcing-the-content-writing-services-to-india&layout=button_count&size=large&mobile_iframe=true&width=106&height=28&appId" width="106" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -67,7 +66,6 @@
 											title="Twitter Tweet Button"
 											style="border: 0; overflow: hidden;">
 											</iframe>
-											<!-- <a target=”_blank” href=”https://plus.google.com/share?url=http://logicum.co/creating-custom-share-buttons-facebook-twitter-google”><img src=”http://logicum.co/wp-content/uploads/2013/01/googleshare.jpg”></a> -->
 										</li>
 										<li>
 										<a href="javascript:void:(0);">
@@ -75,41 +73,34 @@
 											share
 										</a>
 											<head>
-											<title>Share Demo: Deferred execution with language code</title>
-											<link rel="canonical" href="http://www.slinfy.com/php-development" />
+												<title>Share Demo: Deferred execution with language code</title>
+												<link rel="canonical" href="http://www.slinfy.com/php-development" />
 											</head>
 											<body>
 											<g:plus action="share"></g:plus>
 
 											<script>
-											window.___gcfg = {
-											lang: 'en-US',
-											parsetags: 'onload'
-											};
-    </script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+												window.___gcfg = {
+													lang: 'en-US',
+													parsetags: 'onload'
+												};
+											</script>
+											<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 										</li>
 									</ul>
 								</div>
 								
-								
-								<!-- <iframe src="https://www.facebook.com/plugins/share_button.php?href=<?php //echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>&layout=button_count&size=large&mobile_iframe=true&width=106&height=28&appId" width="106" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe> -->
-											
-			
-
-											<!-- <iframe
-											src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=http://slinfy.com/&via=<?php //echo $coupon_details['store_name']; ?>&related=twitterapi%2Ctwitter&text=<?php //echo str_replace('%', ' ',$coupon_details['coupon_title']); ?>&"
-											width="140"
-											height="28"
-											title="Twitter Tweet Button"
-											style="border: 0; overflow: hidden;">
-											</iframe> -->
-
-											<!-- <label>local</label> -->
-											
-											 <!-- <a target=”_blank” href=”https://plus.google.com/share?url=http://logicum.co/creating-custom-share-buttons-facebook-twitter-google”><img src=”http://logicum.co/wp-content/uploads/2013/01/googleshare.jpg”></a> -->
-											 
+								<!-- <iframe src="https://www.facebook.com/plugins/share_button.php?href=<?php //echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>&layout=button_count&size=large&mobile_iframe=true&width=106&height=28&appId" width="106" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+									<iframe
+										src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=http://slinfy.com/&via=<?php //echo $coupon_details['store_name']; ?>&related=twitterapi%2Ctwitter&text=<?php //echo str_replace('%', ' ',$coupon_details['coupon_title']); ?>&"
+										width="140"
+										height="28"
+										title="Twitter Tweet Button"
+										style="border: 0; overflow: hidden;">
+									</iframe>
+									<label>local</label>
+									<a target=”_blank” href=”https://plus.google.com/share?url=http://logicum.co/creating-custom-share-buttons-facebook-twitter-google”><img src=”http://logicum.co/wp-content/uploads/2013/01/googleshare.jpg”></a> -->
 							</div>
 
 							<div class="col-xs-12 col-sm-7 post_coupon_detail">
@@ -122,7 +113,7 @@
 											<p><strong><?php echo $coupon_details['coupon_title']; ?></strong></p>
 											<table>
 												<tr>
-													<td>Expiration Date:</td>
+													<td>Deal ends on:</td>
 													<td><?php echo date('d M, Y', strtotime($coupon_details['coupon_end_date'])); ?></td>
 												</tr>
 											</table>

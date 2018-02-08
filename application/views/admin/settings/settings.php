@@ -178,7 +178,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Ebay Camp ID&nbsp;<small class="text-danger">*</small></label>
+                                                <label>Ebay Campaign/Tracking ID&nbsp;<small class="text-danger">*</small></label>
                                                 <input type="text" name="ebay[camp_id]" value="<?php echo $ebay['camp_id']; ?>" class="form-control" required="">
                                             </div>
                                         </div>

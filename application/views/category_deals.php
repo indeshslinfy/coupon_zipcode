@@ -55,14 +55,14 @@
 									<hr>
 								</div>
 
-								<div class="filter_range_div">
+								<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hide' : ''; ?>">
 									<h5 class="filter_heading">Price Range</h5>
-									<ul class="filters-ul" id="src_filters_ul">
+									<ul class="filters-ul" id="range_filters_ul">
 										<li>
-											Min&nbsp;<input type="number" value="<?php echo isset($_GET['range_min']) ? $_GET['range_min'] : ''; ?>" class="form-control">
+											Min&nbsp;<input type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]">
 										</li>
 										<li>
-											Max&nbsp;<input type="number" value="<?php echo isset($_GET['range_max']) ? $_GET['range_max'] : ''; ?>" class="form-control">
+											Max&nbsp;<input type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][1] : ''; ?>" class="form-control" name="price_range[]">
 										</li>
 									</ul>
 									<hr>
@@ -241,10 +241,10 @@
 														</div>
 														<div class="restrnt_desp_text_box">
 															<h4 title="<?php echo $valueCC['coupon_title']; ?>"><?php echo strlen($valueCC['coupon_title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['coupon_title']; ?></h4>
-															<p>
+															<!-- <p>
 																<i>Category:&nbsp;<small class="deal_tag"><?php echo $valueCC['store_category_name']; ?></small>
 																</i>
-															</p>
+															</p> -->
 														</div>
 													</div>
 												</div>
@@ -410,12 +410,14 @@ function render_selected_filters()
 
 function toggle_filters(ele)
 {
+	$(".filter_range_div").addClass('hide');
+
 	var selected_src = $(".filters-ul").find($('input[name=src]:checked'));
 	$('.filter_cat_div ul').children('li').addClass('hide');
-
 	$(".filter_cat_div .filters-ul").addClass('hide');
 	$(".filter_cat_div .filters-ul li").addClass('hide');
 	$('#' + selected_src.val() + '_cat_ul').removeClass('hide');
+	$('.filter_cat_div ul li').children('input').removeAttr('name');
 
 	if (selected_src.val() == 'local')
 	{
@@ -428,19 +430,26 @@ function toggle_filters(ele)
 		$('.filter_rvws_div').removeClass('hide');
 		$('.filter_rvws_div').find('input[type=radio]').attr('name', $('.filter_rvws_div').find('input[type=radio]').attr('data-name'));
 		$('.filter_rvws_div').find('input[type=radio]').removeAttr('data-name');
+
 		$('.filter_cat_div ul').children('li[data-src=local-cat]').removeClass('hide');
+		$('.filter_cat_div ul li[data-src=local-cat]').children('input').attr('name', 'cat[]');
 	}
 	else
 	{
 		if (selected_src.val() == 'groupon')
 		{
 			$('.filter_keyword_div').addClass('hide');
+
 			$('.filter_cat_div ul').children('li[data-src=groupon-cat]').removeClass('hide');
+			$('.filter_cat_div ul li[data-src=groupon-cat]').children('input').attr('name', 'cat[]');
 		}
 		else if (selected_src.val() == 'ebay')
 		{
+			$('.filter_range_div').removeClass('hide');
 			$('.filter_keyword_div').removeClass('hide');
+
 			$('.filter_cat_div ul').children('li[data-src=ebay-cat]').removeClass('hide');
+			$('.filter_cat_div ul li[data-src=ebay-cat]').children('input').attr('name', 'cat[]');
 		}
 
 		$('.filter_dt_div').addClass('hide');
