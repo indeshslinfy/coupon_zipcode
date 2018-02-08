@@ -45,6 +45,7 @@
                         <li class="active"><a data-toggle="tab" href="#show_basic_tab">Basic</a></li>
                         <li><a data-toggle="tab" href="#show_menus_tab">Menus</a></li>
                         <li><a data-toggle="tab" href="#show_media_tab">Media</a></li>
+                        <li><a data-toggle="tab" href="#show_schedule_tab">Schedule</a></li>
                     </ul>
 
                     <form class="mt-20" action="<?php echo base_url(ADMIN_PREFIX . '/save-store'); ?>" method="POST" enctype="multipart/form-data">
@@ -207,27 +208,6 @@
                                                 <input type="hidden" name="store_zipcode_id" id="store_zipcode_id" class="form-control" value="">
                                             </div>
                                         </div>
-
-<!--                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="store_latitude">Latitude&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="store_latitude" class="form-control" required="">
-                                            </div>
-                                        </div> -->
-
-                                        <!-- <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="store_latitude">Zipcode&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="address[address_zipcode]" class="form-control" required="">
-                                            </div>
-                                        </div> -->
-                                        
-<!--                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="store_longitude">Longitude&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="store_longitude" class="form-control" required="">
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
 
@@ -280,6 +260,49 @@
                                     <div class="form-group text-right">
                                         <a type="button" class="btn btn-default" href="javascript:void(0);" onclick="navigate_show_tabs('show_menus_tab');"><i class="fa fa-caret-left"></i>&nbsp;Back</a>
                                         <a type="button" class="btn btn-default" href="<?php echo base_url(ADMIN_PREFIX . '/stores'); ?>">Cancel</a>
+                                        <a type="button" class="btn btn-default" href="javascript:void(0);" onclick="navigate_show_tabs('show_schedule_tab');"><i class="fa fa-caret-right"></i>&nbsp;Next</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="show_schedule_tab">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="table-responsive schedule_table">
+                                                <table cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <th>Day</th>
+                                                        <th>From</th>
+                                                        <th>To</th>
+                                                    </tr>
+                                                    <?php
+                                                    $week_days = array("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday");
+                                                    foreach ($week_days as $keyWD => $valueWD)
+                                                    {
+                                                    ?>
+                                                    <tr class="store_schedule_tp">
+                                                        <td><?php echo ucfirst($valueWD); ?></td>
+                                                        <td>
+                                                            <input type="text" class="form-control time start" name="store_schedule[<?php echo $valueWD; ?>][]">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control time end" name="store_schedule[<?php echo $valueWD; ?>][]">
+                                                        </td>
+                                                    </tr>
+                                                    <?php 
+                                                    }
+                                                    ?>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group text-right">
+                                        <a type="button" class="btn btn-default" href="javascript:void(0);" onclick="navigate_show_tabs('show_media_tab');"><i class="fa fa-caret-left"></i>&nbsp;Back</a>
+                                        <a type="button" class="btn btn-default" href="<?php echo base_url(ADMIN_PREFIX . '/stores'); ?>">Cancel</a>
                                         <button type="submit" class="btn btn-success" id="save_store_btn">Save</button>
                                     </div>
                                 </div>
@@ -292,8 +315,22 @@
     </div>
 </section>
 
+<?php
+    echo iplugin('datepair', array('file_name' => 'jquery.timepicker.min', 'file_type' => 'css'));
+
+    echo iplugin('datepair', array('file_name' => 'jquery.timepicker.min', 'file_type' => 'js'));
+    echo iplugin('datepair', array('file_name' => 'datepair', 'file_type' => 'js'));
+    echo iplugin('datepair', array('file_name' => 'jquery.datepair', 'file_type' => 'js'));
+?>
+
 <script type="text/javascript">
     var store_selected_city_id = "0";
+
+    $(document).ready(function()
+    {
+        bind_timepair();
+        bind_zipcode_autocomp();
+    });
 </script>
 
 <?php echo js('backend/stores.js'); ?>

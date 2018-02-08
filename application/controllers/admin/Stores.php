@@ -67,6 +67,19 @@ class Stores extends CI_Controller
 		$insert_arr['address'] = $params['address'];
 		unset($params['address']);
 
+		$store_schedule = $params['store_schedule'];
+		unset($params['store_schedule']);
+
+		$insert_arr['schedule'] = array();
+		foreach ($store_schedule as $keySS => $valueSS)
+		{
+			$insert_arr['schedule'][strtolower(date("l", strtotime($keySS)))] = NULL;
+			if (sizeof(array_filter($valueSS)) > 0)
+			{
+				$insert_arr['schedule'][$keySS] = implode(" - ", $valueSS);
+			}
+		}
+
 		//Get Lat Long of choosen Zipcode
 		$get_lat_long = get_zipcode_details($params['store_zipcode_id']);
 		if (sizeof($get_lat_long) > 0) 
@@ -96,7 +109,7 @@ class Stores extends CI_Controller
 		}
 		else
 		{
-			// print_r($insert_arr); die;
+			// print_r($insert_arr);die;
 			/***SAVE NEW***/
 			$insert_id = $this->stores_model->store_save($insert_arr);
 		}

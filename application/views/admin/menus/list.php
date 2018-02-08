@@ -32,7 +32,7 @@
                 <h2><small>Menus</small></h2>
             </div>
             <div class="frntnd_mnubg">
-                <div class="col-md-6 ">
+                <div class="col-md-6 remove_menu_from_list">
                     <form>
                         <input type="hidden" name="category_remove" value="1">
                         <button class="btn btn-danger" type="button" name="remove" onclick="add_rem_menus('remove', this);">Remove From Menu</button>
@@ -45,8 +45,9 @@
                             {
                         ?>
                             <li data-slug="<?php echo $valueM['slug']; ?>" data-name="<?php echo $valueM['name']; ?>" data-id="<?php echo $valueM['id']; ?>">
-                                <span><?php echo $keyM+1; ?>.&nbsp;</span>
-                                <input type="checkbox" class="menu-cat" name="category_remove" value="<?php echo $valueM['id']; ?>"><?php echo $valueM['name']; ?>
+                                
+                                <input type="checkbox" class="menu-cat" name="category_remove" value="<?php echo $valueM['id']; ?>" id="<?php echo $valueM['id']; ?>">
+                                <label for="<?php echo $valueM['id']; ?>"><span><?php echo $keyM+1; ?>.&nbsp;</span><?php echo $valueM['name']; ?></label>
                             </li>
                         <?php
                             }
@@ -62,7 +63,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-6 box_shadow_div">
+                <div class="col-md-6 box_shadow_div add_menu_in_list">
                     <form>
                         <input type="hidden" name="category_add" value="1">
                         <button class="btn btn-success" type="button" name="add" onclick="add_rem_menus('add', this);">Add To Menu</button>
@@ -74,8 +75,9 @@
                             {
                         ?>
                                 <li data-slug="<?php echo $valueAR['store_category_slug']; ?>" data-name="<?php echo $valueAR['store_category_name']; ?>" data-id="<?php echo $valueAR['id']; ?>" >
-                                    <span><?php echo $keyAR+1; ?>.&nbsp;</span>
-                                    <span><input type="checkbox" class="menu-cat" name="add_category" value="<?php echo $valueAR['id']; ?>"><?php echo $valueAR['store_category_name']; ?></span>
+                                    
+                                    <input type="checkbox" class="menu-cat" id="<?php echo $valueAR['id']; ?>" name="add_category" value="<?php echo $valueAR['id']; ?>">
+                                    <label for="<?php echo $valueAR['id']; ?>"><span><?php echo $keyAR+1; ?>.&nbsp;</span><?php echo $valueAR['store_category_name']; ?></label>
                                 </li>
                         <?php
                             }

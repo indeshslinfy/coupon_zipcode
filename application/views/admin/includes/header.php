@@ -91,7 +91,7 @@
 											<span>Categories</span>
 										</a>
 
-										<ul>
+										<ul class="submenu_list">
 											<li>
 												<a class="<?php echo $this->uri->segment(2) == 'stores-category' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores-category'); ?>">
 													<i class="fa fa-tags"></i>

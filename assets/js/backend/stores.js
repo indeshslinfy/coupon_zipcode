@@ -4,7 +4,19 @@ $(document).ready(function()
 	{
 		get_cities($("#address_state_id")[0]);
 	}
+});
 
+function bind_timepair()
+{
+	$('.store_schedule_tp .time').timepicker({
+        'showDuration': true,
+        'timeFormat': 'g:ia'
+    });
+
+    $('.store_schedule_tp').datepair();
+}
+function bind_zipcode_autocomp()
+{
 	var autocomp_options = {
 		data: JSON.parse(all_zipcodes),
 		getValue: "zipcode",
@@ -33,7 +45,7 @@ $(document).ready(function()
 		theme: "plate-dark"};
 
 	$("#store_zipcode").easyAutocomplete(autocomp_options);
-});
+}
 
 function navigate_show_tabs(destination_tab)
 {

@@ -32,7 +32,7 @@
                 <h2><small>Featured Categories</small></h2>
             </div>
             <div class="frntnd_mnubg">
-                <div class="col-md-6 ">
+                <div class="col-md-6 remove_menu_from_list">
                     <form method="POST" action="<?php echo base_url(ADMIN_PREFIX . '/stores_category/update_featured_cats'); ?>">
                         <button class="btn btn-danger" type="submit">Remove From Featured</button>
                         <ul>
@@ -43,8 +43,8 @@
                             {
                         ?>
                             <li>
-                                <span><?php echo $keyFC+1; ?>.&nbsp;</span>
-                                <input type="checkbox" class="menu-cat" name="remove_category[]" value="<?php echo $valueFC['id']; ?>"><?php echo $valueFC['store_category_name']; ?>
+                                <input type="checkbox" class="menu-cat" id="<?php echo $valueFC['id']; ?>" name="remove_category[]" value="<?php echo $valueFC['id']; ?>">
+                                <label for="<?php echo $valueFC['id']; ?>"><span><?php echo $keyFC+1; ?>.&nbsp;</span><?php echo $valueFC['store_category_name']; ?></label>
                             </li>
                         <?php
                             }
@@ -60,7 +60,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-6 box_shadow_div">
+                <div class="col-md-6 box_shadow_div add_menu_in_list">
                     <form method="POST" action="<?php echo base_url(ADMIN_PREFIX . '/stores_category/update_featured_cats'); ?>">
                         <button class="btn btn-success" type="submit">Add To Featured</button>
                         <ul>
@@ -71,8 +71,8 @@
                             {
                         ?>
                                 <li>
-                                    <span><?php echo $keyAR+1; ?>.&nbsp;</span>
-                                    <input type="checkbox" class="menu-cat" name="add_category[]" value="<?php echo $valueAR['id']; ?>"><?php echo $valueAR['store_category_name']; ?>
+                                    <input type="checkbox" class="menu-cat" id="<?php echo $valueAR['id']; ?>" name="add_category[]" value="<?php echo $valueAR['id']; ?>">
+                                    <label for="<?php echo $valueAR['id']; ?>"><span><?php echo $keyAR+1; ?>.&nbsp;</span><?php echo $valueAR['store_category_name']; ?></label>
                                 </li>
                         <?php
                             }

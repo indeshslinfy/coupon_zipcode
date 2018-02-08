@@ -80,21 +80,21 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Facebook</label>
+                                                <label>Facebook Username</label>
                                                 <input type="text" name="social_platform[facebook]" value="<?php echo $social_platform['facebook']; ?>" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group ">
-                                                <label class="control-label">Twitter</label>
+                                                <label class="control-label">Twitter Username</label>
                                                 <input type="text" name="social_platform[twitter]" value="<?php echo $social_platform['twitter']; ?>" class="form-control">
                                             </div>
                                         </div>
                                         
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Google Plus</label>
+                                                <label>Google Plus URL</label>
                                                 <input type="text" name="social_platform[gplus]" value="<?php echo $social_platform['gplus']; ?>" class="form-control">
                                             </div>
                                         </div>

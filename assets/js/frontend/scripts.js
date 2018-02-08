@@ -61,8 +61,8 @@ $(document).ready(function()
 
  	bind_cat_autocomplete('.top-srch-cat');
 
- 	bind_zipcode_autocomplete('.zpcde_auto', {'theme': 'dark'});
- 	bind_zipcode_autocomplete('.top-srch-zipcode', {'theme': 'bootstrap'});
+ 	bind_zipcode_autocomplete('.zpcde_auto', {'theme': 'dark'}, 5);
+ 	bind_zipcode_autocomplete('.top-srch-zipcode', {'theme': 'bootstrap'}, 10);
 });
 
 function bind_cat_autocomplete(target_class)
@@ -98,7 +98,7 @@ function bind_cat_autocomplete(target_class)
 	$(target_class).easyAutocomplete(autocomp_options);
 }
 
-function bind_zipcode_autocomplete(target_class, options)
+function bind_zipcode_autocomplete(target_class, options, limits)
 {
 	var autocomp_options = {
 		data: JSON.parse(all_zipcodes),
@@ -108,7 +108,7 @@ function bind_zipcode_autocomplete(target_class, options)
 			fields: {description: "id"}
 		},
 		list: {
-			maxNumberOfElements: 10,
+			maxNumberOfElements: limits,
 			sort: {enabled: true},
 			showAnimation: {
 				type: "fade",

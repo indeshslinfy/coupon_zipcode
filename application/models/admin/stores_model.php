@@ -27,6 +27,10 @@ class stores_model extends CI_model
 			$store_details['address'] = $this->db->where(array('id' => $store_details['store_address_id']))
 												->get('address')
 												->row_array();
+
+			$store_details['schedule'] = $this->db->where(array('store_id' => $store_id))
+												->get('stores_timetable')
+												->row_array();												
 		}
 
 		return $store_details;
@@ -46,6 +50,10 @@ class stores_model extends CI_model
 				// SAVE BASIC DETAILS
 				$data['basic']['updated_at'] = date('Y-m-d H:i:s');
 				$this->db->where(array('id' => $id))->update('stores', $data['basic']);
+
+				// UPDATE SCHEDULE DETAILS
+				$data['schedule']['updated_at'] = date('Y-m-d H:i:s');
+				$this->db->where(array('store_id' => $id))->update('stores_timetable', $data['schedule']);
 			}
 			else
 			{
@@ -61,6 +69,11 @@ class stores_model extends CI_model
 				{
 					return false;
 				}
+
+				// SAVE SCHEDULE DETAILS
+				$data['schedule']['store_id'] = $id;
+				$data['schedule']['created_at'] = date('Y-m-d H:i:s');
+				$this->db->insert('stores_timetable', $data['schedule']);
 			}
 			
 			// SAVE VIDEO

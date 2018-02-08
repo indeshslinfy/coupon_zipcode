@@ -2727,12 +2727,62 @@ div.alert{
     margin-top: 10px;
 }
 .main-chart ul li {
-    line-height:24px;
+    line-height: 24px;
 }
-.main-chart ul li input[type=checkbox] {
-    margin-right:7px;
+.remove_menu_from_list ul li input[type=checkbox] + label{
+    float:left;
+    width:100%;
+    line-height: 24px;
+    border: 1px solid #cfcfcf;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.remove_menu_from_list ul li input[type=checkbox] {
+    /*margin-right: 7px;*/
+    width: 100%;
+    height:100%;
+    position: absolute;
+    opacity: 0;
+}
+.remove_menu_from_list ul li input[type=checkbox]:checked + label{
+    background:#B9140F;
+    color:#fff;
+     border:1px solid #B9140F; 
+}
+.add_menu_in_list ul li input[type=checkbox] + label{
+    float:left;
+    width:100%;
+    line-height: 24px;
+    border: 1px solid #cfcfcf;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.add_menu_in_list ul li input[type=checkbox] {
+    /*margin-right: 7px;*/
+    width: 100%;
+    height:100%;
+    position: absolute;
+    opacity: 0;
+}
+.add_menu_in_list ul li input[type=checkbox]:checked + label{
+    background:#008700;
+    color:#fff;
+    border:1px solid #008700; 
 }
 .box_shadow_div{
     border-left: 1px solid #ccc;
     padding-left: 30px;
+}
+.schedule_table table{
+    width:100%;
+}
+.schedule_table table tr th,
+.schedule_table table tr td{
+    padding:5px;
+}
+.submenu_list{
+    padding-left:0px;
+}
+.submenu_list li a{
+    padding-left:35px !important;
 }
