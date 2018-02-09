@@ -11,8 +11,8 @@
 					foreach ($all_local_coupons as $keyALC => $valueALC)
 					{
 					?>
-						 <div class="item">
-			            	<div class="cpn_adjst_img">
+						<div class="item">
+							<div class="cpn_adjst_img">
 								<a href="<?php echo base_url('coupon' . '/' . $valueALC['id']); ?>">
 									<img src="<?php echo base_url($valueALC['store_image']); ?>" alt="<?php echo $valueALC['coupon_title']; ?>">
 									<div class="hover_div">
@@ -26,7 +26,7 @@
 									</div>
 								</a>
 							</div>
-			        	</div>
+						</div>
 					<?php
 					}
 					?>
@@ -41,7 +41,6 @@
 		<div class="container">
 			<div class="heading_text_wrap">
 				<h2>Top Restaurant Deals Near You</h2>
-				<!-- <h2>Top Restaurant Deals in New York</h2> -->
 				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
 			</div>
 
@@ -51,7 +50,6 @@
 			foreach ($coupons_by_location->deals as $keyCL => $valueCL)
 			{
 				echo $cnt == 1 ? '<div class="row">' : '';
-
 				$js_deals_arr[$valueCL->uuid] = array('title' => $valueCL->title,
 											'short_title' => $valueCL->shortAnnouncementTitle,
 											'image' => $valueCL->grid4ImageUrl,
@@ -71,26 +69,12 @@
 					<a href="javascript:void(0);" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
 						<div class="top_rstrnt_deal_wrap">
 							<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
+							<!-- <p>Groupon</p> -->
+							<span><?php echo img('powered-by-groupon.png'); ?></span>
 							<div class="rstrnt_des_wrap">
-								<div class="location_box light_green_bg">
-									<i class="fa fa-map-marker"></i>&nbsp;
-									<?php echo $valueCL->redemptionLocation ? $valueCL->redemptionLocation : 'n/a'; ?>
-								</div>
+								<!-- <div class="location_box light_green_bg">Groupon</div> -->
 								<div class="restrnt_desp_text_box">
-									<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 36 ? substr($valueCL->title, 0, 37) . "..." : $valueCL->title; ?></h3>
-									<p>
-										<i>Categories:&nbsp;
-										<?php
-											$sliced_tags = array_slice($valueCL->tags, 0, 5);
-											foreach ($sliced_tags as $keyTG => $valueTG)
-											{
-											?>
-												<small class="deal_tag"><?php echo $valueTG->name; echo $keyTG+1 != sizeof($sliced_tags) ? ', ' : ''; ?></small>
-											<?php
-											}
-										?>
-										</i>
-									</p>
+									<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 55 ? substr($valueCL->title, 0, 55) . "..." : $valueCL->title; ?></h3>
 								</div>
 							</div>
 						</div>
@@ -142,20 +126,21 @@
 				<div class="heading_text_wrap">
 					<h2>Featured Stores</h2>
 				</div>
+
 				<div class="deals_event">
 					<?php
 					foreach ($featured_stores as $keyFS => $valueFS)
 					{
 						$store_name = strlen($valueFS['store_name']) > 10 ? substr($valueFS['store_name'], 0, 8) : $valueFS['store_name'];
 					?>
-						<div class="deals_you_like rstrnt_deal" style="background:url(<?php echo base_url(str_replace("\\", "/", $valueFS['store_image'])); ?>);">
+						<div class="deals_you_like rstrnt_deal" style="background:url(<?php echo base_url(str_replace("\\", "/", $valueFS['store_featured_image'])); ?>);">
 							<div class="deals_you_like_wrap">
 								<h3><?php echo $store_name; ?></h3>
 								<div class="deals_you_like_des">
 									<h4><?php echo $valueFS['store_name']; ?></h4>
 									<small><?php echo $valueFS['store_website']; ?></small>
-									<p><?php echo strlen($valueFS['store_description']) > 60 ? substr($valueFS['store_description'], 0, 60) . '...&nbsp;' : $valueFS['store_description']; ?></p>
-									<a href="<?php echo base_url('coupon/' . $valueFS['coupon_id']); ?>" class="btn btn-success">View Deals</a>
+									<p><?php echo strlen($valueFS['store_description']) > 120 ? substr($valueFS['store_description'], 0, 120) . '...&nbsp;' : $valueFS['store_description']; ?></p>
+									<a href="<?php echo base_url('coupon/' . $valueFS['coupon_id']); ?>" class="btn ylew_btn">View Deals</a>
 								</div>
 							</div>
 						</div>

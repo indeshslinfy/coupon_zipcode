@@ -28,9 +28,7 @@ class Home extends CI_Controller
 	public function index()
 	{
 		$this->load->model(ADMIN_PREFIX . '/stores_model');
-		// $this->load->model(ADMIN_PREFIX . '/featured_model');
-
-		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "limit" => 3));
+		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "limit" => 10));
 
 		$lat = '40.71';
 		$long = '-73.99';
@@ -42,7 +40,7 @@ class Home extends CI_Controller
 		}
 
 		$data['featured_stores'] = get_featured_stores(4);
-		$data['coupons_by_location'] = $this->fetch_deals('latlong', array('lat' => $lat, 'long' => $long), array('offset' => 0, 'limit' => 8));
+		$data['coupons_by_location'] = $this->fetch_deals('latlong', array('lat' => $lat, 'long' => $long), array('offset' => 0, 'limit' => 4));
 		$this->load->template('index', $data);
 	}
 

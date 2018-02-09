@@ -130,14 +130,28 @@
                                         <input type="text" name="store_tw_url" class="form-control" value="<?php echo $store_details['store_tw_url']; ?>">
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Description</label>
                                         <textarea rows="7" name="store_description" class="form-control"> <?php echo $store_details['store_description']; ?></textarea>
                                     </div>
                                 </div>
-
+                                
+                                <div id="store_featured_img_div" class="store_featured_img_div col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Featured Image&nbsp;<small class="text-danger">*</small>&nbsp;&nbsp;<small>(Max 5MB)</small></label>
+                                                <input type="file" name="store_featured_image" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <img class="thumbnail img-responsive" src="<?php echo base_url($store_details['store_featured_image']); ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="col-sm-12">
                                     <h4 class="heading">Address</h4>
                                     <div class="row">

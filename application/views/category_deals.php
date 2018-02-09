@@ -56,21 +56,27 @@
 								</div>
 
 								<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hide' : ''; ?>">
-									<h5 class="filter_heading">Price Range</h5>
-									<ul class="filters-ul" id="range_filters_ul">
+									<h5 class="filter_heading">
+										Price Range
+										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+									</h5>
+									<ul class="filters-ul filter-clearable" id="range_filters_ul">
 										<li>
-											Min&nbsp;<input type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]">
+											Min&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]">
 										</li>
 										<li>
-											Max&nbsp;<input type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][1] : ''; ?>" class="form-control" name="price_range[]">
+											Max&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][1] : ''; ?>" class="form-control" name="price_range[]">
 										</li>
 									</ul>
 									<hr>
 								</div>
 
 								<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hide' : ''; ?>">
-									<h5 class="filter_heading">Search by Keyword</h5>
-									<ul class="filters-ul">
+									<h5 class="filter_heading">
+										Search by Keyword
+										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+									</h5>
+									<ul class="filters-ul filter-clearable">
 										<li>
 											<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
 										</li>
@@ -471,6 +477,8 @@ function clear_filters(ele, target)
 	if (typeof(target) == 'undefined')
 	{
 		$(ele).addClass('hide');
+		// console.log($(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input'));
+		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input').val('');
 		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input:checked').prop('checked', false);
 	}
 	else if (target == 'all')

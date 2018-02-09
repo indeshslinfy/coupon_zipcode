@@ -40,8 +40,24 @@ class stores_model extends CI_model
 	{
 		try
 		{
+			$allowed_extensions = array('jpg', 'jpeg', 'png');
 			if ($id)
 			{
+				// SAVE FEATURED IMAGE
+				if (!$data['basic']['featured_image']['error'])
+				{
+					if (in_array(strtolower(pathinfo($data['basic']['featured_image']['name'], PATHINFO_EXTENSION)), $allowed_extensions))
+					{
+						$uploaded_path = $this->upload_attachment($data['basic']['featured_image'], false, 'featured_image');
+						if ($uploaded_path)
+						{
+							$data['basic']['store_featured_image'] = $uploaded_path;
+						}
+					}
+				}
+
+				unset($data['basic']['featured_image']);
+
 				// UPDATE ADDRESS
 				$data['address']['updated_at'] = date('Y-m-d H:i:s');
 				$store_address_id = $this->db->select('store_address_id')->where(array('id' => $id))->get('stores')->row_array();
@@ -57,11 +73,25 @@ class stores_model extends CI_model
 			}
 			else
 			{
+				// SAVE FEATURED IMAGE
+				$data['basic']['store_featured_image'] = '\assets/img/local-coupon-no-image.jpg';
+				if (!$data['basic']['featured_image']['error'])
+				{
+					if (in_array(pathinfo(strtolower($data['basic']['featured_image']['name'], PATHINFO_EXTENSION)), $allowed_extensions))
+					{
+						$uploaded_path = $this->upload_attachment($data, false, 'featured_image');
+						if ($uploaded_path)
+						{
+							$data['basic']['store_featured_image'] = $uploaded_path;
+						}
+					}
+				}
+
 				// SAVE ADDRESS
 				$data['address']['created_at'] = date('Y-m-d H:i:s');
 				$save_address = $this->db->insert('address', $data['address']);
-
 				$data['basic']['store_address_id'] = $this->db->insert_id();
+
 				$data['basic']['created_at'] = date('Y-m-d H:i:s');
 				$this->db->insert('stores', $data['basic']);
 				$id = $this->db->insert_id();
@@ -167,6 +197,10 @@ class stores_model extends CI_model
 	{
 		switch ($type)
 		{
+			case 'featured_image':
+				$folder_name =  'uploads' . DS . 'store_featured_images';
+				break;
+
 			case 'image':
 				$folder_name = STORE_ATCH_IMAGE_FOLDER;
 				break;
@@ -180,9 +214,18 @@ class stores_model extends CI_model
 				break;
 		}
 
-		$file_name = time() . "_" .str_replace(array(" ", "(", ")"), "_", $data['name'][$index]);
-		$dest = DS . $folder_name . DS . $file_name;
-		$file_temp_name = $data['tmp_name'][$index];
+		if ($index)
+		{
+			$file_name = time() . "_" .str_replace(array(" ", "(", ")"), "_", $data['name'][$index]);
+			$dest = DS . $folder_name . DS . $file_name;
+			$file_temp_name = $data['tmp_name'][$index];
+		}
+		else
+		{
+			$file_name = time() . "_" .str_replace(array(" ", "(", ")"), "_", $data['name']);
+			$dest = DS . $folder_name . DS . $file_name;
+			$file_temp_name = $data['tmp_name'];
+		}
 
 		$rp = realpath(getcwd());
 		if (!is_dir($rp . DS . $folder_name))
@@ -190,10 +233,10 @@ class stores_model extends CI_model
 			mkdir($rp . DS. $folder_name, 0777, true);
 		}
 
-        if(move_uploaded_file($file_temp_name, $rp . $dest))
-        {
+		if(move_uploaded_file($file_temp_name, $rp . $dest))
+		{
 			return $dest;
-        }
+		}
 
 		return false;
 	}
@@ -216,7 +259,7 @@ class stores_model extends CI_model
 
 	public function get_local_coupons($filters=false)
 	{
-		$select_str = 'c.id, c.coupon_title, c.coupon_description, s.store_name, store_atch.store_id, store_atch.attachment_path as store_image';
+		$select_str = 'c.id, c.coupon_title, c.coupon_description, s.store_name, s.id as store_id, s.store_featured_image as store_image';
 		$where_arr = array('c.coupon_publish' => 1,
 							'c.deleted_at' => NULL,
 							's.status' => STORE_STATUS_ACTIVE,
@@ -277,8 +320,7 @@ class stores_model extends CI_model
 			$records = $records->where('s.store_rating >=', $min_rating)->where('s.store_rating <=', $max_rating);
 		}
 
-		$records = $records->join('stores as s', 's.id = c.coupon_store_id')
-							->join('(SELECT atch.store_id, atch.attachment_path FROM stores_attachment as atch WHERE atch.attachment_type = ' . STORE_ATCH_IMAGE . ' AND atch.deleted_at IS NULL ORDER BY atch.created_at DESC) as store_atch', 's.id = store_atch.store_id', 'left');
+		$records = $records->join('stores as s', 's.id = c.coupon_store_id');
 
 		if (array_key_exists("cat", $filters) && sizeof($filters['cat']) > 0)
 		{
@@ -291,7 +333,6 @@ class stores_model extends CI_model
 		if (array_key_exists('city', $filters) && $filters['city'] != '')
 		{
 			// $records = $records->join('(SELECT scat.id, scat.store_category_name FROM address as scat WHERE scat.store_category_slug IN ("' . $cats . '") AND scat.deleted_at IS NULL AND scat.status = 1) as store_cat', 's.store_category_id = store_cat.id');
-
 			// $records = $records->join('address as adr', 'adr.id = s.store_address_id');
 		}
 
@@ -308,7 +349,7 @@ class stores_model extends CI_model
 					break;
 
 				case 'distance':
-					
+					# code...
 					break;
 				
 				default:
@@ -318,10 +359,10 @@ class stores_model extends CI_model
 
 		}
 
-		// if (isset($filters['limit']))
-		// {
-		// 	$records = $records->limit($filters['limit']);
-		// }
+		if (isset($filters['limit']))
+		{
+			$records = $records->limit($filters['limit']);
+		}
 		
 		$records = $records->group_by('c.id');
 		return $records->get('coupons as c')->result_array();
@@ -329,15 +370,13 @@ class stores_model extends CI_model
 
 	public function popular_stores($limit)
 	{
-		return $this->db->select('stores.id, stores.store_name, stores.store_rating, img.attachment_path as store_image, cpn.id as coupon_id')
-					->from('stores')
+		return $this->db->select('stores.id, stores.store_name, stores.store_rating, stores.store_featured_image, cpn.id as coupon_id')
 					->order_by("store_rating", "DESC")
 					->limit($limit)
-					->join('stores_attachment as img', 'stores.id=img.store_id')
 					->join('coupons as cpn', 'stores.id=cpn.coupon_store_id')
-					->where(array('img.attachment_type' => STORE_ATCH_IMAGE, 'cpn.deleted_at' => NULL, 'cpn.status' => COUPON_STATUS_ACTIVE))
+					->where(array('cpn.deleted_at' => NULL, 'cpn.status' => COUPON_STATUS_ACTIVE))
 					->group_by('stores.id')
-					->get()
+					->get('stores')
 					->result_array();
 	}
 }

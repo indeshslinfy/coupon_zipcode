@@ -127,6 +127,15 @@
                                         <input type="text" name="store_tw_url" class="form-control">
                                     </div>
                                 </div>
+
+                                <div id="store_featured_img_div" class="store_featured_img_div col-sm-6">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Featured Image&nbsp;<small class="text-danger">*</small>&nbsp;&nbsp;<small>(Max 5MB)</small></label>
+                                            <input type="file" name="store_featured_image" accept="image/*" required="">
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 <div class="col-sm-12">
                                     <div class="form-group">

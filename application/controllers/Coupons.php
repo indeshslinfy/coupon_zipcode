@@ -254,7 +254,7 @@ class Coupons extends CI_Controller {
 				$dompdf->loadHtml($pdf_view);
 				$dompdf->setPaper('A4');
 				$dompdf->render();
-				// $dompdf->stream(); // download
+				
 				$dompdf->stream($coupon_details['coupon_title'], array("Attachment" => false)); // view in browser
 				exit(0);
 			}

@@ -75,12 +75,13 @@
 						<div class="header text-center"><h4>Popular Stores</h4></div>
 
 						<?php
+						shuffle($popular_stores);
 						foreach ($popular_stores as $keyPS => $valuePS)
 						{
 						?>
 							<a href="<?php echo base_url('coupon/' . $valuePS['coupon_id']); ?>">
 								<div class="popular_coupon_wrap">
-									<img src="<?php echo base_url($valuePS['store_image']); ?>" alt="image">
+									<img src="<?php echo base_url($valuePS['store_featured_image']); ?>" alt="image">
 									<h4><?php echo $valuePS['store_name']; ?></h4>
 								</div>
 							</a>

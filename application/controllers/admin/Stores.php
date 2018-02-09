@@ -102,6 +102,7 @@ class Stores extends CI_Controller
 		}
 
 		$insert_arr['basic'] = $params;
+		$insert_arr['basic']['featured_image'] = $_FILES['store_featured_image'];
 		if ($this->uri->segment(3))
 		{
 			/***UPDATE EXISTING***/
@@ -109,7 +110,6 @@ class Stores extends CI_Controller
 		}
 		else
 		{
-			// print_r($insert_arr);die;
 			/***SAVE NEW***/
 			$insert_id = $this->stores_model->store_save($insert_arr);
 		}

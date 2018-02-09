@@ -302,15 +302,12 @@ if (!function_exists('get_featured_stores'))
 	function get_featured_stores($limit=false)
 	{
 		$CI =& get_instance();
-		$featured_stores = $CI->db->select('s.*, img.attachment_path as store_image, cpn.id as coupon_id')
+		$featured_stores = $CI->db->select('s.*, cpn.id as coupon_id')
 								->where(array('s.is_featured' => 1,
 											's.deleted_at' => NULL,
-											'img.attachment_type' => STORE_ATCH_IMAGE,
-											'img.deleted_at' => NULL,
 											'cpn.deleted_at' => NULL,
 											'cpn.status' => COUPON_STATUS_ACTIVE))
-								->join('coupons as cpn', 's.id=cpn.coupon_store_id')
-								->join('stores_attachment as img', 's.id=img.store_id');
+								->join('coupons as cpn', 's.id=cpn.coupon_store_id');
 		if ($limit)
 		{
 			$featured_stores = $featured_stores->limit($limit);

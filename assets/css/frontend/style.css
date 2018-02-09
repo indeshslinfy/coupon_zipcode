@@ -1,5 +1,4 @@
 body,html{
-	/*font-family: 'Rajdhani', sans-serif;*/
 	font-family: 'Open Sans', sans-serif;
 	font-size:13px;
 	height:100%;
@@ -32,7 +31,7 @@ img{
 	margin:10% auto 7.5%;
 	max-width:580px;
 	width:100%;
-	padding:30px 20px 12px;
+	padding:30px 20px 30px;
 	box-shadow:0px 0px 10px rgba(0,0,0,.9);
 	background:rgba(0,0,0,.9);
 }
@@ -49,13 +48,14 @@ img{
 }
 .form_wrap{
 	float:left;
-	margin:50px auto 0px;
+	margin:40px auto 0px;
 	width:100%;
 }
 .form_wrap .form-group{
 	width: 100%;
-	max-width: 346px;
+	max-width:295px;
 	display: inline-block;
+	margin-bottom:10px
 }
 .form_wrap .form-control{
 	background:none;
@@ -113,7 +113,7 @@ img{
 	padding:2px 19px;
 	color:#fff;
 }
-/*---------index-page-css-end-------------*/
+
 /*---------Home-page-css-start-------------*/
 .navbar{
 	min-height:auto;
@@ -151,8 +151,6 @@ img{
 	color:#5c5c5c;
 	height:32px;
 	padding-left:0px;
-	/*font-weight:600;*/
-
 }
 .city_box{
 	width:180px;
@@ -303,7 +301,6 @@ section{
 	vertical-align: middle;
 }
 .exclusive_coupan .cpn_adjst_img a img{
-	/*transition: all ease 1s;*/
 	margin:0 auto;
 	display: block;
 	max-height:267px;
@@ -342,7 +339,6 @@ section{
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
 }
-
 .exclusive_coupan .cpn_adjst_img a .hover_div .hover_text_wrap{
 	display: table-cell;
 	height: 100%;
@@ -366,7 +362,6 @@ section{
 	line-height: 25px;
 	display:none;
 	transition: opacity .9s ease-in-out;
-
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div .hover_text_wrap h4{
 	font-size:15px;
@@ -374,7 +369,7 @@ section{
 	line-height:30px;
 	color: #8DD81B;
 	transform: translateY(-100px);
-	background:rgba(0,0,0,.7);
+	background:rgba(0,0,0,.8);
 	text-align:center;
 	-webkit-transition: .9s ease-in-out;
 	transition: .9s ease-in-out;
@@ -418,10 +413,10 @@ section{
 	transform:translate(0px,-2px);
 	box-shadow: 0px 3px 12px rgba(128,128,128,.7);
 }
-
 .top_rstrnt_deal_wrap{
 	float:left;
 	width:100%;
+	position: relative;
 }
 .top_rstrnt_deal_wrap img{
 	margin:0 auto;
@@ -476,6 +471,7 @@ section{
 	font-weight:600;
 	line-height:30px;
 }
+
 /*----event-box--*/
 .deals_you_like{
 	float: left;
@@ -534,12 +530,10 @@ section{
 	font-size:16px;
 	line-height:30px;
 	margin-bottom:20px;
-
 }
 .deals_event:hover .deals_you_like:hover{
 	width:50%;
 }
-
 .deals_you_like:hover h3{
 	opacity: 0;
 	margin-top:0px;
@@ -572,7 +566,6 @@ footer{
 	color:#fff;
 	margin-bottom:10px;
 }
-
 .footer_wrap ul li a{
 	font-size:13px;
 	line-height:30px;
@@ -586,25 +579,6 @@ footer{
 	-o-transition: all .3s ease-in-out;
 	width: 100%;
 }
-/*.footer_wrap ul li a:before{
-	content:'\2192';
-	float:left;
-	font-weight:700;
-	width: 0px;
-	overflow: hidden;
-	transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-webkit-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
-}
-.footer_wrap ul li a:hover:before{
-	width: auto;
-	margin-right: 5px;
-	transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-webkit-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
-}*/
 .online_coupan_link ul{
 	float:left;
 	width:33.3%;
@@ -633,7 +607,6 @@ footer{
 	background: linear-gradient(to right, rgba(118,183,99,.5) 10%,rgba(255,255,255,.5) 19%,rgba(255,255,255,.5) 81%,rgba(118,183,99,.5) 89%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#486d3a', endColorstr='#486d3a',GradientType=1 ); /* IE6-9 */
 }
-/*---------Home-page-css-end-------------*/
 
 /*---------login-Page-Css-start---------*/
 .login_section{
@@ -729,8 +702,8 @@ footer{
     padding: 30px 0;
 }
 .heading_page.cntct_us_wrap h2{
-     padding: 30px 0 10px;
-     border-bottom:none;
+    padding: 30px 0 10px;
+    border-bottom:none;
 }
 .heading_page h2 p {
     font-size: 20px;
@@ -768,8 +741,6 @@ footer{
 	margin: 10px 0;
 	text-align: justify;
 }
-/*---------How-it-work-page-css-end------*/
-
 
 /*---------Contact-Us-Page-Css-Start-----*/
 .contact_us_page .form-control {
@@ -820,7 +791,7 @@ footer{
 	padding: 6px 20px;
     border-radius: 0px;
 }
-/*---------Contact-Us-Page-Css-End-------*/
+
 /*---------Update-Page-Css-Start---------*/
 .product_title{
 	font-size:22px;
@@ -879,9 +850,8 @@ footer{
     padding: 0 0px 0px 0px;
     overflow:hidden;
 }
-
 .post_address ul li a{
- font-size: 25px;
+ 	font-size: 25px;
 }
 .post_coupon_detail{
 	padding-top:15px;
@@ -1013,12 +983,12 @@ footer{
 	margin: 20px 0;
 }
 .post_detail table{
-	 width: 100%;
-	 float: left;
-	 margin: 15px 0;
-	 font-size: 14px;
-	 font-weight: 600;
-	 color: #3c4044;
+	width: 100%;
+	float: left;
+	margin: 15px 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #3c4044;
 }
 .post_detail table thead{
 	background: #e0e0e0;
@@ -1333,7 +1303,7 @@ button,
 	font-weight:500;
 	margin-top:15px;
 }
-/*---------Privacy-policy-Page-Css-End---------*/
+
 /*---------Knowledge-base-Page-Css-Start---------*/
 .knowledge_base_wrap .panel-default{
 	border:none;
@@ -1375,7 +1345,6 @@ button,
 	width:100%;
 	padding:10px;
 	background:#226f05;
-
 }
 .kwoledge_base_text_wrap .kwoledge_base_heading h3{
 	color:#fff;
@@ -1402,7 +1371,6 @@ button,
 	font-weight:600;
 	color:#226f05;
 }
-/*---------knowledge-base-Page-Css-End---------*/
 
 .deal_tag{
 	margin-right: 5px;
@@ -1433,6 +1401,9 @@ button,
 }
 .cat_coupons_wrapper .left-pane .filter_rvws_div .review_rating_read{
 	z-index: 1;
+}
+.cat_coupons_wrapper .left-pane .filter_cat_div ul{
+	height: 250px;
 }
 .cat_coupons_wrapper .left-pane .filters_header,
 .cat_coupons_wrapper .left-pane .sort_header{
@@ -1673,8 +1644,6 @@ input[type="radio"]:checked + span:after {
 	border-radius:50%;
 }
 
-/*categories listing*/
-
 /*popular coupons*/
 .popular_coupon_wrap{
 	padding-bottom: 10px;
@@ -1767,6 +1736,7 @@ span.menu_icon_down {
     font-size: 20px;
     color: #fff;
 }
+
 /************* pre-loader *************/
 .cssload-container {
     position: fixed;
@@ -2099,6 +2069,7 @@ span.menu_icon_down {
 	font-weight:600;
 	margin-right:8px;
 }
+
 /*----------css-for-ticketing-window-------------*/
 .ticketing_wrap h3{
 	font-weight:700;
@@ -2173,7 +2144,6 @@ span.menu_icon_down {
 	line-height:24px;
 }
 .date_stamp{
-	/*font-weight:600;*/
 	font-size:11px;
 }
 .ticketing_wrap_detail form{
@@ -2192,19 +2162,19 @@ span.menu_icon_down {
 	border:1px solid #999999;
 }
 .ticketing_wrap_detail form textarea.form-control::-webkit-input-placeholder {
-color: #2c3e50;
+	color: #2c3e50;
 }
 
 .ticketing_wrap_detail form textarea.form-control:-moz-placeholder { 
-color: #2c3e50;  
+	color: #2c3e50;  
 }
 
 .ticketing_wrap_detail form textarea.form-control::-moz-placeholder {  
-color: #2c3e50;  
+	color: #2c3e50;  
 }
 
 .ticketing_wrap_detail form textarea.form-control:-ms-input-placeholder {
-color: #2c3e50;  
+	color: #2c3e50;  
 }
 .reply_btn_wrap{
     display: table;
@@ -2318,7 +2288,7 @@ color: #2c3e50;
 }
 .selct_location_wrap{
 	float:left;
-	width:calc(100% - 135px);
+	width:138px;
 }
 .select_city .fa{
 	float:left;
@@ -2339,21 +2309,21 @@ color: #2c3e50;
 	float:left;
 	width:100%;
 	text-align: center;
-	padding: 0px 0px 20px;
+	padding: 0px 0px 15px;
 	color: #757577;
 	font-size: 16px;
+	line-height:1;
 }
 .select_city_form .btn{
-	float:left;
-	width:115px;
+	float:right;
+	width:138px;
 	font-size: 14px;
 	font-weight: 600;
-	margin-left:20px;
+	line-height: 22px;
 }
 .select_city_form .btn.currnt_loc_btn{
-	float:left;
-	width:100%;
-	margin-left:0px;
+	float:none;
+	width:70%;
 }
 .select_city_form .btn .fa{
 	margin-right: 10px;
@@ -2479,16 +2449,16 @@ color: #2c3e50;
 	margin-left:10px;
 }
 .share_with_socila_media span{
-	background:#fff;
-	float:left;
+	background: #fff;
+	float: left;
 	position: relative;
 	z-index: 1;
 }
 .share_with_socila_media span a{
 	float:left;
-	font-size:25px;
+	font-size: 22px;
 	padding: 0px 5px;
-	color:#cbc3c3;
+	color: #23394c;
 }
 .share_scl_link_wrap{
 	float:left;
@@ -2516,8 +2486,32 @@ color: #2c3e50;
 	color:#226F05
 }
 .share_with_socila_media:hover .share_scl_link_wrap{
-		margin-left:0px;
+	margin-left:0px;
 }
 .write-review-btn{
 	margin-top:10px;
+}
+.top_rstrnt_deal_wrap p{
+	position:absolute;
+	top: -12px;
+	left: 30px;
+	color:#fff;
+	padding:4px;
+	background:#fd7140;
+}
+.top_rstrnt_deal_wrap p::before {
+	border-bottom: 12px solid #fd7140;
+	border-left: 6px solid rgba(0, 0, 0, 0);
+	content: "";
+	height: 0;
+	left: -6px;
+	position: absolute;
+	top:0px;
+	width: 0;
+}
+.top_rstrnt_deal_wrap span {
+	position: absolute;
+	width: 95px;
+	left: 0;
+	bottom: 58px;
 }

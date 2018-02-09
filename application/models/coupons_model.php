@@ -60,7 +60,7 @@ class coupons_model extends CI_model
 	public function store_coupons($store_id, $data=false)
 	{
 		$coupons = $this->db->select('id, coupon_title, created_at')
-							->where(array('deleted_at' => NULL, 'status' => COUPON_STATUS_ACTIVE));
+							->where(array('deleted_at' => NULL, 'status' => COUPON_STATUS_ACTIVE, 'coupon_store_id' => $store_id));
 		if ($data && isset($data['except']))
 		{
 			$coupons = $coupons->where('id !=', $data['except']);

@@ -31,6 +31,7 @@
 				<div class="col-xs-12">
 					<h2 class="product_title"><?php echo $coupon_details['store_name']; ?></h2>
 				</div>
+
 				<div class="col-xs-12">
 					<div class="coupon_post">
 						<div class="row">
@@ -47,10 +48,10 @@
 									</p>
 									<p><a style="word-break: break-all;" target="_blank" href="<?php echo $coupon_details['store_website']; ?>"><?php echo $coupon_details['store_website']; ?></a></p>
 									<p><a href="tel:<?php echo $coupon_details['store_phone']; ?>"><?php echo $coupon_details['store_phone']; ?></a></p>
-									<p>Email us at: <?php echo $coupon_details['store_email']; ?></p>
+									<p><?php echo $coupon_details['store_email']; ?></p>
 									<ul>
-										<li><a target="_blank" href="<?php echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
-										<li><a target="_blank" href="<?php echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+										<li><a target="_blank" href="<?php echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+										<li><a target="_blank" href="<?php echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 									</ul>
 									
 								</div>
@@ -159,11 +160,11 @@
 
 							<div class="col-xs-12 col-sm-2 post_coupon_listing">
 								<p class="text-center"><label>Try More Coupons</label></p>
+								<ul>
 								<?php
 								if (sizeof($coupon_details['store_coupons']) > 0)
 								{
 								?>
-									<ul>
 										<?php
 										foreach ($coupon_details['store_coupons'] as $keySC => $valueSC)
 										{
@@ -175,167 +176,168 @@
 										<?php
 										}
 										?>
-									</ul>
 								<?php
 								}
 								else
 								{
 								?>
-									<p>No more coupons found.</p>
+									<li class="text-center">No coupons found</li>
 								<?php
 								}
 								?>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12">
-				<div class="post_detail">
-					<h3><?php echo $coupon_details['store_type']; ?></h3>
-					<p><?php echo $coupon_details['store_description']; ?></p>
 
-					<p>Working Hours:</p>
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Monday</th>
-									<th>Tuesday</th>
-									<th>Wednesday</th>
-									<th>Thursday</th>
-									<th>Friday</th>
-									<th>Saturday</th>
-									<th>Sunday</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['monday'] ? $coupon_details['store_timetable']['monday'] : 'Closed'; ?></td>
-									<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['tuesday'] ? $coupon_details['store_timetable']['tuesday'] : 'Closed'; ?></td>
-									<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['wednesday'] ? $coupon_details['store_timetable']['wednesday'] : 'Closed'; ?></td>
-									<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['thursday'] ? $coupon_details['store_timetable']['thursday'] : 'Closed'; ?></td>
-									<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['friday'] ? $coupon_details['store_timetable']['friday'] : 'Closed'; ?></td>
-									<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['saturday'] ? $coupon_details['store_timetable']['saturday'] : 'Closed'; ?></td>
-									<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['sunday'] ? $coupon_details['store_timetable']['sunday'] : 'Closed'; ?></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="review_section">
-						<h2>What Are Locals Saying?</h2>
-						<?php
-						if (sizeof($coupon_details['store_reviews']) > 0)
-						{
-							foreach ($coupon_details['store_reviews'] as $keySR => $valueSR)
+				<div class="col-xs-12">
+					<div class="post_detail">
+						<h3><?php echo $coupon_details['store_type']; ?></h3>
+						<p><?php echo $coupon_details['store_description']; ?></p>
+
+						<p>Working Hours:</p>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Monday</th>
+										<th>Tuesday</th>
+										<th>Wednesday</th>
+										<th>Thursday</th>
+										<th>Friday</th>
+										<th>Saturday</th>
+										<th>Sunday</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['monday'] ? $coupon_details['store_timetable']['monday'] : 'Closed'; ?></td>
+										<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['tuesday'] ? $coupon_details['store_timetable']['tuesday'] : 'Closed'; ?></td>
+										<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['wednesday'] ? $coupon_details['store_timetable']['wednesday'] : 'Closed'; ?></td>
+										<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['thursday'] ? $coupon_details['store_timetable']['thursday'] : 'Closed'; ?></td>
+										<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['friday'] ? $coupon_details['store_timetable']['friday'] : 'Closed'; ?></td>
+										<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['saturday'] ? $coupon_details['store_timetable']['saturday'] : 'Closed'; ?></td>
+										<td><?php echo !empty($coupon_details['store_timetable']) && $coupon_details['store_timetable']['sunday'] ? $coupon_details['store_timetable']['sunday'] : 'Closed'; ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="review_section">
+							<h2>What Are Locals Saying?</h2>
+							<?php
+							if (sizeof($coupon_details['store_reviews']) > 0)
 							{
-						?>
-								<div class="review_wrap">
-									<p class="review_droper_name">
-										<strong><?php echo $valueSR['reviewer_name']; ?></strong>&nbsp;Says&nbsp;
-										<div class="review_rating_read" id="review_rating_<?php echo $valueSR['id']; ?>"></div>
-										<span class="review_time"><?php echo date("F jS, Y", strtotime($valueSR['created_at'])); ?></span>
-									</p>
-									<p><?php echo $valueSR['review_text']; ?></p>
+								foreach ($coupon_details['store_reviews'] as $keySR => $valueSR)
+								{
+							?>
+									<div class="review_wrap">
+										<p class="review_droper_name">
+											<strong><?php echo $valueSR['reviewer_name']; ?></strong>&nbsp;Says&nbsp;
+											<div class="review_rating_read" id="review_rating_<?php echo $valueSR['id']; ?>"></div>
+											<span class="review_time"><?php echo date("F jS, Y", strtotime($valueSR['created_at'])); ?></span>
+										</p>
+										<p><?php echo $valueSR['review_text']; ?></p>
+									</div>
+
+									<script type="text/javascript">
+										bind_rating("#review_rating_" + <?php echo $valueSR['id']; ?>, <?php echo $valueSR['rating']; ?>);
+									</script>
+							<?php
+								}
+							}
+							else
+							{
+							?>
+								<p>No reviews yet. Be the first to review <?php echo $coupon_details['store_name']; ?></p>
+							<?php
+							}
+
+							if (!$coupon_details['is_reviewed'])
+							{
+							?>
+								<div id="post-review-wrap">
+									<button class="text-center btn write-review-btn toggle_review_btn" id="write_review_btn">Write a Review</button>
 								</div>
 
-								<script type="text/javascript">
-									bind_rating("#review_rating_" + <?php echo $valueSR['id']; ?>, <?php echo $valueSR['rating']; ?>);
-								</script>
-						<?php
-							}
-						}
-						else
-						{
-						?>
-							<p>No reviews yet. Be the first to review <?php echo $coupon_details['store_name']; ?></p>
-						<?php
-						}
-
-						if (!$coupon_details['is_reviewed'])
-						{
-						?>
-							<div id="post-review-wrap">
-								<button class="text-center btn write-review-btn toggle_review_btn" id="write_review_btn">Write a Review</button>
-							</div>
-
-							<div class="write-review-div col-sm-8 col-xs-12 col-sm-offset-2">
-								<div>
-									<form class="store_review_form hide" id="store_review_form">
-										<h4 class="text-center">Write a Review</h4>
-										<hr>
-										<div class="col-sm-6 col-xs-12">
-											<div class="row">
-												<div class="col-xs-12 col-sm-12 form-group">
-													<div class="row">
-														<div class="col-sm-2 col-xs-12 form-group">
-															<label>Name<span class="text-danger">*</span></label>
-														</div>
-														<div class="col-sm-10 col-xs-12">
-															<input type="text" name="reviewer_name" required="" class="form-control" id="reviewer_name" value="<?php echo user_login_data('first_name') . ' ' . user_login_data('last_name'); ?>" <?php echo user_login_data('id') ? 'readonly' : ''; ?>>
+								<div class="write-review-div col-sm-8 col-xs-12 col-sm-offset-2">
+									<div>
+										<form class="store_review_form hide" id="store_review_form">
+											<h4 class="text-center">Write a Review</h4>
+											<hr>
+											<div class="col-sm-6 col-xs-12">
+												<div class="row">
+													<div class="col-xs-12 col-sm-12 form-group">
+														<div class="row">
+															<div class="col-sm-2 col-xs-12 form-group">
+																<label>Name<span class="text-danger">*</span></label>
+															</div>
+															<div class="col-sm-10 col-xs-12">
+																<input type="text" name="reviewer_name" required="" class="form-control" id="reviewer_name" value="<?php echo user_login_data('first_name') . ' ' . user_login_data('last_name'); ?>" <?php echo user_login_data('id') ? 'readonly' : ''; ?>>
+															</div>
 														</div>
 													</div>
-												</div>
-												
-												<div class="col-xs-12">
-													<div class="row">
-														<div class="col-sm-2 col-xs-12">
-															<label>Rating<span class="text-danger">*</span></label>
-														</div>
-														<div class="col-sm-10 col-xs-12 form-group">
-															<div id="store_rating"></div>
+													
+													<div class="col-xs-12">
+														<div class="row">
+															<div class="col-sm-2 col-xs-12">
+																<label>Rating<span class="text-danger">*</span></label>
+															</div>
+															<div class="col-sm-10 col-xs-12 form-group">
+																<div id="store_rating"></div>
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-										</div>
 
-										<div class="col-sm-6 col-xs-12">
-											<div class="row">
-												<div class="col-xs-12 col-sm-12">
-													<div class="row">
-														<div class="col-sm-2 col-xs-12 rvw_span">
-															<label>Review</label>
-														</div>
-														<div class="col-sm-10 col-xs-12">
-															<div class="row">
-																<div class="col-sm-12">
-																	<textarea name="reviewer_text" class="form-control" style="resize:none;" rows="4" id="reviewer_text"></textarea>
+											<div class="col-sm-6 col-xs-12">
+												<div class="row">
+													<div class="col-xs-12 col-sm-12">
+														<div class="row">
+															<div class="col-sm-2 col-xs-12 rvw_span">
+																<label>Review</label>
+															</div>
+															<div class="col-sm-10 col-xs-12">
+																<div class="row">
+																	<div class="col-sm-12">
+																		<textarea name="reviewer_text" class="form-control" style="resize:none;" rows="4" id="reviewer_text"></textarea>
+																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-										</div>
 
-										<div class="col-xs-12">
-										<hr>
-											<div class="pull-right">
-												<button type="button" class="btn btn-default toggle_review_btn">Close</button>
-												<button type="button" class="btn write-review-btn green_btn btn" id="submit_review_btn" data-strid="<?php echo $coupon_details['coupon_store_id']; ?>" onclick="submit_store_review(this);">Submit Review</button>
+											<div class="col-xs-12">
+											<hr>
+												<div class="pull-right">
+													<button type="button" class="btn btn-default toggle_review_btn">Close</button>
+													<button type="button" class="btn write-review-btn green_btn btn" id="submit_review_btn" data-strid="<?php echo $coupon_details['coupon_store_id']; ?>" onclick="submit_store_review(this);">Submit Review</button>
+												</div>
 											</div>
-										</div>
-									</form>
+										</form>
+									</div>
 								</div>
-							</div>
-						<?php
-						}
-						?>
-					</div>
+							<?php
+							}
+							?>
+						</div>
 
-					<div class="post_map" id="post_map">
-						<div id="store_map"></div>
-						<div class="row">
-							<div class="col-xs12 col-sm-8">
-								<h3><?php echo $coupon_details['store_name']; ?></h3>
-								<p><?php echo str_replace(", ,", ", ", $coupon_details['address_line1'] . ', ' . $coupon_details['address_line2'] . ', ' . $coupon_details['address_line3'] . ', ' . $coupon_details['city_name'] . ', ' . $coupon_details['state_name'] . ', ' . $coupon_details['country_name'] . '. ' . $coupon_details['coupon_zipcode']); ?></p>
-							</div>
-							<div class="col-xs12 col-sm-4 text-right">
-								<a target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=34.1030032,-118.41046840000001&destination=<?php echo $coupon_details['store_latitude']; ?>,<?php echo $coupon_details['store_longitude']; ?>" class="btn ylew_btn">Get Direction</a>
+						<div class="post_map" id="post_map">
+							<div id="store_map"></div>
+							<div class="row">
+								<div class="col-xs12 col-sm-8">
+									<h3><?php echo $coupon_details['store_name']; ?></h3>
+									<p><?php echo str_replace(", ,", ", ", $coupon_details['address_line1'] . ', ' . $coupon_details['address_line2'] . ', ' . $coupon_details['address_line3'] . ', ' . $coupon_details['city_name'] . ', ' . $coupon_details['state_name'] . ', ' . $coupon_details['country_name'] . '. ' . $coupon_details['coupon_zipcode']); ?></p>
+								</div>
+								<div class="col-xs12 col-sm-4 text-right">
+									<a target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=34.1030032,-118.41046840000001&destination=<?php echo $coupon_details['store_latitude']; ?>,<?php echo $coupon_details['store_longitude']; ?>" class="btn ylew_btn">Get Direction</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 				</div>
 			</div>
 		</div>
