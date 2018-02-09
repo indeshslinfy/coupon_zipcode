@@ -335,7 +335,8 @@ class stores_model extends CI_model
 					->limit($limit)
 					->join('stores_attachment as img', 'stores.id=img.store_id')
 					->join('coupons as cpn', 'stores.id=cpn.coupon_store_id')
-					->where(array('img.attachment_type' => STORE_ATCH_IMAGE))
+					->where(array('img.attachment_type' => STORE_ATCH_IMAGE, 'cpn.deleted_at' => NULL, 'cpn.status' => COUPON_STATUS_ACTIVE))
+					->group_by('stores.id')
 					->get()
 					->result_array();
 	}

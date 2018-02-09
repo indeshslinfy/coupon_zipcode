@@ -198,3 +198,25 @@ $("#search_zipcode").click(function()
 		});
 	}
 });
+
+function subscribe_newsletter()
+{
+	if ($('#nl_email').val() != '')
+	{
+		$.ajax({
+			type: "POST",
+			dataType: "JSON",
+			url: BASEURL + "index/subscribe_newsletter",
+			data: {'subscriber_name': $('#nl_name').val(), 'subscriber_email': $('#nl_email').val()},
+			success: function(data)
+			{
+				alert(data.message);
+				if (data.status)
+				{
+					$('#nl_name').val('');
+					$('#nl_email').val('');
+				}
+			}
+		});
+	}
+}

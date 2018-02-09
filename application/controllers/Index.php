@@ -158,6 +158,57 @@ class Index extends CI_Controller
 		$this->db->query($query);*/
 	}
 
+	/**
+	 * contact us Page for this controller.
+	 */
+	public function subscribe_newsletter()
+	{
+		$params = $this->input->post();
+		$params['subscriber_email'] = trim(xss_clean($params['subscriber_email']));
+
+		$already_subscribed = $this->db->where(array('subscriber_email' => $params['subscriber_email'], 'is_subscribed' => 1))
+									->get('newsletter_subscribers')
+									->row_array();
+		if (sizeof($already_subscribed) > 0)
+		{
+			echo json_encode(array('status' => 0, 'message' => 'You are already subscribed to our newsletters.'));die;
+		}
+
+		$params['created_at'] = date('Y-m-d H:i:s');
+		$params['subscriber_name'] = trim(xss_clean($params['subscriber_name']));
+		$this->db->insert('newsletter_subscribers', $params);
+		if ($this->db->insert_id())
+		{
+			$email_details = $this->settings_model->get_settings('email');
+			$general_settings = $this->settings_model->get_settings('general_settings');
+			$html = $this->load->view('emails/newsletter/subscribed_user', $params, TRUE);
+
+			$params['subject'] = 'Newsletter Subscribed';
+			$params['company_name'] = $general_settings['company_name'];
+
+			try
+			{
+				// Send Mail
+				$this->email->from($email_details['admin_email'])
+							->to($params['subscriber_email'])
+							->reply_to($email_details['admin_email'])
+							->subject($params['subject'])
+							->message($html);
+				$this->email->send();
+			}
+			catch(Exception $e)
+			{
+				#code...
+			}
+		}
+		else
+		{
+			echo json_encode(array('status' => 0, 'message' => 'Something went wrong. Please try again.'));die;
+		}
+
+		echo json_encode(array('status' => 1, 'message' => 'Thanks for subscribing to our newsletter.'));die;
+	}
+
 	public function static_page()
 	{
 		if ($this->uri->segment(1) == 'how-it-works') 
@@ -180,30 +231,6 @@ class Index extends CI_Controller
 
 	public function average()
 	{
-		/*$test = get_zipcode_by_city('47036');
-		print_r($test); die;*/
-		$store_id = 1;
-		$this->db->select_avg('rating');
-		$this->db->from('reviews');
-		$this->db->where(array('review_type' => REVIEW_TYPE_STORE, 'status' => REVIEW_STATUS_APPROVE, 'deleted_at' => NULL, 'receiver_id' => $store_id));
-		$query = $this->db->get(); 
-		$value = $query->row_array();
-		$value = number_format($value['rating'],2);
-
-		$value_part = explode('.', $value);
-		if ($value_part[1] == 50 || $value_part[1] == 00) 
-		{
-			$value = $value;
-		}
-		else if ($value_part[1] > 00 && $value_part[1] <= 50) 
-		{
-			$value = $value[0] + 0.50;
-		}
-		elseif ($value_part[1] >= 51 && $value_part[1] <= 99) 
-		{
-			$value = $value[0] + 1;
-		}
-		print_r(number_format($value,2)); die;
-		print_r($value); die;
+		die('CAUTION: men at work.');
 	}
 }

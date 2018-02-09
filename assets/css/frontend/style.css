@@ -498,18 +498,6 @@ section{
 	background-position: center center !important;
 	background-size:cover !important;
 }
-.deals_you_like.rstrnt_deal{
-	background:url(../../img/3.jpg);
-}
-.deals_you_like.food_deal{
-	background:url(../../img/1.jpg);
-}
-.deals_you_like.beauty_deal{
-	background:url(../../img/2.jpg);
-}
-.deals_you_like.baby_product_deal{
-	background:url(../../img/main-image.jpg);
-}
 .deals_you_like:after{
 	position: absolute;
 	height:100%;
@@ -518,7 +506,6 @@ section{
 	left:0;
 	content:'';
 	background:rgba(0,0,0,.6);
-
 }
 .deals_event h3{
 	position:relative;
@@ -534,6 +521,7 @@ section{
 	padding: 0;
 	white-space:nowrap;
 	margin-top: 180px;
+	white-space: nowrap;
 }
 .deals_you_like_des{
 	position:relative;

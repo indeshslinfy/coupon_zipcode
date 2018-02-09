@@ -20,7 +20,7 @@
 											<div class="hover_text">
 												<h3><?php echo $valueALC['store_name']; ?>&nbsp;</h3>
 												<h4><?php echo $valueALC['coupon_title']; ?></h4>
-												<h5><?php echo substr($valueALC['coupon_description'], 0, 150) . '...'; ?></h5>
+												<h5><?php echo strlen($valueALC['coupon_description']) >= 145 ? substr($valueALC['coupon_description'], 0, 145) . '...' : $valueALC['coupon_description']; ?></h5>
 											</div>
 										</div>
 									</div>
@@ -121,109 +121,51 @@
 					</div>
 					<div class="col-xs-12 col-sm-10 news_letter_content_wrap">
 						<h3>Newsletter</h3>
-						<p>Subscribe to our newsletter to find out more about Coupon Zipcode !</p>
+						<p>Subscribe to our newsletter to find out more about Coupon Zipcode.</p>
 						<form class="form-inline">
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Name">
+								<input type="text" class="form-control" placeholder="Name" id="nl_name">
 							</div>
 							<div class="form-group">
-								<input type="email" class="form-control" placeholder="Email">
+								<input type="email" class="form-control" placeholder="Email" id="nl_email">
 							</div>
-							<button type="submit" class="btn ylew_btn">SUBSCRIBE</button>
+							<button type="button" class="btn ylew_btn" onclick="subscribe_newsletter();">SUBSCRIBE</button>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="heading_text_wrap">
-				<h2>Deals You May Like</h2>
-				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
-			</div>
-			<div class="deals_event">
-				<div class="deals_you_like rstrnt_deal">
-					<div class="deals_you_like_wrap">
-						<h3>Lorem </h3>
-						<div class="deals_you_like_des">
-							<h4>Lorem ipsum</h4>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-							<a href="javascript:void(0);" class="btn btn-success">View Deals</a>
-						</div>
-					</div>
+			
+			<?php
+			if (sizeof($featured_stores) > 0)
+			{
+			?>
+				<div class="heading_text_wrap">
+					<h2>Featured Stores</h2>
 				</div>
-				<div class="deals_you_like food_deal">
-					<div class="deals_you_like_wrap">
-						<h3>Lorem</h3>
-						<div class="deals_you_like_des">
-							<h4>Lorem ipsum</h4>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-							<a href="javascript:void(0);" class="btn btn-success">View Deals</a>
-						</div>
-					</div>
-				</div>
-				<div class="deals_you_like beauty_deal">
-					<div class="deals_you_like_wrap">
-						<h3>Lorem </h3>
-						<div class="deals_you_like_des">
-							<h4>Lorem ipsum</h4>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-							<a href="javascript:void(0);" class="btn btn-success">View Deals</a>
-						</div>
-					</div>
-				</div>
-				<div class="deals_you_like baby_product_deal">
-					<div class="deals_you_like_wrap">
-						<h3>Lorem </h3>
-						<div class="deals_you_like_des">
-							<h4>Lorem ipsum</h4>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-							<a href="javascript:void(0);" class="btn btn-success">View Deals</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- <div class="row">
-				<div class="col-sm-4">
-					<div class="top_rstrnt_deal_wrap">
-						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
-						<div class="rstrnt_des_wrap">
-							<div class="location_box light_green_bg">
-								<i class="fa fa-map-marker"></i> Your Location
-							</div>
-							<div class="restrnt_desp_text_box">
-								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
-								<a href="#">exercitation ullamco </a>
+				<div class="deals_event">
+					<?php
+					foreach ($featured_stores as $keyFS => $valueFS)
+					{
+						$store_name = strlen($valueFS['store_name']) > 10 ? substr($valueFS['store_name'], 0, 8) : $valueFS['store_name'];
+					?>
+						<div class="deals_you_like rstrnt_deal" style="background:url(<?php echo base_url(str_replace("\\", "/", $valueFS['store_image'])); ?>);">
+							<div class="deals_you_like_wrap">
+								<h3><?php echo $store_name; ?></h3>
+								<div class="deals_you_like_des">
+									<h4><?php echo $valueFS['store_name']; ?></h4>
+									<small><?php echo $valueFS['store_website']; ?></small>
+									<p><?php echo strlen($valueFS['store_description']) > 60 ? substr($valueFS['store_description'], 0, 60) . '...&nbsp;' : $valueFS['store_description']; ?></p>
+									<a href="<?php echo base_url('coupon/' . $valueFS['coupon_id']); ?>" class="btn btn-success">View Deals</a>
+								</div>
 							</div>
 						</div>
-					</div>
+					<?php
+					}
+					?>
 				</div>
-				<div class="col-sm-4">
-					<div class="top_rstrnt_deal_wrap">
-						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
-						<div class="rstrnt_des_wrap">
-							<div class="location_box light_green_bg">
-								<i class="fa fa-map-marker"></i> Your Location
-							</div>
-							<div class="restrnt_desp_text_box">
-								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
-								<a href="#">exercitation ullamco </a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="top_rstrnt_deal_wrap">
-						<?php echo img('top_deal.jpg', array('alt' => 'Top Restaurant')); ?>
-						<div class="rstrnt_des_wrap">
-							<div class="location_box light_green_bg">
-								<i class="fa fa-map-marker"></i> Your Location
-							</div>
-							<div class="restrnt_desp_text_box">
-								<h3>Eiusmod tempor incididunt ut Labore et dolore magna.</h3>
-								<a href="#">exercitation ullamco </a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
+			<?php
+			}
+			?>
 		</div>			
 	</section>
 </div>

@@ -53,6 +53,7 @@ class auth_model extends CI_model
 							'cron/sync_ebay_categories',
 							'index/static_page',
 							'index/average',
+							'index/subscribe_newsletter',
 							'index/roundUpToAny',
 							'index/contact_us');
 			if (!in_array($this->router->fetch_class() . "/" . $this->router->fetch_method(), $allowed))

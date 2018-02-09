@@ -268,31 +268,54 @@ if (!function_exists('limit_string'))
     }
 }
 
-if (!function_exists('popular_stores'))
-{
-    function popular_stores($limit=5)
-    {
-    	$CI =& get_instance();
-        $CI->load->model(ADMIN_PREFIX . '/stores_model');
-		return $CI->stores_model->popular_stores($limit);
-    }
-}
-
 if (!function_exists('affiliate_categories'))
 {
     function affiliate_categories($source=false)
     {
+    	$CI =& get_instance();
     	$where_arr = array('deleted_at' => NULL);
     	if ($source)
     	{
     		$where_arr['category_source'] = $source;
     	}
 
-    	$CI =& get_instance();
 		return $CI->db->select('*, category_name as store_category_name, category_slug as store_category_slug')
 								->where($where_arr)
 								->order_by('category_name', 'ASC')
 								->get('affiliate_categories')
 								->result_array();
     }
+}
+
+if (!function_exists('popular_stores'))
+{
+	function popular_stores($limit=5)
+	{
+		$CI =& get_instance();
+		$CI->load->model(ADMIN_PREFIX . '/stores_model');
+		return $CI->stores_model->popular_stores($limit);
+	}
+}
+
+if (!function_exists('get_featured_stores'))
+{
+	function get_featured_stores($limit=false)
+	{
+		$CI =& get_instance();
+		$featured_stores = $CI->db->select('s.*, img.attachment_path as store_image, cpn.id as coupon_id')
+								->where(array('s.is_featured' => 1,
+											's.deleted_at' => NULL,
+											'img.attachment_type' => STORE_ATCH_IMAGE,
+											'img.deleted_at' => NULL,
+											'cpn.deleted_at' => NULL,
+											'cpn.status' => COUPON_STATUS_ACTIVE))
+								->join('coupons as cpn', 's.id=cpn.coupon_store_id')
+								->join('stores_attachment as img', 's.id=img.store_id');
+		if ($limit)
+		{
+			$featured_stores = $featured_stores->limit($limit);
+		}
+
+		return $featured_stores->group_by('s.id')->get('stores as s')->result_array();
+	}
 }
