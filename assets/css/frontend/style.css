@@ -854,53 +854,17 @@ footer{
     font-size: 14px;
     font-weight: 600;
 }
-/*.post_address ul li {
-    display: inline-block;
-    padding: 0 7px 0px 0px;
+.post_address p a.map_btn{
+	margin-left:8px;
 }
-.post_address ul li a{
-	font-size: 25px;
-}*/
 .post_address ul li {
     display: inline-block;
     padding: 0 0px 0px 0px;
-    height:28px;
     overflow:hidden;
 }
-.post_address ul li iframe{
- width:86px;
- height:auto;
-}
-.post_address ul li:nth-child(2) iframe{
- width:75px;
- height:auto;
-}
-.post_address ul li:last-child iframe{
- height:29px !important;
- opacity:0;
-}
-.post_address ul li:last-child iframe .ozWidgetRioButton_{
- height:29px !important;
- padding-top:5px !important;
-}
+
 .post_address ul li a{
  font-size: 25px;
-}
-.post_address ul li:last-child a{
-     position: absolute;
-      width: 59px;
-      z-index: -1;
-      font-size: 12px;
-      color:#333;
-     border: 1px solid #ccc;
-     padding: 4px 0px 5px 5px;
-}
-.post_address ul li:last-child a .fa{
- float:left;
- color:#ff0000;
- margin-right: 2px;
-    margin-top: 4px;
-    font-size:10px;
 }
 .post_coupon_detail{
 	padding-top:15px;
@@ -958,7 +922,7 @@ footer{
 }
 .post_coupon_detail .post_content table td:first-child{
 	color: #23394c;
-	width: 125px;
+	width: 100px;
 }
 .post_coupon_detail .post_content table td:last-child{
 	color: #f66414;
@@ -2490,4 +2454,53 @@ color: #2c3e50;
 }
 .newsletter_wrap form .form-group .form-control{
 	width:100%;
+}
+.share_with_socila_media{
+	display:inline-block;
+	vertical-align: middle;
+	overflow:hidden;
+	margin-left:10px;
+}
+.share_with_socila_media span{
+	background:#fff;
+	float:left;
+	position: relative;
+	z-index: 1;
+}
+.share_with_socila_media span a{
+	float:left;
+	font-size:25px;
+	padding: 0px 5px;
+	color:#cbc3c3;
+}
+.share_scl_link_wrap{
+	float:left;
+	margin-left:-150px;
+	position:relative;
+	transition:all ease .25s;
+}
+.share_scl_link_wrap li{
+	display:inline-block;
+	margin:0px 0px 0px 8px;
+}
+.share_scl_link_wrap a{
+	float: left;
+	text-align: center;
+	padding:2px;
+	font-size:18px;
+	width:30px;
+	height:30px;
+	color:#999;
+	transition: color .3s;
+	border-radius:50% !important;
+	background:#eee;
+}
+.share_scl_link_wrap a:hover{
+	color:#226F05
+}
+.share_with_socila_media:hover .share_scl_link_wrap{
+		margin-left:0px;
+}
+.write-review-btn{
+	margin-top:10px;
 }

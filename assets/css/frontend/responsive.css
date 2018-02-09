@@ -32,6 +32,8 @@
 	.cat_coupons_wrapper .sorting-div-inner .form-control{font-size:12px;padding:0px 10px !important;}
 	.sorting-div-inner .form-group:nth-child(2) .form-control{width:58%;}
 	.sorting-div-inner .form-group:nth-child(3) .form-control{width:58%;}
+	.post_coupon_detail .coupon_button{font-size: 14px;padding:2px 10px 3px;}
+	.post_coupon_detail .print_button {font-size: 14px;padding:2px 10px 3px;overflow: hidden;}
 	.newsletter_wrap{margin-top:-70px;}
 	.newsletter_wrap .news_letter_content_wrap{padding-top:10px;}
 	.newsletter_wrap h3{font-size:18px;}
@@ -64,13 +66,13 @@
 	.heading_page h2{font-size: 42px;}
 	.coupon_post::after{display: none;}
 	.product_title{font-size:20px;}
-	.post_coupon_detail .coupon_button{display:inline-block;font-size: 14px;margin-bottom: 10px;padding: 4px 10px;}
-	.post_coupon_detail .print_button {font-size: 14px;padding: 2px 17px;/*width: 37px;*/padding: 4px 10px;overflow: hidden;}
+	.post_coupon_detail .coupon_button{display:inline-block;font-size: 12px;margin-bottom: 10px;padding: 4px;}
+	.post_coupon_detail .print_button {font-size: 12px;padding: 4px;overflow: hidden;}
 	.post_coupon_detail .print_button .fa{margin-right: 12px;}
 	.post_coupon_detail .post_menu_button .ylew_btn{font-size: 14px;padding: 3px 6px;}
 	.post_coupon_detail .post_note{margin-bottom: 20px}
 	.post_coupon_detail .post_menu_button .map_btn{font-size: 14px;}
-	.post_coupon_detail .post_menu_button .post_like_unlike button { font-size: 14px; margin-top: 8px;}
+	.post_coupon_detail .post_menu_button .post_like_unlike button { font-size: 18px; margin-top: 1px;}
 	.post_detail h3{margin-bottom:6px;}
 	.post_detail p{font-size: 16px;}
 	.review_section h2{margin:10px 0px }
@@ -102,14 +104,55 @@
 	.post_address .col-xs-12{padding:0px;}
 	.post_coupon_listing{padding-left:15px;}
 }
-
+@media screen and (max-width:591px){
+	.post_detail table thead, 
+	.post_detail table tbody, 
+	.post_detail table th, 
+	.post_detail table td,
+	.post_detail table tr { 
+		display: block; 
+	}
+	
+	.post_detail table thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.post_detail table tr { border: 1px solid #ccc; }
+	
+	.post_detail table td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left:35%; 
+		text-align:left;
+	}
+	
+	.post_detail table td:before { 
+		position: absolute;
+		text-align:left;
+		top: 6px;
+		left: 6px;
+		width:30%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	.post_detail table td:nth-of-type(1):before { content: "Monday"; }
+	.post_detail table td:nth-of-type(2):before { content: "Tuesday"; }
+	.post_detail table td:nth-of-type(3):before { content: "Wednesday"; }
+	.post_detail table td:nth-of-type(4):before { content: "Thursday"; }
+	.post_detail table td:nth-of-type(5):before { content: "Friday"; }
+	.post_detail table td:nth-of-type(6):before { content: "Saturday"; }
+	.post_detail table td:nth-of-type(7):before { content: "Sunday"; }
+}
 @media screen and (max-width:479px){
 	.select_city{width:100%;margin-bottom:20px;}
 	.selct_location_wrap{width:100%;}
 	.select_city_form .btn{margin-left:0px;}
 	.select_city_form .btn,.optional_text{width:100%;}
-
 }
-@media screen and (max-width:327px){
-.post_coupon_detail .print_button{float:none;display:inline-block;}
+@media screen and (max-width:403px){
+	.share_with_socila_media{float:right;width:100%;margin-top:8px;}
 }

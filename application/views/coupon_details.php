@@ -52,12 +52,7 @@
 										<li><a target="_blank" href="<?php echo $coupon_details['store_fb_url'] ? $coupon_details['store_fb_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
 										<li><a target="_blank" href="<?php echo $coupon_details['store_tw_url'] ? $coupon_details['store_tw_url'] : 'javascript:void(0);'; ?>"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
 									</ul>
-									<ul>
-										<!-- http://112.196.33.86:8080/demo/coupon_zipcode/coupon/6 -->
-										<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo base_url('coupon/' . $coupon_details['id']); ?>" target="_blank">Share on FB</a></li>
-										<li><a href="https://twitter.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>&via=<?php echo $social_platform['twitter']; ?>&hashtags=CouponZipcode&text=<?php echo $coupon_details['coupon_title']; ?>">Tweet</a></li>
-										<li><a href="https://plus.google.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>">plus</a></li>
-									</ul>
+									
 								</div>
 							</div>
 
@@ -121,7 +116,6 @@
 												<?php
 												}
 												?>
-
 												<div class="post_like_unlike pull-right">
 													<button title="Like Store" data-strid="<?php echo $coupon_details['coupon_store_id']; ?>" data-act="<?php echo STORE_LIKE; ?>" class="<?php echo intval($coupon_details['is_liked']) ? 'liked-by-user' : ''; ?>">
 														<i class="fa fa-thumbs-up"></i>
@@ -132,6 +126,30 @@
 														<i class="fa fa-thumbs-down"></i>
 														<span><?php echo $coupon_details['store_unlikes']; ?></span>
 													</button>
+												</div>
+												<div class="share_with_socila_media">
+													<span>
+														<a href="javascript:void(0);">
+															<i class="fa fa-share-alt"></i>
+														</a>
+													</span>
+													<ul class="share_scl_link_wrap">
+															<li>
+																<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo base_url('coupon/' . $coupon_details['id']); ?>" target="_blank">
+																	<i class="fa fa-facebook-f"></i>
+																</a>
+															</li>
+															<li>
+																<a href="https://twitter.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>&via=<?php echo $social_platform['twitter']; ?>&hashtags=CouponZipcode&text=<?php echo $coupon_details['coupon_title']; ?>">
+																	<i class="fa fa-twitter"></i>
+																</a>
+															</li>
+															<li>
+																<a href="https://plus.google.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>">
+																	<i class="fa fa-google-plus"></i>
+																</a>
+															</li>
+														</ul>
 												</div>
 											</div>
 										</div>
@@ -176,7 +194,7 @@
 					<h3><?php echo $coupon_details['store_type']; ?></h3>
 					<p><?php echo $coupon_details['store_description']; ?></p>
 
-					<p>Hours:</p>
+					<p>Working Hours:</p>
 					<div class="table-responsive">
 						<table class="table">
 							<thead>
