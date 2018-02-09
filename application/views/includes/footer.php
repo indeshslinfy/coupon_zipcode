@@ -163,10 +163,8 @@
 			        			<a href="javascript:void(0);" class="btn ylew_btn" id="search_zipcode">Select</a>
 			        		</div>
 			        		<div class="form-group">
-			        			<div class="selct_location_wrap">
-			        				<span class="optional_text">or</span>
+			        			<span class="optional_text">or</span>
 			        				<a href="javascript:void(0);" onclick="getLocation();" class="btn ylew_btn currnt_loc_btn">Use My Current Location</a>
-			        			</div>
 			        		</div>
 			        	</div>
 					</form>

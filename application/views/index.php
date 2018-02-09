@@ -18,7 +18,7 @@
 									<div class="hover_div">
 										<div class="hover_text_wrap">
 											<div class="hover_text">
-												<h3><?php echo $valueALC['store_name']; ?>&nbsp;<i class="fa fa-long-arrow-right"></i> </h3>
+												<h3><?php echo $valueALC['store_name']; ?>&nbsp;</h3>
 												<h4><?php echo $valueALC['coupon_title']; ?></h4>
 												<h5><?php echo substr($valueALC['coupon_description'], 0, 150) . '...'; ?></h5>
 											</div>
