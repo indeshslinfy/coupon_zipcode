@@ -3,6 +3,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require('vendor/autoload.php');
+use MarcL\AmazonAPI;
+use MarcL\AmazonUrlBuilder;
 class Affiliates
 {
 	public function get_deals($service_provider, $params)
@@ -15,6 +18,10 @@ class Affiliates
 
 			case 'ebay':
 				return $this->ebay_deals($params);
+				break;
+
+			case 'amazon':
+				return $this->amazon_deals($params);
 				break;
 			
 			default:
@@ -105,5 +112,22 @@ class Affiliates
 
 		// print_r($api_url);die;
 		return json_decode(json_encode(simplexml_load_file($api_url)), true);
+	}
+
+	public function amazon_deals($params)
+	{
+		$CI =& get_instance();
+		$CI->load->model('settings_model');
+
+		$amazon_details = $CI->settings_model->get_settings('amazon');
+		$urlBuilder = new AmazonUrlBuilder($amazon_details['keyId'],
+											$amazon_details['secretKey'],
+											$amazon_details['associateId'],
+											$amazon_details['country']);
+
+		$amazonAPI = new AmazonAPI($urlBuilder, 'simple');
+		$items = $amazonAPI->ItemSearch($params['keyword'], $params['type_val']);
+
+		return $items;
 	}
 }

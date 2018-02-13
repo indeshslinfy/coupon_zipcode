@@ -99,7 +99,7 @@
 		<div class="container">
 			<div class="heading_text_wrap">
 				<h2>Products/Deals You May Like</h2>
-				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
+				<a href="<?php echo base_url('deals?search_src=home_pg&cat_name=&store_zipcode=&src=ebay&price_range%5B%5D=&price_range%5B%5D=&keyword=' . $coupons['ebay']['keyword'] . '&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
 			</div>
 
 			<div class="row">
@@ -138,7 +138,31 @@
 		<div class="container">
 			<div class="heading_text_wrap">
 				<h2>Express Your Love This Valentine Week</h2>
-				<a href="<?php echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=ebay&price_range[]=&price_range[]=&keyword=valentine&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+				<a href="<?php echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=amazon&price_range%5B%5D=&price_range%5B%5D=&keyword=Valentine+Gift&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+			</div>
+
+			<div class="row">
+				<?php
+				$coupons['amazon'] = array_slice($coupons['amazon'], 6);
+				foreach ($coupons['amazon'] as $keyCL => $valueCL)
+				{
+				?>
+					<div class="col-sm-3">
+						<a href="<?php echo $valueCL['url']; ?>">
+							<div class="top_rstrnt_deal_wrap">
+								<img src="<?php echo $valueCL['mediumImage']; ?>" alt="<?php echo $valueCL['asin']; ?>">
+								<span><?php echo img('powered-by-amazon.jpg'); ?></span>
+								<div class="rstrnt_des_wrap">
+									<div class="restrnt_desp_text_box">
+										<h3 title="<?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?>"><?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?></h3>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				<?php
+				}
+				?>
 			</div>
 
 			<div class="row">

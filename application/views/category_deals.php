@@ -51,6 +51,10 @@
 											<input type="radio" name="src" value="ebay" <?php echo isset($_GET['src']) && $_GET['src'] == 'ebay' ? 'checked' : ''; ?>>&nbsp;
 											<span>Ebay</span>
 										</li>
+										<li>
+											<input type="radio" name="src" value="amazon" <?php echo isset($_GET['src']) && $_GET['src'] == 'amazon' ? 'checked' : ''; ?>>&nbsp;
+											<span>Amazon</span>
+										</li>
 									</ul>
 									<hr>
 								</div>
@@ -158,6 +162,11 @@
 													elseif ($valueSub['category_source'] == CATEGORY_SRC_GROUPON)
 													{
 														$src_cat_str = 'groupon-cat';
+														$cat_val = $valueSub['store_category_slug'];
+													}
+													elseif ($valueSub['category_source'] == CATEGORY_SRC_AMAZON)
+													{
+														$src_cat_str = 'amazon-cat';
 														$cat_val = $valueSub['store_category_slug'];
 													}
 												}
@@ -314,6 +323,32 @@
 										$cnt == 4 ? $cnt = 1 : $cnt++;
 									}
 								}
+								elseif (array_key_exists('amazon', $coupons))
+								{
+									foreach ($coupons['amazon'] as $keyCC => $valueCC)
+									{
+										echo $cnt == 1 ? '<div class="row">' : '';
+									?>
+										<div class="col-sm-3 cpn_adjst_img">
+											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
+												<div class="top_rstrnt_deal_wrap">
+													<div class="cat_img_div">
+														<img src="<?php echo $valueCC['largeImage']; ?>" alt="<?php echo $valueCC['asin']; ?>">
+													</div>
+													<div class="rstrnt_des_wrap">
+														<div class="restrnt_desp_text_box">
+															<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
+															<p>Price:&nbsp;<?php echo $valueCC['lowestPrice']; ?></p>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<?php
+										echo $cnt == 4 ? '</div>' : '';
+										$cnt == 4 ? $cnt = 1 : $cnt++;
+									}
+								}
 							}
 							else
 							{
@@ -435,6 +470,14 @@ function toggle_filters(ele)
 
 			$('.filter_cat_div ul').children('li[data-src=ebay-cat]').removeClass('hide');
 			$('.filter_cat_div ul li[data-src=ebay-cat]').children('input').attr('name', 'cat[]');
+		}
+		else if (selected_src.val() == 'amazon')
+		{
+			// $('.filter_range_div').removeClass('hide');
+			// $('.filter_keyword_div').removeClass('hide');
+
+			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
+			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
 		}
 
 		$('.filter_dt_div').addClass('hide');

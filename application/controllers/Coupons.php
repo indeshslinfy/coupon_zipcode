@@ -58,6 +58,7 @@ class Coupons extends CI_Controller {
 		$data['all_categories']['local'] = $this->stores_category_model->all_records();
 		$data['all_categories']['groupon'] = affiliate_categories(CATEGORY_SRC_GROUPON);
 		$data['all_categories']['ebay'] = affiliate_categories(CATEGORY_SRC_EBAY);
+		$data['all_categories']['amazon'] = affiliate_categories(CATEGORY_SRC_AMAZON);
 
 		// 'CATEGORY PAGE' SEARCH
 		if ($this->uri->segment(1) == 'category')
@@ -121,7 +122,7 @@ class Coupons extends CI_Controller {
 						$_GET['type'] = 'category';
 						$_GET['type_val'] = $valueCAT;
 						$_GET['paginate'] = array('offset' => 0, 'limit' => 5);
-						$deals = $this->affiliates->get_deals('groupon', $_GET);
+						$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
 						if (sizeof($deals) > 0)
 						{
 							$groupon_deals = array_merge($groupon_deals, $deals->deals);
@@ -153,7 +154,7 @@ class Coupons extends CI_Controller {
 					$_GET['type_val'] = $_GET['keyword'];
 
 					// ADVANCED SEARCH - both category and keyword
-					$deals = $this->affiliates->get_deals('ebay', $_GET);
+					$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
 					if ($deals['ack'] == 'Success')
 					{
 						$ebay_deals = $deals['searchResult']['item'];
@@ -165,19 +166,18 @@ class Coupons extends CI_Controller {
 					foreach ($_GET['cat'] as $keyCAT => $valueCAT)
 					{
 						$_GET['type_val'] = $valueCAT;
-						$deals = $this->affiliates->get_deals('ebay', $_GET);
+						$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
 						if ($deals['ack'] == 'Success')
 						{
 							$ebay_deals = array_merge($ebay_deals, $deals['searchResult']['item']);
 						}
 					}
-
 				}
 				elseif (array_key_exists('keyword', $_GET) && $_GET['keyword'] != '')
 				{
 					$_GET['type'] = 'keyword';
 					$_GET['type_val'] = $_GET['keyword'];
-					$deals = $this->affiliates->get_deals('ebay', $_GET);
+					$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
 					if ($deals['ack'] == 'Success')
 					{
 						$ebay_deals = $deals['searchResult']['item'];
@@ -187,7 +187,7 @@ class Coupons extends CI_Controller {
 				{
 					$_GET['type'] = '';
 					$_GET['type_val'] = '';
-					$deals = $this->affiliates->get_deals('ebay', $_GET);
+					$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
 					if ($deals['ack'] == 'Success')
 					{
 						$ebay_deals = $deals['searchResult']['item'];
@@ -197,6 +197,35 @@ class Coupons extends CI_Controller {
 				$data['coupons']['ebay'] = $ebay_deals;
 				$total_coupons_fetched = sizeof($data['coupons']['ebay']);
 			}
+		}
+		else if ($_GET['src'] == 'amazon')
+		{
+			$amazon_deals = array();
+			$_GET['type'] = 'category';
+			if (sizeof($_GET['cat']) > 0)
+			{
+				foreach ($_GET['cat'] as $keyCAT => $valueCAT)
+				{
+					$_GET['type_val'] = $valueCAT;
+					$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+					if (sizeof($deals) > 0)
+					{
+						$amazon_deals = array_merge($amazon_deals, $deals);
+					}
+				}
+			}
+			else
+			{
+				$_GET['type_val'] = 'All';
+				$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+				if (sizeof($deals) > 0)
+				{
+					$amazon_deals = array_merge($amazon_deals, $deals);
+				}
+			}
+
+			$data['coupons']['amazon'] = $amazon_deals;
+			$total_coupons_fetched = sizeof($data['coupons']['amazon']);
 		}
 		else
 		{

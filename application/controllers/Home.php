@@ -45,6 +45,7 @@ class Home extends CI_Controller
 																					'type_val' => array('lat' => $lat, 'long' => $long),
 																					'paginate' => array('offset' => 0, 'limit' => 4)));
 
+		// EBAY 1
 		$ebay_keywords = array('Liquid Phone Cases', 'Electronic Cigarettes', 'Drones', 'Fitness Trackers');
 		$keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
 		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
@@ -54,8 +55,9 @@ class Home extends CI_Controller
 																'currency' => 'USD',
 																'keyword' => $keyword));
 		$data['coupons']['ebay']['items']['via_keyword'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
+		$data['coupons']['ebay']['keyword'] = $keyword;
 
-		
+		// EBAY 2
 		$ebay_keywords = array('Valentine Gift Toy', 'Valentine', 'valentine gifts for him', 'valentine gifts for her', 'valentine love');
 		$valentine_keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
 		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
@@ -65,6 +67,9 @@ class Home extends CI_Controller
 																'currency' => 'USD',
 																'keyword' => $valentine_keyword));
 		$data['coupons']['ebay']['items']['trending'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
+		$data['coupons']['ebay']['valentine_keyword'] = $valentine_keyword;
+
+		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'valentine gift', 'type_val' => 'All'));
 
 		$this->load->template('index', $data);
 	}
@@ -94,31 +99,6 @@ class Home extends CI_Controller
 		}
 
 		echo json_encode(array("status" => $zipcode_details['status'], "zipcode" => $zipcode_details['data']));die();
-	}
-
-	public function fetch_deals($type, $type_val, $paginate)
-	{
-		$groupon_details = $this->settings_model->get_settings('groupon');
-		$groupon_details['wid'] = urlencode(base_url());
-
-		switch ($type)
-		{
-			case 'location':
-				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&division_id=' . $type_val . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
-				break;
-
-			case 'latlong':
-				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&lat=' . $type_val['lat'] . '&lng=' . $type_val['long'] . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
-				break;
-			
-			case 'category':
-				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&filters=category:' . $type_val . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
-				break;
-			
-			default:
-				return false;
-				break;
-		}
 	}
 
 	public function get_geo_location()
