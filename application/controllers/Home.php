@@ -7,8 +7,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->library('Excel');
-         $this->load->helper('cookie');
-         
+        $this->load->helper('cookie');
     }
 	/**
 	 * Index Page for this controller.
@@ -40,7 +39,33 @@ class Home extends CI_Controller
 		}
 
 		$data['featured_stores'] = get_featured_stores(4);
-		$data['coupons_by_location'] = $this->fetch_deals('latlong', array('lat' => $lat, 'long' => $long), array('offset' => 0, 'limit' => 4));
+		$this->load->library('affiliates');
+
+		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon', array('type' => 'latlong',
+																					'type_val' => array('lat' => $lat, 'long' => $long),
+																					'paginate' => array('offset' => 0, 'limit' => 4)));
+
+		$ebay_keywords = array('Liquid Phone Cases', 'Electronic Cigarettes', 'Drones', 'Fitness Trackers');
+		$keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
+		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
+																'type_val' => '10002',
+																'limit' => 4,
+																'offset' => 1,
+																'currency' => 'USD',
+																'keyword' => $keyword));
+		$data['coupons']['ebay']['items']['via_keyword'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
+
+		
+		$ebay_keywords = array('Valentine Gift Toy', 'Valentine', 'valentine gifts for him', 'valentine gifts for her', 'valentine love');
+		$valentine_keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
+		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
+																'type_val' => '10002',
+																'limit' => 4,
+																'offset' => 1,
+																'currency' => 'USD',
+																'keyword' => $valentine_keyword));
+		$data['coupons']['ebay']['items']['trending'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
+
 		$this->load->template('index', $data);
 	}
 

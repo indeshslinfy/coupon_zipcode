@@ -247,10 +247,6 @@
 														</div>
 														<div class="restrnt_desp_text_box">
 															<h4 title="<?php echo $valueCC['coupon_title']; ?>"><?php echo strlen($valueCC['coupon_title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['coupon_title']; ?></h4>
-															<!-- <p>
-																<i>Category:&nbsp;<small class="deal_tag"><?php echo $valueCC['store_category_name']; ?></small>
-																</i>
-															</p> -->
 														</div>
 													</div>
 												</div>
@@ -274,25 +270,8 @@
 														<img src="<?php echo $valueCC->grid4ImageUrl; ?>" alt="<?php echo $valueCC->shortAnnouncementTitle; ?>">
 													</div>
 													<div class="rstrnt_des_wrap">
-														<div class="location_box light_green_bg">
-															<i class="fa fa-map-marker"></i>&nbsp;
-															<?php echo strlen($valueCC->redemptionLocation) > 30 ? substr($valueCC->redemptionLocation, 0, 30) . "..." : $valueCC->redemptionLocation; ?>
-														</div>
 														<div class="restrnt_desp_text_box">
-															<h4><?php echo strlen($valueCC->title) > 36 ? substr($valueCC->title, 0, 37) . "..." : $valueCC->title; ?></h4>
-															<p>
-																<i>Categories:&nbsp;
-																<?php
-																	$sliced_tags = array_slice($valueCC->tags, 0, 5);
-																	foreach ($sliced_tags as $keyTG => $valueTG)
-																	{
-																	?>
-																		<small class="deal_tag"><?php echo $valueTG->name; echo $keyTG+1 != sizeof($sliced_tags) ? ', ' : ''; ?></small>
-																	<?php
-																	}
-																?>
-																</i>
-															</p>
+															<h4><?php echo $valueCC->announcementTitle; ?></h4>
 														</div>
 													</div>
 												</div>
@@ -316,15 +295,15 @@
 														<img src="<?php echo $valueCC['galleryURL']; ?>" alt="<?php echo $valueCC['subtitle']; ?>">
 													</div>
 													<div class="rstrnt_des_wrap">
-														<div class="location_box light_green_bg">
+														<!-- <div class="location_box light_green_bg">
 															<i class="fa fa-map-marker"></i>&nbsp;
 															<?php echo strlen($valueCC['location']) > 30 ? substr($valueCC['location'], 0, 30) . "..." : $valueCC['location']; ?>
-														</div>
+														</div> -->
 														<div class="restrnt_desp_text_box">
 															<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
-															<p>
+															<!-- <p>
 																Price:&nbsp;<?php echo $valueCC['sellingStatus']['currentPrice']; ?>
-															</p>
+															</p> -->
 														</div>
 													</div>
 												</div>

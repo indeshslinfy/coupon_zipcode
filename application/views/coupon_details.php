@@ -135,22 +135,22 @@
 														</a>
 													</span>
 													<ul class="share_scl_link_wrap">
-															<li>
-																<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo base_url('coupon/' . $coupon_details['id']); ?>" target="_blank">
-																	<i class="fa fa-facebook-f"></i>
-																</a>
-															</li>
-															<li>
-																<a href="https://twitter.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>&via=<?php echo $social_platform['twitter']; ?>&hashtags=CouponZipcode&text=<?php echo $coupon_details['coupon_title']; ?>">
-																	<i class="fa fa-twitter"></i>
-																</a>
-															</li>
-															<li>
-																<a href="https://plus.google.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>">
-																	<i class="fa fa-google-plus"></i>
-																</a>
-															</li>
-														</ul>
+														<li>
+															<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo base_url('coupon/' . $coupon_details['id']); ?>" target="_blank">
+																<i class="fa fa-facebook-f"></i>
+															</a>
+														</li>
+														<li>
+															<a href="https://twitter.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>&via=<?php echo $social_platform['twitter']; ?>&hashtags=CouponZipcode&text=<?php echo $coupon_details['coupon_title']; ?>">
+																<i class="fa fa-twitter"></i>
+															</a>
+														</li>
+														<li>
+															<a href="https://plus.google.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>">
+																<i class="fa fa-google-plus"></i>
+															</a>
+														</li>
+													</ul>
 												</div>
 											</div>
 										</div>

@@ -49,6 +49,8 @@ class Coupons extends CI_Controller {
 
 	public function list_deals()
 	{
+		$this->load->library('affiliates');
+
 		$data['title'] = 'Deals';
 		$total_coupons_fetched = 0;
 
@@ -116,7 +118,10 @@ class Coupons extends CI_Controller {
 					$groupon_deals = array();
 					foreach ($_GET['cat'] as $keyCAT => $valueCAT)
 					{
-						$deals = $this->fetch_deals('category', $valueCAT, array('offset' => 0, 'limit' => 5));
+						$_GET['type'] = 'category';
+						$_GET['type_val'] = $valueCAT;
+						$_GET['paginate'] = array('offset' => 0, 'limit' => 5);
+						$deals = $this->affiliates->get_deals('groupon', $_GET);
 						if (sizeof($deals) > 0)
 						{
 							$groupon_deals = array_merge($groupon_deals, $deals->deals);
@@ -144,8 +149,11 @@ class Coupons extends CI_Controller {
 				$ebay_deals = array();
 				if ((sizeof($_GET['cat']) > 0) && (array_key_exists('keyword', $_GET) && $_GET['keyword'] != ''))
 				{
+					$_GET['type'] = 'advanced';
+					$_GET['type_val'] = $_GET['keyword'];
+
 					// ADVANCED SEARCH - both category and keyword
-					$deals = $this->fetch_ebay_deals('advanced', $_GET['keyword'], $_GET);
+					$deals = $this->affiliates->get_deals('ebay', $_GET);
 					if ($deals['ack'] == 'Success')
 					{
 						$ebay_deals = $deals['searchResult']['item'];
@@ -153,9 +161,11 @@ class Coupons extends CI_Controller {
 				}
 				elseif (sizeof($_GET['cat']) > 0)
 				{
+					$_GET['type'] = 'category';
 					foreach ($_GET['cat'] as $keyCAT => $valueCAT)
 					{
-						$deals = $this->fetch_ebay_deals('category', $valueCAT, $_GET);
+						$_GET['type_val'] = $valueCAT;
+						$deals = $this->affiliates->get_deals('ebay', $_GET);
 						if ($deals['ack'] == 'Success')
 						{
 							$ebay_deals = array_merge($ebay_deals, $deals['searchResult']['item']);
@@ -165,7 +175,9 @@ class Coupons extends CI_Controller {
 				}
 				elseif (array_key_exists('keyword', $_GET) && $_GET['keyword'] != '')
 				{
-					$deals = $this->fetch_ebay_deals('keyword', $_GET['keyword'], $_GET);
+					$_GET['type'] = 'keyword';
+					$_GET['type_val'] = $_GET['keyword'];
+					$deals = $this->affiliates->get_deals('ebay', $_GET);
 					if ($deals['ack'] == 'Success')
 					{
 						$ebay_deals = $deals['searchResult']['item'];
@@ -173,7 +185,9 @@ class Coupons extends CI_Controller {
 				}
 				else
 				{
-					$deals = $this->fetch_ebay_deals('', '', $_GET);
+					$_GET['type'] = '';
+					$_GET['type_val'] = '';
+					$deals = $this->affiliates->get_deals('ebay', $_GET);
 					if ($deals['ack'] == 'Success')
 					{
 						$ebay_deals = $deals['searchResult']['item'];
@@ -285,73 +299,5 @@ class Coupons extends CI_Controller {
 		}
 
 		echo json_encode(array("status" => 0, "message" => "Something went wrong. Please try again."));die();
-	}
-
-	public function fetch_deals($type, $type_val, $paginate)
-	{
-		$groupon_details = $this->settings_model->get_settings('groupon');
-		$groupon_details['wid'] = urlencode(base_url());
-
-		switch ($type)
-		{
-			case 'location':
-				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&division_id=' . $type_val . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
-				break;
-			
-			case 'category':
-				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&filters=category:' . $type_val . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $paginate['offset'] . '&limit=' . $paginate['limit'])));
-				break;
-			
-			default:
-				return false;
-				break;
-		}
-	}
-
-	public function fetch_ebay_deals($type, $type_val, $filters)
-	{
-		$ebay_details = $this->settings_model->get_settings('ebay');
-
-		$api_url = 'http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&paginationInput.entriesPerPage=' . $filters['limit'] . '&paginationInput.pageNumber='. $filters['offset'] . '&affiliate.networkId=9&affiliate.trackingId=' . $ebay_details['camp_id'] . '&affiliate.customId=123';
-		if (array_key_exists('sort_order', $filters)) 
-		{
-			$api_url .= '&sortOrder='. $filters['sort_order'];
-		}
-
-		if (array_key_exists('price_range', $filters)) 
-		{
-			if (array_key_exists(0, $filters['price_range']) && intval($filters['price_range'][0]) > 0)
-			{
-				// SET MIN
-				$api_url .= '&itemFilter(0).name=MinPrice&itemFilter(0).value=' . $filters['price_range'][0] . '&itemFilter(0).paramName=Currency&itemFilter(0).paramValue=' . $filters['currency'];
-			}
-			
-			if (array_key_exists(1, $filters['price_range']) && intval($filters['price_range'][1]) > 0)
-			{
-				// SET MAX
-				$api_url .= '&itemFilter(1).name=MaxPrice&itemFilter(1).value=' . $filters['price_range'][0] . '&itemFilter(1).paramName=Currency&itemFilter(1).paramValue=' . $filters['currency'];
-			}
-		}
-
-		switch ($type)
-		{
-			case 'category':
-				$api_url .= '&categoryId=' . $type_val . '&OPERATION-NAME=findItemsByCategory';
-				break;
-
-			case 'keyword':
-				$api_url .= '&keywords=' . $type_val . '&OPERATION-NAME=findItemsByKeywords';
-				break;
-
-			case 'advanced':
-				$api_url .= '&categoryId=' . $filters['cat'][0] . '&keywords=' . $filters['keyword'] . '&OPERATION-NAME=findItemsAdvanced';
-				break;
-
-			default:
-				$api_url .= '&keywords=ebay&OPERATION-NAME=findItemsAdvanced';
-				break;
-		}
-		// print_r($api_url);die;
-		return json_decode(json_encode(simplexml_load_file($api_url)), true);
 	}
 }
