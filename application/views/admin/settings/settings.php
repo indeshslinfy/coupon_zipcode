@@ -210,6 +210,46 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
+
+                                    <h4>Amazon</h4>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Amazon KEY ID&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="amazon[keyId]" value="<?php echo $amazon['keyId']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Amazon Secret Key&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="amazon[secretKey]" value="<?php echo $amazon['secretKey']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Amazon Associate Id&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="amazon[associateId]" value="<?php echo $amazon['associateId']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Amazon Country&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="amazon[country]" value="<?php echo $amazon['country']; ?>" class="form-control" required="" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <h4>Walmart</h4>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Walmart API KEY&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="walmart[apiKey]" value="<?php echo $walmart['apiKey']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-12">

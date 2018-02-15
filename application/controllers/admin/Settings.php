@@ -26,6 +26,8 @@ class Settings extends CI_Controller
 		$data['google_map_key'] = $this->settings_model->get_settings('google_map_key');
 		$data['groupon'] = $this->settings_model->get_settings('groupon');
 		$data['ebay'] = $this->settings_model->get_settings('ebay');
+		$data['amazon'] = $this->settings_model->get_settings('amazon');
+		$data['walmart'] = $this->settings_model->get_settings('walmart');
 		$data['general_settings'] = $this->settings_model->get_settings('general_settings');
 		$data['social_platform'] = $this->settings_model->get_settings('social_platform');
 		$data['zipcode_search_radius'] = $this->settings_model->get_settings('zipcode_search_radius');
