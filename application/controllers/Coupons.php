@@ -200,8 +200,43 @@ class Coupons extends CI_Controller {
 		}
 		else if ($_GET['src'] == 'amazon')
 		{
-			$amazon_deals = array();
 			$_GET['type'] = 'category';
+			$_GET['MinimumPrice'] = $_GET['price_range'][0];
+			$_GET['MaximumPrice'] = $_GET['price_range'][1];
+			
+			$amazon_deals = array();
+			if (sizeof($_GET['cat']) > 0)
+			{
+				foreach ($_GET['cat'] as $keyCAT => $valueCAT)
+				{
+					$_GET['type_val'] = $valueCAT;
+					$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+					if (sizeof($deals) > 0)
+					{
+						$amazon_deals = array_merge($amazon_deals, $deals);
+					}
+				}
+			}
+			else
+			{
+				$_GET['type_val'] = 'All';
+				$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+				if (sizeof($deals) > 0)
+				{
+					$amazon_deals = array_merge($amazon_deals, $deals);
+				}
+			}
+
+			$data['coupons']['amazon'] = $amazon_deals;
+			$total_coupons_fetched = sizeof($data['coupons']['amazon']);
+		}
+		else if ($_GET['src'] == 'wallmart')
+		{
+			$_GET['type'] = 'category';
+			$_GET['MinimumPrice'] = $_GET['price_range'][0];
+			$_GET['MaximumPrice'] = $_GET['price_range'][1];
+			
+			$amazon_deals = array();
 			if (sizeof($_GET['cat']) > 0)
 			{
 				foreach ($_GET['cat'] as $keyCAT => $valueCAT)
@@ -324,7 +359,7 @@ class Coupons extends CI_Controller {
 
 			$review = $this->coupons_model->submit_store_review($params);
 			$review['data']['review_date'] = date("F jS, Y", strtotime($review['data']['created_at']));
-			echo json_encode($review);die();
+			echo json_encode($review);die;
 		}
 
 		echo json_encode(array("status" => 0, "message" => "Something went wrong. Please try again."));die();

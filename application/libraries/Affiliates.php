@@ -110,7 +110,6 @@ class Affiliates
 				break;
 		}
 
-		// print_r($api_url);die;
 		return json_decode(json_encode(simplexml_load_file($api_url)), true);
 	}
 
@@ -126,8 +125,8 @@ class Affiliates
 											$amazon_details['country']);
 
 		$amazonAPI = new AmazonAPI($urlBuilder, 'simple');
-		$items = $amazonAPI->ItemSearch($params['keyword'], $params['type_val']);
-
+		$items = $amazonAPI->ItemSearch($params);
+		
 		return $items;
 	}
 }
