@@ -364,47 +364,6 @@
 										$cnt == 4 ? $cnt = 1 : $cnt++;
 									}
 								}
-								elseif (array_key_exists('wallmart', $coupons))
-								{
-									foreach ($coupons['wallmart'] as $keyCC => $valueCC)
-									{
-										echo $cnt == 1 ? '<div class="row">' : '';
-									?>
-										<div class="col-sm-3 cpn_adjst_img">
-											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
-												<div class="top_rstrnt_deal_wrap">
-													<div class="cat_img_div">
-														<img src="<?php echo $valueCC['largeImage']; ?>" alt="<?php echo $valueCC['asin']; ?>">
-														<span><?php echo img('powered-by-amazon.jpg'); ?></span>
-													</div>
-													<div class="rstrnt_des_wrap">
-														<div class="restrnt_desp_text_box">
-															<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
-															<?php
-															$price_str = 'Get Price NOW';
-															if ($valueCC['rrp'] != 0.00)
-															{
-																if ($valueCC['lowestPrice'] < $valueCC['rrp'])
-																{
-																	$price_str = "Price:&nbsp;<strike>" . $valueCC['rrp'] . "</strike>&nbsp;" . $valueCC['lowestPrice'];
-																}
-																else
-																{
-																	$price_str = "Price:&nbsp;" . $valueCC['lowestPrice'];
-																}
-															}
-															?>
-															<p><?php echo $price_str; ?></p>
-														</div>
-													</div>
-												</div>
-											</a>
-										</div>
-									<?php
-										echo $cnt == 4 ? '</div>' : '';
-										$cnt == 4 ? $cnt = 1 : $cnt++;
-									}
-								}
 							}
 							else
 							{

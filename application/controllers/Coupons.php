@@ -230,38 +230,6 @@ class Coupons extends CI_Controller {
 			$data['coupons']['amazon'] = $amazon_deals;
 			$total_coupons_fetched = sizeof($data['coupons']['amazon']);
 		}
-		else if ($_GET['src'] == 'wallmart')
-		{
-			$_GET['type'] = 'category';
-			$_GET['MinimumPrice'] = $_GET['price_range'][0];
-			$_GET['MaximumPrice'] = $_GET['price_range'][1];
-			
-			$amazon_deals = array();
-			if (sizeof($_GET['cat']) > 0)
-			{
-				foreach ($_GET['cat'] as $keyCAT => $valueCAT)
-				{
-					$_GET['type_val'] = $valueCAT;
-					$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
-					if (sizeof($deals) > 0)
-					{
-						$amazon_deals = array_merge($amazon_deals, $deals);
-					}
-				}
-			}
-			else
-			{
-				$_GET['type_val'] = 'All';
-				$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
-				if (sizeof($deals) > 0)
-				{
-					$amazon_deals = array_merge($amazon_deals, $deals);
-				}
-			}
-
-			$data['coupons']['amazon'] = $amazon_deals;
-			$total_coupons_fetched = sizeof($data['coupons']['amazon']);
-		}
 		else
 		{
 			$this->load->model(ADMIN_PREFIX . '/stores_model');
