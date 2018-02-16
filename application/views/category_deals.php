@@ -29,7 +29,7 @@
 							<form action="<?php echo base_url() . 'deals'; ?>" id="deal_search_form">
 								<div class="filter_btns_div">
 									<input type="hidden" name="search_src" value="search_pg">
-									<input type="hidden" class="form-control" name="cat_name" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : $_GET['cat_name']; ?>">
+									<input type="hidden" class="form-control" name="cat_name" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : ''; ?>">
 									<input type="hidden" class="form-control" name="store_zipcode" value="<?php echo isset($_GET['store_zipcode']) ? $_GET['store_zipcode'] : $_GET['store_zipcode']; ?>">
 									&nbsp;<button type="button" class="btn default_btn" style="width: 46%;" onclick="clear_filters(this, 'all');">Clear All</button>
 									<button class="btn green_btn text-center" style="width: 46%;">Apply</button>&nbsp;
@@ -384,10 +384,10 @@
 							}
 							?>
 						</div>
+					</div>
 
-						<div class="load-more-div">
-							<button type="button" onclick="load_more();" id="load_more_btn" class="btn ylew_btn">Load More</button>
-						</div>
+					<div class="load-more-div">
+						<button type="button" onclick="load_more(this);" id="load_more_btn" class="btn ylew_btn">Load More</button>
 					</div>
 				</div>
 			</div>
@@ -528,7 +528,7 @@ function clear_filters(ele, target)
 }
 
 var deals_page = 1;
-function load_more()
+function load_more(ele)
 {
 	deals_page = deals_page + 1;
 	$.ajax({
@@ -536,15 +536,17 @@ function load_more()
 		method: 'GET',
 		dataType: 'json',
 		beforeSend: function( xhr ) {
-			// console.log('in progress', xhr);
+			$(ele).html('Loading...');
+			$(ele).attr('disabled', 'disabled');
 		},
 		success: function(result)
 		{
-			$("#load_more_btn").parent('div').before(result);
+			$('.exclusive_coupan.cat_coupons').append(result);
 			$("body").getNiceScroll().resize();
 		},
 		complete: function (jqXHR, status) {
-			// console.log('in progress', status);
+			$(ele).html('Load More');
+			$(ele).removeAttr('disabled');
 		}
 	});
 }

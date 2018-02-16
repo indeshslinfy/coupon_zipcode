@@ -46,11 +46,9 @@
 
 			<div class="row">
 				<?php
-				// $cnt = 1;
 				$js_deals_arr = array();
 				foreach ($coupons['groupon']->deals as $keyCL => $valueCL)
 				{
-					// echo $cnt == 1 ? '<div class="row">' : '';
 					$js_deals_arr[$valueCL->uuid] = array('title' => $valueCL->title,
 												'short_title' => $valueCL->shortAnnouncementTitle,
 												'image' => $valueCL->grid4ImageUrl,
@@ -84,8 +82,30 @@
 						</a>
 					</div>
 				<?php
-					// echo $cnt == 4 ? '</div>' : '';
-					// $cnt == 4 ? $cnt = 1 : $cnt++;
+				}
+				for ($i=0; $i <4 ; $i++)
+				{
+				?>
+					<!-- <div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="timeline-item">
+							<div class="animated-background facebook">
+								<div class="background-masker header-top"></div>
+								<div class="background-masker header-left"></div>
+								<div class="background-masker header-right"></div>
+								<div class="background-masker header-bottom"></div>
+								<div class="background-masker subheader-left"></div>
+								<div class="background-masker subheader-right"></div>
+								<div class="background-masker subheader-bottom"></div>
+								<div class="background-masker content-top"></div>
+								<div class="background-masker content-first-end"></div>
+								<div class="background-masker content-second-line"></div>
+								<div class="background-masker content-second-end"></div>
+								<div class="background-masker content-third-line"></div>
+								<div class="background-masker content-third-end"></div>
+							</div>
+						</div>
+					</div> -->
+				<?php
 				}
 				?>
 			</div>
@@ -93,7 +113,6 @@
 			<script type="text/javascript">
 				var iDeals = <?php echo json_encode($js_deals_arr, JSON_FORCE_OBJECT); ?>;
 			</script>
-
 		</div>
 	</section>
 </div>
@@ -220,7 +239,7 @@
 	</section>
 </div>
 
-<a href="javascript:void(0);" class="move_to_top" onclick="topFunction()" id="myBtn" title="Go to top"><?php echo img('move-to-top.png'); ?></a>
+<a href="javascript:void(0);" class="move_to_top" onclick="to_top()" id="myBtn" title="Go to top"><?php echo img('move-to-top.png'); ?></a>
 
 <div class="row">
 	<section class="top_rstrnt_deal">
@@ -282,48 +301,6 @@
 	</section>
 </div>
 
-<script type="text/javascript">
-	function group_deal_popup(ele, uuid)
-	{
-		$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').hide();
-		$('#groupon_deal_popup .light_slider_wrap').html('<img src="' + iDeals[uuid]['image'] + '">');
-		$('#groupon_deal_popup .deal_title').html(iDeals[uuid]['title']);
-
-		if (iDeals[uuid]['location'] == null || iDeals[uuid]['location'] == '')
-		{
-			$(".map_wrap").hide();
-			$('#groupon_deal_popup #redemption_location').parent('h4').hide();
-		}
-		else
-		{
-			$('#groupon_deal_popup #redemption_location').html(iDeals[uuid]['location']);
-
-			$(".map_wrap").show();
-			initMap(iDeals[uuid]['latitude'], iDeals[uuid]['longitude']);
-		}
-
-		if (iDeals[uuid]['actual_price'] == null || iDeals[uuid]['actual_price'] == '$0.00' || iDeals[uuid]['actual_price'] == '$0' || iDeals[uuid]['actual_price'] == '')
-		{
-			$(".discount_wrap").hide();
-		}
-		else
-		{
-			$('#groupon_deal_popup .old_price').html(iDeals[uuid]['actual_price']);
-			$('#groupon_deal_popup .new_price').html(iDeals[uuid]['price_after_discount']);
-			$('#groupon_deal_popup .discount_prcnt').html('You Saved&nbsp;' + iDeals[uuid]['discount']);
-			$(".discount_wrap").show();
-		}
-
-		$('#groupon_deal_popup #pitch_html_div').html("<h3 class='body_heading'>You'll Get</h3>" + iDeals[uuid]['pitch_html']);
-		$('#groupon_deal_popup #fine_print_div').html("<h3 class='body_heading'>The Fine Print</h3>" + iDeals[uuid]['fine_print']);
-		$('#groupon_deal_popup #short_title').html('<span>Location</span>' + iDeals[uuid]['short_title']);
-		$('#groupon_deal_popup #get_deal_btn').attr('href', iDeals[uuid]['deal_url']);
-		$('#groupon_deal_popup .socil_link_wrap #copy_deal_url').val(iDeals[uuid]['deal_url']);
-
-		$('#groupon_deal_popup').modal('show');
-	}
-</script>
-
 <div class="modal fade groupon_deal_popup" id="groupon_deal_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -380,6 +357,46 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo get_settings('google_map_key'); ?>"></script>
 
 <script type="text/javascript">
+	function group_deal_popup(ele, uuid)
+	{
+		$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').hide();
+		$('#groupon_deal_popup .light_slider_wrap').html('<img src="' + iDeals[uuid]['image'] + '">');
+		$('#groupon_deal_popup .deal_title').html(iDeals[uuid]['title']);
+
+		if (iDeals[uuid]['location'] == null || iDeals[uuid]['location'] == '')
+		{
+			$(".map_wrap").hide();
+			$('#groupon_deal_popup #redemption_location').parent('h4').hide();
+		}
+		else
+		{
+			$('#groupon_deal_popup #redemption_location').html(iDeals[uuid]['location']);
+
+			$(".map_wrap").show();
+			initMap(iDeals[uuid]['latitude'], iDeals[uuid]['longitude']);
+		}
+
+		if (iDeals[uuid]['actual_price'] == null || iDeals[uuid]['actual_price'] == '$0.00' || iDeals[uuid]['actual_price'] == '$0' || iDeals[uuid]['actual_price'] == '')
+		{
+			$(".discount_wrap").hide();
+		}
+		else
+		{
+			$('#groupon_deal_popup .old_price').html(iDeals[uuid]['actual_price']);
+			$('#groupon_deal_popup .new_price').html(iDeals[uuid]['price_after_discount']);
+			$('#groupon_deal_popup .discount_prcnt').html('You Saved&nbsp;' + iDeals[uuid]['discount']);
+			$(".discount_wrap").show();
+		}
+
+		$('#groupon_deal_popup #pitch_html_div').html("<h3 class='body_heading'>You'll Get</h3>" + iDeals[uuid]['pitch_html']);
+		$('#groupon_deal_popup #fine_print_div').html("<h3 class='body_heading'>The Fine Print</h3>" + iDeals[uuid]['fine_print']);
+		$('#groupon_deal_popup #short_title').html('<span>Location</span>' + iDeals[uuid]['short_title']);
+		$('#groupon_deal_popup #get_deal_btn').attr('href', iDeals[uuid]['deal_url']);
+		$('#groupon_deal_popup .socil_link_wrap #copy_deal_url').val(iDeals[uuid]['deal_url']);
+
+		$('#groupon_deal_popup').modal('show');
+	}
+
 	function initMap(lat, long)
 	{
 		var uluru = {lat: lat, lng: long};
@@ -400,25 +417,52 @@
 		$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').toggle();
 	}
 
-	window.onscroll = function() {scrollFunction()};
+	window.onscroll = function() {
+		scroll_it()
+	};
 
 	//Scroll function
-	function scrollFunction() {
-	    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+	function scroll_it()
+	{
+	    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)
+	    {
 	        document.getElementById("myBtn").style.display = "block";
 	    } 
-	    else {
+	    else
+	    {
 	        document.getElementById("myBtn").style.display = "none";
 	    }
 	}
 
 	// When the user clicks on the button, scroll to the top of the document
-	function topFunction() 
+	function to_top() 
 	{
-		$('body,html').animate({
+		$('body, html').animate({
 	        scrollTop: 0
 	    }, 1500);
 	    
 	    return false;
 	}
+
+	// function render_deals()
+	// {
+	// 	deals_page = deals_page + 1;
+	// 	$.ajax({
+	// 		url: BASEURL + 'deals?' + $("#deal_search_form").serialize() + '&paginate[page]=1&is_ajax=1',
+	// 		method: 'GET',
+	// 		dataType: 'json',
+	// 		beforeSend: function( xhr ) {
+	// 			// console.log('in progress', xhr);
+	// 		},
+	// 		success: function(result)
+	// 		{
+	// 			$("#load_more_btn").parent('div').before(result);
+	// 			$("body").getNiceScroll().resize();
+	// 		},
+	// 		complete: function (jqXHR, status) {
+	// 			// console.log('in progress', status);
+	// 		}
+	// 	});
+	// }
+	</script>
 </script>

@@ -26,8 +26,12 @@ class Home extends CI_Controller
 	 */
 	public function index()
 	{
+		// LOCAL COUPONS
 		$this->load->model(ADMIN_PREFIX . '/stores_model');
-		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "limit" => 10));
+		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10)));
+
+		// FEATURED STORES
+		$data['featured_stores'] = get_featured_stores(4);
 
 		$lat = '40.71';
 		$long = '-73.99';
@@ -38,9 +42,8 @@ class Home extends CI_Controller
 			$long = $cookie_data->long;
 		}
 
-		$data['featured_stores'] = get_featured_stores(4);
 		$this->load->library('affiliates');
-
+		
 		// GROUPON
 		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',
 																	array('type' => 'latlong',

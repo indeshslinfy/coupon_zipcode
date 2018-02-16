@@ -356,7 +356,6 @@ class stores_model extends CI_model
 					# code...
 					break;
 			}
-
 		}
 
 		if (!isset($filters['paginate']['limit']))

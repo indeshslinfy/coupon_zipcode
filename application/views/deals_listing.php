@@ -129,22 +129,24 @@ if ($total_coupons_fetched > 0)
 			$cnt == 4 ? $cnt = 1 : $cnt++;
 		}
 	}
+?>
+	<script type="text/javascript">
+		$("#load_more_btn").show();
+	</script>
+<?php
 }
 else
 {
 ?>
 	<div class="no-coupons-div">
-		<div class="col-md-5 text-center">
-			<?php echo img('oops.png', array('alt' => 'No coupons found')); ?>
-		</div>
-
-		<div class="col-md-7 rite-pane">
-			<div>
-				<h4>No products were found matching your selection.</h4>
-				<p>Try a different keyword maybe?</p>
-			</div>
+		<div>
+			<h4 class="text-center">That's all folks</h4>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		$("#load_more_btn").hide();
+	</script>
 <?php
 }
 ?>
