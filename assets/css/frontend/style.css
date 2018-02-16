@@ -2608,3 +2608,8 @@ span.menu_icon_down {
 .sorting-div-inner .easy-autocomplete{
 	display: inline-block;
 }
+.load-more-div{
+	text-align: center;
+	float: left;
+	width: 100%;
+}

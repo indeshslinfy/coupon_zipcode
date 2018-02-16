@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+	// localStorage.removeItem('user_current_location');
 	var user_current_location = JSON.parse(localStorage.getItem("user_current_location"));
 	if (user_current_location == null)
 	{
