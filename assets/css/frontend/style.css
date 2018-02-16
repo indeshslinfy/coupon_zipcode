@@ -244,6 +244,7 @@ section{
 	color:#2D3E50;
 }
 .heading_text_wrap .btn{
+	width:auto;
 	font-size:13px;
 	line-height:14px;
 	font-weight:500;
@@ -399,24 +400,81 @@ section{
 .gery_bg{
 	background:#f2f6f9;
 }
-.top_rstrnt_deal .col-sm-3 {
-	float:left;
+.top_rstrnt_deal .col-sm-6.col-md-3 {
 	margin-bottom:15px;
 }
-.top_rstrnt_deal .col-sm-3 a{
+.top_rstrnt_deal .col-sm-6.col-md-3 a{
 	float:left;
 	width:100%;
-	transition:all ease .50s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	-ms-transition: 0.3s;
+	transition: 0.3s;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
-.top_rstrnt_deal .col-sm-3 a:hover{
+.top_rstrnt_deal .col-sm-6.col-md-3 a:hover{
 	position:relative;
-	transform:translate(0px,-2px);
-	box-shadow: 0px 3px 12px rgba(128,128,128,.7);
+	-webkit-transform: translate3d(0, -5px, 0);
+	-moz-transform: translate3d(0, -5px, 0);
+	-o-transform: translate3d(0, -5px, 0);
+	-ms-transform: translate3d(0, -5px, 0);
+	transform: translate3d(0, -5px, 0);
+	-webkit-box-shadow:0 11px 13px -15px rgb(0,0,0);
+	box-shadow:0 11px 13px -15px rgb(0,0,0);
 }
 .top_rstrnt_deal_wrap{
 	float:left;
 	width:100%;
 	position: relative;
+	background:#fff;
+	overflow: hidden;
+	border:1px solid #cecece;
+}
+.top_rstrnt_deal a {
+	float:left;
+	width:100%;
+	position: relative;
+	overflow:hidden;
+	padding: 3px 3px 0px 0px;
+}
+.top_rstrnt_deal a span{
+	position: absolute;
+	width: 136px;
+	right: -37px;
+	top: 15px;
+	transform: rotate(45deg);
+	background: #fff;
+	padding: 5px;
+	text-align: center;
+	box-shadow:0px 5px 23px -13px #121111;
+}
+.top_rstrnt_deal a span img,
+.top_rstrnt_deal .latest_deals .item a span img{
+	width: 66px !important;
+	display: inline-block;
+}
+.adjst_img_wrap_height{
+	float:left;
+	width:100%;
+	position:relative;
+	height:160px;
+	display:table;
+}
+.adjst_img_wrap_height .ajst_img_box {
+	display: table-cell;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: bottom;
+}
+.adjst_img_wrap_height .ajst_img_box img{
+	max-height:160px;
+	height:160px;
 }
 .top_rstrnt_deal_wrap img{
 	margin:0 auto;
@@ -447,15 +505,9 @@ section{
 	float:left;
 	width:100%;
 	padding:10px;
-	background:#fff;
-	border:1px solid #cecece;
-	border-top:none;
+	border-top:1px solid #ccc;
 }
-.restrnt_desp_text_box:hover{
-	border:1px solid #adcfa0;
-	border-top:none;
-	box-shadow:0px 3px 12px rgba(128,128,128,.2);
-}
+
 .restrnt_desp_text_box h3{
 	font-size:15px;
 	font-weight:500;
@@ -499,6 +551,9 @@ section{
 	content:'';
 	background:rgba(0,0,0,.6);
 }
+.deals_event{
+	margin:0px -10px;
+}
 .deals_event h3{
 	position:relative;
 	z-index: 1;
@@ -512,7 +567,7 @@ section{
 	color: #eee;
 	padding: 0;
 	white-space:nowrap;
-	margin-top: 180px;
+	margin-top: 237px;
 	white-space: nowrap;
 }
 .deals_you_like_des{
@@ -528,8 +583,14 @@ section{
 }
 .deals_you_like_des p{
 	font-size:16px;
-	line-height:30px;
-	margin-bottom:20px;
+	line-height: 26px;
+	margin-bottom: 20px;
+	margin-top: 5px;
+}
+.deals_you_like_des .btn{
+	padding:6px 12px;
+	width: auto;
+	float: none;
 }
 .deals_event:hover .deals_you_like:hover{
 	width:50%;
@@ -552,7 +613,7 @@ section{
 	width:16.6666%;
 }
 footer{
-	background:#226f05;
+	background:#2C3D50;
 	float: left;
 	width: 100%;
 }
@@ -586,7 +647,7 @@ footer{
 .footer_copy_right {
     float: left;
     width: 100%;
-    background: #195402;
+    background: #283645;
     color: #fff;
     font-size: 11px;
     padding: 6px 15px;
@@ -2403,7 +2464,7 @@ span.menu_icon_down {
 	margin:0px;
 	text-align: left;
 }
-.top_rstrnt_deal.gery_bg{
+.section_with_pdd_btm{
 	padding-bottom:130px;
 }
 .newsletter_wrap{
@@ -2509,9 +2570,36 @@ span.menu_icon_down {
 	top:0px;
 	width: 0;
 }
-.top_rstrnt_deal_wrap span {
+
+.latest_deals{
+	float:left;
+	width:100%;
+	margin:20px 0px;
+}
+.latest_deals .item{
+	padding:0px 15px;
+	text-align:left;
+}
+.latest_deals .item img{
+	width:auto !important;
+}
+.latest_deals .item .restrnt_desp_text_box{
+	min-height:57px;
+}
+.latest_deals .owl-nav div{
 	position: absolute;
-	width: 95px;
-	left: 0;
-	bottom: 58px;
+	top: 45%;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	color: #333;
+	line-height: 27px;
+	font-size: 25px;
+	text-shadow: 0px 0px 2px #ccc;
+}
+.latest_deals .owl-nav div.owl-prev {
+    left:10px;
+}
+.latest_deals .owl-nav div.owl-next {
+    right:10px;
 }

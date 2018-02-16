@@ -37,7 +37,7 @@
 </div>
 
 <div class="row">
-	<section class="top_rstrnt_deal gery_bg">
+	<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
 		<div class="container">
 			<div class="heading_text_wrap">
 				<h2>Top Restaurant Deals Near You</h2>
@@ -66,17 +66,21 @@
 												'price_after_discount' => @$valueCL->options[0]->price->formattedAmount,
 												'actual_price' => @$valueCL->options[0]->value->formattedAmount);
 				?>
-					<div class="col-sm-3">
+					<div class="col-xs-12 col-sm-6 col-md-3">
 						<a href="javascript:void(0);" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
 							<div class="top_rstrnt_deal_wrap">
-								<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
-								<span><?php echo img('powered-by-groupon.png'); ?></span>
+								<div class="adjst_img_wrap_height">
+									<div class="ajst_img_box">
+										<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
+									</div>
+								</div>
 								<div class="rstrnt_des_wrap">
 									<div class="restrnt_desp_text_box">
 										<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 55 ? substr($valueCL->title, 0, 55) . "..." : $valueCL->title; ?></h3>
 									</div>
 								</div>
 							</div>
+							<span><?php echo img('powered-by-groupon.png'); ?></span>
 						</a>
 					</div>
 				<?php
@@ -112,17 +116,21 @@
 						$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
 					}
 				?>
-					<div class="col-sm-3">
+					<div class="col-xs-12 col-sm-6 col-md-3">
 						<a href="<?php echo $valueCL['viewItemURL']; ?>">
 							<div class="top_rstrnt_deal_wrap">
-								<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
-								<span><?php echo img('powered-by-ebay.jpg'); ?></span>
+								<div class="adjst_img_wrap_height">
+									<div class="ajst_img_box">
+										<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
+									</div>
+								</div>
 								<div class="rstrnt_des_wrap">
 									<div class="restrnt_desp_text_box">
 										<h3 title="<?php echo $title; ?>"><?php echo $title; ?></h3>
 									</div>
 								</div>
 							</div>
+							<span><?php echo img('powered-by-ebay.jpg'); ?></span>
 						</a>
 					</div>
 				<?php
@@ -134,7 +142,7 @@
 </div>
 
 <div class="row">
-	<section class="top_rstrnt_deal gery_bg">
+	<section class="top_rstrnt_deal gery_bg section_with_pdd_btm">
 		<div class="container">
 			<div class="heading_text_wrap">
 				<h2>Express Your Love This Valentine Week</h2>
@@ -142,55 +150,71 @@
 			</div>
 
 			<div class="row">
-				<?php
-				$coupons['amazon'] = array_slice($coupons['amazon'], 6);
-				foreach ($coupons['amazon'] as $keyCL => $valueCL)
-				{
-				?>
-					<div class="col-sm-3">
-						<a href="<?php echo $valueCL['url']; ?>">
-							<div class="top_rstrnt_deal_wrap">
-								<img src="<?php echo $valueCL['mediumImage']; ?>" alt="<?php echo $valueCL['asin']; ?>">
-								<span><?php echo img('powered-by-amazon.jpg'); ?></span>
-								<div class="rstrnt_des_wrap">
-									<div class="restrnt_desp_text_box">
-										<h3 title="<?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?>"><?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?></h3>
+				<div class="latest_deals">
+					<div id="latest_deals_slider_ltr"  class="owl-carousel">
+						<?php
+						$coupons['amazon'] = array_slice($coupons['amazon'], 6);
+						foreach ($coupons['amazon'] as $keyCL => $valueCL)
+						{
+						?>
+							<div class="item">
+								<a href="<?php echo $valueCL['url']; ?>">
+									<div class="top_rstrnt_deal_wrap">
+										<div class="adjst_img_wrap_height">
+											<div class="ajst_img_box">
+												<img src="<?php echo $valueCL['mediumImage']; ?>" alt="<?php echo $valueCL['asin']; ?>">
+											</div>
+										</div>
+										<div class="rstrnt_des_wrap">
+											<div class="restrnt_desp_text_box">
+												<h3 title="<?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?>"><?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?></h3>
+											</div>
+										</div>
 									</div>
-								</div>
+									<span><?php echo img('powered-by-amazon.jpg'); ?></span>
+								</a>
 							</div>
-						</a>
+						<?php
+						}
+						?>
 					</div>
-				<?php
-				}
-				?>
+				</div>
 			</div>
 
 			<div class="row">
-				<?php
-				foreach ($coupons['ebay']['items']['trending'] as $keyCL => $valueCL)
-				{
-					$title = strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title'];
-					if (array_key_exists('subtitle', $valueCL))
-					{
-						$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
-					}
-				?>
-					<div class="col-sm-3">
-						<a href="<?php echo $valueCL['viewItemURL']; ?>">
-							<div class="top_rstrnt_deal_wrap">
-								<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
-								<span><?php echo img('powered-by-ebay.jpg'); ?></span>
-								<div class="rstrnt_des_wrap">
-									<div class="restrnt_desp_text_box">
-										<h3 title="<?php echo $title; ?>"><?php echo $title; ?></h3>
+				<div class="latest_deals">
+					<div id="latest_deals_slider_rtl"  class="owl-carousel">
+						<?php
+						foreach ($coupons['ebay']['items']['trending'] as $keyCL => $valueCL)
+						{
+							$title = strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title'];
+							if (array_key_exists('subtitle', $valueCL))
+							{
+								$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
+							}
+						?>
+							<div class="item">
+								<a href="<?php echo $valueCL['viewItemURL']; ?>">
+									<div class="top_rstrnt_deal_wrap">
+										<div class="adjst_img_wrap_height">
+											<div class="ajst_img_box">
+												<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
+											</div>
+										</div>
+										<div class="rstrnt_des_wrap">
+											<div class="restrnt_desp_text_box">
+												<h3 title="<?php echo $title; ?>"><?php echo $title; ?></h3>
+											</div>
+										</div>
 									</div>
-								</div>
+									<span><?php echo img('powered-by-ebay.jpg'); ?></span>
+								</a>
 							</div>
-						</a>
+						<?php
+						}
+						?>
 					</div>
-				<?php
-				}
-				?>
+				</div>
 			</div>
 		</div>
 	</section>
