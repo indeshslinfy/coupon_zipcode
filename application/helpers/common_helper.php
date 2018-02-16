@@ -10,12 +10,29 @@ if (!function_exists('get_settings'))
 	function get_settings($settings)
 	{
 		$CI =& get_instance();
-		$setting = $CI->db->select('setting_value')
-								->where(array('setting_key' => $settings))
-								->get('settings')
-								->row_array();
-								
-		return $setting ? unserialize($setting['setting_value']) : '';
+		$select_str = 'setting_key, setting_value';
+		if(!$settings)
+		{
+			return $CI->db->select($select_str)
+						->get('settings')
+						->result_array();
+		}
+		else if(is_array($settings) && sizeof($settings) > 0)
+		{
+			return $CI->db->select($select_str)
+							->where_in('setting_key', $settings)
+							->get('settings')
+							->result_array();
+		}
+		else if($settings != '')
+		{
+			$setting = $CI->db->select($select_str)
+							->where(array('setting_key' => $settings))
+							->get('settings')
+							->row_array();
+							
+			return $setting ? unserialize($setting['setting_value']) : '';
+		}
 	}
 }
 

@@ -359,13 +359,20 @@ class stores_model extends CI_model
 
 		}
 
-		if (isset($filters['limit']))
+		if (!isset($filters['paginate']['limit']))
 		{
-			$records = $records->limit($filters['limit']);
+			$filters['paginate']['limit'] = 20;
 		}
 		
-		$records = $records->group_by('c.id');
-		return $records->get('coupons as c')->result_array();
+		if (!isset($filters['paginate']['offset']))
+		{
+			$filters['paginate']['offset'] = 1;
+		}
+		
+		return $records->limit($filters['paginate']['limit'], $filters['paginate']['offset'])
+							->group_by('c.id')
+							->get('coupons as c')
+							->result_array();
 	}
 
 	public function popular_stores($limit)

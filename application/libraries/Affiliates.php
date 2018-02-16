@@ -32,39 +32,61 @@ class Affiliates
 
 	public function groupon_deals($params)
 	{
-		$CI =& get_instance();
-		$CI->load->model('settings_model');
-
-		$groupon_details = $CI->settings_model->get_settings('groupon');
+		$groupon_details = get_settings('groupon');
 		$groupon_details['wid'] = urlencode(base_url());
+
+		if (!isset($params['paginate']['limit']))
+		{
+			$params['paginate']['limit'] = 20;
+		}
+
+		if (!isset($params['paginate']['offset']))
+		{
+			$params['paginate']['offset'] = 1;
+		}
+
+		$api_url = 'https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&wid=' . $groupon_details['wid'] . 'm&offset=' . $params['paginate']['offset'] . '&limit=' . $params['paginate']['limit'];
 		switch ($params['type'])
 		{
 			case 'location':
-				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&division_id=' . $params['type_val'] . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $params['paginate']['offset'] . '&limit=' . $params['paginate']['limit'])));
+				$api_url .= '&division_id=' . $params['type_val'];
 				break;
 
 			case 'latlong':
-				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&lat=' . $params['type_val']['lat'] . '&lng=' . $params['type_val']['long'] . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $params['paginate']['offset'] . '&limit=' . $params['paginate']['limit'])));
+				$api_url .= '&lat=' . $params['type_val']['lat'] . '&lng=' . $params['type_val']['long'];
 				break;
 			
 			case 'category':
-				return @json_decode(utf8_encode(file_get_contents('https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_' . $groupon_details['groupon_id'] . '_' . $groupon_details['media_id'] . '_0&filters=category:' . $params['type_val'] . '&wid=' . $groupon_details['wid'] . 'm&offset=' . $params['paginate']['offset'] . '&limit=' . $params['paginate']['limit'])));
+				$api_url .= '&filters=category:' . $params['type_val'];
 				break;
 			
 			default:
 				return false;
 				break;
 		}
+
+		return @json_decode(utf8_encode(file_get_contents($api_url)));
 	}
 
 	public function ebay_deals($params)
 	{
-		$CI =& get_instance();
-		$CI->load->model('settings_model');
+		$ebay_details = get_settings('ebay');
 
-		$ebay_details = $CI->settings_model->get_settings('ebay');
+		if (!isset($params['paginate']['limit']))
+		{
+			$params['paginate']['limit'] = 20;
+		}
 
-		$api_url = 'http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&paginationInput.entriesPerPage=' . $params['limit'] . '&paginationInput.pageNumber='. $params['offset'] . '&affiliate.networkId=9&affiliate.trackingId=' . $ebay_details['camp_id'] . '&affiliate.customId=123';
+		if (!isset($params['paginate']['offset']))
+		{
+			$params['paginate']['offset'] = 1;
+		}
+		elseif ($params['paginate']['offset'] < 1)
+		{
+			$params['paginate']['offset'] = 1;
+		}
+
+		$api_url = 'http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-VERSION=1.0.0&SECURITY-APPNAME=' . $ebay_details['app_id'] . '&GLOBAL-ID=EBAY-US&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&paginationInput.entriesPerPage=' . $params['paginate']['limit'] . '&paginationInput.pageNumber='. $params['paginate']['offset'] . '&affiliate.networkId=9&affiliate.trackingId=' . $ebay_details['camp_id'] . '&affiliate.customId=123';
 		if (array_key_exists('sort_order', $params)) 
 		{
 			$api_url .= '&sortOrder='. $params['sort_order'];
@@ -115,10 +137,7 @@ class Affiliates
 
 	public function amazon_deals($params)
 	{
-		$CI =& get_instance();
-		$CI->load->model('settings_model');
-
-		$amazon_details = $CI->settings_model->get_settings('amazon');
+		$amazon_details = get_settings('amazon');
 		$urlBuilder = new AmazonUrlBuilder($amazon_details['keyId'],
 											$amazon_details['secretKey'],
 											$amazon_details['associateId'],

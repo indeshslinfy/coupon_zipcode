@@ -41,9 +41,11 @@ class Home extends CI_Controller
 		$data['featured_stores'] = get_featured_stores(4);
 		$this->load->library('affiliates');
 
-		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon', array('type' => 'latlong',
-																					'type_val' => array('lat' => $lat, 'long' => $long),
-																					'paginate' => array('offset' => 0, 'limit' => 4)));
+		// GROUPON
+		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',
+																	array('type' => 'latlong',
+																		'type_val' => array('lat' => $lat, 'long' => $long),
+																		'paginate' => array('offset' => 0, 'limit' => 4)));
 
 		// EBAY 1
 		$ebay_keywords = array('Liquid Phone Cases', 'Electronic Cigarettes', 'Drones', 'Fitness Trackers');
@@ -69,6 +71,7 @@ class Home extends CI_Controller
 		$data['coupons']['ebay']['items']['trending'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
 		$data['coupons']['ebay']['valentine_keyword'] = $valentine_keyword;
 
+		// AMAZON
 		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'valentine gift', 'type_val' => 'All'));
 
 		$this->load->template('index', $data);

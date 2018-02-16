@@ -71,7 +71,7 @@ function store_delete(id)
 				{
 					alert(result.message);
 				}
-		    }
+			}
 		});
 	}
 }

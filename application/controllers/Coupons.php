@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-error_reporting('ERROR');
 
 require_once(APPPATH . 'libraries' . DS . 'dompdf' . DS . 'autoload.inc.php');
 use Dompdf\Dompdf;
 
-class Coupons extends CI_Controller {
+class Coupons extends CI_Controller
+{
 	/**
 	 * Index Page for this controller.
 	 *
@@ -26,25 +26,6 @@ class Coupons extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('/coupons_model');
-	}
-
-	public function list_categories()
-	{
-		$data['title'] = 'Categories';
-
-		$this->load->model(ADMIN_PREFIX . '/stores_category_model');
-		$all_categories = $this->stores_category_model->all_records();
-
-		$data['all_categories'] = array();
-		foreach ($all_categories as $keyAC => $valueAC)
-		{
-			$alpha_key = strtoupper($valueAC['store_category_name'][0]);
-			$data['all_categories'][strtoupper($valueAC['store_category_name'][0])][] = $valueAC;
-		}
-
-		$data['popular_stores'] = popular_stores();
-
-		$this->load->template('categories', $data);
 	}
 
 	public function list_deals()
@@ -104,6 +85,15 @@ class Coupons extends CI_Controller {
 			$_GET['cat'] = array();
 		}
 
+		if (!isset($_GET['paginate']['page']))
+		{
+			$_GET['paginate']['page'] = 1;
+		}
+
+		$pagination_setting = get_settings('deals_pagination');
+		$_GET['paginate']['limit'] = $pagination_setting['limit'];
+		$_GET['paginate']['offset'] = max(0, ($_GET['paginate']['page'] - 1) * $_GET['paginate']['limit']);
+
 		unset($_GET['search_src']);
 		if ($_GET['src'] == 'groupon')
 		{
@@ -121,7 +111,6 @@ class Coupons extends CI_Controller {
 					{
 						$_GET['type'] = 'category';
 						$_GET['type_val'] = $valueCAT;
-						$_GET['paginate'] = array('offset' => 0, 'limit' => 5);
 						$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
 						if (sizeof($deals) > 0)
 						{
@@ -138,14 +127,11 @@ class Coupons extends CI_Controller {
 		{
 			if (isset($_GET['cat']) && $_GET['cat'] != '')
 			{
+				$_GET['currency'] = 'USD';
 				if (!is_array($_GET['cat']))
 				{
 					$_GET['cat'] = (array)$_GET['cat'];
 				}
-
-				$_GET['limit'] = '5';
-				$_GET['offset'] = '1';
-				$_GET['currency'] = 'USD';
 
 				$ebay_deals = array();
 				if ((sizeof($_GET['cat']) > 0) && (array_key_exists('keyword', $_GET) && $_GET['keyword'] != ''))
@@ -238,7 +224,14 @@ class Coupons extends CI_Controller {
 		}
 
 		$data['total_coupons_fetched'] = $total_coupons_fetched;
-		$this->load->template('category_deals', $data);
+		if (array_key_exists('is_ajax', $_GET))
+		{
+			echo json_encode($this->load->view('deals_listing', $data, true));
+		}
+		else
+		{
+			$this->load->template('category_deals', $data);
+		}
 	}
 
 	public function coupon_details()
@@ -331,5 +324,24 @@ class Coupons extends CI_Controller {
 		}
 
 		echo json_encode(array("status" => 0, "message" => "Something went wrong. Please try again."));die();
+	}
+
+	public function list_categories()
+	{
+		$data['title'] = 'Categories';
+
+		$this->load->model(ADMIN_PREFIX . '/stores_category_model');
+		$all_categories = $this->stores_category_model->all_records();
+
+		$data['all_categories'] = array();
+		foreach ($all_categories as $keyAC => $valueAC)
+		{
+			$alpha_key = strtoupper($valueAC['store_category_name'][0]);
+			$data['all_categories'][strtoupper($valueAC['store_category_name'][0])][] = $valueAC;
+		}
+
+		$data['popular_stores'] = popular_stores();
+
+		$this->load->template('categories', $data);
 	}
 }

@@ -22,15 +22,15 @@ class Settings extends CI_Controller
 	{
 		$data['page_title'] = 'Settings Management';
 
-		$data['email'] = $this->settings_model->get_settings('email');
-		$data['google_map_key'] = $this->settings_model->get_settings('google_map_key');
-		$data['groupon'] = $this->settings_model->get_settings('groupon');
-		$data['ebay'] = $this->settings_model->get_settings('ebay');
-		$data['amazon'] = $this->settings_model->get_settings('amazon');
-		$data['walmart'] = $this->settings_model->get_settings('walmart');
-		$data['general_settings'] = $this->settings_model->get_settings('general_settings');
-		$data['social_platform'] = $this->settings_model->get_settings('social_platform');
-		$data['zipcode_search_radius'] = $this->settings_model->get_settings('zipcode_search_radius');
+		$data['email'] = get_settings('email');
+		$data['google_map_key'] = get_settings('google_map_key');
+		$data['groupon'] = get_settings('groupon');
+		$data['ebay'] = get_settings('ebay');
+		$data['amazon'] = get_settings('amazon');
+		$data['walmart'] = get_settings('walmart');
+		$data['general_settings'] = get_settings('general_settings');
+		$data['social_platform'] = get_settings('social_platform');
+		$data['zipcode_search_radius'] = get_settings('zipcode_search_radius');
 
 		$this->load->admin_template('settings/settings', $data);
 	}
@@ -40,7 +40,7 @@ class Settings extends CI_Controller
 	 */
 	public function get_settings($settings=null)
 	{
-		return $this->settings_model->get_settings($settings);
+		return get_settings($settings);
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Settings extends CI_Controller
 			switch ($setting_type)
 			{
 				case 'settype_general':
-					$gen_setts = $this->settings_model->get_settings('general_settings');
+					$gen_setts = get_settings('general_settings');
 
 					$config['max_width'] = 700;
 					$config['overwrite'] = true;

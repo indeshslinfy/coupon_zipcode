@@ -49,6 +49,7 @@ class auth_model extends CI_model
 							'coupons/submit_store_review',
 							'coupons/coupon_details',
 							'coupons/coupon_print',
+							'coupons/load_more',
 							'cron/expire_old_coupons',
 							'cron/sync_ebay_categories',
 							'index/static_page',

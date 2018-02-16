@@ -26,7 +26,7 @@
 
 						<div class="filter_inner_wrap">
 							<div class="selected_filters_div"></div>
-							<form action="<?php echo base_url() . 'deals'; ?>">
+							<form action="<?php echo base_url() . 'deals'; ?>" id="deal_search_form">
 								<div class="filter_btns_div">
 									<input type="hidden" name="search_src" value="search_pg">
 									<input type="hidden" class="form-control" name="cat_name" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : $_GET['cat_name']; ?>">
@@ -241,7 +241,7 @@
 								{
 									foreach ($coupons['local'] as $keyCC => $valueCC)
 									{
-										echo $cnt == 1 ? '<div class="row">' : '';
+										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
 										<div class="col-sm-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>" data-placement="left" href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
@@ -270,7 +270,7 @@
 								{
 									foreach ($coupons['groupon'] as $keyCC => $valueCC)
 									{
-										echo $cnt == 1 ? '<div class="row">' : '';
+										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
 										<div class="col-sm-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC->title; ?>" data-placement="left" href="javascript:void(0);">
@@ -295,23 +295,23 @@
 								{
 									foreach ($coupons['ebay'] as $keyCC => $valueCC)
 									{
-										echo $cnt == 1 ? '<div class="row">' : '';
+										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
 										<div class="col-sm-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="javascript:void(0);">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
-														<img src="<?php echo $valueCC['galleryURL']; ?>" alt="<?php echo $valueCC['subtitle']; ?>">
+														<img src="<?php echo $valueCC['galleryURL']; ?>" alt="<?php echo $valueCC['itemId']; ?>">
 													</div>
 													<div class="rstrnt_des_wrap">
 														<!-- <div class="location_box light_green_bg">
 															<i class="fa fa-map-marker"></i>&nbsp;
-															<?php echo strlen($valueCC['location']) > 30 ? substr($valueCC['location'], 0, 30) . "..." : $valueCC['location']; ?>
+															<?php //echo strlen($valueCC['location']) > 30 ? substr($valueCC['location'], 0, 30) . "..." : $valueCC['location']; ?>
 														</div> -->
 														<div class="restrnt_desp_text_box">
 															<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
 															<!-- <p>
-																Price:&nbsp;<?php echo $valueCC['sellingStatus']['currentPrice']; ?>
+																Price:&nbsp;<?php //echo $valueCC['sellingStatus']['currentPrice']; ?>
 															</p> -->
 														</div>
 													</div>
@@ -327,7 +327,7 @@
 								{
 									foreach ($coupons['amazon'] as $keyCC => $valueCC)
 									{
-										echo $cnt == 1 ? '<div class="row">' : '';
+										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
 										<div class="col-sm-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
@@ -383,6 +383,10 @@
 							<?php
 							}
 							?>
+						</div>
+
+						<div class="load-more-div">
+							<button type="button" onclick="load_more();" id="load_more_btn" class="btn ylew_btn">Load More</button>
 						</div>
 					</div>
 				</div>
@@ -488,9 +492,6 @@ function toggle_filters(ele)
 		}
 		else if (selected_src.val() == 'amazon')
 		{
-			// $('.filter_range_div').removeClass('hide');
-			// $('.filter_keyword_div').removeClass('hide');
-
 			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
 			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
 		}
@@ -514,7 +515,6 @@ function clear_filters(ele, target)
 	if (typeof(target) == 'undefined')
 	{
 		$(ele).addClass('hide');
-		// console.log($(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input'));
 		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input').val('');
 		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input:checked').prop('checked', false);
 	}
@@ -525,5 +525,27 @@ function clear_filters(ele, target)
 			clear_filters(value);
 		});
 	}
+}
+
+var deals_page = 1;
+function load_more()
+{
+	deals_page = deals_page + 1;
+	$.ajax({
+		url: BASEURL + 'deals?' + $("#deal_search_form").serialize() + '&paginate[page]=' + deals_page + '&is_ajax=1',
+		method: 'GET',
+		dataType: 'json',
+		beforeSend: function( xhr ) {
+			// console.log('in progress', xhr);
+		},
+		success: function(result)
+		{
+			$("#load_more_btn").parent('div').before(result);
+			$("body").getNiceScroll().resize();
+		},
+		complete: function (jqXHR, status) {
+			// console.log('in progress', status);
+		}
+	});
 }
 </script>

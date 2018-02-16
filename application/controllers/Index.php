@@ -64,8 +64,8 @@ class Index extends CI_Controller
 						$params['message'] = $tickets_message['message'];
 						$params['ticket_url'] = base_url() . ADMIN_PREFIX  . '/edit-ticket/' . $id;
 
-						$email_details = $this->settings_model->get_settings('email');
-						$general_settings = $this->settings_model->get_settings('general_settings');
+						$email_details = get_settings('email');
+						$general_settings = get_settings('general_settings');
 						$params['company_name'] = $general_settings['company_name'];
 						$html = $this->load->view('emails/contact-us', $params, TRUE);
 						
@@ -179,8 +179,8 @@ class Index extends CI_Controller
 		$this->db->insert('newsletter_subscribers', $params);
 		if ($this->db->insert_id())
 		{
-			$email_details = $this->settings_model->get_settings('email');
-			$general_settings = $this->settings_model->get_settings('general_settings');
+			$email_details = get_settings('email');
+			$general_settings = get_settings('general_settings');
 			$html = $this->load->view('emails/newsletter/subscribed_user', $params, TRUE);
 
 			$params['subject'] = 'Newsletter Subscribed';

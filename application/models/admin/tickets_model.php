@@ -68,9 +68,9 @@ class tickets_model extends CI_model
 						// Get Ticket information
 						$data['ticket_details'] = $this->ticket_details($ticket_id);
 						$data['ticket_url'] = base_url().'tickets/' . base64_encode($ticket_id);
-						$email_details = $this->settings_model->get_settings('email');
+						$email_details = get_settings('email');
 
-						$general_settings = $this->settings_model->get_settings('general_settings');
+						$general_settings = get_settings('general_settings');
 						$data['company_name'] = $general_settings['company_name'];
 						
 						$html = $this->load->view('admin/emails/reply-contact-us', $data, TRUE);
