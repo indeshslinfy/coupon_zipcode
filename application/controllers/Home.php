@@ -107,7 +107,6 @@ class Home extends CI_Controller
 
 	public function get_geo_location()
 	{
-		$cookie_expiry_time = '86400';
 		$geolocation = $this->input->get('lat') . ',' . $this->input->get('long');
 		$request = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $geolocation . '&sensor=false'; 
 		$file_contents = file_get_contents($request);
@@ -145,7 +144,7 @@ class Home extends CI_Controller
 				}
 			}
 
-			$this->input->set_cookie('user_current_location', json_encode($user_current_location), $cookie_expiry_time);
+			$this->input->set_cookie('user_current_location', json_encode($user_current_location), 31557600);
 			echo json_encode(array("status" => 1, "data" => $user_current_location)); die;
 		}
 		else

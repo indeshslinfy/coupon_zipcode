@@ -1,6 +1,5 @@
 $(document).ready(function()
 {
-	// localStorage.removeItem('user_current_location');
 	var user_current_location = JSON.parse(localStorage.getItem("user_current_location"));
 	if (user_current_location == null)
 	{
@@ -32,84 +31,85 @@ $(document).ready(function()
 	$('.cssload-container').css('display', 'none');
 	
  	$('#exclusive_coupan_carousel').owlCarousel({
-		    loop:true,
-		    items : 3,
-		    autoplay:false,
-		    autoplayTimeout:100,
-		    smartSpeed:1000,
-		    nav:true,
-		    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
-		    responsiveClass:true,
-		    responsive:{
-		        0:{
-		            items:1,
-		            nav:true
-		        },
-		        600:{
-		            items:2,
-		            nav:true
-		        },
-		        800:{
-		            items:3,
-		            nav:true
-		        }
-		    }
+		loop:true,
+		items : 3,
+		autoplay:false,
+		autoplayTimeout:100,
+		smartSpeed:1000,
+		nav:true,
+		navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+		responsiveClass:true,
+		responsive:{
+			0:{
+			    items:1,
+			    nav:true
+			},
+			600:{
+			    items:2,
+			    nav:true
+			},
+			800:{
+			    items:3,
+			    nav:true
+			}
+		}
 	});
 
 	$('#latest_deals_slider_ltr').owlCarousel({
-			rtl:true,
-		    loop:true,
-		    items : 3,
-		    autoplay:true,
-		    smartSpeed:1000,
-		    nav:true,
-		    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
-		    responsiveClass:true,
-		    responsive:{
-		        0:{
-		            items:1,
-		            nav:true
-		        },
-		        600:{
-		            items:2,
-		            nav:true
-		        },
-		        800:{
-		            items:3,
-		            nav:true
-		        },
-		        1200:{
-		            items:4,
-		            nav:true
-		        }
-		    }
+		rtl:true,
+	    loop:true,
+	    items : 3,
+	    autoplay:true,
+	    smartSpeed:1000,
+	    nav:true,
+	    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	    responsiveClass:true,
+	    responsive:{
+	        0:{
+	            items:1,
+	            nav:true
+	        },
+	        600:{
+	            items:2,
+	            nav:true
+	        },
+	        800:{
+	            items:3,
+	            nav:true
+	        },
+	        1200:{
+	            items:4,
+	            nav:true
+	        }
+	    }
 	});
+
 	$('#latest_deals_slider_rtl').owlCarousel({
-			loop:true,
-		    items : 3,
-		    autoplay:true,
-		    smartSpeed:1000,
-		    nav:true,
-		    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
-		    responsiveClass:true,
-		    responsive:{
-		        0:{
-		            items:1,
-		            nav:true
-		        },
-		        600:{
-		            items:2,
-		            nav:true
-		        },
-		        800:{
-		            items:3,
-		            nav:true
-		        },
-		        1200:{
-		            items:4,
-		            nav:true
-		        }
-		    }
+		loop:true,
+	    items : 3,
+	    autoplay:true,
+	    smartSpeed:1000,
+	    nav:true,
+	    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	    responsiveClass:true,
+	    responsive:{
+	        0:{
+	            items:1,
+	            nav:true
+	        },
+	        600:{
+	            items:2,
+	            nav:true
+	        },
+	        800:{
+	            items:3,
+	            nav:true
+	        },
+	        1200:{
+	            items:4,
+	            nav:true
+	        }
+	    }
 	});
 
  	$(document).on('click','.filter_toggle',function(){
@@ -117,7 +117,6 @@ $(document).ready(function()
  	});
 
  	bind_cat_autocomplete('.top-srch-cat');
-
  	bind_zipcode_autocomplete('.zpcde_auto', {'theme': 'dark'}, 5);
  	bind_zipcode_autocomplete('.top-srch-zipcode', {'theme': 'bootstrap'}, 10);
  	bind_zipcode_autocomplete('.cat-srch-zipcode', {'theme': 'bootstrap'}, 10);
