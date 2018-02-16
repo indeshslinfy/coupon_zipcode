@@ -79,11 +79,13 @@ img{
 }
 .ylew_btn{
 	background:#f69c14;
+	/*background: #182533;*/
 	color:#fff;
 }
 .ylew_btn:hover{
 	color: #ffffff;
 	background-color: #db8708;
+	/*background-color: #182533;*/
 }
 .green_btn{
 	background:#226f05;
@@ -613,7 +615,7 @@ section{
 	width:16.6666%;
 }
 footer{
-	background:#2C3D50;
+	background:#233141;
 	float: left;
 	width: 100%;
 }
@@ -647,7 +649,7 @@ footer{
 .footer_copy_right {
     float: left;
     width: 100%;
-    background: #283645;
+    background: #182533;
     color: #fff;
     font-size: 11px;
     padding: 6px 15px;
@@ -2602,4 +2604,7 @@ span.menu_icon_down {
 }
 .latest_deals .owl-nav div.owl-next {
     right:10px;
+}
+.sorting-div-inner .easy-autocomplete{
+	display: inline-block;
 }

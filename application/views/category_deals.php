@@ -219,7 +219,7 @@
 
 										<div class="form-group">
 											<h4>of</h4>
-											<input type="text" name="sort_zipcode" class="form-control" placeholder="Zipcode" value="<?php echo isset($_GET['sort_zipcode']) ? $_GET['sort_zipcode'] : ''; ?>">
+											<input type="text" name="sort_zipcode" class="form-control cat-srch-zipcode" placeholder="Zipcode" value="<?php echo isset($_GET['sort_zipcode']) ? $_GET['sort_zipcode'] : ''; ?>">
 										</div>
 
 										<div class="form-group">

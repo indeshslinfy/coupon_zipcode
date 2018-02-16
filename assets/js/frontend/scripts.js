@@ -119,6 +119,7 @@ $(document).ready(function()
 
  	bind_zipcode_autocomplete('.zpcde_auto', {'theme': 'dark'}, 5);
  	bind_zipcode_autocomplete('.top-srch-zipcode', {'theme': 'bootstrap'}, 10);
+ 	bind_zipcode_autocomplete('.cat-srch-zipcode', {'theme': 'bootstrap'}, 10);
 });
 
 function bind_cat_autocomplete(target_class)
