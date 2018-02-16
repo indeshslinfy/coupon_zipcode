@@ -52,27 +52,25 @@ class Home extends CI_Controller
 		$keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
 		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
 																'type_val' => '10002',
-																'limit' => 4,
-																'offset' => 1,
 																'currency' => 'USD',
+																'paginate' => array('offset' => 0, 'limit' => 4),
 																'keyword' => $keyword));
 		$data['coupons']['ebay']['items']['via_keyword'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
 		$data['coupons']['ebay']['keyword'] = $keyword;
 
 		// EBAY 2
-		$ebay_keywords = array('Valentine Gift Toy', 'Valentine', 'valentine gifts for him', 'valentine gifts for her', 'valentine love');
+		$ebay_keywords = array('gifts for her', 'gifts', 'love');
 		$valentine_keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
 		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
 																'type_val' => '10002',
-																'limit' => 4,
-																'offset' => 1,
 																'currency' => 'USD',
+																'paginate' => array('offset' => 0, 'limit' => 4),
 																'keyword' => $valentine_keyword));
 		$data['coupons']['ebay']['items']['trending'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
 		$data['coupons']['ebay']['valentine_keyword'] = $valentine_keyword;
 
 		// AMAZON
-		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'valentine gift', 'type_val' => 'All'));
+		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'gifts for her', 'type_val' => 'All'));
 
 		$this->load->template('index', $data);
 	}

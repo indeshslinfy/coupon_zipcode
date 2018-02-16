@@ -40,7 +40,7 @@
 	<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
 		<div class="container">
 			<div class="heading_text_wrap">
-				<h2>Top Restaurant Deals Near You</h2>
+				<h2>Top Deals Near You</h2>
 				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
 			</div>
 
@@ -145,8 +145,8 @@
 	<section class="top_rstrnt_deal gery_bg section_with_pdd_btm">
 		<div class="container">
 			<div class="heading_text_wrap">
-				<h2>Express Your Love This Valentine Week</h2>
-				<a href="<?php echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=amazon&price_range%5B%5D=&price_range%5B%5D=&keyword=Valentine+Gift&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+				<h2>Gifts for Her</h2>
+				<a href="<?php echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=amazon&price_range%5B%5D=&price_range%5B%5D=&keyword=gifts+for+her&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
 			</div>
 
 			<div class="row">
@@ -378,6 +378,7 @@
 </div>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo get_settings('google_map_key'); ?>"></script>
+
 <script type="text/javascript">
 	function initMap(lat, long)
 	{

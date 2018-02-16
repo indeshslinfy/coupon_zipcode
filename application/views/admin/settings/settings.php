@@ -235,7 +235,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>Amazon Country&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="amazon[country]" value="<?php echo $amazon['country']; ?>" class="form-control" required="" readonly>
+                                                <input type="text" name="amazon[country]" value="<?php echo strtoupper($amazon['country']); ?>" class="form-control" required="" readonly>
                                             </div>
                                         </div>
                                     </div>

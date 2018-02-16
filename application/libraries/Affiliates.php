@@ -64,7 +64,7 @@ class Affiliates
 				return false;
 				break;
 		}
-
+		
 		return @json_decode(utf8_encode(file_get_contents($api_url)));
 	}
 
