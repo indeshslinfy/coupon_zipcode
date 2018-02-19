@@ -298,10 +298,10 @@ section{
 	overflow:hidden;
 	box-shadow:0px 2px 13px rgba(128,128,128,.2); 
 	border-radius:8px;
-	max-height:267px;
-	height: 267px;
+	max-height: 248px;
+	height: 248px;
 	display: table-cell;
-	vertical-align: middle;
+	vertical-align: top;
 }
 .exclusive_coupan .cpn_adjst_img a img{
 	margin:0 auto;
@@ -315,6 +315,18 @@ section{
 .exclusive_coupan.cat_coupons{
 	float: left;
 	width: 100%;
+}
+.exclusive_coupan.cat_coupons a{
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	-ms-transition: 0.3s;
+	transition: 0.3s;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
 .exclusive_coupan.cat_coupons a .cat_img_div{
 	height: 175px;
@@ -335,12 +347,19 @@ section{
 	-webkit-transform: scale(1.5) translateY(-5px);
 	transform: scale(1.5) translateY(-5px);
 }
+.exclusive_coupan.cat_coupons a:hover{
+	position: relative;
+	-webkit-transform: translate3d(0, -5px, 0);
+	-moz-transform: translate3d(0, -5px, 0);
+	-o-transform: translate3d(0, -5px, 0);
+	-ms-transform: translate3d(0, -5px, 0);
+	transform: translate3d(0, -5px, 0);
+	-webkit-box-shadow: 0 11px 13px -15px rgb(0,0,0);
+	box-shadow: 0 11px 13px -15px rgb(0,0,0);
+}
 .exclusive_coupan.cat_coupons a:hover img{
-	transform:scale(1);
-	-webkit-filter: blur(0px) grayscale(100%);
-	filter: blur(0px) grayscale(100%);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+	-webkit-transform: scale(1) translateY(0px);
+	transform: scale(1) translateY(0px);
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div .hover_text_wrap{
 	display: table-cell;
@@ -354,7 +373,6 @@ section{
 .hover_text{
 	padding-left:10px;
 	border-left:5px solid transparent;
-	transition: border-left .9s ease-in-out;
 }
 .hover_text .fa-long-arrow-right{
 	font-size: 18px;
@@ -405,9 +423,10 @@ section{
 .top_rstrnt_deal .col-sm-6.col-md-3 {
 	margin-bottom:15px;
 }
-.top_rstrnt_deal .col-sm-6.col-md-3 a{
+.exclusive_coupan.cat_coupons a{
 	float:left;
 	width:100%;
+	border-bottom: 1px solid #ccc;
 	-webkit-transition: 0.3s;
 	-moz-transition: 0.3s;
 	-o-transition: 0.3s;
@@ -419,7 +438,7 @@ section{
 	-ms-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 }
-.top_rstrnt_deal .col-sm-6.col-md-3 a:hover{
+.exclusive_coupan.cat_coupons a:hover{
 	position:relative;
 	-webkit-transform: translate3d(0, -5px, 0);
 	-moz-transform: translate3d(0, -5px, 0);
@@ -428,6 +447,9 @@ section{
 	transform: translate3d(0, -5px, 0);
 	-webkit-box-shadow:0 11px 13px -15px rgb(0,0,0);
 	box-shadow:0 11px 13px -15px rgb(0,0,0);
+}
+.exclusive_coupan.cat_coupons a img{
+	transform:scale(1);
 }
 .top_rstrnt_deal_wrap{
 	float:left;
@@ -471,8 +493,9 @@ section{
 	display: table-cell;
 	width: 100%;
 	height: 100%;
+	overflow:hidden;
 	text-align: center;
-	vertical-align: bottom;
+	vertical-align:middle;
 }
 .adjst_img_wrap_height .ajst_img_box img{
 	max-height:160px;
@@ -485,6 +508,12 @@ section{
 .rstrnt_des_wrap{
 	float:left;
 	width:100%;
+}
+.exclusive_coupan.cat_coupons .rstrnt_des_wrap{
+	float:left;
+	width:100%;
+	display: table;
+	height: 72px;
 }
 .light_green_bg{
 	background:#6b9b22;
@@ -509,7 +538,12 @@ section{
 	padding:10px;
 	border-top:1px solid #ccc;
 }
-
+.exclusive_coupan.cat_coupons .restrnt_desp_text_box{
+	display:table-cell;
+	height:100%;
+	float:none;
+	vertical-align:bottom;
+}
 .restrnt_desp_text_box h3{
 	font-size:15px;
 	font-weight:500;
@@ -569,7 +603,7 @@ section{
 	color: #eee;
 	padding: 0;
 	white-space:nowrap;
-	margin-top: 237px;
+	margin-top: 232px;
 	white-space: nowrap;
 }
 .deals_you_like_des{
