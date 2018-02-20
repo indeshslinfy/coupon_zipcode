@@ -28,7 +28,7 @@ img{
 .get_start_wrap_box{
 	display:inline-block;
 	position:relative;
-	margin:10% auto 7.5%;
+	margin:10% auto;
 	max-width:580px;
 	width:100%;
 	padding:30px 20px 30px;
@@ -133,11 +133,11 @@ img{
 .search_form_wrap .form-group .input_box_wrap{
 	float:left;
 	width:100%;
-	border:1px solid #b4b4b4;
+	border:1px solid #ccc;
 }
 .search_form_wrap .form-group span{
 	float:left;
-	padding:7px;
+	padding:6px;
 	width:auto;
 	text-align: center;
 	color:#226f05;
@@ -151,7 +151,7 @@ img{
 	border:none;
 	box-shadow:none;
 	color:#5c5c5c;
-	height:32px;
+	height:30px;
 	padding-left:0px;
 }
 .city_box{
@@ -2646,6 +2646,67 @@ span.menu_icon_down {
 	text-align: center;
 	float: left;
 	width: 100%;
+}
+
+/*************** topheader_srch_frm ****************/
+.topheader_srch_frm {
+    max-width: 0px;
+    padding-right: 36px;
+    transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    -ms-transition: all .5s ease-out;
+    position: relative;
+    overflow: hidden;
+    height: 34px;
+    float: right;
+    display: flex;
+
+}
+.topheader_srch_frm .input_box_wrap{
+	visibility: hidden;
+}
+.topheader_srch_frm:hover,
+.topheader_srch_frm:focus{
+	transition: all 1s ease-in-out;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	max-width: 100%;
+}
+.topheader_srch_frm .onhover_button{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	padding: 5px 12px;
+}
+.topheader_srch_frm .onhover_button[type="submit"]{
+	display: none;
+}
+.topheader_srch_frm:hover .onhover_button[type="submit"],
+.topheader_srch_frm:focus .onhover_button[type="submit"]{
+	display: block;
+}
+.topheader_srch_frm .onhover_button[type="button"]{
+	display: block;
+}
+.topheader_srch_frm:hover .onhover_button[type="button"],
+.topheader_srch_frm:focus .onhover_button[type="button"]{
+	display: none;
+}
+.topheader_srch_frm:hover .input_box_wrap,
+.topheader_srch_frm:focus .input_box_wrap{
+	visibility: visible;
+}
+.onhover_button{
+	background:#fff !important;
+	border:0px;
+	border-bottom: 2px solid #226f05 ;
+}
+.onhover_button .fa{
+	color: #226f05
 }
 /*-----DEAL LOADING GIF-----*/
 /*@-webkit-keyframes placeHolderShimmer {

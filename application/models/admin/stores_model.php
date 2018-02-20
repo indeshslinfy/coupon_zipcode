@@ -270,7 +270,41 @@ class stores_model extends CI_model
 			$select_str .= ', store_cat.id as store_cat_id, store_cat.store_category_name';
 		}
 
+
+		if (isset($filters['sort_distance']) && intval($filters['sort_distance']) > 0)
+		{
+			$sort_distance = intval($filters['sort_distance']);
+		}
+		else
+		{
+			$sort_distance = get_settings('zipcode_search_radius');
+		}
+
+		$store_zipcode = 0;
+		if (isset($filters['store_zipcode']) && intval($filters['store_zipcode']) > 0)
+		{
+			$store_zipcode = $filters['store_zipcode'];
+		}
+
+		$nearby_stores = array();
+		if ($store_zipcode > 0)
+		{
+			$nearby_zipcodes = get_nearby_zipcodes($store_zipcode, $sort_distance);
+			foreach ($nearby_zipcodes as $keyNZ => $valueNZ)
+			{
+				$zipcode_stores = get_zipcode_stores($valueNZ['id']);
+				foreach ($zipcode_stores as $keyZS => $valueZS)
+				{
+					$nearby_stores[] = $valueZS['id'];
+				}
+			}
+		}
+		
 		$records = $this->db->select($select_str)->where($where_arr);
+		if (sizeof($nearby_stores) > 0)
+		{
+			$records = $records->where_in('s.id', $nearby_stores);
+		}
 
 		if (array_key_exists('dt', $filters))
 		{
@@ -357,6 +391,8 @@ class stores_model extends CI_model
 					break;
 			}
 		}
+
+		$records = $records->order_by('s.store_name', 'DESC');
 
 		if (!isset($filters['paginate']['limit']))
 		{

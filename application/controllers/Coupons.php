@@ -68,11 +68,20 @@ class Coupons extends CI_Controller
 		
 		if (array_key_exists('store_zipcode', $_GET) && $_GET['store_zipcode'] != '')
 		{
-			$_GET['store_zipcode'] = '';
+			$_GET['store_zipcode'] = $_GET['store_zipcode'];
 		}
 		else
 		{
 			$_GET['store_zipcode'] = '';
+		}
+
+		if (array_key_exists('sort_distance', $_GET) && $_GET['sort_distance'] != '')
+		{
+			$_GET['sort_distance'] = $_GET['sort_distance'];
+		}
+		else
+		{
+			$_GET['sort_distance'] = '';
 		}
 
 		if (!array_key_exists('src', $_GET))
@@ -294,7 +303,7 @@ class Coupons extends CI_Controller
 				$dompdf->setPaper('A4');
 				$dompdf->render();
 				
-				$dompdf->stream($coupon_details['coupon_title'], array("Attachment" => false)); // view in browser
+				$dompdf->stream($coupon_details['coupon_title'], array("Attachment" => false));
 				exit(0);
 			}
 		}
@@ -320,6 +329,7 @@ class Coupons extends CI_Controller
 
 			$review = $this->coupons_model->submit_store_review($params);
 			$review['data']['review_date'] = date("F jS, Y", strtotime($review['data']['created_at']));
+			
 			echo json_encode($review);die;
 		}
 
@@ -329,6 +339,7 @@ class Coupons extends CI_Controller
 	public function list_categories()
 	{
 		$data['title'] = 'Categories';
+		$data['popular_stores'] = popular_stores();
 
 		$this->load->model(ADMIN_PREFIX . '/stores_category_model');
 		$all_categories = $this->stores_category_model->all_records();
@@ -339,8 +350,6 @@ class Coupons extends CI_Controller
 			$alpha_key = strtoupper($valueAC['store_category_name'][0]);
 			$data['all_categories'][strtoupper($valueAC['store_category_name'][0])][] = $valueAC;
 		}
-
-		$data['popular_stores'] = popular_stores();
 
 		$this->load->template('categories', $data);
 	}

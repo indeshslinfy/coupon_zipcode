@@ -104,8 +104,8 @@
 								<img src="<?php echo base_url($company_logo); ?>" alt="Coupon Zipcode">
 							</a>
 						</div>
-						<div class="collapse col-xs-12 col-sm-9 col-lg-10 col-md-10 mobile_to_center search_form_wrap">
-							<form class="form-inline" action="<?php echo base_url('deals'); ?>">
+						<div class="col-xs-12 col-sm-9 col-lg-10 col-md-10 mobile_to_center search_form_wrap">
+							<form class="form-inline topheader_srch_frm" action="<?php echo base_url('deals'); ?>">
 								<div class="form-group serach_ct_field city_box">
 									<div class="input_box_wrap">
 										<span><i class="fa fa-search"></i></span>
@@ -114,20 +114,22 @@
 										<input type="hidden" id="top-srch-cat" name="cat_name" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : ''; ?>">
 									</div>
 								</div>
-								<div class="form-group city_box">
+								<!-- <div class="form-group city_box">
 									<div class="input_box_wrap">
 										<span>In</span>
 										<input type="text" class="form-control" placeholder="City" name="city_name" value="<?php echo isset($_GET['city_name']) ? $_GET['city_name'] : ''; ?>">
 									</div>
-								</div>
+								</div> -->
 								<div class="form-group nearby">
 									<div class="input_box_wrap">
 										<span>Near</span>
-										<input type="text" class="form-control top-srch-zipcode" placeholder="Zipcode" name="store_zipcode" value="<?php echo isset($_GET['store_zipcode']) ? $_GET['store_zipcode'] : ''; ?>">
+										<input type="text" class="form-control top-srch-zipcode" placeholder="Zipcode">
+										<input type="hidden" name="store_zipcode" class="store_zipcode_id_hidden">
 									</div>
 								</div>
 
-								<button type="submit" class="btn ylew_btn">Search</button>
+								<button type="submit" class="btn ylew_btn onhover_button"><i class="fa fa-search"></i></button>
+								<button type="button" class="btn ylew_btn onhover_button"><i class="fa fa-search"></i></button>
 							</form>
 						</div>
 					</div>
@@ -138,9 +140,9 @@
 					<div class="row">
 						<nav class="navbar navbar-default" role="navigation">
 							<div class="navbar-header">
-								<button type="button" class="navbar-toggle location_button" data-toggle="collapse" data-target=".search_form_wrap">
+								<!-- <button type="button" class="navbar-toggle location_button" data-toggle="collapse" data-target=".search_form_wrap">
 									<i class="fa fa-search fa-xs" aria-hidden="true"></i>
-								</button>
+								</button> -->
 								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 									<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 								</button> 

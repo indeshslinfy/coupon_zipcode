@@ -151,8 +151,8 @@ if (!function_exists('get_zipcode_name'))
 	{
 		$CI =& get_instance();
 		$zipcode_exist = $CI->db->where(array('id' => $zipcode_id))
-					->get('zipcodes')
-					->row_array();
+								->get('zipcodes')
+								->row_array();
 		if ($zipcode_exist)
 		{
 			return $zipcode_exist['zipcode'];
@@ -331,5 +331,31 @@ if (!function_exists('get_featured_stores'))
 		}
 
 		return $featured_stores->group_by('s.id')->get('stores as s')->result_array();
+	}
+}
+
+if (!function_exists('get_nearby_zipcodes'))
+{
+	function get_nearby_zipcodes($zipcode_id, $distance=false)
+	{
+		$CI =& get_instance();
+
+		$zipcode_detail = $CI->db->where(array('id' => $zipcode_id))
+					->get('zipcodes')
+					->row_array();
+
+		$locations = array();
+		if ($zipcode_detail)
+		{
+			$sql = "SELECT *, ( 3959 * acos( cos( radians(" . $zipcode_detail['latitude'] . ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" . $zipcode_detail['longitude'] . ") ) + sin( radians(" . $zipcode_detail['latitude'] . ") ) * sin( radians( latitude ) ) ) ) AS distance FROM zipcodes ";
+			if ($distance)
+			{
+				$sql .= "HAVING distance < $distance ORDER BY distance";
+			}
+
+			$locations = $CI->db->query($sql)->result_array();
+		}
+
+		return $locations;
 	}
 }

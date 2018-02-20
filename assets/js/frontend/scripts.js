@@ -177,8 +177,12 @@ function bind_zipcode_autocomplete(target_class, options, limits)
 				time: 200,
 				callback: function() {}
 			},
-			match: {enabled: true}
-        },
+			match: {enabled: true},
+			onChooseEvent: function() {
+				console.log($(target_class).getSelectedItemData().id);
+				$(".store_zipcode_id_hidden").val($(target_class).getSelectedItemData().id);
+			}
+		},
 		theme: options.theme
 	};
 
@@ -187,16 +191,16 @@ function bind_zipcode_autocomplete(target_class, options, limits)
 
 function getLocation() 
 {
-	if (navigator.geolocation)
-	{
-		navigator.geolocation.getCurrentPosition(showPosition);
-	}
-	else
-	{
-		alert("Either you have blocked location access or geolocation is not supported by this browser. Setting location default to New York City");
-		var new_york_location = {coords: {'latitude': '40.71', 'longitude': '-73.99'}};
-		showPosition(new_york_location);
-	}
+	navigator.geolocation.getCurrentPosition(
+		function(success) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		},
+		function(failure) {
+			alert("Either you have blocked location access or geolocation is not supported by this browser. Setting location default to New York City");
+			var new_york_location = {coords: {'latitude': '40.71', 'longitude': '-73.99'}};
+			showPosition(new_york_location);
+		}
+	)
 }
 
 function showPosition(position) 
