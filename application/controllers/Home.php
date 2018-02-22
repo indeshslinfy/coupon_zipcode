@@ -25,10 +25,10 @@ class Home extends CI_Controller
 	 */
 	public function index()
 	{
-		$location_arr['lat'] = array('lat' => '40.71',
-									'long' => '-73.99',
-									'zipcode' => '10002',
-									'zipcode_id' =>  @get_zipcode_details($location_arr['zipcode']));
+		$location_arr = array('lat' => '40.71',
+							'long' => '-73.99',
+							'zipcode' => '10002',
+							'zipcode_id' =>  @get_zipcode_details($location_arr['zipcode']));
 		$cookie_data = json_decode(get_cookie('user_current_location'));
 		if($cookie_data)
 		{

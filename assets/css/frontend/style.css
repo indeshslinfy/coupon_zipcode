@@ -1625,6 +1625,12 @@ button,
 	width: 85%;
 	margin-left: 5px;
 }
+.sorting-div-inner .easy-autocomplete-container{
+	left: 5px;
+	position: absolute;
+	width: calc(100% - 24px);
+	z-index: 2;
+}
 .sorting-div-inner .btn{
 	font-weight: 600;
 	font-size: 13px;

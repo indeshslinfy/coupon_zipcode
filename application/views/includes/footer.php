@@ -12,7 +12,7 @@
 	<footer>
 		<div class="container">
 			<div class="row footer_wrap">
-				<div class="col-xs-6 col-sm-4 col-md-6 col-lg-3 online_coupan_link">
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 online_coupan_link">
 					<h3>Online Coupons</h3>
 					<ul>
 						<li><a href="javascript:void(0);">Angie's List</a></li>
@@ -23,7 +23,7 @@
 					</ul>
 				</div>
 
-				<div class="col-xs-6 col-sm-4 col-md-6 col-lg-3">
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
 					<h3>Featured Stores</h3>
 					<ul>
 						<?php
@@ -37,7 +37,7 @@
 					</ul>
 				</div>
 
-				<div class="col-xs-6 col-sm-4 col-md-6 col-lg-3">
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
 					<h3>Cities</h3>
 					<ul>
 						<li><a href="javascript:void(0);">New York</a></li>
@@ -48,7 +48,7 @@
 					</ul>
 				</div>
 
-				<div class="col-xs-6 col-sm-4 col-md-6 col-lg-3 left_side_line">
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 left_side_line">
 					<h3>Help & Support</h3>
 					<ul>
 						<li><a href="<?php echo base_url('contact-us'); ?>">Contact us</a></li>

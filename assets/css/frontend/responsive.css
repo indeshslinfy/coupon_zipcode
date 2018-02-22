@@ -89,11 +89,12 @@
 	.filter_inner_wrap{display:none;}
 	.sorting-div{position:relative;width: 100%;top:15px;left: 0%;padding-left: 0px;}
 	.sorting-div .sorting-div-inner{padding:15px 15px 0px;}
-	.sorting-div .sorting-div-inner .form-group{float:left;width:100% !important;}
-	.sorting-div .sorting-div-inner h4{float:left;width:50px;line-height: 22px;}
-	.sorting-div .sorting-div-inner .form-group .form-control{float:right;width:calc(100% - 65px)!important;margin:0px;}
+	.sorting-div-inner .form-group { width:25%;  display: inline-block;}
+	.sorting-div .sorting-div-inner h4{float:left;width:50px;line-height: 22px;padding: 0px 3px;}
+	.sorting-div .sorting-div-inner .form-group .form-control{float:right;width:calc(100% - 50px)!important;margin:0px;}
+	.sorting-div-inner .easy-autocomplete{width:100%!important; display:block;}
 	.sorting-div .sorting-div-inner .form-group .btn{float:right;}
-	.cat_coupons_wrapper .right-pane .exclusive_coupan{padding-top:20px;}
+	.cat_coupons_wrapper .right-pane .exclusive_coupan{padding-top:20px;border-top:none;}
 	.left_side_line{margin:30px 0px;}
 	.deals_you_like{width:100%; height:150px;border-right:none;border-left:none;border-bottom:10px solid #fff; transition:height .25s;position:relative;}
 	.deals_event h3{font-size:30px; transform:rotate(0deg); margin-top:20px;}
@@ -130,7 +131,6 @@
 		top: -9999px;
 		left: -9999px;
 	}
-	
 	.post_detail table tr { border: 1px solid #ccc; }
 	
 	.post_detail table td { 
@@ -158,12 +158,18 @@
 	.post_detail table td:nth-of-type(5):before { content: "Friday"; }
 	.post_detail table td:nth-of-type(6):before { content: "Saturday"; }
 	.post_detail table td:nth-of-type(7):before { content: "Sunday"; }
+
+	.sorting-div-inner .form-group { width: 47% !important; float: left; margin-right: 12px;}
+	.sorting-div-inner .easy-autocomplete{width: 100% !important;display: inherit;}
+
 }
 @media screen and (max-width:479px){
 	.select_city{width:100%;margin-bottom:20px;}
 	.selct_location_wrap{width:100%;}
 	.select_city_form .btn{margin-left:0px;}
 	.select_city_form .btn,.optional_text{width:100%;}
+	.sorting-div .sorting-div-inner .form-group{float:left;width:100% !important;}
+	.sorting-div-inner .easy-autocomplete{width:100% !important; display:inherit;}
 }
 @media screen and (max-width:403px){
 	.share_with_socila_media{float:right;width:100%;margin-top:8px;}
