@@ -292,16 +292,17 @@ section{
 	display: table;
 }
 .exclusive_coupan .cpn_adjst_img a{
+	float:left;
 	width:100%;
 	margin-bottom:15px;
 	position:relative;
 	overflow:hidden;
 	box-shadow:0px 2px 13px rgba(128,128,128,.2); 
 	border-radius:8px;
-	max-height: 248px;
+	/*max-height: 248px;
 	height: 248px;
 	display: table-cell;
-	vertical-align: top;
+	vertical-align: top;*/
 }
 .exclusive_coupan .cpn_adjst_img a img{
 	margin:0 auto;
@@ -426,7 +427,6 @@ section{
 .exclusive_coupan.cat_coupons a{
 	float:left;
 	width:100%;
-	border-bottom: 1px solid #ccc;
 	-webkit-transition: 0.3s;
 	-moz-transition: 0.3s;
 	-o-transition: 0.3s;
@@ -465,6 +465,16 @@ section{
 	position: relative;
 	overflow:hidden;
 	padding: 3px 3px 0px 0px;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	-ms-transition: 0.3s;
+	transition: 0.3s;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
 .top_rstrnt_deal a span{
 	position: absolute;
@@ -482,24 +492,31 @@ section{
 	width: 66px !important;
 	display: inline-block;
 }
+.top_rstrnt_deal a:hover{
+	position:relative;
+	-webkit-transform: translate3d(0, -5px, 0);
+	-moz-transform: translate3d(0, -5px, 0);
+	-o-transform: translate3d(0, -5px, 0);
+	-ms-transform: translate3d(0, -5px, 0);
+	transform: translate3d(0, -5px, 0);
+	-webkit-box-shadow:0 11px 13px -15px rgb(0,0,0);
+	box-shadow:0 11px 13px -15px rgb(0,0,0);
+}
 .adjst_img_wrap_height{
 	float:left;
 	width:100%;
 	position:relative;
 	height:160px;
-	display:table;
 }
 .adjst_img_wrap_height .ajst_img_box {
-	display: table-cell;
 	width: 100%;
-	height: 100%;
-	overflow:hidden;
-	text-align: center;
-	vertical-align:middle;
-}
-.adjst_img_wrap_height .ajst_img_box img{
 	max-height:160px;
 	height:160px;
+	overflow:hidden;
+	text-align: center;
+}
+.adjst_img_wrap_height .ajst_img_box img{
+	min-height:160px;
 }
 .top_rstrnt_deal_wrap img{
 	margin:0 auto;
@@ -508,6 +525,7 @@ section{
 .rstrnt_des_wrap{
 	float:left;
 	width:100%;
+	height: 60px;
 }
 .exclusive_coupan.cat_coupons .rstrnt_des_wrap{
 	float:left;
@@ -525,6 +543,7 @@ section{
 	font-weight:500;
 	color:#fff;
 	line-height: 1.7;
+	height:30px;
 }
 .location_box .fa{
 	float:left;
@@ -539,10 +558,7 @@ section{
 	border-top:1px solid #ccc;
 }
 .exclusive_coupan.cat_coupons .restrnt_desp_text_box{
-	display:table-cell;
-	height:100%;
-	float:none;
-	vertical-align:bottom;
+	height:60px;
 }
 .restrnt_desp_text_box h3{
 	font-size:15px;
@@ -658,10 +674,10 @@ footer{
 	padding-bottom: 60px;
 }
 .footer_wrap h3{
-	font-size:18px;
+	font-size:15px;
 	font-weight:600;
 	color:#fff;
-	margin-bottom:10px;
+	margin-bottom:7px;
 }
 .footer_wrap ul li a{
 	font-size:13px;
@@ -676,10 +692,10 @@ footer{
 	-o-transition: all .3s ease-in-out;
 	width: 100%;
 }
-.online_coupan_link ul{
-	float:left;
-	width:33.3%;
-}
+/*.online_coupan_link ul{*/
+	/*float:left;*/
+	/*width:33.3%;*/
+/*}*/
 .footer_copy_right {
     float: left;
     width: 100%;
@@ -1550,6 +1566,11 @@ button,
 	color: #4b4e5c;
 	font-size: 14px;
 	margin-bottom: 5px;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	flex-direction: column;
+	overflow:hidden;
 }
 .cat_coupons_wrapper .cpn_adjst_img{
 	margin-bottom: 15px;
@@ -1611,12 +1632,32 @@ button,
 	padding: 5px 20px;
 	letter-spacing: 0.3px;
 }
-.no-coupons-div{
-	background-color: #F3F3F3;
+.no-coupons-div-ajax{
 	float: left;
 	width: 100%;
 	padding: 50px 0;
-	box-shadow: 2px 6px 2px -3px #c0c0c0;
+}
+.no-coupons-div-ajax h4{
+	display:inline-block;
+	position: relative;
+	width: 100%;
+	max-width: 300px;
+}
+.no-coupons-div-ajax h4:before{
+	content: '';
+	width: 84px;
+	border-top: 1px solid #d8d8d8;
+	position: absolute;
+	left: 0px;
+	top: 12px;
+}
+.no-coupons-div-ajax h4:after{
+	content: '';
+	width: 84px;
+	border-top: 1px solid #d8d8d8;
+	position: absolute;
+	right: 0px;
+	top: 12px;
 }
 .no-coupons-div .rite-pane{
 	height: 157px;
@@ -2706,7 +2747,18 @@ span.menu_icon_down {
 	border-bottom: 2px solid #226f05 ;
 }
 .onhover_button .fa{
-	color: #226f05
+	color: #226f05;
+}
+.toggle-tab-menu{
+	font-size: 21px;
+	position: absolute;
+	right: 0;
+	top:10px;
+	color: #fff;
+}
+.toggle-tab-menu:focus,
+.toggle-tab-menu:hover{
+	color:#fff;
 }
 /*-----DEAL LOADING GIF-----*/
 /*@-webkit-keyframes placeHolderShimmer {

@@ -63,11 +63,11 @@
 							</ul>
 							<ul class="pull-right">
 								<li class="hidden-xs">
-									<a href="<?php echo base_url('how-it-works'); ?>">How It Works</a>
+									<a href="<?php echo base_url('how-it-works'); ?>">How it works</a>
 								</li>
 
 								<li class="hidden-xs">
-									<a href="<?php echo base_url('advertise'); ?>">Advertise With Us</a>
+									<a href="<?php echo base_url('advertise'); ?>">Advertise with us</a>
 								</li>
 								<?php
 								if ($this->session->userdata('logged_in'))
@@ -148,8 +148,11 @@
 								</button> 
 							</div>
 
-							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-								<ul class="nav navbar-nav">
+							<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+								<a class="visible-sm visible-md toggle-tab-menu" href="javascript:void(0);" onclick="toggle_menu();">
+									<i class="fa fa-angle-down"></i>
+								</a>
+								<ul class="nav navbar-nav toggle-menu-height">
 									<?php
 									$menu_categories = get_settings('frontend_menu');
 									foreach ($menu_categories as $keyMC => $valueMC)

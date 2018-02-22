@@ -32,13 +32,13 @@ $(document).ready(function()
 	
  	$('#exclusive_coupan_carousel').owlCarousel({
 		loop:true,
-		items : 3,
-		autoplay:false,
-		autoplayTimeout:100,
-		smartSpeed:1000,
-		nav:true,
+		items: 3,
+		autoplay: false,
+		autoplayTimeout: 100,
+		smartSpeed: 1000,
+		nav: true,
 		navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
-		responsiveClass:true,
+		responsiveClass: true,
 		responsive:{
 			0:{
 			    items:1,
@@ -121,6 +121,11 @@ $(document).ready(function()
  	bind_zipcode_autocomplete('.top-srch-zipcode', {'theme': 'bootstrap'}, 10);
  	bind_zipcode_autocomplete('.cat-srch-zipcode', {'theme': 'bootstrap'}, 10);
 });
+
+function toggle_menu()
+{
+	$('ul.navbar-nav').toggleClass('toggle-menu-height');
+}
 
 function bind_cat_autocomplete(target_class)
 {

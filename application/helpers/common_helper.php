@@ -145,6 +145,17 @@ if (!function_exists('save_zipcode'))
 	}
 }
 
+if (!function_exists('get_zipcode_by_name'))
+{
+	function get_zipcode_by_name($zipcode)
+	{
+		$CI =& get_instance();
+		return $CI->db->where(array('zipcode' => $zipcode))
+								->get('zipcodes')
+								->row_array();
+	}
+}
+
 if (!function_exists('get_zipcode_name'))
 {
 	function get_zipcode_name($zipcode_id)
@@ -316,15 +327,23 @@ if (!function_exists('popular_stores'))
 
 if (!function_exists('get_featured_stores'))
 {
-	function get_featured_stores($limit=false)
+	function get_featured_stores($limit=false, $zipcode_id=false)
 	{
 		$CI =& get_instance();
+
+		$where_arr = array('s.is_featured' => 1,
+						's.deleted_at' => NULL,
+						'cpn.deleted_at' => NULL,
+						'cpn.status' => COUPON_STATUS_ACTIVE);
+		if ($zipcode_id)
+		{
+			$where_arr['s.store_zipcode_id'] = $zipcode_id;
+		}
+
 		$featured_stores = $CI->db->select('s.*, cpn.id as coupon_id')
-								->where(array('s.is_featured' => 1,
-											's.deleted_at' => NULL,
-											'cpn.deleted_at' => NULL,
-											'cpn.status' => COUPON_STATUS_ACTIVE))
+								->where($where_arr)
 								->join('coupons as cpn', 's.id=cpn.coupon_store_id');
+
 		if ($limit)
 		{
 			$featured_stores = $featured_stores->limit($limit);
@@ -339,10 +358,7 @@ if (!function_exists('get_nearby_zipcodes'))
 	function get_nearby_zipcodes($zipcode_id, $distance=false)
 	{
 		$CI =& get_instance();
-
-		$zipcode_detail = $CI->db->where(array('id' => $zipcode_id))
-					->get('zipcodes')
-					->row_array();
+		$zipcode_detail = $CI->db->where(array('id' => $zipcode_id))->get('zipcodes')->row_array();
 
 		$locations = array();
 		if ($zipcode_detail)

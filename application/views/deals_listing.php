@@ -138,10 +138,8 @@ if ($total_coupons_fetched > 0)
 else
 {
 ?>
-	<div class="no-coupons-div">
-		<div>
-			<h4 class="text-center">That's all folks</h4>
-		</div>
+	<div class="no-coupons-div-ajax text-center">
+		<h4>That's all folks</h4>
 	</div>
 
 	<script type="text/javascript">

@@ -7,7 +7,6 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->library('Excel');
-        $this->load->helper('cookie');
     }
 	/**
 	 * Index Page for this controller.
@@ -26,28 +25,36 @@ class Home extends CI_Controller
 	 */
 	public function index()
 	{
-		// LOCAL COUPONS
-		$this->load->model(ADMIN_PREFIX . '/stores_model');
-		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10)));
-
-		// FEATURED STORES
-		$data['featured_stores'] = get_featured_stores(4);
-
-		$lat = '40.71';
-		$long = '-73.99';
+		$location_arr['lat'] = array('lat' => '40.71',
+									'long' => '-73.99',
+									'zipcode' => '10002',
+									'zipcode_id' =>  @get_zipcode_details($location_arr['zipcode']));
 		$cookie_data = json_decode(get_cookie('user_current_location'));
 		if($cookie_data)
 		{
-			$lat = $cookie_data->lat;
-			$long = $cookie_data->long;
+			$zip_dets = get_zipcode_by_name($cookie_data->zipcode);
+			if ($zip_dets)
+			{
+				$location_arr = array('lat' => $zip_dets['latitude'],
+									'long' => $zip_dets['longitude'],
+									'zipcode' => $zip_dets['zipcode'],
+									'zipcode_id' => $zip_dets['id']);
+			}
 		}
 
+		// LOCAL COUPONS
+		$this->load->model(ADMIN_PREFIX . '/stores_model');
+		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array('zipcode_id' => $location_arr['zipcode_id'], "sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
+
+		// FEATURED STORES
+		$data['featured_stores'] = get_featured_stores(4, $location_arr['zipcode_id']);
+
 		$this->load->library('affiliates');
-		
 		// GROUPON
 		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',
 																	array('type' => 'latlong',
-																		'type_val' => array('lat' => $lat, 'long' => $long),
+																		'zipcode_id' => $location_arr['zipcode_id'],
+																		'type_val' => array('lat' => $location_arr['lat'], 'long' => $location_arr['long']),
 																		'paginate' => array('offset' => 0, 'limit' => 4)));
 
 		// EBAY 1

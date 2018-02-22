@@ -243,7 +243,7 @@
 									{
 										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
-										<div class="col-sm-3 cpn_adjst_img">
+										<div class="col-sm-6 col-md-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>" data-placement="left" href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
@@ -272,7 +272,7 @@
 									{
 										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
-										<div class="col-sm-3 cpn_adjst_img">
+										<div class="col-sm-6 col-md-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC->title; ?>" data-placement="left" href="javascript:void(0);">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
@@ -297,7 +297,7 @@
 									{
 										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
-										<div class="col-sm-3 cpn_adjst_img">
+										<div class="col-sm-6 col-md-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="javascript:void(0);">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
@@ -329,7 +329,7 @@
 									{
 										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
-										<div class="col-sm-3 cpn_adjst_img">
+										<div class="col-sm-6 col-md-3 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">

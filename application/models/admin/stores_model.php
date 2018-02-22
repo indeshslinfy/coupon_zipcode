@@ -259,17 +259,21 @@ class stores_model extends CI_model
 
 	public function get_local_coupons($filters=false)
 	{
-		$select_str = 'c.id, c.coupon_title, c.coupon_description, s.store_name, s.id as store_id, s.store_featured_image as store_image';
+		$select_str = 'c.id, c.coupon_title, c.coupon_description, c.coupon_zipcode_id, s.store_name, s.id as store_id, s.store_featured_image as store_image';
 		$where_arr = array('c.coupon_publish' => 1,
 							'c.deleted_at' => NULL,
 							's.status' => STORE_STATUS_ACTIVE,
 							's.deleted_at' => NULL);
 
+		if (array_key_exists('zipcode_id', $filters))
+		{
+			$where_arr['c.coupon_zipcode_id'] = $filters['zipcode_id'];
+		}
+
 		if (array_key_exists("cat", $filters) && sizeof($filters['cat']) > 0)
 		{
 			$select_str .= ', store_cat.id as store_cat_id, store_cat.store_category_name';
 		}
-
 
 		if (isset($filters['sort_distance']) && intval($filters['sort_distance']) > 0)
 		{
@@ -286,24 +290,32 @@ class stores_model extends CI_model
 			$store_zipcode = $filters['store_zipcode'];
 		}
 
-		$nearby_stores = array();
+		$near_zips = array();
+		// $nearby_stores = array();
+
 		if ($store_zipcode > 0)
 		{
 			$nearby_zipcodes = get_nearby_zipcodes($store_zipcode, $sort_distance);
 			foreach ($nearby_zipcodes as $keyNZ => $valueNZ)
 			{
-				$zipcode_stores = get_zipcode_stores($valueNZ['id']);
-				foreach ($zipcode_stores as $keyZS => $valueZS)
-				{
-					$nearby_stores[] = $valueZS['id'];
-				}
+				$near_zips[] = $valueNZ['id'];
+				// $zipcode_stores = get_zipcode_stores($valueNZ['id']);
+				// foreach ($zipcode_stores as $keyZS => $valueZS)
+				// {
+				// 	$nearby_stores[] = $valueZS['id'];
+				// }
 			}
 		}
-		
+
 		$records = $this->db->select($select_str)->where($where_arr);
-		if (sizeof($nearby_stores) > 0)
+		// if (sizeof($nearby_stores) > 0)
+		// {
+		// 	$records = $records->where_in('s.id', $nearby_stores);
+		// }
+
+		if (sizeof($near_zips) > 0)
 		{
-			$records = $records->where_in('s.id', $nearby_stores);
+			$records = $records->where_in('c.coupon_zipcode_id', $near_zips);
 		}
 
 		if (array_key_exists('dt', $filters))
@@ -401,7 +413,7 @@ class stores_model extends CI_model
 		
 		if (!isset($filters['paginate']['offset']))
 		{
-			$filters['paginate']['offset'] = 1;
+			$filters['paginate']['offset'] = 0;
 		}
 		
 		return $records->limit($filters['paginate']['limit'], $filters['paginate']['offset'])
