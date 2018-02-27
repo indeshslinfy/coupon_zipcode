@@ -28,6 +28,7 @@ class Settings extends CI_Controller
 		$data['ebay'] = get_settings('ebay');
 		$data['amazon'] = get_settings('amazon');
 		$data['walmart'] = get_settings('walmart');
+		$data['restaurant_dot_com'] = get_settings('restaurant_dot_com');
 		$data['general_settings'] = get_settings('general_settings');
 		$data['social_platform'] = get_settings('social_platform');
 		$data['zipcode_search_radius'] = get_settings('zipcode_search_radius');

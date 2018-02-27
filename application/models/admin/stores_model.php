@@ -43,6 +43,15 @@ class stores_model extends CI_model
 			$allowed_extensions = array('jpg', 'jpeg', 'png');
 			if ($id)
 			{
+				$previous_zipcode_id = $data['basic']['previous_zipcode_id'];
+				unset($data['basic']['previous_zipcode_id']);
+
+				if ($previous_zipcode_id != $data['basic']['store_zipcode_id']) 
+				{
+					$coupons['updated_at'] = date('Y-m-d H:i:s');
+					$coupons['coupon_zipcode_id'] = $data['basic']['store_zipcode_id'];
+					$this->db->where(array('coupon_store_id' => $id))->update('coupons', $coupons);
+				}
 				// SAVE FEATURED IMAGE
 				if (!$data['basic']['featured_image']['error'])
 				{

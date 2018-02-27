@@ -223,6 +223,8 @@
                                                 <label for="store_latitude">Zipcode&nbsp;<small class="text-danger">*</small></label>
                                                 <input type="text" id="store_zipcode" value="<?php echo $store_details['store_zipcode']; ?>" class="form-control" required="">
                                                 <input type="hidden" name="store_zipcode_id" id="store_zipcode_id" class="form-control" value="<?php echo $store_details['store_zipcode_id']; ?>">
+
+                                                <input type="hidden" name="previous_zipcode_id" value="<?php echo $store_details['store_zipcode_id'] ?>">
                                             </div>
                                         </div>
                                     </div>

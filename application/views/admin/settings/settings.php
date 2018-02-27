@@ -241,6 +241,29 @@
                                     </div>
                                     <hr>
 
+                                    <h4>Restaurant Credentials</h4>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>CJ/Devloper ID&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="restaurant_dot_com[cj_id]" value="<?php echo $restaurant_dot_com['cj_id']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Website Id&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="restaurant_dot_com[website_id]" value="<?php echo $restaurant_dot_com['website_id']; ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Advertiser ID&nbsp;<small class="text-danger">*</small></label>
+                                                <input type="text" name="restaurant_dot_com[advertiser_id]" value="<?php echo strtoupper($restaurant_dot_com['advertiser_id']); ?>" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+
                                     <h4>Walmart</h4>
                                     <div class="row">
                                         <div class="col-sm-3">
