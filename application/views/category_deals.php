@@ -43,6 +43,10 @@
 											<span>Coupon Zipcode</span>
 										</li>
 										<li>
+											<input type="radio" name="src" value="restaurant_dot_com" <?php echo isset($_GET['src']) && $_GET['src'] == 'restaurant_dot_com' ? 'checked' : ''; ?>>&nbsp;
+											<span>Restaurant.com</span>
+										</li>
+										<li>
 											<input type="radio" name="src" value="groupon" <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'checked' : ''; ?>>&nbsp;
 											<span>Groupon</span>
 										</li>
@@ -58,9 +62,22 @@
 									<hr>
 								</div>
 
+								<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hide' : ''; ?>">
+									<h5 class="filter_heading">
+										Search by Keyword
+										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+									</h5>
+									<ul class="filters-ul filter-clearable">
+										<li>
+											<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
+										</li>
+									</ul>
+									<hr>
+								</div>
+
 								<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hide' : ''; ?>">
 									<h5 class="filter_heading">
-										Price Range
+										Price Range (&#36;)
 										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
 									</h5>
 									<ul class="filters-ul filter-clearable" id="range_filters_ul">
@@ -74,14 +91,55 @@
 									<hr>
 								</div>
 
-								<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hide' : ''; ?>">
+								<div class="filter_min_discount_div">
 									<h5 class="filter_heading">
-										Search by Keyword
-										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+										Min. Discount
+										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['min_discount']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
 									</h5>
-									<ul class="filters-ul filter-clearable">
+									
+									<ul class="filters-ul filter-clearable" id="min_discount_filters_ul">
 										<li>
-											<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
+											<input type="radio" name="min_discount" value="10" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '10' ? 'checked' : ''; ?>>&nbsp;
+											<span>10% and up</span>
+										</li>
+										<li>
+											<input type="radio" name="min_discount" value="25" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '25' ? 'checked' : ''; ?>>&nbsp;
+											<span>25% and up</span>
+										</li>
+										<li>
+											<input type="radio" name="min_discount" value="35" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '35' ? 'checked' : ''; ?>>&nbsp;
+											<span>35% and up</span>
+										</li>
+										<li>
+											<input type="radio" name="min_discount" value="50" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '50' ? 'checked' : ''; ?>>&nbsp;
+											<span>50% and up</span>
+										</li>
+									</ul>
+									<hr>
+								</div>
+
+								<div class="filter_condition_div">
+									<h5 class="filter_heading">
+										Condition
+										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['condition']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
+									</h5>
+									
+									<ul class="filters-ul filter-clearable" id="condition_filters_ul">
+										<li>
+											<input type="radio" name="condition" value="New" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'New' ? 'checked' : ''; ?>>&nbsp;
+											<span>New</span>
+										</li>
+										<li>
+											<input type="radio" name="condition" value="Used" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Used' ? 'checked' : ''; ?>>&nbsp;
+											<span>Used</span>
+										</li>
+										<li>
+											<input type="radio" name="condition" value="Collectible" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Collectible' ? 'checked' : ''; ?>>&nbsp;
+											<span>Collectible</span>
+										</li>
+										<li>
+											<input type="radio" name="condition" value="Refurbished" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Refurbished' ? 'checked' : ''; ?>>&nbsp;
+											<span>Refurbished</span>
 										</li>
 									</ul>
 									<hr>
@@ -233,47 +291,75 @@
 
 					<div class="col-sm-9 col-md-10 right-pane">
 						<div class="exclusive_coupan cat_coupons">
+							<div class="coupon_row_wrap">
 							<?php
 							if ($total_coupons_fetched > 0)
 							{
-								$cnt = 1;
 								if (array_key_exists('local', $coupons))
 								{
 									foreach ($coupons['local'] as $keyCC => $valueCC)
 									{
-										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
-										<div class="col-sm-6 col-md-3 cpn_adjst_img">
+										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>" data-placement="left" href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<img src="<?php echo base_url($valueCC['store_image']); ?>" alt="<?php echo $valueCC['coupon_title']; ?>">
 													</div>
 													<div class="rstrnt_des_wrap">
-														<div class="location_box light_green_bg">
+														<!-- <div class="location_box light_green_bg">
 															<i class="fa fa-map-marker"></i>&nbsp;
 															<?php echo $valueCC['store_name']; ?>
-														</div>
+														</div> -->
 														<div class="restrnt_desp_text_box">
-															<h4 title="<?php echo $valueCC['coupon_title']; ?>"><?php echo strlen($valueCC['coupon_title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['coupon_title']; ?></h4>
+															<h4 title="<?php echo $valueCC['coupon_title']; ?>"><?php echo strlen($valueCC['coupon_title']) > 70 ? substr($valueCC['title'], 0, 70) . "..." : $valueCC['coupon_title']; ?></h4>
 														</div>
 													</div>
 												</div>
 											</a>
 										</div>
 									<?php
-										echo $cnt == 4 ? '</div>' : '';
-										$cnt == 4 ? $cnt = 1 : $cnt++;
+									}
+								}
+								elseif (array_key_exists('restaurant_dot_com', $coupons))
+								{
+									foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
+									{
+									?>
+										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
+											<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+												<div class="top_rstrnt_deal_wrap">
+													<div class="cat_img_div">
+														<?php
+														if (is_array($valueCC['image-url']))
+														{
+															echo img('restaurant-dot-com.png');
+														}
+														else
+														{
+															echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
+														}
+														?>
+													</div>
+													<div class="rstrnt_des_wrap">
+														<div class="restrnt_desp_text_box">
+															<h4><?php echo $valueCC['name']; ?></h4>
+															<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<?php
 									}
 								}
 								elseif (array_key_exists('groupon', $coupons))
 								{
 									foreach ($coupons['groupon'] as $keyCC => $valueCC)
 									{
-										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
-										<div class="col-sm-6 col-md-3 cpn_adjst_img">
-											<a data-toggle="tooltip" title="<?php echo $valueCC->title; ?>" data-placement="left" href="javascript:void(0);">
+										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
+											<a data-toggle="tooltip" data-placement="left" title="<?php echo $valueCC->title; ?>" href="<?php echo $valueCC->dealUrl; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<img src="<?php echo $valueCC->grid4ImageUrl; ?>" alt="<?php echo $valueCC->shortAnnouncementTitle; ?>">
@@ -287,49 +373,36 @@
 											</a>
 										</div>
 									<?php
-										echo $cnt == 4 ? '</div>' : '';
-										$cnt == 4 ? $cnt = 1 : $cnt++;
 									}
 								}
 								elseif (array_key_exists('ebay', $coupons))
 								{
 									foreach ($coupons['ebay'] as $keyCC => $valueCC)
 									{
-										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
-										<div class="col-sm-6 col-md-3 cpn_adjst_img">
-											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="javascript:void(0);">
+										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
+											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="<?php echo $valueCC['viewItemURL']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<img src="<?php echo $valueCC['galleryURL']; ?>" alt="<?php echo $valueCC['itemId']; ?>">
 													</div>
 													<div class="rstrnt_des_wrap">
-														<!-- <div class="location_box light_green_bg">
-															<i class="fa fa-map-marker"></i>&nbsp;
-															<?php //echo strlen($valueCC['location']) > 30 ? substr($valueCC['location'], 0, 30) . "..." : $valueCC['location']; ?>
-														</div> -->
 														<div class="restrnt_desp_text_box">
-															<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
-															<!-- <p>
-																Price:&nbsp;<?php //echo $valueCC['sellingStatus']['currentPrice']; ?>
-															</p> -->
+															<h4><?php echo strlen($valueCC['title']) > 70 ? substr($valueCC['title'], 0, 70) . "..." : $valueCC['title']; ?></h4>
 														</div>
 													</div>
 												</div>
 											</a>
 										</div>
 									<?php
-										echo $cnt == 4 ? '</div>' : '';
-										$cnt == 4 ? $cnt = 1 : $cnt++;
 									}
 								}
 								elseif (array_key_exists('amazon', $coupons))
 								{
 									foreach ($coupons['amazon'] as $keyCC => $valueCC)
 									{
-										echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 									?>
-										<div class="col-sm-6 col-md-3 cpn_adjst_img">
+										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
@@ -338,18 +411,18 @@
 													</div>
 													<div class="rstrnt_des_wrap">
 														<div class="restrnt_desp_text_box">
-															<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
+															<h4><?php echo strlen($valueCC['title']) > 70 ? substr($valueCC['title'], 0, 70) . "..." : $valueCC['title']; ?></h4>
 															<?php
 															$price_str = 'Get Price NOW';
 															if ($valueCC['rrp'] != 0.00)
 															{
 																if ($valueCC['lowestPrice'] < $valueCC['rrp'])
 																{
-																	$price_str = "Price:&nbsp;<strike>" . $valueCC['rrp'] . "</strike>&nbsp;" . $valueCC['lowestPrice'];
+																	$price_str = "<strike>&#36;" . $valueCC['rrp'] . "</strike>&nbsp;&#36;" . $valueCC['lowestPrice'];
 																}
 																else
 																{
-																	$price_str = "Price:&nbsp;" . $valueCC['lowestPrice'];
+																	$price_str = "&#36;" . $valueCC['lowestPrice'];
 																}
 															}
 															?>
@@ -360,8 +433,6 @@
 											</a>
 										</div>
 									<?php
-										echo $cnt == 4 ? '</div>' : '';
-										$cnt == 4 ? $cnt = 1 : $cnt++;
 									}
 								}
 							}
@@ -383,11 +454,19 @@
 							<?php
 							}
 							?>
+							</div>
 						</div>
-					</div>
-
-					<div class="load-more-div">
-						<button type="button" onclick="load_more(this);" id="load_more_btn" class="btn ylew_btn">Load More</button>
+						
+						<?php
+						if ($total_coupons_fetched > 0)
+						{
+						?>
+							<div class="load-more-div">
+								<button type="button" onclick="load_more(this);" id="load_more_btn" class="btn ylew_btn">Load More</button>
+							</div>
+						<?php
+						}
+						?>
 					</div>
 				</div>
 			</div>
@@ -435,8 +514,7 @@ function bind_rating(target, rating)
 		halfStar: true,
 		readOnly: true,
 		starWidth: "15px",
-		multiColor: {"startColor": "#FF0000",
-					"endColor"  : "#F39C12"},
+		multiColor: {"startColor": "#FF0000", "endColor"  : "#F39C12"},
 	});
 
 	$(target).css('display', 'inline-block');
@@ -449,9 +527,12 @@ function render_selected_filters()
 
 function toggle_filters(ele)
 {
-	$(".filter_range_div").addClass('hide');
-
 	var selected_src = $(".filters-ul").find($('input[name=src]:checked'));
+	$(".filter_range_div").addClass('hide');
+	$(".filter_min_discount_div").addClass('hide');
+	$(".filter_condition_div").addClass('hide');
+
+	$('.filter_cat_div').removeClass('hide');
 	$('.filter_cat_div ul').children('li').addClass('hide');
 	$(".filter_cat_div .filters-ul").addClass('hide');
 	$(".filter_cat_div .filters-ul li").addClass('hide');
@@ -475,7 +556,16 @@ function toggle_filters(ele)
 	}
 	else
 	{
-		if (selected_src.val() == 'groupon')
+		if (selected_src.val() == 'restaurant_dot_com')
+		{
+			$('.filter_cat_div').addClass('hide');
+			$('.filter_range_div').removeClass('hide');
+			$('.filter_keyword_div').removeClass('hide');
+			
+			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
+			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
+		}
+		else if (selected_src.val() == 'groupon')
 		{
 			$('.filter_keyword_div').addClass('hide');
 
@@ -492,6 +582,10 @@ function toggle_filters(ele)
 		}
 		else if (selected_src.val() == 'amazon')
 		{
+			$(".filter_range_div").removeClass('hide');
+			$(".filter_min_discount_div").removeClass('hide');
+			$(".filter_condition_div").removeClass('hide');
+
 			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
 			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
 		}
@@ -541,7 +635,7 @@ function load_more(ele)
 		},
 		success: function(result)
 		{
-			$('.exclusive_coupan.cat_coupons').append(result);
+			$('.coupon_row_wrap').append(result);
 			$("body").getNiceScroll().resize();
 		},
 		complete: function (jqXHR, status) {

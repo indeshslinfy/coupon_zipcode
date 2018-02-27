@@ -12,6 +12,10 @@ class Affiliates
 	{
 		switch ($service_provider)
 		{
+			case 'restaurant_dot_com':
+				return $this->restaurant_dot_com_deals($params);
+				break;
+
 			case 'groupon':
 				return $this->groupon_deals($params);
 				break;
@@ -30,6 +34,84 @@ class Affiliates
 		}
 	}
 
+	public function restaurant_dot_com_deals($params)
+	{
+		ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+
+		if (!isset($params['paginate']['limit']))
+		{
+			$pagination_details = get_settings('deals_pagination');
+			$params['paginate']['limit'] = $pagination_details['limit'];
+		}
+
+		$rdc_details = get_settings('restaurant_dot_com');
+		$url = 'https://product-search.api.cj.com/v2/product-search?'.
+				'website-id=' . $rdc_details['website_id'].
+				'&advertiser-ids=' . $rdc_details['advertiser_id'].
+				'&records-per-page='. $params['paginate']['limit'].
+				'&page-number=' . $params['paginate']['page'];
+		
+		if (array_key_exists('keyword', $params) && $params['keyword'] != '')
+		{
+			$url .= '&keywords=' . rawurlencode($params['keyword']);
+		}
+		
+		if (array_key_exists('price_range', $params))
+		{
+			$url .= '&low-price=' . (int) $params['price_range'][0];
+			if ((int) $params['price_range'][1] > 0)
+			{
+				$url .= '&high-price=' . (int) $params['price_range'][1];
+			}
+		}
+
+		if (array_key_exists('sort_order', $params)) 
+		{
+			switch ($params['sort_order'])
+			{
+				case 'az':
+					$url .= '&sort-order=asc&sort-by=name';
+					break;
+
+				case 'za':
+					$url .= '&sort-order=desc&sort-by=name';
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+		}
+
+		try
+		{
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_POST, FALSE);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: ' . $rdc_details['cj_id']));
+			
+			$result = curl_exec($ch);
+			$resultXML = simplexml_load_string($result);
+
+			$data = json_decode(json_encode($resultXML), true);
+			if ($data['products']['@attributes']['records-returned'] != '0')
+			{
+				if ($data['products']['@attributes']['records-returned'] == '1')
+				{
+					return array($data['products']['product']);
+				}
+				return $data['products']['product'];
+			}
+		}
+		catch (Exception $e)
+		{
+			return array();
+		}
+
+		return array();
+	}
+
 	public function groupon_deals($params)
 	{
 		$groupon_details = get_settings('groupon');
@@ -37,7 +119,8 @@ class Affiliates
 
 		if (!isset($params['paginate']['limit']))
 		{
-			$params['paginate']['limit'] = 20;
+			$pagination_details = get_settings('deals_pagination');
+			$params['paginate']['limit'] = $pagination_details['limit'];
 		}
 
 		if (!isset($params['paginate']['offset']))
@@ -74,7 +157,8 @@ class Affiliates
 
 		if (!isset($params['paginate']['limit']))
 		{
-			$params['paginate']['limit'] = 20;
+			$pagination_details = get_settings('deals_pagination');
+			$params['paginate']['limit'] = $pagination_details['limit'];
 		}
 
 		if (!isset($params['paginate']['offset']))
@@ -144,8 +228,6 @@ class Affiliates
 											$amazon_details['country']);
 
 		$amazonAPI = new AmazonAPI($urlBuilder, 'simple');
-		$items = $amazonAPI->ItemSearch($params);
-		
-		return $items;
+		return $amazonAPI->ItemSearch($params);
 	}
 }

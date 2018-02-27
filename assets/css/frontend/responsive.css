@@ -83,7 +83,7 @@
 	.review_section h2{margin:10px 0px }
 	.post_address p{font-size: 14px;line-height:20px}
 	.post_address p a{font-size: 15px;}
-	.exclusive_coupan .cpn_adjst_img {width: 100%;margin-bottom: 20px;}
+	.exclusive_coupan .cpn_adjst_img {margin-bottom: 20px;}
 	.filter_toggle{padding-right:15px; color:#fff;}
 	.filter_toggle:hover,.filter_toggle:focus{padding-right:15px; color:#F69C13;}
 	.filter_inner_wrap{display:none;}
@@ -115,7 +115,6 @@
 	.topheader_srch_frm{position: initial;height: 0px;max-width: 100%;padding:0px 15px;transition: all .5s ease-in-out;-webkit-transition: all .5s ease-in-out;-moz-transition: all .5s ease-in-out;-o-transition: all .5s ease-in-out;-ms-transition: all 1s ease-in-out;}
 	.topheader_srch_frm .onhover_button {width: 36px;top: 33px;right: 15px;}
 	.topheader_srch_frm:hover, .topheader_srch_frm:focus{height: 42px;padding: 0px 15px;transition: all .5s ease-in-out;-webkit-transition: all .5s ease-in-out;-moz-transition: all .5s ease-in-out;-o-transition: all .5s ease-in-out;-ms-transition: all 1s ease-in-out;}
-
 }
 @media screen and (max-width:591px){
 	.post_detail table thead, 
@@ -125,14 +124,12 @@
 	.post_detail table tr { 
 		display: block; 
 	}
-	
 	.post_detail table thead tr { 
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
 	.post_detail table tr { border: 1px solid #ccc; }
-	
 	.post_detail table td { 
 		border: none;
 		border-bottom: 1px solid #eee; 
@@ -140,7 +137,6 @@
 		padding-left:35%; 
 		text-align:left;
 	}
-	
 	.post_detail table td:before { 
 		position: absolute;
 		text-align:left;
@@ -150,7 +146,6 @@
 		padding-right: 10px; 
 		white-space: nowrap;
 	}
-	
 	.post_detail table td:nth-of-type(1):before { content: "Monday"; }
 	.post_detail table td:nth-of-type(2):before { content: "Tuesday"; }
 	.post_detail table td:nth-of-type(3):before { content: "Wednesday"; }
@@ -162,6 +157,11 @@
 	.sorting-div-inner .form-group { width: 47% !important; float: left; margin-right: 12px;}
 	.sorting-div-inner .easy-autocomplete{width: 100% !important;display: inherit;}
 
+}
+@media screen and (max-width:550px){
+	.exclusive_coupan .cpn_adjst_img{
+		width: 100%;
+	}
 }
 @media screen and (max-width:479px){
 	.select_city{width:100%;margin-bottom:20px;}

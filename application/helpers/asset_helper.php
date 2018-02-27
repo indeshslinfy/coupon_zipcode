@@ -497,4 +497,19 @@ if ( ! function_exists('google_analytics'))
         return $out;
     }
 }
-/* End of file asset_helper.php */
+
+/**
+ * Load Background Image
+ * Add Background-Image in style tag
+ * @access  public
+ * @param   string
+ * @param   array   $atts Optional, additional key/value attributes to include in the IMG tag
+ * @return  string
+ */
+if ( ! function_exists('background_cover'))
+{
+    function background_cover($background = array())
+    {
+        return 'background:url(' . str_replace('\\', '/', $background['url']) . ')' . $background['filling_options'] . '; background-size:' . $background['background_size'];
+    }
+}

@@ -286,3 +286,28 @@ function subscribe_newsletter()
 		});
 	}
 }
+
+window.onscroll = function() {
+	scroll_it()
+};
+
+function scroll_it()
+{
+	if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)
+	{
+		document.getElementById("myBtn").style.display = "block";
+	} 
+	else
+	{
+		document.getElementById("myBtn").style.display = "none";
+	}
+}
+
+function to_top() 
+{
+	$('body, html').animate({
+		scrollTop: 0
+	}, 1500);
+
+	return false;
+}

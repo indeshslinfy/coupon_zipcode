@@ -33,7 +33,7 @@ class Coupons extends CI_Controller
 		$this->load->library('affiliates');
 
 		$data['title'] = 'Deals';
-		$total_coupons_fetched = 0;
+		$data['total_coupons_fetched'] = 0;
 
 		$this->load->model(ADMIN_PREFIX . '/stores_category_model');
 		$data['all_categories']['local'] = $this->stores_category_model->all_records();
@@ -98,6 +98,10 @@ class Coupons extends CI_Controller
 		{
 			$_GET['paginate']['page'] = 1;
 		}
+		else if ($_GET['paginate']['page'] < 1)
+		{
+			$_GET['paginate']['page'] = 1;
+		}
 
 		$_GET['location_arr'] = array('lat' => '40.71',
 									'long' => '-73.99',
@@ -121,7 +125,12 @@ class Coupons extends CI_Controller
 		$_GET['paginate']['offset'] = max(0, ($_GET['paginate']['page'] - 1) * $_GET['paginate']['limit']);
 
 		unset($_GET['search_src']);
-		if ($_GET['src'] == 'groupon')
+		if ($_GET['src'] == 'restaurant_dot_com')
+		{
+			$data['coupons']['restaurant_dot_com'] = $this->affiliates->get_deals($_GET['src'], $_GET);
+			$data['total_coupons_fetched'] = sizeof($data['coupons']['restaurant_dot_com']);
+		}
+		else if ($_GET['src'] == 'groupon')
 		{
 			if (isset($_GET['cat']) && $_GET['cat'] != '')
 			{
@@ -145,7 +154,7 @@ class Coupons extends CI_Controller
 					}
 
 					$data['coupons']['groupon'] = $groupon_deals;
-					$total_coupons_fetched = sizeof($data['coupons']['groupon']);
+					$data['total_coupons_fetched'] = sizeof($data['coupons']['groupon']);
 				}
 			}
 		}
@@ -207,15 +216,13 @@ class Coupons extends CI_Controller
 				}
 				
 				$data['coupons']['ebay'] = $ebay_deals;
-				$total_coupons_fetched = sizeof($data['coupons']['ebay']);
+				$data['total_coupons_fetched'] = sizeof($data['coupons']['ebay']);
 			}
 		}
 		else if ($_GET['src'] == 'amazon')
 		{
 			$_GET['type'] = 'category';
-			$_GET['MinimumPrice'] = $_GET['price_range'][0];
-			$_GET['MaximumPrice'] = $_GET['price_range'][1];
-			
+						
 			$amazon_deals = array();
 			if (sizeof($_GET['cat']) > 0)
 			{
@@ -223,7 +230,7 @@ class Coupons extends CI_Controller
 				{
 					$_GET['type_val'] = $valueCAT;
 					$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
-					if (sizeof($deals) > 0)
+					if (is_array($deals) && sizeof($deals) > 0)
 					{
 						$amazon_deals = array_merge($amazon_deals, $deals);
 					}
@@ -233,24 +240,23 @@ class Coupons extends CI_Controller
 			{
 				$_GET['type_val'] = 'All';
 				$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
-				if (sizeof($deals) > 0)
+				if (is_array($deals) && sizeof($deals) > 0)
 				{
 					$amazon_deals = array_merge($amazon_deals, $deals);
 				}
 			}
 
 			$data['coupons']['amazon'] = $amazon_deals;
-			$total_coupons_fetched = sizeof($data['coupons']['amazon']);
+			$data['total_coupons_fetched'] = sizeof($data['coupons']['amazon']);
 		}
 		else
 		{
 			$_GET['zipcode_id'] = $_GET['location_arr']['zipcode_id'];
 			$this->load->model(ADMIN_PREFIX . '/stores_model');
 			$data['coupons']['local'] = $this->stores_model->get_local_coupons($_GET);
-			$total_coupons_fetched = sizeof($data['coupons']['local']);
+			$data['total_coupons_fetched'] = sizeof($data['coupons']['local']);
 		}
 
-		$data['total_coupons_fetched'] = $total_coupons_fetched;
 		if (array_key_exists('is_ajax', $_GET))
 		{
 			echo json_encode($this->load->view('deals_listing', $data, true));

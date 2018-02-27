@@ -50,6 +50,12 @@ class Home extends CI_Controller
 		$data['featured_stores'] = get_featured_stores(4, $location_arr['zipcode_id']);
 
 		$this->load->library('affiliates');
+		// RESTAURANT.COM
+		// $rdc_keywords = array('Restaurant Deal, Cocktail', 'Whiskey');
+		// $keyword = $rdc_keywords[rand(1, sizeof($rdc_keywords)-1)];
+		// $data['coupons']['restaurant_dot_com'] = $this->affiliates->get_deals('restaurant_dot_com',
+		// 															array('keyword' => $keyword, 'paginate' => array('page' => 1, 'limit' => 3)));
+
 		// GROUPON
 		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',
 																	array('type' => 'latlong',
@@ -80,7 +86,7 @@ class Home extends CI_Controller
 		$data['coupons']['ebay']['valentine_keyword'] = $valentine_keyword;
 
 		// AMAZON
-		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'gifts for her', 'type_val' => 'All'));
+		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'gifts for her', 'type_val' => 'All', 'paginate' => array('limit' => '4', 'page' => '1')));
 
 		$this->load->template('index', $data);
 	}

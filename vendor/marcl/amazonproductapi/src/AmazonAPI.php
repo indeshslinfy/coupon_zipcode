@@ -80,64 +80,62 @@ class AmazonAPI
 	 *
 	 * @return	mixed				SimpleXML object, array of data or false if failure.
 	 */
-	public function ItemSearch($filters=array(), $sort = NULL, $paginate=array())
+	public function ItemSearch($filters=array())
 	{
 		$params = array('Operation' => 'ItemSearch',
 						'ResponseGroup' => 'ItemAttributes,Offers,Images',
 						'ItemPage' => '1',
 						'Availability' => 'Available',
-						'Condition' => 'New',
+						'Condition' => 'All',
 						'Keywords' => 'Amazon',
-						'SearchIndex' => 'All',
-						'Sort' => $sort);
+						'SearchIndex' => 'All');
 
-		if (sizeof($filters) > 0)
+		if (array_key_exists('condition', $filters))
 		{
-			if (array_key_exists('keyword', $filters) && trim($filters['keyword']) != '')
-			{
-				$params['Keywords'] = trim($filters['keyword']);
-			}
-
-			if (array_key_exists('type_val', $filters) && trim($filters['type_val']) != '')
-			{
-				$params['SearchIndex'] = trim($filters['type_val']);
-			}
-
-			if (array_key_exists('condition', $filters))
-			{
-				$params['Condition'] = $filters['condition'];
-			}
-
-			if (array_key_exists('min_discount', $filters))
-			{
-				$params['MinPercentageOff'] = $filters['min_discount'];
-			}
-
-			if (array_key_exists('price_range', $filters))
-			{
-				if (array_key_exists('searchIndex', $filters) && ($params['searchIndex'] != 'All' && $params['searchIndex'] != 'Blended'))
-				{
-					$params['MinimumPrice'] = $filters['price_range'][0];
-					$params['MaximumPrice'] = $filters['price_range'][1];
-				}
-			}
+			$params['Condition'] = trim($filters['condition']);
 		}
 
-		if (sizeof($paginate) > 0)
+		if (array_key_exists('keyword', $filters) && trim($filters['keyword']) != '')
 		{
-			if (array_key_exists('page_num', $paginate))
-			{
-				if ($filters['searchIndex'] == 'All' && intval($params['ItemPage']) > 5)
-				{
-					$params['ItemPage'] = '5';
-				}
-				else
-				{
-					$params['ItemPage'] = $paginate['page_num'];
-				}
-			}
+			$params['Keywords'] = trim($filters['keyword']);
 		}
 
+		if (array_key_exists('type_val', $filters) && trim($filters['type_val']) != '')
+		{
+			// CATEGORY
+			$params['SearchIndex'] = trim($filters['type_val']);
+		}
+
+		if (array_key_exists('min_discount', $filters))
+		{
+			$params['MinPercentageOff'] = $filters['min_discount'];
+		}
+
+		if (array_key_exists('price_range', $filters) && $params['SearchIndex'] != 'All' && $params['SearchIndex'] != 'Blended')
+		{
+			$params['MinimumPrice'] = (int) $filters['price_range'][0] * 100;
+			if ((int) $filters['price_range'][1] * 100 > 0)
+			{
+				$params['MaximumPrice'] = (int) $filters['price_range'][1] * 100;
+			}
+
+			$params['sort'] = 'price';
+		}
+
+		if ($params['SearchIndex'] == 'All' && intval($filters['paginate']['page']) > 5)
+		{
+			$params['ItemPage'] = '5';
+		}
+		else
+		{
+			$params['ItemPage'] = $filters['paginate']['page'];
+		}
+
+		if ($params['Availability'] == 'Available')
+		{
+			$params['Condition'] = 'All';
+		}
+		
 		return $this->MakeAndParseRequest($params);
 	}
 

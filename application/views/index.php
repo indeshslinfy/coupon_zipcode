@@ -27,6 +27,22 @@
 								</a>
 							</div>
 						</div>
+						<div class="item">
+							<div class="cpn_adjst_img">
+								<a href="<?php echo base_url('coupon' . '/' . $valueALC['id']); ?>">
+									<img src="<?php echo base_url($valueALC['store_image']); ?>" alt="<?php echo $valueALC['coupon_title']; ?>">
+									<div class="hover_div">
+										<div class="hover_text_wrap">
+											<div class="hover_text">
+												<h3><?php echo $valueALC['store_name']; ?>&nbsp;</h3>
+												<h4><?php echo $valueALC['coupon_title']; ?></h4>
+												<h5><?php echo strlen($valueALC['coupon_description']) >= 145 ? substr($valueALC['coupon_description'], 0, 145) . '...' : $valueALC['coupon_description']; ?></h5>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
 					<?php
 					}
 					?>
@@ -35,6 +51,51 @@
 		</div>			
 	</section>
 </div>
+
+<!-- <div class="row">
+	<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
+		<div class="container">
+			<div class="heading_text_wrap">
+				<h2>Top Restaurant Deals</h2>
+				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
+			</div>
+
+			<div class="row">
+				<?php
+				foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
+				{
+				?>
+					<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
+						<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+							<div class="top_rstrnt_deal_wrap">
+								<div class="cat_img_div">
+									<?php
+									if (is_array($valueCC['image-url']))
+									{
+										echo img('restaurant-dot-com.png');
+									}
+									else
+									{
+										echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
+									}
+									?>
+								</div>
+								<div class="rstrnt_des_wrap">
+									<div class="restrnt_desp_text_box">
+										<h4><?php echo $valueCC['name']; ?></h4>
+										<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				<?php
+				}
+				?>
+			</div>
+		</div>
+	</section>
+</div> -->
 
 <div class="row">
 	<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
@@ -239,8 +300,6 @@
 	</section>
 </div>
 
-<a href="javascript:void(0);" class="move_to_top" onclick="to_top()" id="myBtn" title="Go to top"><?php echo img('move-to-top.png'); ?></a>
-
 <div class="row">
 	<section class="top_rstrnt_deal">
 		<div class="container">
@@ -415,33 +474,6 @@
 	function toggle_copy_input()
 	{
 		$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').toggle();
-	}
-
-	window.onscroll = function() {
-		scroll_it()
-	};
-
-	//Scroll function
-	function scroll_it()
-	{
-	    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)
-	    {
-	        document.getElementById("myBtn").style.display = "block";
-	    } 
-	    else
-	    {
-	        document.getElementById("myBtn").style.display = "none";
-	    }
-	}
-
-	// When the user clicks on the button, scroll to the top of the document
-	function to_top() 
-	{
-		$('body, html').animate({
-	        scrollTop: 0
-	    }, 1500);
-	    
-	    return false;
 	}
 
 	// function render_deals()

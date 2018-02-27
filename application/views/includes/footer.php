@@ -70,6 +70,8 @@
 		</div>
 	</footer>
 </div>
+
+<a href="javascript:void(0);" class="move_to_top" onclick="to_top()" id="myBtn" title="Go to top"><?php echo img('move-to-top.png'); ?></a>
 </div>
 
 <!-- Modal-for-select-location -->

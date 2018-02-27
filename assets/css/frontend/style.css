@@ -335,6 +335,7 @@ section{
 	vertical-align: bottom;
 	display: flex;
 	text-align: center;
+	border-bottom:1px solid #ccc;
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div{
 	position:absolute;
@@ -528,10 +529,10 @@ section{
 	height: 60px;
 }
 .exclusive_coupan.cat_coupons .rstrnt_des_wrap{
-	float:left;
-	width:100%;
-	display: table;
+	padding:5px;
 	height: 72px;
+	display: flex;
+	flex-direction: column;
 }
 .light_green_bg{
 	background:#6b9b22;
@@ -554,11 +555,11 @@ section{
 .restrnt_desp_text_box{
 	float:left;
 	width:100%;
-	padding:10px;
-	border-top:1px solid #ccc;
-}
-.exclusive_coupan.cat_coupons .restrnt_desp_text_box{
-	height:60px;
+	height:100%;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	justify-content: center;
 }
 .restrnt_desp_text_box h3{
 	font-size:15px;
@@ -1558,19 +1559,9 @@ button,
 .cat_coupons_wrapper .left-pane hr{
 	margin: 7px 0;
 }
-.cat_coupons_wrapper .restrnt_desp_text_box p{
-	line-height: 1.1;
-}
 .cat_coupons_wrapper .restrnt_desp_text_box h4{
-	font-weight: 600;
 	color: #4b4e5c;
 	font-size: 14px;
-	margin-bottom: 5px;
-	display: flex;
-	height: 100%;
-	justify-content: center;
-	flex-direction: column;
-	overflow:hidden;
 }
 .cat_coupons_wrapper .cpn_adjst_img{
 	margin-bottom: 15px;
@@ -2636,24 +2627,20 @@ span.menu_icon_down {
 	margin-top:10px;
 }
 .top_rstrnt_deal_wrap p{
-	position:absolute;
-	top: -12px;
-	left: 30px;
-	color:#fff;
-	padding:4px;
-	background:#fd7140;
-}
-.top_rstrnt_deal_wrap p::before {
-	border-bottom: 12px solid #fd7140;
-	border-left: 6px solid rgba(0, 0, 0, 0);
-	content: "";
-	height: 0;
-	left: -6px;
+	color: #226F05;
+	float: right;
+	font-weight: 600;
+	bottom: 0;
+	margin: 5px;
 	position: absolute;
-	top:0px;
-	width: 0;
+	right: 0;
+	font-size: 14px;
 }
-
+.top_rstrnt_deal_wrap p strike{
+	font-weight: 500;
+	color: #837272;
+	font-size: 13px;
+}
 .latest_deals{
 	float:left;
 	width:100%;
