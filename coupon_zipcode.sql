@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2018 at 08:39 AM
+-- Generation Time: Feb 27, 2018 at 11:46 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -47,19 +47,19 @@ CREATE TABLE IF NOT EXISTS `address` (
 --
 
 INSERT INTO `address` (`id`, `address_line1`, `address_line2`, `address_line3`, `address_city_id`, `address_state_id`, `address_country_id`, `address_zipcode`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'C-110', 'Phase 7, Industrial Area', '', 44071, 3932, 1, '4231255', 1, NULL, '2018-01-05 00:00:00', '2018-02-09 11:35:24'),
-(2, 'E-584', 'Phase 8, Industrial Area', 'Near Coffee Shop', 44074, 3932, 1, '654231', 1, NULL, '2018-01-05 00:00:00', '2018-02-09 11:24:27'),
-(3, '#265, Lane Cove', 'Mark Street II', '', 43387, 3926, 1, '1456', 1, NULL, '2018-01-05 14:30:05', '2018-02-09 11:24:41'),
+(1, 'C-110', 'Phase 7, Industrial Area', '', 44071, 3932, 1, '4231255', 1, NULL, '2018-01-05 00:00:00', '2018-02-21 11:43:45'),
+(2, 'E-584', 'Phase 8, Industrial Area', 'Near Coffee Shop', 44074, 3932, 1, '654231', 1, NULL, '2018-01-05 00:00:00', '2018-02-21 11:43:51'),
+(3, '#265, Lane Cove', 'Mark Street II', '', 43387, 3926, 1, '1456', 1, NULL, '2018-01-05 14:30:05', '2018-02-21 11:43:54'),
 (4, '', NULL, NULL, 0, 0, 0, '', 1, NULL, '2018-01-19 09:46:52', NULL),
 (5, '9th Avenue', '712 9th Ave ', '', 47036, 3979, 1, '10019', 1, NULL, '2018-02-02 09:40:44', NULL),
-(6, '9th Avenue', '712 9th Ave', '', 47036, 3979, 1, '', 1, NULL, '2018-02-02 09:45:31', '2018-02-09 11:24:53'),
+(6, '9th Avenue', '712 9th Ave', '', 47036, 3979, 1, '', 1, NULL, '2018-02-02 09:45:31', '2018-02-27 10:21:01'),
 (7, '9th Avenue', '712 9th Ave', '', 47036, 3979, 1, '', 1, NULL, '2018-02-02 12:46:00', '2018-02-02 12:57:00'),
-(8, '10 Columbus Circle', '', '', 47036, 3979, 1, '', 1, NULL, '2018-02-05 08:17:24', '2018-02-09 11:25:06'),
-(9, '640 3rd Ave', '', '', 47036, 3979, 1, '', 1, NULL, '2018-02-05 08:46:31', '2018-02-09 11:25:19'),
-(10, '54 Thompson St', '', '', 47036, 3979, 1, '', 1, NULL, '2018-02-05 10:01:10', '2018-02-09 11:25:35'),
-(11, '22-04 33rd Street', '', '', 45875, 3962, 1, '', 1, NULL, '2018-02-05 11:01:00', '2018-02-09 11:25:48'),
-(12, '3620 Ditmars Blvd', '', '', 45875, 3962, 1, '', 1, NULL, '2018-02-05 12:21:27', '2018-02-09 11:28:34'),
-(13, '45-01 Ditmars Blvd', '', '', 45875, 3962, 1, '', 1, NULL, '2018-02-05 12:44:12', '2018-02-09 11:26:08'),
+(8, '10 Columbus Circle', '', '', 47036, 3979, 1, '', 1, NULL, '2018-02-05 08:17:24', '2018-02-21 11:43:57'),
+(9, '640 3rd Ave', '', '', 47036, 3979, 1, '', 1, NULL, '2018-02-05 08:46:31', '2018-02-27 10:22:17'),
+(10, '54 Thompson St', '', '', 47036, 3979, 1, '', 1, NULL, '2018-02-05 10:01:10', '2018-02-21 11:44:00'),
+(11, '22-04 33rd Street', '', '', 45875, 3962, 1, '', 1, NULL, '2018-02-05 11:01:00', '2018-02-21 11:44:03'),
+(12, '3620 Ditmars Blvd', '', '', 45875, 3962, 1, '', 1, NULL, '2018-02-05 12:21:27', '2018-02-21 11:44:04'),
+(13, '45-01 Ditmars Blvd', '', '', 45875, 3962, 1, '', 1, NULL, '2018-02-05 12:44:12', '2018-02-21 11:44:14'),
 (14, 'c-110,phase 7', '', '', 45875, 3962, 1, '', 1, NULL, '2018-02-06 06:10:01', '2018-02-06 06:15:06'),
 (15, 'asdasdsadsa', '', '', 47036, 3979, 1, '', 1, NULL, '2018-02-06 06:28:30', '2018-02-06 06:31:00'),
 (16, '9th Avenue', '', '', 42756, 3922, 1, '', 1, NULL, '2018-02-08 08:11:52', '2018-02-08 08:29:16'),
@@ -4700,7 +4700,7 @@ INSERT INTO `cities` (`id`, `city_name`, `state_id`, `latitude`, `longitude`) VA
 (47033, 'Sheridan', 3978, '', ''),
 (47034, 'Torrington', 3978, '', ''),
 (47035, 'Worland', 3978, '', ''),
-(47036, 'New York City', 3979, '40.7634', '-73.974');
+(47036, 'New York', 3979, '40.7634', '-73.974');
 
 -- --------------------------------------------------------
 
@@ -4713,7 +4713,7 @@ CREATE TABLE IF NOT EXISTS `countries` (
   `country_name` varchar(50) NOT NULL,
   `country_code` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=247 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `countries`
@@ -4752,16 +4752,16 @@ CREATE TABLE IF NOT EXISTS `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `coupon_title`, `coupon_code`, `coupon_type`, `coupon_start_date`, `coupon_end_date`, `coupon_description`, `coupon_fine_print`, `coupon_zipcode_id`, `coupon_store_id`, `coupon_publish`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, '25% of on Soccer Jersey', '25OFFSOCCER', 1, '2018-01-09 00:00:00', '2018-01-15 00:00:00', 'You''ll get 25% of on Soccer Jersey. Enjoy the treat with your loved ones.', 'You''ll get 25% of on Soccer Jersey. Enjoy the treat with your loved ones.', '3', 19, 0, 2, NULL, '2018-01-19 07:09:15', '2018-02-07 06:44:07'),
-(2, '50% off on Burgers', '50PERCBURG', 1, '2018-01-09 00:00:00', '2018-01-16 00:00:00', 'Get 50% off on burgers. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 50% off on burgers. Hurry FP', '3', 1, 0, 2, NULL, '2018-01-15 10:01:44', '2018-02-07 06:44:07'),
-(3, '75% of on Jeans', '25OFFJEANS', 1, '2018-01-09 00:00:00', '2018-01-14 23:59:59', 'You''ll get 75% of on Jeans. Enjoy the treat with your loved ones.', 'You''ll get 75% of on Jeans. Enjoy the treat with your loved ones.', '4', 7, 0, 2, NULL, '2018-01-08 00:00:00', '2018-02-07 06:44:07'),
-(4, 'Get 15 % Off', '15PERCBURG', 1, '2018-01-09 00:00:00', '2018-02-16 00:00:00', 'Get 15% off on your favorite food. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 50% off on bill. Hurry FP', '9', 21, 1, 1, NULL, '2018-02-02 09:50:50', '2018-02-07 06:43:38'),
-(5, '15% off on Burgers', ' SAVE15', 1, '2018-01-09 00:00:00', '2018-01-16 00:00:00', 'Get 15% off on burgers. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 15% off on burgers. Hurry FP', '4', 7, 0, 2, NULL, '2018-02-05 05:05:51', '2018-02-07 06:44:07'),
-(6, '20% off on Pizza', ' SAVE20', 1, '2018-01-09 00:00:00', '2018-02-16 00:00:00', 'Get 15% off on Pizza. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 20% off on Pizza. Hurry FP', '3', 1, 1, 1, NULL, '2018-02-05 05:41:57', '2018-02-07 06:43:38'),
-(7, '50% off on Masala Dosa', '50PERCMASA', 1, '2018-01-29 00:00:00', '2018-02-22 00:00:00', 'Get 50% off on Masala Dosa. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 50% off on Masa. Hurry FP', '20', 23, 1, 1, NULL, '2018-02-05 12:55:12', '2018-02-09 08:46:58'),
-(8, '$15 off on Molcajete Guacamole', '15DOLLARMOLCAJETE', 1, '2018-01-29 00:00:00', '2018-02-22 00:00:00', '$ 15 de descuento en el Guacamole de Molcajete. Oferta limitada solamente. Llega a tu punto de venta más cercano rápidamente para comer rico.', 'Obtenga un 50% de descuento en Molcajete. Rápido FP', '21', 24, 1, 1, NULL, '2018-02-05 13:10:19', '2018-02-07 06:43:38'),
-(9, 'Get 15 % Off on chocolate mousse', '15PERCCHOCO', 1, '2018-01-19 00:00:00', '2018-02-26 00:00:00', 'Get 15% off on your chocolate mousse. Hurry. Limited offer only.', 'Get 50% off on chocolate mousse. Hurry FP', '22', 25, 1, 1, NULL, '2018-02-05 13:14:27', '2018-02-07 06:43:38'),
-(10, 'Get 5 % Off on muffins', '5PERCMUFFINS', 1, '2018-01-29 00:00:00', '2018-02-26 00:00:00', 'Get 5% off on when you buy your favorite muffins. Hurry. Limited offer only.', 'Get 5% off on muffins. Hurry FP', '23', 26, 1, 1, NULL, '2018-02-05 13:23:34', '2018-02-07 06:43:38');
+(1, '25% of on Soccer Jersey', '25OFFSOCCER', 1, '2018-01-09 00:00:00', '2018-01-15 00:00:00', 'You''ll get 25% of on Soccer Jersey. Enjoy the treat with your loved ones.', 'You''ll get 25% of on Soccer Jersey. Enjoy the treat with your loved ones.', '9', 19, 0, 2, NULL, '2018-01-19 07:09:15', '2018-02-21 11:43:54'),
+(2, '50% off on Burgers', '50PERCBURG', 1, '2018-01-09 00:00:00', '2018-01-16 00:00:00', 'Get 50% off on burgers. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 50% off on burgers. Hurry FP', '21', 1, 0, 2, NULL, '2018-01-15 10:01:44', '2018-02-21 11:43:45'),
+(3, '75% of on Jeans', '25OFFJEANS', 1, '2018-01-09 00:00:00', '2018-01-14 23:59:59', 'You''ll get 75% of on Jeans. Enjoy the treat with your loved ones.', 'You''ll get 75% of on Jeans. Enjoy the treat with your loved ones.', '9', 7, 0, 2, NULL, '2018-01-08 00:00:00', '2018-02-21 11:43:51'),
+(4, 'Get 15 % Off', '15PERCBURG', 1, '2018-01-09 00:00:00', '2018-02-16 00:00:00', 'Get 15% off on your favorite food. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 50% off on bill. Hurry FP', '9', 21, 1, 1, NULL, '2018-02-02 09:50:50', '2018-02-21 11:43:55'),
+(5, '15% off on Burgers', ' SAVE15', 1, '2018-01-09 00:00:00', '2018-01-16 00:00:00', 'Get 15% off on burgers. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 15% off on burgers. Hurry FP', '9', 7, 0, 2, NULL, '2018-02-05 05:05:51', '2018-02-21 11:43:51'),
+(6, '20% off on Pizza', ' SAVE20', 1, '2018-01-09 00:00:00', '2018-02-16 00:00:00', 'Get 15% off on Pizza. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 20% off on Pizza. Hurry FP', '9', 21, 1, 2, NULL, '2018-02-05 05:41:57', '2018-02-27 10:19:16'),
+(7, '50% off on Masala Dosa', '50PERCMASA', 1, '2018-01-29 00:00:00', '2018-02-22 00:00:00', 'Get 50% off on Masala Dosa. Hurry. Limited offer only. Reach your nearest outlet quickly for yum food.', 'Get 50% off on Masa. Hurry FP', '20', 23, 1, 1, NULL, '2018-02-05 12:55:12', '2018-02-21 11:43:57'),
+(8, '$15 off on Molcajete Guacamole', '15DOLLARMOLCAJETE', 1, '2018-01-29 00:00:00', '2018-02-22 00:00:00', '$ 15 de descuento en el Guacamole de Molcajete. Oferta limitada solamente. Llega a tu punto de venta más cercano rápidamente para comer rico.', 'Obtenga un 50% de descuento en Molcajete. Rápido FP', '9', 24, 1, 1, NULL, '2018-02-05 13:10:19', '2018-02-27 10:22:16'),
+(9, 'Get 15 % Off on chocolate mousse', '15PERCCHOCO', 1, '2018-01-19 00:00:00', '2018-02-26 00:00:00', 'Get 15% off on your chocolate mousse. Hurry. Limited offer only.', 'Get 50% off on chocolate mousse. Hurry FP', '22', 25, 1, 1, NULL, '2018-02-05 13:14:27', '2018-02-21 11:44:00'),
+(10, 'Get 5 % Off on muffins', '5PERCMUFFINS', 1, '2018-01-29 00:00:00', '2018-02-26 00:00:00', 'Get 5% off on when you buy your favorite muffins. Hurry. Limited offer only.', 'Get 5% off on muffins. Hurry FP', '23', 26, 1, 1, NULL, '2018-02-05 13:23:34', '2018-02-21 11:44:03');
 
 -- --------------------------------------------------------
 
@@ -4836,7 +4836,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `roles`
@@ -4860,7 +4860,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `settings`
@@ -4875,9 +4875,10 @@ INSERT INTO `settings` (`id`, `setting_key`, `setting_value`, `created_at`, `upd
 (15, 'ebay', 'a:2:{s:6:"app_id";s:40:"Couponzi-couponzi-PRD-05d80d3bd-0327d4a8";s:7:"camp_id";s:10:"5338251126";}', '2018-01-30 00:00:00', NULL),
 (16, 'frontend_menu', 'a:12:{i:0;a:3:{s:4:"slug";s:9:"jewellery";s:4:"name";s:9:"Jewellery";s:2:"id";s:2:"41";}i:1;a:3:{s:4:"slug";s:5:"books";s:4:"name";s:5:"Books";s:2:"id";s:2:"36";}i:2;a:3:{s:4:"slug";s:14:"food-and-drink";s:4:"name";s:14:"Food and Drink";s:2:"id";s:1:"7";}i:3;a:3:{s:4:"slug";s:9:"furniture";s:4:"name";s:9:"Furniture";s:2:"id";s:2:"39";}i:4;a:3:{s:4:"slug";s:5:"music";s:4:"name";s:5:"Music";s:2:"id";s:2:"42";}i:5;a:3:{s:4:"slug";s:8:"software";s:4:"name";s:8:"Software";s:2:"id";s:2:"43";}i:6;a:3:{s:4:"slug";s:4:"baby";s:4:"name";s:4:"Baby";s:2:"id";s:2:"34";}i:7;a:3:{s:4:"slug";s:10:"gift-cards";s:4:"name";s:10:"Gift Cards";s:2:"id";s:2:"40";}i:8;a:3:{s:4:"slug";s:6:"beauty";s:4:"name";s:6:"Beauty";s:2:"id";s:2:"35";}i:9;a:3:{s:4:"slug";s:10:"appliances";s:4:"name";s:10:"Appliances";s:2:"id";s:2:"19";}i:10;a:3:{s:4:"slug";s:11:"electronics";s:4:"name";s:11:"Electronics";s:2:"id";s:1:"1";}i:11;a:3:{s:4:"slug";s:7:"watches";s:4:"name";s:7:"Watches";s:2:"id";s:2:"44";}}', '2018-02-01 14:59:00', NULL),
 (22, 'social_platform', 'a:3:{s:8:"facebook";s:13:"couponzipcode";s:7:"twitter";s:13:"couponzipcode";s:5:"gplus";s:35:"https://plus.google.com/+googleplus";}', '2018-02-07 14:59:00', NULL),
-(23, 'amazon', 'a:4:{s:5:"keyId";s:20:"AKIAJRG5N5HEJSGYBPSA";s:9:"secretKey";s:40:"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";s:11:"associateId";s:16:"couponzipco00-20";s:7:"country";s:2:"us";}', '2018-02-13 08:00:00', NULL),
+(23, 'amazon', 'a:4:{s:5:"keyId";s:20:"AKIAJRG5N5HEJSGYBPSA";s:9:"secretKey";s:40:"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";s:11:"associateId";s:16:"couponzipco00-20";s:7:"country";s:2:"US";}', '2018-02-13 08:00:00', NULL),
 (24, 'walmart', 'a:1:{s:6:"apiKey";s:24:"gun6577sxg7gypa2zk6pa2ez";}', '2018-02-14 08:00:00', NULL),
-(25, 'deals_pagination', 'a:1:{s:5:"limit";i:2;}', '0000-00-00 00:00:00', NULL);
+(25, 'deals_pagination', 'a:1:{s:5:"limit";i:20;}', '0000-00-00 00:00:00', NULL),
+(26, 'restaurant_dot_com', 'a:3:{s:5:"cj_id";s:259:"0080540191596e73d61dbe714c19fe6f6eb77ffe92367fd0000cc1fd56c4c9ed4191f60793ba7423d2afba435011b0ad4e2a7c0bf9459e7c1bb30f5f02c9667cc3/255d505f8bd49731bed35695bbf3d36a3f4fab45d34c7fb9a3fd4fd055d81d9650555abd39eb619778ede2584468dedad153fe258d4ebf2cd85928d3f421db31";s:10:"website_id";s:7:"7999476";s:13:"advertiser_id";s:6:"867296";}', '2018-01-16 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -4979,16 +4980,16 @@ CREATE TABLE IF NOT EXISTS `stores` (
 --
 
 INSERT INTO `stores` (`id`, `store_name`, `store_phone`, `store_website`, `store_latitude`, `store_longitude`, `store_zipcode_id`, `store_category_id`, `store_address_id`, `store_type`, `store_description`, `store_fb_url`, `store_tw_url`, `store_email`, `store_rating`, `store_featured_image`, `is_featured`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Body Fuel', '+919780945879', 'http://www.bodyfuel.com', '32.92', '-85.93', 3, 7, 1, 'Snacks, Main Course, Desserts', '      Body Fuel was established in 1984 in New York City. Serving the people for 40+ years now, we have 50+ branches all over USA. Your taste buds are our slaves. We believe in quality fooding.  Body Fuel was established in 1984 in New York City. Serving the people for 40+ years now, we have 50+ branches all over USA. Your taste buds are our slaves. We believe in quality fooding.  Body Fuel was established in 1984 in New York City. Serving the people for 40+ years now, we have 50+ branches all over USA. Your taste buds are our slaves. We believe in quality fooding.  Body Fuel was established in 1984 in New York City. Serving the people for 40+ years now, we have 50+ branches all over USA. Your taste buds are our slaves. We believe in quality fooding.', 'http://www.facebook.com/bodyfuel', 'http://www.twitter.com/bodyfuel', 'email@bodyfuel.com', 3.5, '\\uploads\\store_featured_images\\1518172524_e0eb297c3eb40c5f5b2423575b2b8cb7-700.jpg', 1, 1, NULL, '2018-01-11 00:00:00', '2018-02-09 11:35:24'),
-(7, 'Fashion Farmers', '+919876543210', 'http://www.fashionfarmers.com', '33.52', '-86.79', 4, 34, 2, 'Trousers, T-Shirts, Shirts, Jeans, Formals, Accessories, Gents, Ladies, Kids', '    Description of Fashion farmers', '', '', '', 2.5, '\\uploads\\store_featured_images\\1518171867_1515562923_calzedonia-spring-summer-collection-emily-didonato-calzedonia-745219110.jpg', 0, 1, NULL, '2018-01-05 10:57:29', '2018-02-09 11:24:27'),
-(19, 'Sports Square', '+917894561230', 'http://www.sportssquare.com', '32.92', '-85.93', 3, 42, 3, 'Accessories, Clothing', '  This is description of Sports Square', '', '', '', 0.0, '\\uploads\\store_featured_images\\1518171881_1515564811_Under-Armour-SpeedForm-Red-1-570x381.jpg', 0, 1, NULL, '2018-01-05 14:30:05', '2018-02-09 11:24:41'),
-(21, 'Istanbul Kebab House', '+12125828282', 'http://www.istanbulkebabny.com', '40.71', '-73.99', 9, 39, 6, 'Snacks, Main Course, Desserts', '     We are proud to serve you one of the healthiest and most well-balanced Turkish and Mediterranean Halal food in New York City. Our recipes took centuries to develop and traveled from civilization to civilization, continent to continent, country to country, and now to America. Our dishes are prepared freshly upon order, using authentic recipes, traditional cooking methods with finest ingredients. Since the day we opened our doors for business, we have worked hard to earn a reputation of providing the highest quality of service available.', 'https://www.facebook.com/1istanbulkebabhouseny/', 'https://twitter.com/istanbulkebabny', 'istanbulkebabny@gmail.com', 3.5, '\\uploads\\store_featured_images\\1518171893_1518160677_b6407a2b178333170aa171bc7bdb449a--the-bridge-new-england.jpg', 1, 1, NULL, '2018-02-02 09:45:31', '2018-02-09 11:24:53'),
-(23, 'Columbus Circle', '+12128236300', 'www.theshopsatcolumbuscircle.c', '40.7651', '-73.9858', 20, 7, 8, 'Bakery, Bar / Lounge, Restaurant', '     New York City''s premier shopping, dining, and entertainment destination located in Columbus Circle.', 'https://www.facebook.com/theshopsatcolumbuscircle', 'https://twitter.com/theshops_colcir', 'guestservices@related.com', 0.0, '\\uploads\\store_featured_images\\1518171906_1518171534_1518161248_uws-bar-es.w600.h315.2x.jpg', 1, 1, NULL, '2018-02-05 08:17:25', '2018-02-09 11:25:06'),
-(24, 'Sinigual Restaurants', '+12122860250', 'http://www.sinigualrestaurants.com', '40.785091', '-73.968285', 21, 7, 9, 'Bakery, Bar / Lounge, Restaurant', '       Sinigual strives to create a uniquely elevated culinary experience of the earthy and rustic flavors of traditional Mexican cuisine. Our chefs infuse inspired innovation with fresh and simple ingredients, leaving your senses richly satisfied.', 'https://www.facebook.com/sinigualnyc', 'https://twitter.com/sinigualnyc', 'sinigual@gmail.com', 0.0, '\\uploads\\store_featured_images\\1518171919_1518161434_DIJWKW2P3JDTLJGUJT3VC2T5XY.jpg', 0, 1, NULL, '2018-02-05 08:46:31', '2018-02-09 11:25:19'),
-(25, 'Pera Soho', '+12123351326', 'http://www.pera-soho.com', '40.7251', '-73.9977', 22, 7, 10, 'Snacks, Main Course, Desserts', '    Pera Soho is a transportative Mediterranean retreat in the heart of Soho. Inspired by the renowned Istanbul neighborhood where cuisine, art, culture, nightlife and the cosmopolitan converge, Pera SoHo seduces with an environment that is simultaneously warm and vibrant. Take a journey through mouthwateringly re-imagined, shareable plates, or let our kitchen delight your taste buds with a tightly curated selection of composed mezes and main courses.', 'https://www.facebook.com/perasohonyc', 'https://twitter.com/perasoho', 'hello@pera-soho.com', 0.0, '\\uploads\\store_featured_images\\1518171935_1518161535_Mocktail-686x350.jpg', 0, 1, NULL, '2018-02-05 10:01:10', '2018-02-09 11:25:35'),
-(26, 'Cafe Astoria', '+17184408789', 'http://www.okcafeastoria.com', '40.778790', '-73.906588', 23, 7, 11, 'Coffee Soda-Pop, the Red Tea Latte, Ginger Peach Sparkler', '      OK Café is located in Astoria, NY, in the heart the Ditmars neighborhood’s thriving dining and shopping district. We are a unique small business, with big ambitions to impress. All of our attention is focused on the quality of the products we prepare. We proudly feature our original “only found here” coffee and tea creations and strive for the highest standards of service.', 'https://www.facebook.com/Ok.Cafe', 'https://twitter.com/okcafeastoria', 'office@okcafeastoria.com', 0.0, '\\uploads\\store_featured_images\\1518171948_1518161661_Puff_Muff_1.JPG', 1, 1, NULL, '2018-02-05 11:01:00', '2018-02-09 11:25:48'),
-(27, 'Alba Restaurant', '+17189325924', 'http://albapizza.com', '40.778790', '-73.906588', 23, 7, 12, 'Snacks, Main Course, Desserts, Fast Food', '  We have been serving quality Italian Food & Pizza in Astoria since 1987. Whether you dine in our Italian restaurant, call ahead or order online for pizza delivery, you will enjoy our superb, authentic Italian cuisine. ', 'https://www.facebook.com/Albas-Pizza-177316745631859', 'https://twitter.com/albapizza', 'albapizza@gmail.com', 0.0, '\\uploads\\store_featured_images\\1518172114_Alba+Restaurant+Spanish+Buffet+%280%29.jpg', 0, 1, NULL, '2018-02-05 12:21:27', '2018-02-09 11:28:34'),
-(28, 'KRAVE Cafe And Grill', '+17182047711', 'http://kravecafeandgrill.com', '40.778790', '-73.906588', 23, 7, 13, 'Snacks, Main Course, Desserts', '  Krave Cafe & Grill offers delicious dining, takeout and delivery to Astoria, NY. Krave Cafe & Grill is a cornerstone in the Astoria community and has been recognized for its outstanding Hamburgers cuisine, excellent service and friendly staff. Our Hamburgers restaurant is known for its modern interpretation of classic dishes and its insistence on only using high quality fresh ingredients.', 'https://www.facebook.com/KRAVE-Cafe-and-Grill-1434492693521714/?ref=py_c', 'https://twitter.com/kravecafegrill', 'kavecafeandgrill@gmail.com', 0.0, '\\uploads\\store_featured_images\\1518171968_1517831052_krave-cafe-grill.jpg', 0, 1, NULL, '2018-02-05 12:44:12', '2018-02-09 11:26:08');
+(1, 'Body Fuel', '+919780945879', 'http://www.bodyfuel.com', '40.785091', '-73.968285', 21, 7, 1, 'Snacks, Main Course, Desserts', '           Body Fuel was established in 1984 in New York City. Serving the people for 40+ years now, we have 50+ branches all over USA. Your taste buds are our slaves. We believe in quality fooding.  Body Fuel was established in 1984 in New York City. Serving the people for 40+ years now, we have 50+ branches all over USA. Your taste buds are our slaves. We believe in quality fooding.  Body Fuel was established in 1984 in New York City. Serving the people for 40+ years now, we have 50+ branches all over USA. Your taste buds are our slaves. We believe in quality fooding.  Body Fuel was established in 1984 in New York City. Serving the people for 40+ years now, we have 50+ branches all over USA. Your taste buds are our slaves. We believe in quality fooding.', 'http://www.facebook.com/bodyfuel', 'http://www.twitter.com/bodyfuel', 'email@bodyfuel.com', 3.5, '\\uploads\\store_featured_images\\1518172524_e0eb297c3eb40c5f5b2423575b2b8cb7-700.jpg', 1, 1, NULL, '2018-01-11 00:00:00', '2018-02-21 11:43:45'),
+(7, 'Fashion Farmers', '+919876543210', 'http://www.fashionfarmers.com', '40.71', '-73.99', 9, 34, 2, 'Trousers, T-Shirts, Shirts, Jeans, Formals, Accessories, Gents, Ladies, Kids', '      Description of Fashion farmers', '', '', '', 2.5, '\\uploads\\store_featured_images\\1518171867_1515562923_calzedonia-spring-summer-collection-emily-didonato-calzedonia-745219110.jpg', 0, 1, NULL, '2018-01-05 10:57:29', '2018-02-21 11:43:51'),
+(19, 'Sports Square', '+917894561230', 'http://www.sportssquare.com', '40.71', '-73.99', 9, 42, 3, 'Accessories, Clothing', '    This is description of Sports Square', '', '', '', 0.0, '\\uploads\\store_featured_images\\1518171881_1515564811_Under-Armour-SpeedForm-Red-1-570x381.jpg', 0, 1, NULL, '2018-01-05 14:30:05', '2018-02-21 11:43:54'),
+(21, 'Istanbul Kebab House', '+12125828282', 'http://www.istanbulkebabny.com', '40.71', '-73.99', 9, 7, 6, 'Snacks, Main Course, Desserts', '       We are proud to serve you one of the healthiest and most well-balanced Turkish and Mediterranean Halal food in New York City. Our recipes took centuries to develop and traveled from civilization to civilization, continent to continent, country to country, and now to America. Our dishes are prepared freshly upon order, using authentic recipes, traditional cooking methods with finest ingredients. Since the day we opened our doors for business, we have worked hard to earn a reputation of providing the highest quality of service available.', 'https://www.facebook.com/1istanbulkebabhouseny/', 'https://twitter.com/istanbulkebabny', 'istanbulkebabny@gmail.com', 3.5, '\\uploads\\store_featured_images\\1518171893_1518160677_b6407a2b178333170aa171bc7bdb449a--the-bridge-new-england.jpg', 1, 1, NULL, '2018-02-02 09:45:31', '2018-02-27 10:21:01'),
+(23, 'Columbus Circle', '+12128236300', 'www.theshopsatcolumbuscircle.c', '40.7651', '-73.9858', 20, 7, 8, 'Bakery, Bar / Lounge, Restaurant', '      New York City''s premier shopping, dining, and entertainment destination located in Columbus Circle.', 'https://www.facebook.com/theshopsatcolumbuscircle', 'https://twitter.com/theshops_colcir', 'guestservices@related.com', 0.0, '\\uploads\\store_featured_images\\1518171906_1518171534_1518161248_uws-bar-es.w600.h315.2x.jpg', 1, 1, NULL, '2018-02-05 08:17:25', '2018-02-21 11:43:57'),
+(24, 'Sinigual Restaurants', '+12122860250', 'http://www.sinigualrestaurants.com', '40.71', '-73.99', 9, 7, 9, 'Bakery, Bar / Lounge, Restaurant', '         Sinigual strives to create a uniquely elevated culinary experience of the earthy and rustic flavors of traditional Mexican cuisine. Our chefs infuse inspired innovation with fresh and simple ingredients, leaving your senses richly satisfied.', 'https://www.facebook.com/sinigualnyc', 'https://twitter.com/sinigualnyc', 'sinigual@gmail.com', 0.0, '\\uploads\\store_featured_images\\1518171919_1518161434_DIJWKW2P3JDTLJGUJT3VC2T5XY.jpg', 0, 1, NULL, '2018-02-05 08:46:31', '2018-02-27 10:22:17'),
+(25, 'Pera Soho', '+12123351326', 'http://www.pera-soho.com', '40.7251', '-73.9977', 22, 7, 10, 'Snacks, Main Course, Desserts', '     Pera Soho is a transportative Mediterranean retreat in the heart of Soho. Inspired by the renowned Istanbul neighborhood where cuisine, art, culture, nightlife and the cosmopolitan converge, Pera SoHo seduces with an environment that is simultaneously warm and vibrant. Take a journey through mouthwateringly re-imagined, shareable plates, or let our kitchen delight your taste buds with a tightly curated selection of composed mezes and main courses.', 'https://www.facebook.com/perasohonyc', 'https://twitter.com/perasoho', 'hello@pera-soho.com', 0.0, '\\uploads\\store_featured_images\\1518171935_1518161535_Mocktail-686x350.jpg', 0, 1, NULL, '2018-02-05 10:01:10', '2018-02-21 11:44:00'),
+(26, 'Cafe Astoria', '+17184408789', 'http://www.okcafeastoria.com', '40.778790', '-73.906588', 23, 7, 11, 'Coffee Soda-Pop, the Red Tea Latte, Ginger Peach Sparkler', '       OK Café is located in Astoria, NY, in the heart the Ditmars neighborhood’s thriving dining and shopping district. We are a unique small business, with big ambitions to impress. All of our attention is focused on the quality of the products we prepare. We proudly feature our original “only found here” coffee and tea creations and strive for the highest standards of service.', 'https://www.facebook.com/Ok.Cafe', 'https://twitter.com/okcafeastoria', 'office@okcafeastoria.com', 0.0, '\\uploads\\store_featured_images\\1518171948_1518161661_Puff_Muff_1.JPG', 1, 1, NULL, '2018-02-05 11:01:00', '2018-02-21 11:44:03'),
+(27, 'Alba Restaurant', '+17189325924', 'http://albapizza.com', '40.778790', '-73.906588', 23, 7, 12, 'Snacks, Main Course, Desserts, Fast Food', '   We have been serving quality Italian Food & Pizza in Astoria since 1987. Whether you dine in our Italian restaurant, call ahead or order online for pizza delivery, you will enjoy our superb, authentic Italian cuisine. ', 'https://www.facebook.com/Albas-Pizza-177316745631859', 'https://twitter.com/albapizza', 'albapizza@gmail.com', 0.0, '\\uploads\\store_featured_images\\1518172114_Alba+Restaurant+Spanish+Buffet+%280%29.jpg', 0, 1, NULL, '2018-02-05 12:21:27', '2018-02-21 11:44:04'),
+(28, 'KRAVE Cafe And Grill', '+17182047711', 'http://kravecafeandgrill.com', '40.778790', '-73.906588', 23, 7, 13, 'Snacks, Main Course, Desserts', '    Krave Cafe & Grill offers delicious dining, takeout and delivery to Astoria, NY. Krave Cafe & Grill is a cornerstone in the Astoria community and has been recognized for its outstanding Hamburgers cuisine, excellent service and friendly staff. Our Hamburgers restaurant is known for its modern interpretation of classic dishes and its insistence on only using high quality fresh ingredients.', 'https://www.facebook.com/KRAVE-Cafe-and-Grill-1434492693521714/?ref=py_c', 'https://twitter.com/kravecafegrill', 'kavecafeandgrill@gmail.com', 0.0, '\\uploads\\store_featured_images\\1518171968_1517831052_krave-cafe-grill.jpg', 0, 1, NULL, '2018-02-05 12:44:12', '2018-02-21 11:44:15');
 
 -- --------------------------------------------------------
 
@@ -5015,37 +5016,37 @@ CREATE TABLE IF NOT EXISTS `stores_attachment` (
 --
 
 INSERT INTO `stores_attachment` (`id`, `attachment_name`, `attachment_path`, `attachment_type`, `store_id`, `is_external`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(19, '123.jpg', 'https://www.youtube.com/embed/XGSy3_Czz8kz', 2, 1, 1, 1, NULL, '2018-01-10 00:00:00', '2018-02-09 11:35:24'),
+(19, '123.jpg', 'https://www.youtube.com/embed/XGSy3_Czz8kz', 2, 1, 1, 1, NULL, '2018-01-10 00:00:00', '2018-02-21 11:43:45'),
 (28, '500_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg', '\\uploads\\store_menus\\1515136897_500_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg', 3, 1, 0, 1, NULL, '2018-01-10 00:00:00', NULL),
 (31, 'vector-cartoon-illustration-of-a-design-fast-food-restaurant-menu_1441-334.jpg', '\\uploads\\store_menus\\1515137514_vector-cartoon-illustration-of-a-design-fast-food-restaurant-menu_1441-334.jpg', 3, 1, 0, 1, NULL, '2018-01-05 08:31:54', NULL),
-(40, 'Store_Video_7', 'https://www.youtube.com/embed/VNNxIcN_4wEz', 2, 7, 1, 1, NULL, '2018-01-05 10:57:29', '2018-02-09 11:24:27'),
+(40, 'Store_Video_7', 'https://www.youtube.com/embed/VNNxIcN_4wEz', 2, 7, 1, 1, NULL, '2018-01-05 10:57:29', '2018-02-21 11:43:51'),
 (41, '7fb8893186384ed6b163d9e39a2b9e74_scotts-clothing-menu.jpg', '\\uploads\\store_menus\\1515146249_7fb8893186384ed6b163d9e39a2b9e74_scotts-clothing-menu.jpg', 3, 7, 0, 1, NULL, '2018-01-05 10:57:29', '2018-01-05 11:29:32'),
 (43, 'C-zJ0YrXkAAgad6.jpg', '\\uploads\\store_images\\1515146249_C-zJ0YrXkAAgad6.jpg', 1, 7, 0, 1, NULL, '2018-01-05 10:57:29', '2018-01-05 11:29:32'),
-(44, 'Store_Video_19', 'https://www.youtube.com/watch?v=VNNxIcN_4wEz', 2, 19, 1, 1, NULL, '2018-01-05 14:30:05', '2018-02-09 11:24:41'),
+(44, 'Store_Video_19', 'https://www.youtube.com/watch?v=VNNxIcN_4wEz', 2, 19, 1, 1, NULL, '2018-01-05 14:30:05', '2018-02-21 11:43:54'),
 (49, '7fb8893186384ed6b163d9e39a2b9e74_scotts-clothing-menu.jpg', '\\uploads\\store_menus\\1515562087_7fb8893186384ed6b163d9e39a2b9e74_scotts-clothing-menu.jpg', 3, 19, 0, 1, NULL, '2018-01-10 06:28:07', NULL),
 (51, 'adidas-logo.png', '\\uploads\\store_images\\1515562190_adidas-logo.png', 1, 19, 0, 1, '2018-01-10 07:13:20', '2018-01-10 06:29:50', '2018-01-10 07:13:20'),
 (52, '23031185_1340739479365528_6646088657416517645_n.jpg', '\\uploads\\store_images\\1515562473_23031185_1340739479365528_6646088657416517645_n.jpg', 1, 1, 0, 1, NULL, '2018-01-10 06:34:33', NULL),
 (53, 'calzedonia-spring-summer-collection-emily-didonato-calzedonia-745219110.jpg', '\\uploads\\store_images\\1515562923_calzedonia-spring-summer-collection-emily-didonato-calzedonia-745219110.jpg', 1, 7, 0, 1, NULL, '2018-01-10 06:42:03', NULL),
 (54, 'Under-Armour-SpeedForm-Red-1-570x381.jpg', '\\uploads\\store_images\\1515564811_Under-Armour-SpeedForm-Red-1-570x381.jpg', 1, 19, 0, 1, NULL, '2018-01-10 07:13:31', NULL),
-(55, 'Store_Video_21', 'https://www.youtube.com/embed/yLFqBClZSZg', 2, 21, 1, 1, NULL, '2018-02-02 09:45:31', '2018-02-09 11:24:53'),
+(55, 'Store_Video_21', 'https://www.youtube.com/embed/yLFqBClZSZg', 2, 21, 1, 1, NULL, '2018-02-02 09:45:31', '2018-02-27 10:21:01'),
 (56, 'istanbulkebabnymenu.png', '\\uploads\\store_menus\\1517561131_istanbulkebabnymenu.png', 3, 21, 0, 1, NULL, '2018-02-02 09:45:31', NULL),
 (57, 'istanbulkebabny.png', '\\uploads\\store_images\\1517561131_istanbulkebabny.png', 1, 21, 0, 1, NULL, '2018-02-02 09:45:31', NULL),
-(58, 'Store_Video_23', 'https://www.youtube.com/embed/AN2LMVWgsIY', 2, 23, 1, 1, NULL, '2018-02-05 08:17:25', '2018-02-09 11:25:06'),
+(58, 'Store_Video_23', 'https://www.youtube.com/embed/AN2LMVWgsIY', 2, 23, 1, 1, NULL, '2018-02-05 08:17:25', '2018-02-21 11:43:57'),
 (59, 'theshopsatcolumbuscircle_menu.png', '\\uploads\\store_menus\\1517815045_theshopsatcolumbuscircle_menu.png', 3, 23, 0, 1, NULL, '2018-02-05 08:17:25', NULL),
 (60, 'theshopsatcolumbuscircle.png', '\\uploads\\store_images\\1517815045_theshopsatcolumbuscircle.png', 1, 23, 0, 1, NULL, '2018-02-05 08:17:25', NULL),
-(61, 'Store_Video_24', 'https://www.youtube.com/embed/ZRSREuy9qAQ', 2, 24, 1, 1, NULL, '2018-02-05 08:46:31', '2018-02-09 11:25:19'),
+(61, 'Store_Video_24', 'https://www.youtube.com/embed/ZRSREuy9qAQ', 2, 24, 1, 1, NULL, '2018-02-05 08:46:31', '2018-02-27 10:22:17'),
 (62, 'sinigualrestaurants_menu.png', '\\uploads\\store_menus\\1517816791_sinigualrestaurants_menu.png', 3, 24, 0, 1, NULL, '2018-02-05 08:46:31', NULL),
 (63, 'sinigualrestaurants.jpg', '\\uploads\\store_images\\1517816791_sinigualrestaurants.jpg', 1, 24, 0, 1, NULL, '2018-02-05 08:46:31', NULL),
-(64, 'Store_Video_25', 'https://www.youtube.com/embed/etyXhzDOZ0M', 2, 25, 1, 1, NULL, '2018-02-05 10:01:10', '2018-02-09 11:25:35'),
+(64, 'Store_Video_25', 'https://www.youtube.com/embed/etyXhzDOZ0M', 2, 25, 1, 1, NULL, '2018-02-05 10:01:10', '2018-02-21 11:44:00'),
 (65, 'Pera-Soho-DINNER-OCTOBER-2017-1.png', '\\uploads\\store_menus\\1517821270_Pera-Soho-DINNER-OCTOBER-2017-1.png', 3, 25, 0, 1, NULL, '2018-02-05 10:01:10', NULL),
 (66, 'pera-shop.png', '\\uploads\\store_images\\1517821270_pera-shop.png', 1, 25, 0, 1, NULL, '2018-02-05 10:01:10', NULL),
-(67, 'Store_Video_26', 'https://www.youtube.com/embed/kuE0q0QF7ss', 2, 26, 1, 1, NULL, '2018-02-05 11:01:00', '2018-02-09 11:25:48'),
+(67, 'Store_Video_26', 'https://www.youtube.com/embed/kuE0q0QF7ss', 2, 26, 1, 1, NULL, '2018-02-05 11:01:00', '2018-02-21 11:44:03'),
 (68, 'ok_cafe.jpg', '\\uploads\\store_menus\\1517824860_ok_cafe.jpg', 3, 26, 0, 1, NULL, '2018-02-05 11:01:00', NULL),
 (69, 'ok-cafe-image-44.jpg', '\\uploads\\store_images\\1517824860_ok-cafe-image-44.jpg', 1, 26, 0, 1, NULL, '2018-02-05 11:01:00', NULL),
-(70, 'Store_Video_27', 'https://www.youtube.com/embed/Khv8AyUjUMw', 2, 27, 1, 1, NULL, '2018-02-05 12:21:27', '2018-02-09 11:28:34'),
+(70, 'Store_Video_27', 'https://www.youtube.com/embed/Khv8AyUjUMw', 2, 27, 1, 1, NULL, '2018-02-05 12:21:27', '2018-02-21 11:44:04'),
 (71, 'alpa_menu.jpg', '\\uploads\\store_menus\\1517829687_alpa_menu.jpg', 3, 27, 0, 1, NULL, '2018-02-05 12:21:27', NULL),
 (72, 'alpa_logo.jpg', '\\uploads\\store_images\\1517829687_alpa_logo.jpg', 1, 27, 0, 1, NULL, '2018-02-05 12:21:27', NULL),
-(73, 'Store_Video_28', 'https://www.youtube.com/embed/uFuLHmlzffE', 2, 28, 1, 1, NULL, '2018-02-05 12:44:12', '2018-02-09 11:26:08'),
+(73, 'Store_Video_28', 'https://www.youtube.com/embed/uFuLHmlzffE', 2, 28, 1, 1, NULL, '2018-02-05 12:44:12', '2018-02-21 11:44:15'),
 (74, 'krave-restaurant-trinidad-menu-1-of-2.jpg', '\\uploads\\store_menus\\1517831052_krave-restaurant-trinidad-menu-1-of-2.jpg', 3, 28, 0, 1, NULL, '2018-02-05 12:44:12', NULL),
 (75, 'krave-cafe-grill.jpg', '\\uploads\\store_images\\1517831052_krave-cafe-grill.jpg', 1, 28, 0, 1, NULL, '2018-02-05 12:44:12', NULL),
 (96, 'restaurant-1.jpg', '\\uploads\\store_images\\1518158601_restaurant-1.jpg', 1, 21, 0, 1, '2018-02-09 07:47:57', '2018-02-09 07:43:21', '2018-02-09 07:47:57'),
@@ -5150,16 +5151,16 @@ CREATE TABLE IF NOT EXISTS `stores_timetable` (
 --
 
 INSERT INTO `stores_timetable` (`id`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`, `store_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2018-02-08 00:00:00', '2018-02-09 11:35:24'),
-(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 7, NULL, '2018-02-08 00:00:00', '2018-02-09 11:24:27'),
-(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 19, NULL, '2018-02-08 00:00:00', '2018-02-09 11:24:41'),
-(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 21, NULL, '2018-02-08 00:00:00', '2018-02-09 11:24:53'),
-(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 23, NULL, '2018-02-08 00:00:00', '2018-02-09 11:25:06'),
-(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 24, NULL, '2018-02-08 00:00:00', '2018-02-09 11:25:19'),
-(13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 25, NULL, '2018-02-08 00:00:00', '2018-02-09 11:25:35'),
-(14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 26, NULL, '2018-02-08 00:00:00', '2018-02-09 11:25:48'),
-(15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 27, NULL, '2018-02-08 00:00:00', '2018-02-09 11:28:34'),
-(16, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 28, NULL, '2018-02-08 00:00:00', '2018-02-09 11:26:08'),
+(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2018-02-08 00:00:00', '2018-02-21 11:43:45'),
+(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 7, NULL, '2018-02-08 00:00:00', '2018-02-21 11:43:51'),
+(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 19, NULL, '2018-02-08 00:00:00', '2018-02-21 11:43:54'),
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 21, NULL, '2018-02-08 00:00:00', '2018-02-27 10:21:01'),
+(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 23, NULL, '2018-02-08 00:00:00', '2018-02-21 11:43:57'),
+(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 24, NULL, '2018-02-08 00:00:00', '2018-02-27 10:22:17'),
+(13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 25, NULL, '2018-02-08 00:00:00', '2018-02-21 11:44:00'),
+(14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 26, NULL, '2018-02-08 00:00:00', '2018-02-21 11:44:03'),
+(15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 27, NULL, '2018-02-08 00:00:00', '2018-02-21 11:44:04'),
+(16, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 28, NULL, '2018-02-08 00:00:00', '2018-02-21 11:44:15'),
 (17, '12:30am - 1:30am', NULL, NULL, '1:30am - 1:00pm', NULL, NULL, '12:30am - 3:30am', 36, NULL, '2018-02-08 08:33:42', '2018-02-08 08:34:20'),
 (18, '12:00am - 1:00am', NULL, NULL, NULL, NULL, NULL, '1:00am - 2:00am', 37, NULL, '2018-02-08 08:36:45', NULL);
 
@@ -5182,7 +5183,7 @@ CREATE TABLE IF NOT EXISTS `tickets` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `tickets`
@@ -5194,7 +5195,8 @@ INSERT INTO `tickets` (`id`, `first_name`, `last_name`, `email`, `phone_number`,
 (11, 'sunil', 'kumar', 'sunil.slinfy@gmail.com', '9569272622', 'Coupon Apply Issue', 1, 1, NULL, '2018-01-29 10:28:18', '2018-01-29 10:29:43'),
 (12, 'Sunil', 'kumar', 'sunil.slinfy@gmail.com', '9041996989', 'Advertise with you', 2, 1, NULL, '2018-01-29 10:40:20', NULL),
 (13, 'Pranavaa', 'Kumar', 'sunil.slinfy@gmail.com', '9569272622', 'testing for trim and html entities', 2, 1, NULL, '2018-01-29 10:56:34', NULL),
-(14, 'Pranav', 'Kumar', 'sunil.slinfy@gmail.com', '9569272622', 'Issue regarding coupon apply', 1, 1, NULL, '2018-01-29 11:29:59', NULL);
+(14, 'Pranav', 'Kumar', 'sunil.slinfy@gmail.com', '9569272622', 'Issue regarding coupon apply', 1, 1, NULL, '2018-01-29 11:29:59', NULL),
+(15, 'pranav', 'kumar', 'pranav.slinfy@gmail.com', '9569272622', 'Issue regarding coupon apply', 2, 1, NULL, '2018-02-27 11:50:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -5211,7 +5213,7 @@ CREATE TABLE IF NOT EXISTS `tickets_message` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `tickets_message`
@@ -5232,7 +5234,8 @@ INSERT INTO `tickets_message` (`id`, `ticket_id`, `message`, `is_admin_sender`, 
 (26, 12, 'whenever you want i am ready to work with you..', 0, NULL, '2018-01-29 10:42:29', NULL),
 (27, 13, 'testing''s for database entry', 0, NULL, '2018-01-29 10:56:34', NULL),
 (28, 14, 'aajkdasjkdnas ajkndjasndjansjn', 0, NULL, '2018-01-29 11:29:59', NULL),
-(29, 14, 'very nice', 1, NULL, '2018-01-29 11:33:30', NULL);
+(29, 14, 'very nice', 1, NULL, '2018-01-29 11:33:30', NULL),
+(30, 15, 'I just try to use your coupon but seller not accept it please check with the same and let me know the issue whats happening here.', 0, NULL, '2018-02-27 11:50:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -5288,7 +5291,7 @@ CREATE TABLE IF NOT EXISTS `zipcodes` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `zipcodes`
@@ -5309,7 +5312,11 @@ INSERT INTO `zipcodes` (`id`, `zipcode`, `place_id`, `latitude`, `longitude`, `c
 (20, '10019', 47036, '40.7651', '-73.9858', '2018-02-02 09:45:31', NULL),
 (21, '10017', 47036, '40.785091', '-73.968285', '2018-02-02 09:45:31', NULL),
 (22, '10012', 47036, '40.7251', '-73.9977', '2018-02-02 09:45:31', NULL),
-(23, '11105', 45875, '40.778790', '-73.906588', '2018-02-02 09:45:31', NULL);
+(23, '11105', 45875, '40.778790', '-73.906588', '2018-02-02 09:45:31', NULL),
+(24, '90001', 43070, '33.9731', ' -118.2479', '2018-02-02 09:45:31', NULL),
+(25, '94016', 43239, '37.7058', '-122.4619', '2018-02-02 09:45:31', NULL),
+(26, '33101', 43769, '25.7791', '-80.1978', '2018-02-02 09:45:31', NULL),
+(27, '60007', 44173, '42.0076', '-87.9931', '2018-02-02 09:45:31', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
