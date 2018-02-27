@@ -37,6 +37,18 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		var BASEURL = '<?php echo base_url(); ?>';
+		$(document).ready(function()
+		{
+			<?php
+			if (sizeof($current_location) == 0)
+			{
+			?>
+				var user_current_location = '<?php print_r(json_encode($current_location)); ?>';
+				getLocation();
+			<?php
+			}
+			?>
+		});
 	</script>
 </head>
 <body>

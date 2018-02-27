@@ -1,11 +1,5 @@
 $(document).ready(function()
 {
-	var user_current_location = JSON.parse(localStorage.getItem("user_current_location"));
-	if (user_current_location == null)
-	{
-		getLocation();
-	}
-
 	$("body").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
 	$(".ticketing_chatbox_wrap").niceScroll({cursorborder:"", cursorcolor:"#2C3E50"});
 
@@ -33,8 +27,7 @@ $(document).ready(function()
  	$('#exclusive_coupan_carousel').owlCarousel({
 		loop:true,
 		items: 3,
-		autoplay: false,
-		autoplayTimeout: 100,
+		autoplay: true,
 		smartSpeed: 1000,
 		nav: true,
 		navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
@@ -196,6 +189,9 @@ function bind_zipcode_autocomplete(target_class, options, limits)
 
 function getLocation() 
 {
+	$('.currnt_loc_btn').html('Please wait...');
+	$('.currnt_loc_btn').attr('disabled', 'disabled');
+	
 	navigator.geolocation.getCurrentPosition(
 		function(success) {
 			navigator.geolocation.getCurrentPosition(showPosition);
@@ -236,6 +232,9 @@ function showPosition(position)
 
 				window.location.reload();
 			}
+
+			$('.currnt_loc_btn').html('Use My Current Location');
+			$('.currnt_loc_btn').removeAttr('disabled');
 		}
 	});
 }

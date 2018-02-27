@@ -40,11 +40,11 @@
 				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
 					<h3>Cities</h3>
 					<ul>
-						<li><a href="javascript:void(0);">New York</a></li>
-						<li><a href="javascript:void(0);">Los Angeles</a></li>
-						<li><a href="javascript:void(0);">San Francisco</a></li>
-						<li><a href="javascript:void(0);">Miami</a></li>
-						<li><a href="javascript:void(0);">Chicago</a></li>
+						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=9'); ?>">New York</a></li>
+						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=24'); ?>">Los Angeles</a></li>
+						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=25'); ?>">San Francisco</a></li>
+						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=26'); ?>">Miami</a></li>
+						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=27'); ?>">Chicago</a></li>
 					</ul>
 				</div>
 
@@ -52,8 +52,8 @@
 					<h3>Help & Support</h3>
 					<ul>
 						<li><a href="<?php echo base_url('contact-us'); ?>">Contact us</a></li>
-						<li><a href="javascript:void(0);">Advertise with us</a></li>
-						<li><a href="javascript:void(0);">How it works</a></li>
+						<li><a href="<?php echo base_url('advertise'); ?>">Advertise with us</a></li>
+						<li><a href="<?php echo base_url('how-it-works'); ?>">How it works</a></li>
 						<li><a href="<?php echo base_url('terms-of-use'); ?>">Terms and Conditions</a></li>
 						<li><a href="<?php echo base_url('privacy-policy'); ?>">Privacy Policy</a></li>
 					</ul>

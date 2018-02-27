@@ -249,39 +249,41 @@
 
 								<div class="form-inline sorting-div">
 									<div class="sorting-div-inner">
-										<div class="form-group">
-											<h4>Sort By</h4>
-											<select class="form-control" name="sort_order">
-												<option value="">--Select--</option>
-												<option value="az" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'az' ? 'selected' : ''; ?>>A-Z</option>
-												<option value="za" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'za' ? 'selected' : ''; ?>>Z-A</option>
-												<!-- <option value="distance" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'distance' ? 'selected' : ''; ?>>Distance</option> -->
-											</select>
-										</div>
+										<div id="sorting_div_inner">
+											<div class="form-group">
+												<h4>Sort By</h4>
+												<select class="form-control" name="sort_order">
+													<option value="">--Select--</option>
+													<option value="az" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'az' ? 'selected' : ''; ?>>A-Z</option>
+													<option value="za" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'za' ? 'selected' : ''; ?>>Z-A</option>
+													<!-- <option value="distance" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'distance' ? 'selected' : ''; ?>>Distance</option> -->
+												</select>
+											</div>
 
-										<div class="form-group">
-											<h4>Within</h4>
-											<select class="form-control" name="sort_distance">
-												<option value="">--Select Distance--</option>
-												<option value="1" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '1' ? 'selected' : ''; ?>>1 Mile</option>
-												<option value="3" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '3' ? 'selected' : ''; ?>>3 Miles</option>
-												<option value="5" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '5' ? 'selected' : ''; ?>>5 Miles</option>
-												<option value="10" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '10' ? 'selected' : ''; ?>>10 Miles</option>
-												<option value="15" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '15' ? 'selected' : ''; ?>>15 Miles</option>
-												<option value="20" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '20' ? 'selected' : ''; ?>>20 Miles</option>
-												<option value="25" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '25' ? 'selected' : ''; ?>>25 Miles</option>
-												<option value="30" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '30' ? 'selected' : ''; ?>>30 Miles</option>
-											</select>
-										</div>
+											<div class="form-group">
+												<h4>Within</h4>
+												<select class="form-control" name="sort_distance">
+													<option value="">--Select Distance--</option>
+													<option value="1" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '1' ? 'selected' : ''; ?>>1 Mile</option>
+													<option value="3" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '3' ? 'selected' : ''; ?>>3 Miles</option>
+													<option value="5" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '5' ? 'selected' : ''; ?>>5 Miles</option>
+													<option value="10" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '10' ? 'selected' : ''; ?>>10 Miles</option>
+													<option value="15" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '15' ? 'selected' : ''; ?>>15 Miles</option>
+													<option value="20" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '20' ? 'selected' : ''; ?>>20 Miles</option>
+													<option value="25" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '25' ? 'selected' : ''; ?>>25 Miles</option>
+													<option value="30" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '30' ? 'selected' : ''; ?>>30 Miles</option>
+												</select>
+											</div>
 
-										<div class="form-group">
-											<h4>of</h4>
-											<input type="text" name="sort_zipcode" class="form-control cat-srch-zipcode" placeholder="Zipcode" value="<?php echo isset($_GET['store_zipcode']) ? get_zipcode_name($_GET['store_zipcode']) : ''; ?>">
-											<input type="hidden" name="store_zipcode" class="store_zipcode_id_hidden" value="<?php echo isset($_GET['store_zipcode']) ? $_GET['store_zipcode'] : ''; ?>">
-										</div>
+											<div class="form-group">
+												<h4>of</h4>
+												<input type="text" class="form-control cat-srch-zipcode" placeholder="Zipcode" value="<?php echo isset($_GET['store_zipcode']) ? get_zipcode_name($_GET['store_zipcode']) : ''; ?>">
+												<input type="hidden" name="store_zipcode" class="store_zipcode_id_hidden" value="<?php echo isset($_GET['store_zipcode']) ? $_GET['store_zipcode'] : ''; ?>">
+											</div>
 
-										<div class="form-group">
-											<input type="submit" name="sort_btn" class="btn ylew_btn" value="REFINE">
+											<div class="form-group">
+												<input type="submit" name="sort_btn" class="btn ylew_btn" value="REFINE">
+											</div>
 										</div>
 									</div>
 								</div>
@@ -528,6 +530,8 @@ function render_selected_filters()
 function toggle_filters(ele)
 {
 	var selected_src = $(".filters-ul").find($('input[name=src]:checked'));
+
+	$('#sorting_div_inner').addClass('hide');
 	$(".filter_range_div").addClass('hide');
 	$(".filter_min_discount_div").addClass('hide');
 	$(".filter_condition_div").addClass('hide');
@@ -541,6 +545,7 @@ function toggle_filters(ele)
 
 	if (selected_src.val() == 'local')
 	{
+		$('#sorting_div_inner').removeClass('hide');
 		$('.filter_keyword_div').removeClass('hide');
 
 		$('.filter_dt_div').removeClass('hide');

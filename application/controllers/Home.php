@@ -45,9 +45,17 @@ class Home extends CI_Controller
 		// LOCAL COUPONS
 		$this->load->model(ADMIN_PREFIX . '/stores_model');
 		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array('zipcode_id' => $location_arr['zipcode_id'], "sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
-
+		if (sizeof($data['all_local_coupons']) == 0) 
+		{
+			$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
+		}
+		// print_r($data['all_local_coupons']); die;
 		// FEATURED STORES
 		$data['featured_stores'] = get_featured_stores(4, $location_arr['zipcode_id']);
+		if (sizeof($data['featured_stores']) == 0) 
+		{
+			$data['featured_stores'] = get_featured_stores(4);
+		}
 
 		$this->load->library('affiliates');
 		// RESTAURANT.COM

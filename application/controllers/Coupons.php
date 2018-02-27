@@ -103,10 +103,11 @@ class Coupons extends CI_Controller
 			$_GET['paginate']['page'] = 1;
 		}
 
+		$zip_dets = @get_zipcode_by_name('10002');
 		$_GET['location_arr'] = array('lat' => '40.71',
 									'long' => '-73.99',
 									'zipcode' => '10002',
-									'zipcode_id' => @get_zipcode_by_name('10002'));
+									'zipcode_id' => @$zip_dets['id']);
 		$cookie_data = json_decode(get_cookie('user_current_location'));
 		if($cookie_data)
 		{
@@ -119,6 +120,8 @@ class Coupons extends CI_Controller
 											'zipcode_id' => $zip_dets['id']);
 			}
 		}
+
+		$_GET['store_zipcode'] = $_GET['location_arr']['zipcode_id'];
 
 		$pagination_setting = get_settings('deals_pagination');
 		$_GET['paginate']['limit'] = $pagination_setting['limit'];
