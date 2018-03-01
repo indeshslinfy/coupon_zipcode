@@ -60,7 +60,7 @@
 							<div class="col-xs-12 col-sm-7 post_coupon_detail">
 								<div class="row">
 									<div class="col-xs-12">
-										<span class="coupon_button green_btn btn">Coupon Code</span>
+										<span class="coupon_button green_btn btn no_hover">Coupon Code</span>
 										<span class="coupon_button green_border"><?php echo $coupon_details['coupon_code']; ?></span>
 										<a href="<?php echo base_url('print-coupon/' . $coupon_details['id']); ?>" class="print_button btn">Print Coupon</a>
 										<div class="post_content">

@@ -187,6 +187,39 @@ function bind_zipcode_autocomplete(target_class, options, limits)
 	$(target_class).easyAutocomplete(autocomp_options);
 }
 
+function bind_zipcode_reg_autocomplete()
+	{
+		var autocomp_options = {
+			data: JSON.parse(all_zipcodes),
+			getValue: "zipcode",
+			template: {
+				type: "id",
+				fields: {description: "id"}
+			},
+			list: {
+				maxNumberOfElements: 10,
+				sort: {enabled: true},
+				showAnimation: {
+					type: "fade",
+					time: 200,
+					callback: function() {}
+				},
+				hideAnimation: {
+					type: "slide",
+					time: 200,
+					callback: function() {}
+				},
+				match: {enabled: true},
+				onChooseEvent: function() {
+	                $("#zipcode_id").val($("#store_zipcode").getSelectedItemData().id);
+	            }
+			},
+			theme: 'bootstrap'
+		};
+
+		$(".store_register_zipcode").easyAutocomplete(autocomp_options);
+	}
+
 function getLocation() 
 {
 	$('.currnt_loc_btn').html('Please wait...');

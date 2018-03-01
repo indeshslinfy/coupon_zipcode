@@ -2770,6 +2770,15 @@ span.menu_icon_down {
 	font-size: 18px;
 	line-height: 25px;
 }
+.signup_wrap .easy-autocomplete-container ul li{
+	text-align: left;
+}
+.no_hover:hover{
+	background:#226f05;
+}
+.signup_wrap input[type="checkbox"]{
+	height:auto;
+}
 /*-----DEAL LOADING GIF-----*/
 /*@-webkit-keyframes placeHolderShimmer {
 	0% {

@@ -90,7 +90,9 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Zipcode*" name="zipcode_id">
+										<!-- <input type="text" class="form-control" placeholder="Zipcode*" name="zipcode_id"> -->
+										<input type="text" class="form-control store_register_zipcode" placeholder="Zipcode*" id="store_zipcode" required="">
+                                        <input type="hidden" name="zipcode_id" id="zipcode_id" class="form-control" value="">
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -142,3 +144,10 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+	bind_zipcode_reg_autocomplete();
+});
+</script>

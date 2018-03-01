@@ -56,16 +56,21 @@ class Auth extends CI_Controller {
 		if ($this->input->server('REQUEST_METHOD') == 'POST')
 		{
 			$params = $this->input->post();
+			if (empty($params['zipcode_id'])) 
+			{
+				$this->session->set_flashdata('flash_error_signup', "Please fill valid zipcode.");
+				redirect("login");
+			}
 			$err_message = "Unexpected error occured. Try again please.";
 			$email_exist = $this->auth_model->email_exist($params['email']);
 			if (!$email_exist)
 			{
 				// REGISTER USER
-				if ($params['zipcode_id'])
+				/*if ($params['zipcode_id'])
 				{
 					$zipcode = save_zipcode($params['zipcode_id']);
 					$params['zipcode_id'] = $zipcode['zipcode']['id'];
-				}
+				}*/
 
 				$params['role_id'] = ACCESS_ROLE_USER;
 				$params['created_at'] = date("Y-m-d H:i:s");

@@ -413,6 +413,12 @@ class stores_model extends CI_model
 			}
 		}
 
+		if (array_key_exists('keyword', $filters))
+		{
+			$records = $records->like('s.store_name', $filters['keyword'])
+								->or_like('c.coupon_title', $filters['keyword']);
+		}
+
 		$records = $records->order_by('s.store_name', 'DESC');
 
 		if (!isset($filters['paginate']['limit']))
