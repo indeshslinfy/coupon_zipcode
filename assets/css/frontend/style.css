@@ -339,10 +339,11 @@ section{
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div{
 	position:absolute;
-	display:table;
 	height:100%;
 	width:100%;
-	top:0%;
+	bottom:0%;
+	display: flex;
+    flex-direction: column;
 	transition: background .3s;
 }
 .exclusive_coupan .cpn_adjst_img a:hover img{
@@ -364,13 +365,15 @@ section{
 	transform: scale(1) translateY(0px);
 }
 .exclusive_coupan .cpn_adjst_img a .hover_div .hover_text_wrap{
-	display: table-cell;
 	height: 100%;
 	width: 100%;
 	vertical-align: bottom;
 	padding: 15px;
 	color:#fff;
 	text-align:center;
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 .hover_text{
 	padding-left:10px;
@@ -405,7 +408,7 @@ section{
 	transition: opacity .9s ease-in-out;
 }
 .exclusive_coupan .cpn_adjst_img a:hover .hover_div{
-	top:0;
+	bottom:0;
 	background:rgba(0,0,0,.7);
 }
 .exclusive_coupan .cpn_adjst_img a:hover .hover_div .hover_text_wrap .hover_text{
@@ -556,6 +559,7 @@ section{
 	float:left;
 	width:100%;
 	height:100%;
+	padding:5px 10px;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
@@ -1591,7 +1595,7 @@ button,
     width: 100%;
     box-sizing: border-box;
     float: left;
-    padding: 7px 15px;
+    padding: 8px 15px;
 }
 .sorting-div-inner h4{
 	display: inline-block;
@@ -1743,6 +1747,7 @@ input[type="radio"] {
 	height:100%;
 	cursor: pointer;
 	z-index: 11;
+	margin-top: 0;
 }
 input[type="radio"] + span {
 	position: relative;
@@ -2518,7 +2523,7 @@ span.menu_icon_down {
 	display:none;
 	position: fixed;
 	right: 15px;
-	bottom: 30px;
+	bottom: 35px;
 	z-index: 11111;
 	width: 30px;
 }
@@ -2623,9 +2628,7 @@ span.menu_icon_down {
 .share_with_socila_media:hover .share_scl_link_wrap{
 	margin-left:0px;
 }
-.write-review-btn{
-	margin-top:10px;
-}
+
 .top_rstrnt_deal_wrap p{
 	color: #226F05;
 	float: right;
@@ -2684,7 +2687,7 @@ span.menu_icon_down {
 
 /*************** topheader_srch_frm ****************/
 .topheader_srch_frm {
-    max-width: 0px;
+    max-width:0%;
     padding-right: 36px;
     transition: all .5s ease-out;
     -webkit-transition: all .5s ease-out;
@@ -2696,10 +2699,13 @@ span.menu_icon_down {
     height: 34px;
     float: right;
     display: flex;
-
 }
 .topheader_srch_frm .input_box_wrap{
 	visibility: hidden;
+}
+.topheader_srch_frm .form-group{
+	opacity:0;
+	
 }
 .topheader_srch_frm:hover,
 .topheader_srch_frm:focus{
@@ -2709,6 +2715,12 @@ span.menu_icon_down {
 	-o-transition: all 1s ease-in-out;
 	-ms-transition: all 1s ease-in-out;
 	max-width: 100%;
+	overflow:visible;
+}
+.topheader_srch_frm:hover .form-group,
+.topheader_srch_frm:focus .form-group{
+	opacity:1;
+	transition: opacity 1.7s;
 }
 .topheader_srch_frm .onhover_button{
 	position: absolute;
@@ -2752,6 +2764,11 @@ span.menu_icon_down {
 .toggle-tab-menu:focus,
 .toggle-tab-menu:hover{
 	color:#fff;
+}
+#sorting_inner_affiliate h4{
+	color: #fff;
+	font-size: 18px;
+	line-height: 25px;
 }
 /*-----DEAL LOADING GIF-----*/
 /*@-webkit-keyframes placeHolderShimmer {

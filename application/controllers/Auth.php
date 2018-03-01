@@ -70,7 +70,9 @@ class Auth extends CI_Controller {
 				$params['role_id'] = ACCESS_ROLE_USER;
 				$params['created_at'] = date("Y-m-d H:i:s");
 				$params['password'] = md5($params['password']);
+				unset($params['tnc']);
 				unset($params['confirm_password']);
+				
 				$this->auth_model->signup($params);
 
 				$this->session->set_flashdata('flash_success_signup', "Thanks for registering with us.");

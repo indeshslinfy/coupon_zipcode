@@ -375,3 +375,37 @@ if (!function_exists('get_nearby_zipcodes'))
 		return $locations;
 	}
 }
+
+/*
+	Method will return user's current location data stored in cookie.
+	Expected result = array('lat' => 123.45, 'long' => 123.45, 'zipcode' => 123, 'zipcode_id' => 123)
+	
+	The method will return data for NEW YORK CITY IF IN CASE NO LOCATION IS FETCHED FROM COOKIE.
+*/
+if (!function_exists('get_user_location_data'))
+{
+	function get_user_location_data()
+	{
+		// NEW YORK BY DEFAULT
+		$zip_dets = get_zipcode_by_name(NY_ZIPCODE);
+		$location_arr = array('lat' => NY_LAT,
+							'long' => NY_LONG,
+							'zipcode' => NY_ZIPCODE);
+		$location_arr['zipcode_id'] =  $zip_dets['id'];
+		
+		$cookie_data = json_decode(get_cookie('user_current_location'));
+		if($cookie_data)
+		{
+			$zip_dets = get_zipcode_by_name($cookie_data->zipcode);
+			if ($zip_dets)
+			{
+				$location_arr = array('lat' => $zip_dets['latitude'],
+									'long' => $zip_dets['longitude'],
+									'zipcode' => $zip_dets['zipcode'],
+									'zipcode_id' => $zip_dets['id']);
+			}
+		}
+
+		return $location_arr;
+	}
+}

@@ -142,12 +142,14 @@ class Affiliates
 			case 'category':
 				$api_url .= '&filters=category:' . $params['type_val'];
 				break;
-			
+
+			case 'ip':
 			default:
-				return false;
+				$api_url .= '&channel_id=' . $params['channel_id'];
 				break;
 		}
-		
+
+			// die($api_url);
 		return @json_decode(utf8_encode(file_get_contents($api_url)));
 	}
 

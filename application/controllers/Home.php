@@ -25,22 +25,7 @@ class Home extends CI_Controller
 	 */
 	public function index()
 	{
-		$location_arr = array('lat' => '40.71',
-							'long' => '-73.99',
-							'zipcode' => '10002',
-							'zipcode_id' =>  @get_zipcode_details($location_arr['zipcode']));
-		$cookie_data = json_decode(get_cookie('user_current_location'));
-		if($cookie_data)
-		{
-			$zip_dets = get_zipcode_by_name($cookie_data->zipcode);
-			if ($zip_dets)
-			{
-				$location_arr = array('lat' => $zip_dets['latitude'],
-									'long' => $zip_dets['longitude'],
-									'zipcode' => $zip_dets['zipcode'],
-									'zipcode_id' => $zip_dets['id']);
-			}
-		}
+		$location_arr = get_user_location_data();
 
 		// LOCAL COUPONS
 		$this->load->model(ADMIN_PREFIX . '/stores_model');
@@ -49,7 +34,7 @@ class Home extends CI_Controller
 		{
 			$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
 		}
-		// print_r($data['all_local_coupons']); die;
+
 		// FEATURED STORES
 		$data['featured_stores'] = get_featured_stores(4, $location_arr['zipcode_id']);
 		if (sizeof($data['featured_stores']) == 0) 
@@ -75,7 +60,7 @@ class Home extends CI_Controller
 		$ebay_keywords = array('Liquid Phone Cases', 'Electronic Cigarettes', 'Drones', 'Fitness Trackers');
 		$keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
 		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
-																'type_val' => '10002',
+																'type_val' => NY_ZIPCODE,
 																'currency' => 'USD',
 																'paginate' => array('offset' => 0, 'limit' => 4),
 																'keyword' => $keyword));
@@ -86,7 +71,7 @@ class Home extends CI_Controller
 		$ebay_keywords = array('gifts for her', 'gifts', 'love');
 		$valentine_keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
 		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
-																'type_val' => '10002',
+																'type_val' => NY_ZIPCODE,
 																'currency' => 'USD',
 																'paginate' => array('offset' => 0, 'limit' => 4),
 																'keyword' => $valentine_keyword));
@@ -165,7 +150,7 @@ class Home extends CI_Controller
 				}
 			}
 
-			$this->input->set_cookie('user_current_location', json_encode($user_current_location), 31557600);
+			$this->search_zipcode();
 			echo json_encode(array("status" => 1, "data" => $user_current_location)); die;
 		}
 		else
@@ -176,6 +161,12 @@ class Home extends CI_Controller
 
 	public function search_zipcode()
 	{
+		$zipcode = NY_ZIPCODE;
+		if (!is_null($this->input->get('zipcode')))
+		{
+			$zipcode = $this->input->get('zipcode');
+		}
+
 		$zipcode_details = $this->db->select('countries.country_name as country,
 									states.state_name as state,
 									cities.city_name as city,
@@ -183,7 +174,7 @@ class Home extends CI_Controller
 									zipcodes.latitude as lat,
 									zipcodes.longitude as long')
 						->from('zipcodes')
-						->where(array('zipcode' => $this->input->get('zipcode')))
+						->where(array('zipcode' => $zipcode))
 						->join('cities', 'zipcodes.place_id=cities.id')
 						->join('states', 'cities.state_id=states.id')
 						->join('countries', 'countries.id=states.country_id')

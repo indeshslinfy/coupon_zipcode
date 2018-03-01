@@ -1,6 +1,12 @@
 <?php
 	$general_settings = get_settings('general_settings');
-	$featured_stores = get_featured_stores(6);
+
+	$location_arr = get_user_location_data();
+	$featured_stores = get_featured_stores(6, $location_arr['zipcode_id']);
+	if (sizeof($featured_stores) == 0) 
+	{
+		$featured_stores = get_featured_stores(6);
+	}
 ?>
 
 <script type="text/javascript">
@@ -81,7 +87,7 @@
 	    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	    	<div class="get_start_wrap_box text-center">
 				<h3>Why search the web? We have done all the work for you! All deals from all places under one roof!</h3>
-				<p>(<?php echo $general_settings['company_name']; ?>, Groupon, Ebay and many more deals)</p>
+				<p>(<?php echo $general_settings['company_name']; ?>, Groupon, Restaurant and many more deals)</p>
 				<div class="form_wrap">
 					<form>
 						<div class="select_city_form">

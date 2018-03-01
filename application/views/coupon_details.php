@@ -273,7 +273,7 @@
 																<label>Name<span class="text-danger">*</span></label>
 															</div>
 															<div class="col-sm-10 col-xs-12">
-																<input type="text" name="reviewer_name" required="" class="form-control" id="reviewer_name" value="<?php echo user_login_data('first_name') . ' ' . user_login_data('last_name'); ?>" <?php echo user_login_data('id') ? 'readonly' : ''; ?>>
+																<input type="text" name="reviewer_name" required="required" class="form-control" id="reviewer_name" value="<?php echo trim(user_login_data('first_name') . ' ' . user_login_data('last_name')); ?>" <?php echo user_login_data('id') ? 'readonly' : ''; ?>>
 															</div>
 														</div>
 													</div>
@@ -423,14 +423,22 @@
 
 	function submit_store_review(ele)
 	{
-		if ($("#store_rating").rateYo('rating') > 0)
+		if ($("#store_rating").rateYo('rating') == 0)
+		{
+			alert('Minimum rating should be 0.5');
+		}
+		else if ($("#reviewer_name").val().trim() == '' || $("#reviewer_text").val().trim() == '')
+		{
+			alert('Please fill required fields.');
+		}
+		else
 		{
 			$.ajax({
 				url: BASEURL + "/coupons/submit_store_review",
 				method: 'POST',
 				data: {'strid': $(ele).attr('data-strid'),
-						'rvr_nm': $("#reviewer_name").val(),
-						'rvr_txt':  $("#reviewer_text").val(),
+						'rvr_nm': $("#reviewer_name").val().trim(),
+						'rvr_txt':  $("#reviewer_text").val().trim(),
 						'rvr_rtng': $("#store_rating").rateYo('rating')},
 				dataType: 'json',
 				success: function(result)
@@ -459,10 +467,6 @@
 					}
 				}
 			});
-		}
-		else
-		{
-			alert('Minimum rating can be 0.5');
 		}
 	}
 

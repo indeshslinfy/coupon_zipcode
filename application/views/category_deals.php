@@ -285,6 +285,8 @@
 												<input type="submit" name="sort_btn" class="btn ylew_btn" value="REFINE">
 											</div>
 										</div>
+
+										<div id="sorting_inner_affiliate" class="text-center hide"></div>
 									</div>
 								</div>
 							</form>
@@ -357,8 +359,10 @@
 								}
 								elseif (array_key_exists('groupon', $coupons))
 								{
+									print_r($coupons['groupon']); die;
 									foreach ($coupons['groupon'] as $keyCC => $valueCC)
 									{
+										// print_r($VAL)
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
 											<a data-toggle="tooltip" data-placement="left" title="<?php echo $valueCC->title; ?>" href="<?php echo $valueCC->dealUrl; ?>">
@@ -386,7 +390,16 @@
 											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="<?php echo $valueCC['viewItemURL']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
-														<img src="<?php echo $valueCC['galleryURL']; ?>" alt="<?php echo $valueCC['itemId']; ?>">
+														<?php
+														if (array_key_exists('galleryURL', $valueCC))
+														{
+															echo '<img src="' . $valueCC['galleryURL'] . '" alt="' . $valueCC['itemId'] .'">';
+														}
+														else
+														{
+															echo img('ebay-dot-com.jpg');
+														}
+														?>
 													</div>
 													<div class="rstrnt_des_wrap">
 														<div class="restrnt_desp_text_box">
@@ -530,7 +543,9 @@ function render_selected_filters()
 function toggle_filters(ele)
 {
 	var selected_src = $(".filters-ul").find($('input[name=src]:checked'));
+	$('#sorting_inner_affiliate').html("<h4>" + selected_src.siblings('span').html() + "</h4>");
 
+	$('#sorting_inner_affiliate').addClass('hide');
 	$('#sorting_div_inner').addClass('hide');
 	$(".filter_range_div").addClass('hide');
 	$(".filter_min_discount_div").addClass('hide');
@@ -561,6 +576,8 @@ function toggle_filters(ele)
 	}
 	else
 	{
+		$('#sorting_inner_affiliate').removeClass('hide');
+
 		if (selected_src.val() == 'restaurant_dot_com')
 		{
 			$('.filter_cat_div').addClass('hide');

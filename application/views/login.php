@@ -105,7 +105,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<input type="checkbox" name="tnc">
+								<input type="checkbox" name="tnc" checked="checked" required="required">
 								<span>I Accept the Terms and Conditions</span>
 							</div>
 							<div class="form-group text-center">

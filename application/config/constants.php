@@ -86,6 +86,10 @@ defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatic
 
 defined('DS') OR define('DS', DIRECTORY_SEPARATOR);
 
+defined('NY_LAT') OR define('NY_LAT', '40.71');
+defined('NY_LONG') OR define('NY_LONG', '-73.99');
+defined('NY_ZIPCODE') OR define('NY_ZIPCODE', '10002');
+
 // USER
 defined('USER_STATUS_ACTIVE') OR define('USER_STATUS_ACTIVE', 1);
 defined('USER_STATUS_INACTIVE') OR define('USER_STATUS_INACTIVE', 0);

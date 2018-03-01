@@ -37,6 +37,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		var BASEURL = '<?php echo base_url(); ?>';
+		var NY_LOCN = '<?php echo json_encode(array("lat" => NY_LAT, "long" => NY_LONG, "zipcode" => NY_ZIPCODE)); ?>';
 		$(document).ready(function()
 		{
 			<?php

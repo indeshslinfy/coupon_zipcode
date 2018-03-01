@@ -94,7 +94,16 @@ if ($total_coupons_fetched > 0)
 				<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="<?php echo $valueCC['viewItemURL']; ?>">
 					<div class="top_rstrnt_deal_wrap">
 						<div class="cat_img_div">
-							<img src="<?php echo $valueCC['galleryURL']; ?>" alt="<?php echo $valueCC['itemId']; ?>">
+							<?php
+							if (array_key_exists('galleryURL', $valueCC))
+							{
+								echo '<img src="' . $valueCC['galleryURL'] . '" alt="' . $valueCC['itemId'] .'">';
+							}
+							else
+							{
+								echo img('ebay-dot-com.jpg');
+							}
+							?>
 						</div>
 						<div class="rstrnt_des_wrap">
 							<div class="restrnt_desp_text_box">

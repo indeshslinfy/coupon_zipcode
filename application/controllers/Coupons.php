@@ -103,24 +103,7 @@ class Coupons extends CI_Controller
 			$_GET['paginate']['page'] = 1;
 		}
 
-		$zip_dets = @get_zipcode_by_name('10002');
-		$_GET['location_arr'] = array('lat' => '40.71',
-									'long' => '-73.99',
-									'zipcode' => '10002',
-									'zipcode_id' => @$zip_dets['id']);
-		$cookie_data = json_decode(get_cookie('user_current_location'));
-		if($cookie_data)
-		{
-			$zip_dets = get_zipcode_by_name($cookie_data->zipcode);
-			if ($zip_dets)
-			{
-				$_GET['location_arr'] = array('lat' => $zip_dets['latitude'],
-											'long' => $zip_dets['longitude'],
-											'zipcode' => $zip_dets['zipcode'],
-											'zipcode_id' => $zip_dets['id']);
-			}
-		}
-
+		$_GET['location_arr'] = get_user_location_data();
 		$_GET['store_zipcode'] = $_GET['location_arr']['zipcode_id'];
 
 		$pagination_setting = get_settings('deals_pagination');
@@ -155,11 +138,23 @@ class Coupons extends CI_Controller
 							$groupon_deals = array_merge($groupon_deals, $deals->deals);
 						}
 					}
-
-					$data['coupons']['groupon'] = $groupon_deals;
-					$data['total_coupons_fetched'] = sizeof($data['coupons']['groupon']);
+				}
+				else
+				{
+					$_GET['type'] = 'ip';
+					$_GET['channel_id'] = 'hotels';
+					$groupon_deals = $this->affiliates->get_deals($_GET['src'], $_GET);
 				}
 			}
+			else
+			{
+				$_GET['type'] = 'ip';
+				$_GET['channel_id'] = 'hotels';
+				$groupon_deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+			}
+
+			$data['coupons']['groupon'] = $groupon_deals;
+			$data['total_coupons_fetched'] = sizeof($data['coupons']['groupon']);
 		}
 		else if ($_GET['src'] == 'ebay')
 		{

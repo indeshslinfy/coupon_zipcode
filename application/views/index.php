@@ -36,6 +36,7 @@
 	</section>
 </div>
 
+<!-- RESTAURANT.COM -->
 <!-- <div class="row">
 	<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
 		<div class="container">
@@ -46,28 +47,28 @@
 
 			<div class="row">
 				<?php
-				foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
+				// foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
 				{
 				?>
 					<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-						<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+						<a data-toggle="tooltip" title="<?php //echo $valueCC['name']; ?>" href="<?php //echo $valueCC['buy-url']; ?>">
 							<div class="top_rstrnt_deal_wrap">
 								<div class="cat_img_div">
 									<?php
-									if (is_array($valueCC['image-url']))
+									// if (is_array($valueCC['image-url']))
 									{
-										echo img('restaurant-dot-com.png');
+										// echo img('restaurant-dot-com.png');
 									}
-									else
+									// else
 									{
-										echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
+										// echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
 									}
 									?>
 								</div>
 								<div class="rstrnt_des_wrap">
 									<div class="restrnt_desp_text_box">
-										<h4><?php echo $valueCC['name']; ?></h4>
-										<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
+										<h4><?php //echo $valueCC['name']; ?></h4>
+										<p>&#36;<?php //echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
 									</div>
 								</div>
 							</div>
@@ -81,208 +82,233 @@
 	</section>
 </div> -->
 
-<div class="row">
-	<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
-		<div class="container">
-			<div class="heading_text_wrap">
-				<h2>Top Deals Near You</h2>
-				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
-			</div>
+<!-- GROUPON -->
+<?php
+// print_r($coupons['groupon']); die;
+if ($coupons['groupon'])
+{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2>Top Deals Near You</h2>
+					<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
+				</div>
 
-			<div class="row">
-				<?php
-				$js_deals_arr = array();
-				foreach ($coupons['groupon']->deals as $keyCL => $valueCL)
-				{
-					$js_deals_arr[$valueCL->uuid] = array('title' => $valueCL->title,
-												'short_title' => $valueCL->shortAnnouncementTitle,
-												'image' => $valueCL->grid4ImageUrl,
-												'deal_url' => $valueCL->dealUrl,
-												'location' => $valueCL->redemptionLocation,
-												'latitude' => @$valueCL->options[0]->redemptionLocations[0]->lat,
-												'longitude' => @$valueCL->options[0]->redemptionLocations[0]->lng,
-												'pitch_html' => $valueCL->pitchHtml,
-												'fine_print' => $valueCL->finePrint,
-												'location_note' => $valueCL->locationNote,
-												'is_limited' => @$valueCL->options[0]->isLimitedQuantity,
-												'discount' => @$valueCL->options[0]->discount->formattedAmount,
-												'price_after_discount' => @$valueCL->options[0]->price->formattedAmount,
-												'actual_price' => @$valueCL->options[0]->value->formattedAmount);
-				?>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<a href="javascript:void(0);" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
-							<div class="top_rstrnt_deal_wrap">
-								<div class="adjst_img_wrap_height">
-									<div class="ajst_img_box">
-										<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
-									</div>
-								</div>
-								<div class="rstrnt_des_wrap">
-									<div class="restrnt_desp_text_box">
-										<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 55 ? substr($valueCL->title, 0, 55) . "..." : $valueCL->title; ?></h3>
-									</div>
-								</div>
-							</div>
-							<span><?php echo img('powered-by-groupon.png'); ?></span>
-						</a>
-					</div>
-				<?php
-				}
-				for ($i=0; $i <4 ; $i++)
-				{
-				?>
-					<!-- <div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="timeline-item">
-							<div class="animated-background facebook">
-								<div class="background-masker header-top"></div>
-								<div class="background-masker header-left"></div>
-								<div class="background-masker header-right"></div>
-								<div class="background-masker header-bottom"></div>
-								<div class="background-masker subheader-left"></div>
-								<div class="background-masker subheader-right"></div>
-								<div class="background-masker subheader-bottom"></div>
-								<div class="background-masker content-top"></div>
-								<div class="background-masker content-first-end"></div>
-								<div class="background-masker content-second-line"></div>
-								<div class="background-masker content-second-end"></div>
-								<div class="background-masker content-third-line"></div>
-								<div class="background-masker content-third-end"></div>
-							</div>
-						</div>
-					</div> -->
-				<?php
-				}
-				?>
-			</div>
-
-			<script type="text/javascript">
-				var iDeals = <?php echo json_encode($js_deals_arr, JSON_FORCE_OBJECT); ?>;
-			</script>
-		</div>
-	</section>
-</div>
-
-<div class="row">
-	<section class="top_rstrnt_deal">
-		<div class="container">
-			<div class="heading_text_wrap">
-				<h2>Products/Deals You May Like</h2>
-				<a href="<?php echo base_url('deals?search_src=home_pg&cat_name=&store_zipcode=&src=ebay&price_range%5B%5D=&price_range%5B%5D=&keyword=' . $coupons['ebay']['keyword'] . '&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
-			</div>
-
-			<div class="row">
-				<?php
-				foreach ($coupons['ebay']['items']['via_keyword'] as $keyCL => $valueCL)
-				{
-					$title = strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title'];
-					if (array_key_exists('subtitle', $valueCL))
+				<div class="row">
+					<?php
+					// $js_deals_arr = array();
+					foreach ($coupons['groupon']->deals as $keyCL => $valueCL)
 					{
-						$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
+						// $js_deals_arr[$valueCL->uuid] = array('title' => $valueCL->title,
+						// 							'short_title' => $valueCL->shortAnnouncementTitle,
+						// 							'image' => $valueCL->grid4ImageUrl,
+						// 							'deal_url' => $valueCL->dealUrl,
+						// 							'location' => $valueCL->redemptionLocation,
+						// 							'latitude' => @$valueCL->options[0]->redemptionLocations[0]->lat,
+						// 							'longitude' => @$valueCL->options[0]->redemptionLocations[0]->lng,
+						// 							'pitch_html' => $valueCL->pitchHtml,
+						// 							'fine_print' => $valueCL->finePrint,
+						// 							'location_note' => $valueCL->locationNote,
+						// 							'is_limited' => @$valueCL->options[0]->isLimitedQuantity,
+						// 							'discount' => @$valueCL->options[0]->discount->formattedAmount,
+						// 							'price_after_discount' => @$valueCL->options[0]->price->formattedAmount,
+						// 							'actual_price' => @$valueCL->options[0]->value->formattedAmount);
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a href="javascript:void(0);" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 55 ? substr($valueCL->title, 0, 55) . "..." : $valueCL->title; ?></h3>
+										</div>
+									</div>
+								</div>
+								<span><?php echo img('powered-by-groupon.png'); ?></span>
+							</a>
+						</div>
+					<?php
 					}
-				?>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<a href="<?php echo $valueCL['viewItemURL']; ?>">
-							<div class="top_rstrnt_deal_wrap">
-								<div class="adjst_img_wrap_height">
-									<div class="ajst_img_box">
-										<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
-									</div>
-								</div>
-								<div class="rstrnt_des_wrap">
-									<div class="restrnt_desp_text_box">
-										<h3 title="<?php echo $title; ?>"><?php echo $title; ?></h3>
-									</div>
+					for ($i=0; $i <4 ; $i++)
+					{
+					?>
+						<!-- <div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="timeline-item">
+								<div class="animated-background facebook">
+									<div class="background-masker header-top"></div>
+									<div class="background-masker header-left"></div>
+									<div class="background-masker header-right"></div>
+									<div class="background-masker header-bottom"></div>
+									<div class="background-masker subheader-left"></div>
+									<div class="background-masker subheader-right"></div>
+									<div class="background-masker subheader-bottom"></div>
+									<div class="background-masker content-top"></div>
+									<div class="background-masker content-first-end"></div>
+									<div class="background-masker content-second-line"></div>
+									<div class="background-masker content-second-end"></div>
+									<div class="background-masker content-third-line"></div>
+									<div class="background-masker content-third-end"></div>
 								</div>
 							</div>
-							<span><?php echo img('powered-by-ebay.jpg'); ?></span>
-						</a>
-					</div>
-				<?php
-				}
-				?>
-			</div>
-		</div>
-	</section>
-</div>
+						</div> -->
+					<?php
+					}
+					?>
+				</div>
 
-<div class="row">
-	<section class="top_rstrnt_deal gery_bg section_with_pdd_btm">
-		<div class="container">
-			<div class="heading_text_wrap">
-				<h2>Gifts for Her</h2>
-				<a href="<?php echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=amazon&price_range%5B%5D=&price_range%5B%5D=&keyword=gifts+for+her&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+				<!-- <script type="text/javascript"> -->
+					<!-- var iDeals = <?php //echo json_encode($js_deals_arr, JSON_FORCE_OBJECT); ?>; -->
+				<!-- </script> -->
 			</div>
+		</section>
+	</div>
+<?php
+}
+?>
 
-			<div class="row">
-				<div class="latest_deals">
-					<div id="latest_deals_slider_ltr"  class="owl-carousel">
-						<?php
-						$coupons['amazon'] = array_slice($coupons['amazon'], 6);
-						foreach ($coupons['amazon'] as $keyCL => $valueCL)
+<!-- EBAY -->
+<?php
+if (sizeof($coupons['ebay']['items']['via_keyword']) > 0)
+{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2>Products/Deals You May Like</h2>
+					<a href="<?php echo base_url('deals?search_src=home_pg&cat_name=&store_zipcode=&src=ebay&price_range%5B%5D=&price_range%5B%5D=&keyword=' . $coupons['ebay']['keyword'] . '&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+				</div>
+
+				<div class="row">
+					<?php
+					foreach ($coupons['ebay']['items']['via_keyword'] as $keyCL => $valueCL)
+					{
+						$title = strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title'];
+						if (array_key_exists('subtitle', $valueCL))
 						{
-						?>
-							<div class="item">
-								<a href="<?php echo $valueCL['url']; ?>">
-									<div class="top_rstrnt_deal_wrap">
-										<div class="adjst_img_wrap_height">
-											<div class="ajst_img_box">
-												<img src="<?php echo $valueCL['mediumImage']; ?>" alt="<?php echo $valueCL['asin']; ?>">
-											</div>
-										</div>
-										<div class="rstrnt_des_wrap">
-											<div class="restrnt_desp_text_box">
-												<h3 title="<?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?>"><?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?></h3>
-											</div>
+							$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
+						}
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a href="<?php echo $valueCL['viewItemURL']; ?>">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
 										</div>
 									</div>
-									<span><?php echo img('powered-by-amazon.jpg'); ?></span>
-								</a>
-							</div>
-						<?php
-						}
-						?>
-					</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3 title="<?php echo $title; ?>"><?php echo $title; ?></h3>
+										</div>
+									</div>
+								</div>
+								<span><?php echo img('powered-by-ebay.jpg'); ?></span>
+							</a>
+						</div>
+					<?php
+					}
+					?>
 				</div>
 			</div>
+		</section>
+	</div>
+<?php
+}
+?>
 
-			<div class="row">
-				<div class="latest_deals">
-					<div id="latest_deals_slider_rtl"  class="owl-carousel">
-						<?php
-						foreach ($coupons['ebay']['items']['trending'] as $keyCL => $valueCL)
-						{
-							$title = strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title'];
-							if (array_key_exists('subtitle', $valueCL))
+<!-- EBAY -->
+<?php
+$coupons['amazon'] = array_slice($coupons['amazon'], 6);
+if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending']) > 0)
+{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal gery_bg section_with_pdd_btm">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2>Gifts for Her</h2>
+					<a href="<?php echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=amazon&price_range%5B%5D=&price_range%5B%5D=&keyword=gifts+for+her&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+				</div>
+
+				<div class="row">
+					<div class="latest_deals">
+						<div id="latest_deals_slider_ltr"  class="owl-carousel">
+							<?php
+							foreach ($coupons['amazon'] as $keyCL => $valueCL)
 							{
-								$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
+							?>
+								<div class="item">
+									<a href="<?php echo $valueCL['url']; ?>">
+										<div class="top_rstrnt_deal_wrap">
+											<div class="adjst_img_wrap_height">
+												<div class="ajst_img_box">
+													<img src="<?php echo $valueCL['mediumImage']; ?>" alt="<?php echo $valueCL['asin']; ?>">
+												</div>
+											</div>
+											<div class="rstrnt_des_wrap">
+												<div class="restrnt_desp_text_box">
+													<h3 title="<?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?>"><?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?></h3>
+												</div>
+											</div>
+										</div>
+										<span><?php echo img('powered-by-amazon.jpg'); ?></span>
+									</a>
+								</div>
+							<?php
 							}
-						?>
-							<div class="item">
-								<a href="<?php echo $valueCL['viewItemURL']; ?>">
-									<div class="top_rstrnt_deal_wrap">
-										<div class="adjst_img_wrap_height">
-											<div class="ajst_img_box">
-												<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
+							?>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="latest_deals">
+						<div id="latest_deals_slider_rtl"  class="owl-carousel">
+							<?php
+							foreach ($coupons['ebay']['items']['trending'] as $keyCL => $valueCL)
+							{
+								$title = strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title'];
+								if (array_key_exists('subtitle', $valueCL))
+								{
+									$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
+								}
+							?>
+								<div class="item">
+									<a href="<?php echo $valueCL['viewItemURL']; ?>">
+										<div class="top_rstrnt_deal_wrap">
+											<div class="adjst_img_wrap_height">
+												<div class="ajst_img_box">
+													<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
+												</div>
+											</div>
+											<div class="rstrnt_des_wrap">
+												<div class="restrnt_desp_text_box">
+													<h3 title="<?php echo $title; ?>"><?php echo $title; ?></h3>
+												</div>
 											</div>
 										</div>
-										<div class="rstrnt_des_wrap">
-											<div class="restrnt_desp_text_box">
-												<h3 title="<?php echo $title; ?>"><?php echo $title; ?></h3>
-											</div>
-										</div>
-									</div>
-									<span><?php echo img('powered-by-ebay.jpg'); ?></span>
-								</a>
-							</div>
-						<?php
-						}
-						?>
+										<span><?php echo img('powered-by-ebay.jpg'); ?></span>
+									</a>
+								</div>
+							<?php
+							}
+							?>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-</div>
+		</section>
+	</div>
+<?php
+}
+?>
 
 <div class="row">
 	<section class="top_rstrnt_deal">
@@ -344,7 +370,7 @@
 	</section>
 </div>
 
-<div class="modal fade groupon_deal_popup" id="groupon_deal_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- <div class="modal fade groupon_deal_popup" id="groupon_deal_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -395,65 +421,65 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo get_settings('google_map_key'); ?>"></script>
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo get_settings('google_map_key'); ?>"></script> -->
 
 <script type="text/javascript">
-	function group_deal_popup(ele, uuid)
-	{
-		$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').hide();
-		$('#groupon_deal_popup .light_slider_wrap').html('<img src="' + iDeals[uuid]['image'] + '">');
-		$('#groupon_deal_popup .deal_title').html(iDeals[uuid]['title']);
+	// function group_deal_popup(ele, uuid)
+	// {
+	// 	$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').hide();
+	// 	$('#groupon_deal_popup .light_slider_wrap').html('<img src="' + iDeals[uuid]['image'] + '">');
+	// 	$('#groupon_deal_popup .deal_title').html(iDeals[uuid]['title']);
 
-		if (iDeals[uuid]['location'] == null || iDeals[uuid]['location'] == '')
-		{
-			$(".map_wrap").hide();
-			$('#groupon_deal_popup #redemption_location').parent('h4').hide();
-		}
-		else
-		{
-			$('#groupon_deal_popup #redemption_location').html(iDeals[uuid]['location']);
+	// 	if (iDeals[uuid]['location'] == null || iDeals[uuid]['location'] == '')
+	// 	{
+	// 		$(".map_wrap").hide();
+	// 		$('#groupon_deal_popup #redemption_location').parent('h4').hide();
+	// 	}
+	// 	else
+	// 	{
+	// 		$('#groupon_deal_popup #redemption_location').html(iDeals[uuid]['location']);
 
-			$(".map_wrap").show();
-			initMap(iDeals[uuid]['latitude'], iDeals[uuid]['longitude']);
-		}
+	// 		$(".map_wrap").show();
+	// 		initMap(iDeals[uuid]['latitude'], iDeals[uuid]['longitude']);
+	// 	}
 
-		if (iDeals[uuid]['actual_price'] == null || iDeals[uuid]['actual_price'] == '$0.00' || iDeals[uuid]['actual_price'] == '$0' || iDeals[uuid]['actual_price'] == '')
-		{
-			$(".discount_wrap").hide();
-		}
-		else
-		{
-			$('#groupon_deal_popup .old_price').html(iDeals[uuid]['actual_price']);
-			$('#groupon_deal_popup .new_price').html(iDeals[uuid]['price_after_discount']);
-			$('#groupon_deal_popup .discount_prcnt').html('You Saved&nbsp;' + iDeals[uuid]['discount']);
-			$(".discount_wrap").show();
-		}
+	// 	if (iDeals[uuid]['actual_price'] == null || iDeals[uuid]['actual_price'] == '$0.00' || iDeals[uuid]['actual_price'] == '$0' || iDeals[uuid]['actual_price'] == '')
+	// 	{
+	// 		$(".discount_wrap").hide();
+	// 	}
+	// 	else
+	// 	{
+	// 		$('#groupon_deal_popup .old_price').html(iDeals[uuid]['actual_price']);
+	// 		$('#groupon_deal_popup .new_price').html(iDeals[uuid]['price_after_discount']);
+	// 		$('#groupon_deal_popup .discount_prcnt').html('You Saved&nbsp;' + iDeals[uuid]['discount']);
+	// 		$(".discount_wrap").show();
+	// 	}
 
-		$('#groupon_deal_popup #pitch_html_div').html("<h3 class='body_heading'>You'll Get</h3>" + iDeals[uuid]['pitch_html']);
-		$('#groupon_deal_popup #fine_print_div').html("<h3 class='body_heading'>The Fine Print</h3>" + iDeals[uuid]['fine_print']);
-		$('#groupon_deal_popup #short_title').html('<span>Location</span>' + iDeals[uuid]['short_title']);
-		$('#groupon_deal_popup #get_deal_btn').attr('href', iDeals[uuid]['deal_url']);
-		$('#groupon_deal_popup .socil_link_wrap #copy_deal_url').val(iDeals[uuid]['deal_url']);
+	// 	$('#groupon_deal_popup #pitch_html_div').html("<h3 class='body_heading'>You'll Get</h3>" + iDeals[uuid]['pitch_html']);
+	// 	$('#groupon_deal_popup #fine_print_div').html("<h3 class='body_heading'>The Fine Print</h3>" + iDeals[uuid]['fine_print']);
+	// 	$('#groupon_deal_popup #short_title').html('<span>Location</span>' + iDeals[uuid]['short_title']);
+	// 	$('#groupon_deal_popup #get_deal_btn').attr('href', iDeals[uuid]['deal_url']);
+	// 	$('#groupon_deal_popup .socil_link_wrap #copy_deal_url').val(iDeals[uuid]['deal_url']);
 
-		$('#groupon_deal_popup').modal('show');
-	}
+	// 	$('#groupon_deal_popup').modal('show');
+	// }
 
-	function initMap(lat, long)
-	{
-		var uluru = {lat: lat, lng: long};
+	// function initMap(lat, long)
+	// {
+	// 	var uluru = {lat: lat, lng: long};
 
-		var map = new google.maps.Map(document.getElementById('groupon_popup_map'), {
-			zoom: 10,
-			center: uluru
-		});
+	// 	var map = new google.maps.Map(document.getElementById('groupon_popup_map'), {
+	// 		zoom: 10,
+	// 		center: uluru
+	// 	});
 
-		var marker = new google.maps.Marker({
-			position: uluru,
-			map: map
-		});
-	}
+	// 	var marker = new google.maps.Marker({
+	// 		position: uluru,
+	// 		map: map
+	// 	});
+	// }
 
 	function toggle_copy_input()
 	{
