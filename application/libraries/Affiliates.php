@@ -10,6 +10,7 @@ class Affiliates
 {
 	public function get_deals($service_provider, $params)
 	{
+		ini_set('max_execution_time', 120); // 2 minutes
 		switch ($service_provider)
 		{
 			case 'restaurant_dot_com':
@@ -36,8 +37,6 @@ class Affiliates
 
 	public function restaurant_dot_com_deals($params)
 	{
-		ini_set('max_execution_time', 300); //300 seconds = 5 minutes
-
 		if (!isset($params['paginate']['limit']))
 		{
 			$pagination_details = get_settings('deals_pagination');
@@ -149,7 +148,6 @@ class Affiliates
 				break;
 		}
 
-			// die($api_url);
 		return @json_decode(utf8_encode(file_get_contents($api_url)));
 	}
 

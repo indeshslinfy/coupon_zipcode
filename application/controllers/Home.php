@@ -43,11 +43,12 @@ class Home extends CI_Controller
 		}
 
 		$this->load->library('affiliates');
+
 		// RESTAURANT.COM
-		// $rdc_keywords = array('Restaurant Deal, Cocktail', 'Whiskey');
-		// $keyword = $rdc_keywords[rand(1, sizeof($rdc_keywords)-1)];
-		// $data['coupons']['restaurant_dot_com'] = $this->affiliates->get_deals('restaurant_dot_com',
-		// 															array('keyword' => $keyword, 'paginate' => array('page' => 1, 'limit' => 3)));
+		$rdc_keywords = array('Restaurant', 'Hotel', 'Spa');
+		$keyword = $rdc_keywords[rand(1, sizeof($rdc_keywords)-1)];
+		$data['coupons']['restaurant_dot_com'] = $this->affiliates->get_deals('restaurant_dot_com',
+																	array('keyword' => $keyword, 'paginate' => array('page' => 1, 'limit' => 4)));
 
 		// GROUPON
 		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',

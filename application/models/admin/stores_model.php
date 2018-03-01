@@ -268,7 +268,6 @@ class stores_model extends CI_model
 
 	public function get_local_coupons($filters=false)
 	{
-		// print_r($filters); die;
 		$select_str = 'c.id, c.coupon_title, c.coupon_description, c.coupon_zipcode_id, s.store_name, s.id as store_id, s.store_featured_image as store_image';
 		$where_arr = array('c.coupon_publish' => 1,
 							'c.deleted_at' => NULL,

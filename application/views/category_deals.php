@@ -80,6 +80,7 @@
 										Price Range (&#36;)
 										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
 									</h5>
+									<!-- <span id="price_range_err" class="text-danger hide"><small>Select at least 1 category</small></span> -->
 									<ul class="filters-ul filter-clearable" id="range_filters_ul">
 										<li>
 											Min&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]">
@@ -359,10 +360,8 @@
 								}
 								elseif (array_key_exists('groupon', $coupons))
 								{
-									print_r($coupons['groupon']); die;
 									foreach ($coupons['groupon'] as $keyCC => $valueCC)
 									{
-										// print_r($VAL)
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
 											<a data-toggle="tooltip" data-placement="left" title="<?php echo $valueCC->title; ?>" href="<?php echo $valueCC->dealUrl; ?>">
@@ -544,6 +543,8 @@ function toggle_filters(ele)
 {
 	var selected_src = $(".filters-ul").find($('input[name=src]:checked'));
 	$('#sorting_inner_affiliate').html("<h4>" + selected_src.siblings('span').html() + "</h4>");
+	
+	$('#price_range_err').addClass('hide');
 
 	$('#sorting_inner_affiliate').addClass('hide');
 	$('#sorting_div_inner').addClass('hide');
@@ -610,6 +611,11 @@ function toggle_filters(ele)
 
 			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
 			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
+
+			if ($('li[data-src=amazon-cat]').find($('input[name="cat[]"]:checked')).length == 0)
+			{
+				$('#price_range_err').removeClass('hide');
+			}
 		}
 
 		$('.filter_dt_div').addClass('hide');

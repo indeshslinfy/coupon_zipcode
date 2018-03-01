@@ -37,38 +37,40 @@
 </div>
 
 <!-- RESTAURANT.COM -->
-<!-- <div class="row">
+<div class="row">
 	<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
 		<div class="container">
 			<div class="heading_text_wrap">
-				<h2>Top Restaurant Deals</h2>
+				<h2>Hotel deals Restaurant.com</h2>
 				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
 			</div>
 
 			<div class="row">
 				<?php
-				// foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
+				foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
 				{
 				?>
-					<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-						<a data-toggle="tooltip" title="<?php //echo $valueCC['name']; ?>" href="<?php //echo $valueCC['buy-url']; ?>">
+					<div class="col-xs-12 col-sm-6 col-md-3">
+						<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
 							<div class="top_rstrnt_deal_wrap">
-								<div class="cat_img_div">
-									<?php
-									// if (is_array($valueCC['image-url']))
-									{
-										// echo img('restaurant-dot-com.png');
-									}
-									// else
-									{
-										// echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
-									}
-									?>
+								<div class="adjst_img_wrap_height">
+									<div class="ajst_img_box">
+										<?php
+										if (is_array($valueCC['image-url']))
+										{
+											echo img('restaurant-dot-com.png');
+										}
+										else
+										{
+											echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
+										}
+										?>
+									</div>
 								</div>
 								<div class="rstrnt_des_wrap">
 									<div class="restrnt_desp_text_box">
-										<h4><?php //echo $valueCC['name']; ?></h4>
-										<p>&#36;<?php //echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
+										<h4><?php echo $valueCC['name']; ?></h4>
+										<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
 									</div>
 								</div>
 							</div>
@@ -80,11 +82,10 @@
 			</div>
 		</div>
 	</section>
-</div> -->
+</div>
 
 <!-- GROUPON -->
 <?php
-// print_r($coupons['groupon']); die;
 if ($coupons['groupon'])
 {
 ?>
@@ -93,7 +94,7 @@ if ($coupons['groupon'])
 			<div class="container">
 				<div class="heading_text_wrap">
 					<h2>Top Deals Near You</h2>
-					<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
+					<!-- <a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a> -->
 				</div>
 
 				<div class="row">
