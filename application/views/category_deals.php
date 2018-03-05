@@ -80,7 +80,7 @@
 										Price Range (&#36;)
 										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
 									</h5>
-									<!-- <span id="price_range_err" class="text-danger hide"><small>Select at least 1 category</small></span> -->
+									<small class="text-danger cat_require hide">Select at least 1 category</small>
 									<ul class="filters-ul filter-clearable" id="range_filters_ul">
 										<li>
 											Min&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]">
@@ -97,7 +97,8 @@
 										Min. Discount
 										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['min_discount']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
 									</h5>
-									
+									<small class="text-danger cat_require hide">Select at least 1 category</small>
+
 									<ul class="filters-ul filter-clearable" id="min_discount_filters_ul">
 										<li>
 											<input type="radio" name="min_discount" value="10" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '10' ? 'checked' : ''; ?>>&nbsp;
@@ -124,6 +125,7 @@
 										Condition
 										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['condition']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
 									</h5>
+									<small class="text-danger cat_require hide">Select at least 1 category</small>
 									
 									<ul class="filters-ul filter-clearable" id="condition_filters_ul">
 										<li>
@@ -544,7 +546,7 @@ function toggle_filters(ele)
 	var selected_src = $(".filters-ul").find($('input[name=src]:checked'));
 	$('#sorting_inner_affiliate').html("<h4>" + selected_src.siblings('span').html() + "</h4>");
 	
-	$('#price_range_err').addClass('hide');
+	$('.cat_require').addClass('hide');
 
 	$('#sorting_inner_affiliate').addClass('hide');
 	$('#sorting_div_inner').addClass('hide');
@@ -614,7 +616,7 @@ function toggle_filters(ele)
 
 			if ($('li[data-src=amazon-cat]').find($('input[name="cat[]"]:checked')).length == 0)
 			{
-				$('#price_range_err').removeClass('hide');
+				$('.cat_require').removeClass('hide');
 			}
 		}
 
