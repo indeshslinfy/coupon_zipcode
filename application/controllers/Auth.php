@@ -38,6 +38,18 @@ class Auth extends CI_Controller {
 					$this->load->model(ADMIN_PREFIX . '/user_model');
 					$user_details = $this->user_model->user_edit($user_exist['id']);
 
+					$zip_dets = get_zipcode_details($user_details['zipcode_id']);
+					if ($zip_dets)
+					{
+						$zipcode_arr = zipcode_data_for_cookie($zip_dets['zipcode']);
+					}
+					else
+					{
+						$zipcode_arr = zipcode_data_for_cookie(NY_ZIPCODE);
+					}
+					
+					set_location_cookie($zipcode_arr);
+
 					$this->session->set_userdata('logged_in', TRUE);
 					$this->session->set_userdata('user_access', $user_details);
 					redirect("/");
@@ -61,6 +73,7 @@ class Auth extends CI_Controller {
 				$this->session->set_flashdata('flash_error_signup', "Please fill valid zipcode.");
 				redirect("login");
 			}
+
 			$err_message = "Unexpected error occured. Try again please.";
 			$email_exist = $this->auth_model->email_exist($params['email']);
 			if (!$email_exist)

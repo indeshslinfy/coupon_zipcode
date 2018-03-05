@@ -247,17 +247,8 @@ function showPosition(position)
 		success: function(data)
 		{
 			var data = JSON.parse(data);
-			if (data.status == 0)
+			if (data.status)
 			{
-				var newyork_locn = JSON.parse(NY_LOCN);
-				alert('Something went wrong while fetching your location. Setting location default to New York City');
-				var new_york_location = {coords: {'latitude': newyork_locn.lat, 'longitude': newyork_locn.long}};
-				showPosition(new_york_location);
-			}
-			else
-			{
-				localStorage.setItem("user_current_location", JSON.stringify(data.data));
-
 				var loc_html = '<li>\
 									<a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">\
 										<i class="fa fa-map-marker"></i>&nbsp;Select location<span>' + data.data.zipcode + '</span>\
@@ -291,7 +282,6 @@ $("#search_zipcode").click(function()
 				}
 				else
 				{
-					localStorage.setItem("user_current_location", JSON.stringify(data.data));
 					window.location.reload();
 				}
 			}

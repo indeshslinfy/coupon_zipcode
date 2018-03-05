@@ -88,6 +88,19 @@ if (!function_exists('get_zipcodes'))
 	}
 }
 
+// Get User default zipcode details
+if (!function_exists('get_user_default_zipcode'))
+{
+	function get_user_default_zipcode()
+	{
+		$CI =& get_instance();
+		$test = $CI->session->userdata();
+		// print_r($test);
+		// die('error');
+		// return $CI->db->get('zipcodes')->result_array();
+	}
+}
+
 if (!function_exists('get_stores_categories'))
 {
 	function get_stores_categories()
@@ -386,13 +399,12 @@ if (!function_exists('get_user_location_data'))
 {
 	function get_user_location_data()
 	{
+		$CI =& get_instance();
+
 		// NEW YORK BY DEFAULT
 		$zip_dets = get_zipcode_by_name(NY_ZIPCODE);
-		$location_arr = array('lat' => NY_LAT,
-							'long' => NY_LONG,
-							'zipcode' => NY_ZIPCODE);
-		$location_arr['zipcode_id'] =  $zip_dets['id'];
-		
+		$location_arr = array('lat' => NY_LAT, 'long' => NY_LONG, 'zipcode' => NY_ZIPCODE, 'zipcode_id' => $zip_dets['id']);
+
 		$cookie_data = json_decode(get_cookie('user_current_location'));
 		if($cookie_data)
 		{
@@ -405,7 +417,37 @@ if (!function_exists('get_user_location_data'))
 									'zipcode_id' => $zip_dets['id']);
 			}
 		}
-
+		
 		return $location_arr;
+	}
+}
+
+if (!function_exists('set_location_cookie'))
+{
+	function set_location_cookie($location_arr)
+	{
+		$CI =& get_instance();
+		return $CI->input->set_cookie('user_current_location', json_encode($location_arr), '86400');
+	}
+}
+
+if (!function_exists('zipcode_data_for_cookie'))
+{
+	function zipcode_data_for_cookie($zipcode)
+	{
+		$CI =& get_instance();
+		return $CI->db->select('countries.country_name as country,
+									states.state_name as state,
+									cities.city_name as city,
+									zipcodes.zipcode,
+									zipcodes.latitude as lat,
+									zipcodes.longitude as long')
+						->from('zipcodes')
+						->where(array('zipcode' => $zipcode))
+						->join('cities', 'zipcodes.place_id=cities.id')
+						->join('states', 'cities.state_id=states.id')
+						->join('countries', 'countries.id=states.country_id')
+						->get()
+						->row_array();
 	}
 }

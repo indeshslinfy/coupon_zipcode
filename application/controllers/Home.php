@@ -25,6 +25,7 @@ class Home extends CI_Controller
 	 */
 	public function index()
 	{
+		// print_r(get_user_default_zipcode()); die;
 		$location_arr = get_user_location_data();
 
 		// LOCAL COUPONS
@@ -115,34 +116,36 @@ class Home extends CI_Controller
 	public function get_geo_location()
 	{
 		$geolocation = $this->input->get('lat') . ',' . $this->input->get('long');
-		$request = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $geolocation . '&sensor=false'; 
+		$locn_data = array("lat" => $this->input->get('lat'), "long" => $this->input->get('long'));
+		
+		$request = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyC1-Jvfh71t0Wi05t8jh2hASRSrjmvaE6Y&latlng=' . $geolocation . '&sensor=false'; 
 		$file_contents = file_get_contents($request);
-		$json_decode = json_decode($file_contents);
 
+		$json_decode = json_decode($file_contents);
 		if (sizeof($json_decode->results) > 0)
 		{
-			$user_current_location['lat'] = $this->input->get('lat');
-			$user_current_location['long'] = $this->input->get('long');
+			$zipcode_details['lat'] = $locn_data['lat'];
+			$zipcode_details['long'] = $locn_data['long'];
 
 			foreach ($json_decode->results[0]->address_components as $keyAC => $valueAC)
 			{
 				switch ($valueAC->types[0])
 				{
 					case 'country':
-						$user_current_location['country'] = $valueAC->long_name;
+						$zipcode_details['country'] = $valueAC->long_name;
 						break;
 
 					case 'locality':
 					case 'administrative_area_level_2':
-						$user_current_location['city'] = $valueAC->long_name;
+						$zipcode_details['city'] = $valueAC->long_name;
 						break;
 
 					case 'administrative_area_level_1':
-						$user_current_location['state'] = $valueAC->long_name;
+						$zipcode_details['state'] = $valueAC->long_name;
 						break;
 
 					case 'postal_code':
-						$user_current_location['zipcode'] = $valueAC->long_name;
+						$zipcode_details['zipcode'] = $valueAC->long_name;
 						break;
 					
 					default:
@@ -150,46 +153,38 @@ class Home extends CI_Controller
 						break;
 				}
 			}
-
-			$this->search_zipcode();
-			echo json_encode(array("status" => 1, "data" => $user_current_location)); die;
 		}
 		else
 		{
-			echo json_encode(array("status" => 0, "message" => "Error occured while getting location.")); die;
+			$user_logged_in = $this->session->userdata('logged_in');
+			if ($user_logged_in)
+			{
+				$login_data = $this->session->userdata('user_access');
+				$zip_dets = get_zipcode_details($login_data['zipcode_id']);
+				if ($zip_dets)
+				{
+					$zipcode_arr = zipcode_data_for_cookie($zip_dets['zipcode']);
+				}
+				else
+				{
+					$zipcode_arr = zipcode_data_for_cookie(NY_ZIPCODE);
+				}
+			}
+			else
+			{
+				$zipcode_details = zipcode_data_for_cookie(NY_ZIPCODE);
+			}
 		}
+
+		set_location_cookie($zipcode_details);
+		echo json_encode(array("status" => 1, "data" => $zipcode_details)); die;
 	}
 
 	public function search_zipcode()
 	{
-		$zipcode = NY_ZIPCODE;
-		if (!is_null($this->input->get('zipcode')))
-		{
-			$zipcode = $this->input->get('zipcode');
-		}
+		$zipcode_details = zipcode_data_for_cookie($this->input->get('zipcode'));
+		set_location_cookie($zipcode_details);
 
-		$zipcode_details = $this->db->select('countries.country_name as country,
-									states.state_name as state,
-									cities.city_name as city,
-									zipcodes.zipcode,
-									zipcodes.latitude as lat,
-									zipcodes.longitude as long')
-						->from('zipcodes')
-						->where(array('zipcode' => $zipcode))
-						->join('cities', 'zipcodes.place_id=cities.id')
-						->join('states', 'cities.state_id=states.id')
-						->join('countries', 'countries.id=states.country_id')
-						->get()
-						->row_array();
-
-		if (sizeof($zipcode_details) > 0)
-		{
-			$this->input->set_cookie('user_current_location', json_encode($zipcode_details), '86400');
-			echo json_encode(array("status" => 1, "data" => $zipcode_details)); die;
-		}
-		else
-		{
-			echo json_encode(array("status" => 0, "message" => "Error occured while getting location.")); die;
-		}
+		echo json_encode(array("status" => 1, "data" => $zipcode_details)); die;
 	}
 }
