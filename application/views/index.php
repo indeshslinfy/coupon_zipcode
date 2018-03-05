@@ -37,52 +37,59 @@
 </div>
 
 <!-- RESTAURANT.COM -->
-<div class="row">
-	<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
-		<div class="container">
-			<div class="heading_text_wrap">
-				<h2>Hotel deals Restaurant.com</h2>
-				<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
-			</div>
+<?php
+if (sizeof($coupons['restaurant_dot_com']) > 0)
+{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2>Hotel deals Restaurant.com</h2>
+					<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
+				</div>
 
-			<div class="row">
-				<?php
-				foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
-				{
-				?>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
-							<div class="top_rstrnt_deal_wrap">
-								<div class="adjst_img_wrap_height">
-									<div class="ajst_img_box">
-										<?php
-										if (is_array($valueCC['image-url']))
-										{
-											echo img('restaurant-dot-com.png');
-										}
-										else
-										{
-											echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
-										}
-										?>
+				<div class="row">
+					<?php
+					foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
+					{
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<?php
+											if (is_array($valueCC['image-url']))
+											{
+												echo img('restaurant-dot-com.png');
+											}
+											else
+											{
+												echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
+											}
+											?>
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h4><?php echo $valueCC['name']; ?></h4>
+											<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
+										</div>
 									</div>
 								</div>
-								<div class="rstrnt_des_wrap">
-									<div class="restrnt_desp_text_box">
-										<h4><?php echo $valueCC['name']; ?></h4>
-										<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				<?php
-				}
-				?>
+							</a>
+						</div>
+					<?php
+					}
+					?>
+				</div>
 			</div>
-		</div>
-	</section>
-</div>
+		</section>
+	</div>
+<?php
+}
+?>
 
 <!-- GROUPON -->
 <?php
