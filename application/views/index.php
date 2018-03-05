@@ -36,72 +36,17 @@
 	</section>
 </div>
 
-<!-- RESTAURANT.COM -->
-<?php
-if (sizeof($coupons['restaurant_dot_com']) > 0)
-{
-?>
-	<div class="row">
-		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
-			<div class="container">
-				<div class="heading_text_wrap">
-					<h2>Hotel deals Restaurant.com</h2>
-					<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
-				</div>
-
-				<div class="row">
-					<?php
-					foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
-					{
-					?>
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
-								<div class="top_rstrnt_deal_wrap">
-									<div class="adjst_img_wrap_height">
-										<div class="ajst_img_box">
-											<?php
-											if (is_array($valueCC['image-url']))
-											{
-												echo img('restaurant-dot-com.png');
-											}
-											else
-											{
-												echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
-											}
-											?>
-										</div>
-									</div>
-									<div class="rstrnt_des_wrap">
-										<div class="restrnt_desp_text_box">
-											<h4><?php echo $valueCC['name']; ?></h4>
-											<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-					<?php
-					}
-					?>
-				</div>
-			</div>
-		</section>
-	</div>
-<?php
-}
-?>
-
 <!-- GROUPON -->
 <?php
-if ($coupons['groupon'])
+if (sizeof($coupons['groupon']) > 0)
 {
 ?>
 	<div class="row">
 		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
 			<div class="container">
 				<div class="heading_text_wrap">
-					<h2>Top Deals Near You</h2>
-					<!-- <a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a> -->
+					<h2>Vacation Packages Just for You</h2>
+					<a href="<?php echo base_url('deals?search_src=home_pg&src=groupon'); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
 				</div>
 
 				<div class="row">
@@ -180,44 +125,48 @@ if ($coupons['groupon'])
 }
 ?>
 
-<!-- EBAY -->
+<!-- RESTAURANT.COM -->
 <?php
-if (sizeof($coupons['ebay']['items']['via_keyword']) > 0)
+if (sizeof($coupons['restaurant_dot_com']) > 0)
 {
 ?>
 	<div class="row">
-		<section class="top_rstrnt_deal">
+		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
 			<div class="container">
 				<div class="heading_text_wrap">
-					<h2>Products/Deals You May Like</h2>
-					<a href="<?php echo base_url('deals?search_src=home_pg&cat_name=&store_zipcode=&src=ebay&price_range%5B%5D=&price_range%5B%5D=&keyword=' . $coupons['ebay']['keyword'] . '&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+					<h2>Hotel Deals from Restaurant.com</h2>
+					<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
 				</div>
 
 				<div class="row">
 					<?php
-					foreach ($coupons['ebay']['items']['via_keyword'] as $keyCL => $valueCL)
+					foreach ($coupons['restaurant_dot_com'] as $keyCC => $valueCC)
 					{
-						$title = strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title'];
-						if (array_key_exists('subtitle', $valueCL))
-						{
-							$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
-						}
 					?>
 						<div class="col-xs-12 col-sm-6 col-md-3">
-							<a href="<?php echo $valueCL['viewItemURL']; ?>">
+							<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
 								<div class="top_rstrnt_deal_wrap">
 									<div class="adjst_img_wrap_height">
 										<div class="ajst_img_box">
-											<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
+											<?php
+											if (is_array($valueCC['image-url']))
+											{
+												echo img('restaurant-dot-com.png');
+											}
+											else
+											{
+												echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
+											}
+											?>
 										</div>
 									</div>
 									<div class="rstrnt_des_wrap">
 										<div class="restrnt_desp_text_box">
-											<h3 title="<?php echo $title; ?>"><?php echo $title; ?></h3>
+											<h4><?php echo $valueCC['name']; ?></h4>
+											<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
 										</div>
 									</div>
 								</div>
-								<span><?php echo img('powered-by-ebay.jpg'); ?></span>
 							</a>
 						</div>
 					<?php
@@ -230,6 +179,57 @@ if (sizeof($coupons['ebay']['items']['via_keyword']) > 0)
 <?php
 }
 ?>
+
+<!-- EBAY -->
+<!-- <?php
+//if (sizeof($coupons['ebay']['items']['via_keyword']) > 0)
+//{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2>Products/Deals You May Like</h2>
+					<a href="<?php //echo base_url('deals?search_src=home_pg&cat_name=&store_zipcode=&src=ebay&price_range%5B%5D=&price_range%5B%5D=&keyword=' . $coupons['ebay']['keyword'] . '&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+				</div>
+
+				<div class="row">
+					<?php
+					//foreach ($coupons['ebay']['items']['via_keyword'] as $keyCL => $valueCL)
+					{
+						//$title = strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title'];
+						//if (array_key_exists('subtitle', $valueCL))
+						{
+							//$title = strlen($valueCL['subtitle']) > 55 ? substr($valueCL['subtitle'], 0, 55) . "..." : $valueCL['subtitle'];
+						}
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a href="<?php //echo $valueCL['viewItemURL']; ?>">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<img src="<?php //echo $valueCL['galleryURL']; ?>" alt="<?php //echo $valueCL['itemId']; ?>">
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3 title="<?php //echo $title; ?>"><?php //echo $title; ?></h3>
+										</div>
+									</div>
+								</div>
+								<span><?php //echo img('powered-by-ebay.jpg'); ?></span>
+							</a>
+						</div>
+					<?php
+					}
+					?>
+				</div>
+			</div>
+		</section>
+	</div>
+	<?php
+// }
+?> -->
 
 <!-- EBAY -->
 <?php

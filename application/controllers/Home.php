@@ -52,22 +52,31 @@ class Home extends CI_Controller
 																	array('keyword' => $keyword, 'paginate' => array('page' => 1, 'limit' => 4)));
 
 		// GROUPON
+		$_GET['type'] = 'ip';
+		$_GET['channel_id'] = 'hotels';
 		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',
-																	array('type' => 'latlong',
-																		'zipcode_id' => $location_arr['zipcode_id'],
-																		'type_val' => array('lat' => $location_arr['lat'], 'long' => $location_arr['long']),
+																	array('type' => 'ip',
+																		'channel_id' => 'hotels',
 																		'paginate' => array('offset' => 0, 'limit' => 4)));
 
+		// $data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',
+		// 															array('type' => 'latlong',
+		// 																'zipcode_id' => $location_arr['zipcode_id'],
+		// 																'type_val' => array('lat' => $location_arr['lat'], 'long' => $location_arr['long']),
+		// 																'paginate' => array('offset' => 0, 'limit' => 4)));
+
 		// EBAY 1
-		$ebay_keywords = array('Liquid Phone Cases', 'Electronic Cigarettes', 'Drones', 'Fitness Trackers');
-		$keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
-		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
-																'type_val' => NY_ZIPCODE,
-																'currency' => 'USD',
-																'paginate' => array('offset' => 0, 'limit' => 4),
-																'keyword' => $keyword));
-		$data['coupons']['ebay']['items']['via_keyword'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
-		$data['coupons']['ebay']['keyword'] = $keyword;
+		$data['coupons']['ebay']['items'] = array('via_keyword' => array(), 'trending' => array());
+
+		// $ebay_keywords = array('iPhone X', 'Google Pixel 2 XL', 'OnePlus 5T');
+		// $keyword = $ebay_keywords[rand(1, sizeof($ebay_keywords)-1)];
+		// $ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
+		// 														'type_val' => NY_ZIPCODE,
+		// 														'currency' => 'USD',
+		// 														'paginate' => array('offset' => 0, 'limit' => 4),
+		// 														'keyword' => $keyword));
+		// $data['coupons']['ebay']['items']['via_keyword'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
+		// $data['coupons']['ebay']['keyword'] = $keyword;
 
 		// EBAY 2
 		$ebay_keywords = array('gifts for her', 'gifts', 'love');
@@ -75,13 +84,13 @@ class Home extends CI_Controller
 		$ebay_deals = $this->affiliates->get_deals('ebay', array('type' => 'zipcode',
 																'type_val' => NY_ZIPCODE,
 																'currency' => 'USD',
-																'paginate' => array('offset' => 0, 'limit' => 4),
+																'paginate' => array('offset' => 0, 'limit' => 10),
 																'keyword' => $valentine_keyword));
 		$data['coupons']['ebay']['items']['trending'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
 		$data['coupons']['ebay']['valentine_keyword'] = $valentine_keyword;
 
 		// AMAZON
-		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'gifts for her', 'type_val' => 'All', 'paginate' => array('limit' => '4', 'page' => '1')));
+		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'gifts for her', 'type_val' => 'All', 'paginate' => array('limit' => 10, 'page' => 1)));
 
 		$this->load->template('index', $data);
 	}

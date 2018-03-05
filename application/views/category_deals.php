@@ -166,7 +166,7 @@
 
 								<div class="filter_rvws_div <?php echo isset($_GET['src']) && $_GET['src'] != 'local' ? 'hide' : ''; ?>">
 									<h5 class="filter_heading">
-										Coupon Zipcode Rating
+										CZ Rating
 										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['rt']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
 									</h5>
 									<ul class="filters-ul filter-clearable">

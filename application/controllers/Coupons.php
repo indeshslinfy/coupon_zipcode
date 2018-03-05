@@ -143,14 +143,18 @@ class Coupons extends CI_Controller
 				{
 					$_GET['type'] = 'ip';
 					$_GET['channel_id'] = 'hotels';
-					$groupon_deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+
+					$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+					$groupon_deals = @$deals->deals;
 				}
 			}
 			else
 			{
 				$_GET['type'] = 'ip';
 				$_GET['channel_id'] = 'hotels';
-				$groupon_deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+
+				$deals = $this->affiliates->get_deals($_GET['src'], $_GET);
+				$groupon_deals = @$deals->deals;
 			}
 
 			$data['coupons']['groupon'] = $groupon_deals;
