@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Stores_model extends CI_model
+class stores_model extends CI_model
 {
 	function __construct()
 	{
@@ -413,10 +413,12 @@ class Stores_model extends CI_model
 			}
 		}
 
-		if (array_key_exists('keyword', $filters))
+		if (array_key_exists('keyword', $filters) && trim($filters['keyword']) != '')
 		{
-			$records = $records->like('s.store_name', $filters['keyword'])
-								->or_like('c.coupon_title', $filters['keyword']);
+			$kywrd = '"%' . $filters['keyword'] . '%"';
+			// print_r("c.coupon_title LIKE " . $kywrd . " OR " . "s.store_name LIKE " . $kywrd);die;
+			$records = $records->where("(c.coupon_title LIKE " . $kywrd . " OR " . "s.store_name LIKE " . $kywrd . ")");
+								// ->or_where();
 		}
 
 		$records = $records->order_by('s.store_name', 'DESC');

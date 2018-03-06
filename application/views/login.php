@@ -35,7 +35,7 @@
 									<!-- <div class="col-xs-6">
 										<label><input type="checkbox">&nbsp;Remember me</label>
 									</div> -->
-									<div class="col-xs-12 text-right">
+									<div class="col-xs-12 text-right" style="visibility: hidden;">
 										<a href="javascript:void(0);" data-toggle="modal" data-target="#forget_password_modal">Forgot Password?</a>
 									</div>
 								</div>

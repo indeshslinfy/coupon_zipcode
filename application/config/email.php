@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $config = array(
-    'protocol' => 'smtp',
+    'protocol' => 'mail',
     'smtp_host' => 'smtp.gmail.com',
     'smtp_port' => 465,
     'smtp_crypto' => 'ssl',

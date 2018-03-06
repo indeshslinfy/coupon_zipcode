@@ -181,10 +181,11 @@ class Index extends CI_Controller
 		{
 			$email_details = get_settings('email');
 			$general_settings = get_settings('general_settings');
-			$html = $this->load->view('emails/newsletter/subscribed_user', $params, TRUE);
 
 			$params['subject'] = 'Newsletter Subscribed';
 			$params['company_name'] = $general_settings['company_name'];
+			
+			$html = $this->load->view('emails/newsletter/subscribed_user', $params, TRUE);
 
 			try
 			{

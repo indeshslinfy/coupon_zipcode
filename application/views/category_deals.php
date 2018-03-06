@@ -639,8 +639,8 @@ function clear_filters(ele, target)
 	if (typeof(target) == 'undefined')
 	{
 		$(ele).addClass('hide');
-		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input').val('');
-		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input:checked').prop('checked', false);
+		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input[type=text], input[type=number]').val('');
+		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input[type=checkbox]:checked, input[type=radio]:checked').prop('checked', false);
 	}
 	else if (target == 'all')
 	{
