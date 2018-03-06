@@ -233,7 +233,6 @@ section{
 	float:left;
 	width:100%;
 	padding:45px 0px;
-	overflow:hidden;
 }
 .heading_text_wrap{
 	float:left;
@@ -969,6 +968,7 @@ footer{
     display: inline-block;
     padding: 0 0px 0px 0px;
     overflow:hidden;
+    margin-right: 5px;
 }
 .post_address ul li a{
  	font-size: 25px;
@@ -1013,7 +1013,7 @@ footer{
 .post_coupon_detail .post_content {
     float: left;
     width: 100%;
-    padding: 15px 0;
+    padding: 15px 0px 0px;
 }
 .post_coupon_detail .post_content p {
     font-size:16px;
@@ -1351,7 +1351,8 @@ button,
 	color:#fff!important;
 	text-transform:uppercase;
 	border-radius:0px;
-	padding: 5px 10px 2px;
+	padding: 5px 10px 5px;
+	line-height: 16px;
 }
 .gray_btn{
 	background:#5c6f7a;

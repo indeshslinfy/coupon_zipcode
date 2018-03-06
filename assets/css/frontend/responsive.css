@@ -48,6 +48,10 @@
 	/*---------index-page-css-end-------------*/
 	/*---coupon-detail-page-css-start----------*/
 	.post_address .store-pic{height:auto;}
+	.coupon_post:before {left: 33.3%;}
+	.coupon_post:after {display:none;}
+	.post_coupon_detail{padding-right:30px;}
+	.post_coupon_listing{padding-right:0px;}
 }
 @media screen and (max-width:767px){
 	/*---------index-page-css-------------*/
@@ -188,6 +192,8 @@
 	.topheader_srch_frm.searchform{padding-right:0px;}
 	.topheader_srch_frm .form-group{transition: opacity .00025s;}
 }
-@media screen and (max-width:403px){
-	.share_with_socila_media{float:right;width:100%;margin-top:8px;}
+@media screen and (max-width:419px){
+	.share_with_socila_media{margin-right: 31px;overflow: visible;margin-left: 0px;}
+	.share_scl_link_wrap {float: left;margin-top:30px;margin-left:0px;position: absolute; opacity:0;transition: opacity 1s;}
+	.share_with_socila_media:hover .share_scl_link_wrap {opacity:1;}
 }

@@ -35,7 +35,7 @@
 				<div class="col-xs-12">
 					<div class="coupon_post">
 						<div class="row">
-							<div class="col-xs-12 col-sm-3 post_address">
+							<div class="col-xs-12 col-sm-4 col-md-3 post_address">
 								<div class="col-xs-12">
 									<div class="store-pic">
 										<div>
@@ -57,7 +57,7 @@
 								</div>
 							</div>
 
-							<div class="col-xs-12 col-sm-7 post_coupon_detail">
+							<div class="col-xs-12 col-sm-8 col-md-7 post_coupon_detail">
 								<div class="row">
 									<div class="col-xs-12">
 										<span class="coupon_button green_btn btn no_hover">Coupon Code</span>
@@ -158,9 +158,9 @@
 								</div>
 							</div>
 
-							<div class="col-xs-12 col-sm-2 post_coupon_listing">
+							<div class="col-xs-12 col-md-2 post_coupon_listing visible-md visible-lg">
 								<p class="text-center"><label>Try More Coupons</label></p>
-								<ul>
+								<ul class="try_mr_cpn_desk">
 								<?php
 								if (sizeof($coupon_details['store_coupons']) > 0)
 								{
@@ -189,6 +189,30 @@
 							</div>
 						</div>
 					</div>
+
+					<?php
+					if (sizeof($coupon_details['store_coupons']) > 0)
+					{
+					?>
+						<div class="col-xs-12 col-md-2 post_coupon_listing">
+							<p class="text-center"><label>Try More Coupons</label></p>
+							<ul class="try_mr_cpn_mob">
+								<?php
+								foreach ($coupon_details['store_coupons'] as $keySC => $valueSC)
+								{
+								?>
+									<li>
+										<i class="fa fa-caret-right"></i>
+										<a href="<?php echo base_url('coupon/' . $valueSC['id']); ?>"><?php echo $valueSC['coupon_title']; ?></a>
+									</li>
+								<?php
+								}
+								?>
+							</ul>
+						</div>
+					<?php
+					}
+					?>
 				</div>
 
 				<div class="col-xs-12">
@@ -362,7 +386,7 @@
 			$("#store_review_form").toggleClass('hide');
 		});
 
-		$(".post_coupon_listing ul").css('height', $(".coupon_post").height() - 37);
+		$(".post_coupon_listing ul.try_mr_cpn_desk").css('height', $(".coupon_post").height() - 37);
 
 
 		$('.store-menu-gallery').magnificPopup({ 
