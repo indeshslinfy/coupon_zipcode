@@ -354,7 +354,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 					<?php
 					foreach ($featured_stores as $keyFS => $valueFS)
 					{
-						$store_name = strlen($valueFS['store_name']) > 10 ? substr($valueFS['store_name'], 0, 8) : $valueFS['store_name'];
+						$store_name = strlen($valueFS['store_name']) > 9 ? substr($valueFS['store_name'], 0, 9) : $valueFS['store_name'];
 					?>
 						<div class="deals_you_like rstrnt_deal" style="background:url(<?php echo base_url(str_replace("\\", "/", $valueFS['store_featured_image'])); ?>);">
 							<div class="deals_you_like_wrap">
