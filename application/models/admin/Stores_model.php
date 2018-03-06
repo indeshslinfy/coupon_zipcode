@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class stores_model extends CI_model
+class Stores_model extends CI_model
 {
 	function __construct()
 	{
