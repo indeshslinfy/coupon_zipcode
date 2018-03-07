@@ -718,8 +718,19 @@ footer{
 .footer_wrap ul.footer_social_link{
 	margin-bottom:20px;
 }
+.footer_wrap ul.footer_social_link li{
+	margin:0px 4px;
+}
 .footer_wrap ul.footer_social_link li a{
-		font-size:20px;
+		font-size: 17px;
+		border-radius: 50% !important;
+		background: #182533;
+		float: left;
+		padding: 0px;
+		width: 36px;
+		height: 36px;
+		line-height: 35px;
+		text-align: center;
 }
 .footer_wrap ul li a:after{
 	content:'';
@@ -727,7 +738,10 @@ footer{
 	right:0px;
 	top: 0;
 	height: 100%;
-	border-right:1px solid #404142;
+	border-right:1px solid #727374;
+}
+.footer_wrap ul.footer_social_link li a:after{
+	display:none;
 }
 .footer_wrap ul li:last-child a:after{
 	display:none;
