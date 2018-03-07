@@ -98,6 +98,20 @@
                                                 <input type="text" name="social_platform[gplus]" value="<?php echo $social_platform['gplus']; ?>" class="form-control">
                                             </div>
                                         </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Instagram URL</label>
+                                                <input type="text" name="social_platform[instagram]" value="<?php echo $social_platform['instagram']; ?>" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Youtube URL</label>
+                                                <input type="text" name="social_platform[youtube]" value="<?php echo $social_platform['youtube']; ?>" class="form-control">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 

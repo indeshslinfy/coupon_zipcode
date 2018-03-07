@@ -313,7 +313,7 @@
 										}
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-											<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>" data-placement="left" href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
+											<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>"  href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<img src="<?php echo $cpn_image; ?>" alt="<?php echo $valueCC['coupon_title']; ?>">
@@ -367,7 +367,7 @@
 									{
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-											<a target="_blank" data-toggle="tooltip" data-placement="left" title="<?php echo $valueCC->title; ?>" href="<?php echo $valueCC->dealUrl; ?>">
+											<a target="_blank" data-toggle="tooltip"  title="<?php echo $valueCC->title; ?>" href="<?php echo $valueCC->dealUrl; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<img src="<?php echo $valueCC->grid4ImageUrl; ?>" alt="<?php echo $valueCC->shortAnnouncementTitle; ?>">
@@ -389,7 +389,7 @@
 									{
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-											<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="<?php echo $valueCC['viewItemURL']; ?>">
+											<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>"  href="<?php echo $valueCC['viewItemURL']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<?php

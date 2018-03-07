@@ -32,7 +32,7 @@
 					</div>
 					<div class="how_it_work_page_content">
 						<h2>What kind of coupons can I expect from CouponZipcode.com?</h2>
-						<p>Well, that answer is easy... All Kinds of Coupons !!!! The deals are endless. Your local area might have a pizzeria shop that is offering "$2.00 off a large pie" or a chinese restauant offering "Free Egg Roll with a purchase of a Dinner meal" or maybe even your local dentist, offering a free check-up for a limited time. The choices are endless as your local businesses can update their coupons every week !</p>
+						<p>Well, that answer is easy... All Kinds of Coupons !!!! The deals are endless. Your local area might have a pizzeria shop that is offering "$2.00 off a large pie" or a chinese restaurant offering "Free Egg Roll with a purchase of a Dinner meal" or maybe even your local dentist, offering a free check-up for a limited time. The choices are endless as your local businesses can update their coupons every week !</p>
 					</div>
 					<div class="how_it_work_page_content">
 						<h2>What kind of Businesses are listed with CouponZipcode?</h2>
@@ -44,7 +44,7 @@
 					</div>
 					<div class="how_it_work_page_content">
 						<h2>What are Online Coupons?</h2>
-						<p>CouponZipode.com not only helps you save from the local shops around your zipode but we offer Online Coupon deals. These are deals that can be printed and used at any major stores. They include coupons that can be used at your nearest Wal-Mart, K-Mart, Loews, Pathmark, Walgreens, etc. </p>
+						<p>CouponZipcode.com not only helps you save from the local shops around your zipode but we offer Online Coupon deals. These are deals that can be printed and used at any major stores. They include coupons that can be used at your nearest Wal-Mart, K-Mart, Loews, Pathmark, Walgreens, etc. </p>
 					</div>
 				</div>
 			</div>

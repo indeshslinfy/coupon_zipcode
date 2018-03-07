@@ -128,6 +128,7 @@
 	.topheader_srch_frm .btn{width:auto;}
 	.search_form_container .btn { padding: 16px 8px; line-height: 1px;}
 	.signup_wrap .easy-autocomplete{width:100% !important;}
+	.reply_btn_div{vertical-align:middle;}
 }
 @media screen and (max-width:591px){
 	.post_detail table thead, 

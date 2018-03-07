@@ -7,6 +7,8 @@
 	{
 		$featured_stores = get_featured_stores(6);
 	}
+
+	$social_platforms = get_settings('social_platform');
 ?>
 
 <script type="text/javascript">
@@ -18,44 +20,29 @@
 	<footer>
 		<div class="container">
 			<div class="row footer_wrap">
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 online_coupan_link">
-					<h3>Online Coupons</h3>
-					<ul>
-						<li><a href="javascript:void(0);">Angie's List</a></li>
-						<li><a href="javascript:void(0);">Ann Taylor</a></li>
-						<li><a href="javascript:void(0);">Athleta</a></li>
-						<li><a href="javascript:void(0);">Bluefly</a></li>
-						<li><a href="javascript:void(0);">Eddie Bauer</a></li>
+				<div class="col-xs-12 text-center">
+					<ul class="footer_social_link">
+						<li>
+							<a href="<?php echo $social_platforms['facebook']; ?>" target="_blank">
+								<i class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo $social_platforms['instagram']; ?>" target="_blank">
+								<i class="fa fa-instagram"></i>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo $social_platforms['youtube']; ?>" target="_blank">
+								<i class="fa fa-youtube"></i>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo $social_platforms['gplus']; ?>" target="_blank">
+								<i class="fa fa-google-plus"></i>
+							</a>
+						</li>
 					</ul>
-				</div>
-
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-					<h3>Featured Stores</h3>
-					<ul>
-						<?php
-						foreach ($featured_stores as $keyFS => $valueFS)
-						{ 
-						?>
-							<li><a href="<?php echo base_url('coupon/' . $valueFS['coupon_id']); ?>"><?php echo $valueFS['store_name']; ?></a></li>
-						<?php
-						}
-						?>
-					</ul>
-				</div>
-
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-					<h3>Cities</h3>
-					<ul>
-						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=9'); ?>">New York</a></li>
-						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=24'); ?>">Los Angeles</a></li>
-						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=25'); ?>">San Francisco</a></li>
-						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=26'); ?>">Miami</a></li>
-						<li><a href="<?php echo base_url('deals?search_src=footer&src=local&store_zipcode=27'); ?>">Chicago</a></li>
-					</ul>
-				</div>
-
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 left_side_line">
-					<h3>Help & Support</h3>
 					<ul>
 						<li><a href="<?php echo base_url('contact-us'); ?>">Contact us</a></li>
 						<li><a href="<?php echo base_url('advertise'); ?>">Advertise with us</a></li>

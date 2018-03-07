@@ -35,6 +35,7 @@
                 <h2>
                     <small>Edit Ticket</small>
                     <label>(<?php echo $ticket_details['subject']; ?>)</label>
+                    <a href="<?php echo base_url(ADMIN_PREFIX . '/tickets'); ?>" class="pull-right btn btn-default">Back</a>
                 </h2>
             </div>
 

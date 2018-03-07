@@ -2577,6 +2577,7 @@ div.alert{
 .ediable_form_by_admin h5{
     font-weight:700;
     color:#222;
+    padding-left:5px;
 }
 .ediable_form_by_admin h5 span{
     font-weight:400;
@@ -2728,6 +2729,7 @@ div.alert{
 }
 .main-chart ul li {
     line-height: 24px;
+    position: relative;
 }
 .remove_menu_from_list ul li input[type=checkbox] + label{
     float:left;

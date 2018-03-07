@@ -25,7 +25,8 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-8 col-md-9">
 					<div class="ticketing_wrap_detail">
-						<h4 class="ticketing_heading_wrap">Ticket No. : <span>#<?php echo $this->uri->segment(2); ?></span></h4>
+						<h4 class="ticketing_heading_wrap">Ticket No. : <span>#<?php echo $this->uri->segment(2); ?></span>
+						</h4>
 						<div class="ticketing_subjct_wrap">
 							<label>Subject :</label>
 							<span><?php echo $ticket_details['subject']; ?> </span>
