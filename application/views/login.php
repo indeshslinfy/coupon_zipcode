@@ -25,7 +25,7 @@
 								<input type="email" class="form-control" placeholder="Email address*" pattern="^(?!\s*$).+" required="" name="email">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password*" pattern="^(?!\s*$).+" required="" name="password">
+								<input type="password" class="form-control" placeholder="Password*" pattern="^(?!\s*$).+" required="" name="password" maxlength="18">
 							</div>
 							<div class="form-group alert alert-success login_benefits">
 								<span>Login and enjoy super deals inside.</span>
@@ -75,34 +75,34 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="First Name*" name="first_name" pattern="^(?!\s*$).+" required="">
+										<input type="text" class="form-control" placeholder="First Name*" name="first_name" required="">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Last Name*" name="last_name" pattern="^(?!\s*$).+" required="">
+										<input type="text" class="form-control" placeholder="Last Name*" name="last_name" required="">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Email Address*" name="email" pattern="^(?!\s*$).+" required="">
+										<input type="email" class="form-control" placeholder="Email Address*" name="email" required="">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<!-- <input type="text" class="form-control" placeholder="Zipcode*" name="zipcode_id"> -->
-										<input type="text" class="form-control store_register_zipcode" placeholder="Zipcode*" id="store_zipcode" pattern="^(?!\s*$).+" required="">
-                                        <input type="hidden" name="zipcode_id" id="zipcode_id" class="form-control" pattern="^(?!\s*$).+" value="">
+										<input type="text" class="form-control store_register_zipcode" placeholder="Zipcode*" id="store_zipcode" required="">
+                                        <input type="hidden" name="zipcode_id" id="zipcode_id" class="form-control" value="">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Password*" name="password" pattern="^(?!\s*$).+" required="">
+										<input type="password" class="form-control" placeholder="Password*" name="password" required="" maxlength="18">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Confirm Password*" name="confirm_password" pattern="^(?!\s*$).+" required="">
+										<input type="password" class="form-control" placeholder="Confirm Password*" name="confirm_password" required="" maxlength="18">
 									</div>
 								</div>
 							</div>

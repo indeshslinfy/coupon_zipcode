@@ -73,7 +73,11 @@ class Auth extends CI_Controller {
 				$this->session->set_flashdata('flash_error_signup', "Please fill valid zipcode.");
 				redirect("login");
 			}
-
+			if ($params['password'] != $params['confirm_password']) 
+			{
+				$this->session->set_flashdata('flash_error_signup', "Password Mismatched");
+				redirect("login");
+			}
 			$err_message = "Unexpected error occured. Try again please.";
 			$email_exist = $this->auth_model->email_exist($params['email']);
 			if (!$email_exist)

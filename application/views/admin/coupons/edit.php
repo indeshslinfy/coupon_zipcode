@@ -1,3 +1,5 @@
+<!-- CDN Date Picker-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
     var all_zipcodes ='<?php echo json_encode(get_zipcodes()); ?>';
 </script>
@@ -105,14 +107,14 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Start Date</label>
-                                <input type="text" name="coupon_start_date" value="<?php echo date("d-m-Y", strtotime($coupon_details['coupon_start_date'])); ?>" class="form-control">
+                                <input type="text" name="coupon_start_date" value="<?php echo date("d-m-Y", strtotime($coupon_details['coupon_start_date'])); ?>" class="form-control datepicker">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>End Date</label>
-                                <input type="text" name="coupon_end_date" value="<?php echo date("d-m-Y", strtotime($coupon_details['coupon_end_date'])); ?>" class="form-control">
+                                <input type="text" name="coupon_end_date" value="<?php echo date("d-m-Y", strtotime($coupon_details['coupon_end_date'])); ?>" class="form-control datepicker">
                             </div>
                         </div>
 
@@ -161,5 +163,10 @@
         get_zipcode_stores($("#coupon_zipcode_id")[0]);
     });
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+     $('.datepicker').datepicker({
+        format: 'dd-mm-yyyy'
+    });
+</script>
 <?php echo js('backend/coupons.js'); ?>

@@ -32,7 +32,7 @@
 
 			echo js('backend/jquery-3.2.1.min.js');
 		?>
-		
+
 		<link rel="icon" href="<?php echo base_url($favicon); ?>" >
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 

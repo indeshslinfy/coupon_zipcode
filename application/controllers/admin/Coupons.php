@@ -50,10 +50,8 @@ class Coupons extends CI_Controller
 	public function coupon_save()
 	{
 		$insert_arr = $this->input->post();
-		
 		$insert_arr['coupon_start_date'] = date('Y-m-d H:i:s', strtotime($insert_arr['coupon_start_date']));
 		$insert_arr['coupon_end_date'] = date('Y-m-d H:i:s', strtotime($insert_arr['coupon_end_date']));
-		
 		$insert_arr['status'] = COUPON_STATUS_INACTIVE;
 		if ($insert_arr['coupon_publish'] == '1')
 		{
