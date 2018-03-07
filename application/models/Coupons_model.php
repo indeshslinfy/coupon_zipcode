@@ -9,7 +9,7 @@ class Coupons_model extends CI_model
 
 	public function coupon_details($coupon_id)
 	{
-		return $this->db->select('s.*, store_atch.attachment_path as store_image, adr.*, cty.city_name, stt.state_name, cntry.country_name, c.*, (SELECT COUNT(id) FROM stores_like WHERE store_id = c.coupon_store_id AND status = ' . STORE_LIKE . ') as store_likes, (SELECT COUNT(id) FROM stores_like WHERE store_id = c.coupon_store_id AND status = ' . STORE_UNLIKE . ') as store_unlikes, zip.zipcode as coupon_zipcode')
+		return $this->db->select('s.*, adr.*, cty.city_name, stt.state_name, cntry.country_name, c.*, (SELECT COUNT(id) FROM stores_like WHERE store_id = c.coupon_store_id AND status = ' . STORE_LIKE . ') as store_likes, (SELECT COUNT(id) FROM stores_like WHERE store_id = c.coupon_store_id AND status = ' . STORE_UNLIKE . ') as store_unlikes, zip.zipcode as coupon_zipcode')
 						->where(array('c.id' => $coupon_id,
 									'c.deleted_at' => NULL,
 									's.status' => STORE_STATUS_ACTIVE,
@@ -20,7 +20,6 @@ class Coupons_model extends CI_model
 						->join('cities as cty', 'cty.id = adr.address_city_id')
 						->join('states as stt', 'stt.id = adr.address_state_id')
 						->join('countries as cntry', 'cntry.id = adr.address_country_id')
-						->join('(SELECT atch.store_id, atch.attachment_path FROM stores_attachment as atch WHERE atch.attachment_type = ' . STORE_ATCH_IMAGE . ' AND atch.deleted_at IS NULL ORDER BY atch.created_at DESC) as store_atch', 's.id = store_atch.store_id' , 'left')
 						->get('coupons as c')
 						->row_array();
 	}

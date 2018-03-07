@@ -15,10 +15,6 @@ if ($total_coupons_fetched > 0)
 							<img src="<?php echo base_url($valueCC['store_image']); ?>" alt="<?php echo $valueCC['coupon_title']; ?>">
 						</div>
 						<div class="rstrnt_des_wrap">
-							<!-- <div class="location_box light_green_bg">
-								<i class="fa fa-map-marker"></i>&nbsp;
-								<?php echo $valueCC['store_name']; ?>
-							</div> -->
 							<div class="restrnt_desp_text_box">
 								<h4 title="<?php echo $valueCC['coupon_title']; ?>"><?php echo strlen($valueCC['coupon_title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['coupon_title']; ?></h4>
 							</div>
@@ -37,7 +33,7 @@ if ($total_coupons_fetched > 0)
 		{
 		?>
 			<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-				<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+				<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
 					<div class="top_rstrnt_deal_wrap">
 						<div class="cat_img_div">
 							<?php
@@ -69,7 +65,7 @@ if ($total_coupons_fetched > 0)
 		{
 		?>
 			<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-				<a data-toggle="tooltip" title="<?php echo $valueCC->title; ?>" data-placement="left" href="<?php echo $valueCC->dealUrl; ?>">
+				<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC->title; ?>" data-placement="left" href="<?php echo $valueCC->dealUrl; ?>">
 					<div class="top_rstrnt_deal_wrap">
 						<div class="cat_img_div">
 							<img src="<?php echo $valueCC->grid4ImageUrl; ?>" alt="<?php echo $valueCC->shortAnnouncementTitle; ?>">
@@ -91,7 +87,7 @@ if ($total_coupons_fetched > 0)
 		{
 		?>
 			<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-				<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="<?php echo $valueCC['viewItemURL']; ?>">
+				<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="<?php echo $valueCC['viewItemURL']; ?>">
 					<div class="top_rstrnt_deal_wrap">
 						<div class="cat_img_div">
 							<?php
@@ -122,7 +118,7 @@ if ($total_coupons_fetched > 0)
 		{
 		?>
 			<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-				<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
+				<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
 					<div class="top_rstrnt_deal_wrap">
 						<div class="cat_img_div">
 							<img src="<?php echo $valueCC['largeImage']; ?>" alt="<?php echo $valueCC['asin']; ?>">

@@ -334,7 +334,7 @@
 									{
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-											<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+											<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<?php
@@ -366,7 +366,7 @@
 									{
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-											<a data-toggle="tooltip" data-placement="left" title="<?php echo $valueCC->title; ?>" href="<?php echo $valueCC->dealUrl; ?>">
+											<a target="_blank" data-toggle="tooltip" data-placement="left" title="<?php echo $valueCC->title; ?>" href="<?php echo $valueCC->dealUrl; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<img src="<?php echo $valueCC->grid4ImageUrl; ?>" alt="<?php echo $valueCC->shortAnnouncementTitle; ?>">
@@ -388,7 +388,7 @@
 									{
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="<?php echo $valueCC['viewItemURL']; ?>">
+											<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" data-placement="left" href="<?php echo $valueCC['viewItemURL']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<?php
@@ -419,7 +419,7 @@
 									{
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
-											<a data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
+											<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
 														<img src="<?php echo $valueCC['largeImage']; ?>" alt="<?php echo $valueCC['asin']; ?>">

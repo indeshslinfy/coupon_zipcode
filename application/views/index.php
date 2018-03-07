@@ -70,7 +70,7 @@ if (sizeof($coupons['groupon']) > 0)
 						// 							'actual_price' => @$valueCL->options[0]->value->formattedAmount);
 					?>
 						<div class="col-xs-12 col-sm-6 col-md-3">
-							<a href="javascript:void(0);" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
+							<a target="_blank" href="<?php echo $valueCL->dealUrl; ?>" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
 								<div class="top_rstrnt_deal_wrap">
 									<div class="adjst_img_wrap_height">
 										<div class="ajst_img_box">
@@ -144,7 +144,7 @@ if (sizeof($coupons['restaurant_dot_com']) > 0)
 					{
 					?>
 						<div class="col-xs-12 col-sm-6 col-md-3">
-							<a data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+							<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
 								<div class="top_rstrnt_deal_wrap">
 									<div class="adjst_img_wrap_height">
 										<div class="ajst_img_box">
@@ -253,7 +253,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 							{
 							?>
 								<div class="item">
-									<a href="<?php echo $valueCL['url']; ?>">
+									<a target="_blank" href="<?php echo $valueCL['url']; ?>">
 										<div class="top_rstrnt_deal_wrap">
 											<div class="adjst_img_wrap_height">
 												<div class="ajst_img_box">
@@ -289,7 +289,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 								}
 							?>
 								<div class="item">
-									<a href="<?php echo $valueCL['viewItemURL']; ?>">
+									<a target="_blank" href="<?php echo $valueCL['viewItemURL']; ?>">
 										<div class="top_rstrnt_deal_wrap">
 											<div class="adjst_img_wrap_height">
 												<div class="ajst_img_box">
@@ -431,7 +431,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 	</div>
 </div> -->
 
-<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo get_settings('google_map_key'); ?>"></script> -->
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php //echo get_settings('google_map_key'); ?>"></script> -->
 
 <script type="text/javascript">
 	// function group_deal_popup(ele, uuid)

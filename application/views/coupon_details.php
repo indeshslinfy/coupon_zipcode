@@ -39,7 +39,7 @@
 								<div class="col-xs-12">
 									<div class="store-pic">
 										<div>
-											<img class="img-responsive" alt="Store Logo" src="<?php echo base_url($coupon_details['store_image']); ?>">
+											<img class="img-responsive" alt="Store Logo" src="<?php echo base_url($coupon_details['store_featured_image']); ?>">
 										</div>
 									</div>
 									<p>
@@ -194,7 +194,7 @@
 					if (sizeof($coupon_details['store_coupons']) > 0)
 					{
 					?>
-						<div class="col-xs-12 col-md-2 post_coupon_listing">
+						<div class="col-xs-12 col-md-2 post_coupon_listing hidden-md hidden-lg">
 							<p class="text-center"><label>Try More Coupons</label></p>
 							<ul class="try_mr_cpn_mob">
 								<?php
