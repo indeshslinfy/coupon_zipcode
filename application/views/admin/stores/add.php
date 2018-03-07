@@ -54,14 +54,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Store Name&nbsp;<small class="text-danger">*</small></label>
-                                        <input type="text" name="store_name" class="form-control" required="">
+                                        <input type="text" name="store_name" class="form-control" pattern="^(?!\s*$).+" required="">
                                     </div>
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Phone&nbsp;<small class="text-danger">*</small></label>
-                                        <input type="text" name="store_phone" class="form-control" required="">
+                                        <input type="text" name="store_phone" class="form-control" pattern="^(?!\s*$).+" required="">
                                     </div>
                                 </div>
 
@@ -100,7 +100,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="store_type">Type&nbsp;<small class="text-danger">*</small></label>
-                                        <input type="text" name="store_type" class="form-control" required="">
+                                        <input type="text" name="store_type" class="form-control" pattern="^(?!\s*$).+" required="">
                                     </div>
                                 </div>
 
@@ -150,7 +150,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label for="store_latitude">Address Line 1&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="address[address_line1]" class="form-control" required="">
+                                                <input type="text" name="address[address_line1]" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
 
@@ -213,7 +213,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="store_latitude">Zipcode&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" class="form-control store_zipcode" id="store_zipcode" required="">
+                                                <input type="text" class="form-control store_zipcode" id="store_zipcode" pattern="^(?!\s*$).+" required="">
                                                 <input type="hidden" name="store_zipcode_id" id="store_zipcode_id" class="form-control" value="">
                                             </div>
                                         </div>
@@ -278,6 +278,11 @@
                                 <div class="col-sm-12">
                                     <div class="row">
                                         <div class="col-sm-6">
+                                            <!-- <div class="col-sm-12"> -->
+                                                <div class="form-group">
+                                                    <label>Schedule <small class="text-danger">(Leave boxes empty in case of 'Store Closed'.)</small></label>
+                                                </div>
+                                            <!-- </div> -->
                                             <div class="table-responsive schedule_table">
                                                 <table cellpadding="0" cellspacing="0">
                                                     <tr>
@@ -292,12 +297,8 @@
                                                     ?>
                                                     <tr class="store_schedule_tp">
                                                         <td><?php echo ucfirst($valueWD); ?></td>
-                                                        <td>
-                                                            <input type="text" class="form-control time start" name="store_schedule[<?php echo $valueWD; ?>][]">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control time end" name="store_schedule[<?php echo $valueWD; ?>][]">
-                                                        </td>
+                                                        <td><input type="text" class="form-control time start" name="store_schedule[<?php echo $valueWD; ?>][]"></td>
+                                                        <td><input type="text" class="form-control time end" name="store_schedule[<?php echo $valueWD; ?>][]"></td>
                                                     </tr>
                                                     <?php 
                                                     }

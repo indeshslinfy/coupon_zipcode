@@ -306,18 +306,19 @@
 								{
 									foreach ($coupons['local'] as $keyCC => $valueCC)
 									{
+										$cpn_image = base_url($valueCC['store_image']);
+										if ($valueCC['store_image'] == '' || is_null($valueCC['store_image']))
+										{
+											$cpn_image = base_url('assets/img/local-coupon-no-image.jpg');
+										}
 									?>
 										<div class="col-xs-6 col-sm-6 col-md-4 cpn_adjst_img">
 											<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>" data-placement="left" href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
 												<div class="top_rstrnt_deal_wrap">
 													<div class="cat_img_div">
-														<img src="<?php echo base_url($valueCC['store_image']); ?>" alt="<?php echo $valueCC['coupon_title']; ?>">
+														<img src="<?php echo $cpn_image; ?>" alt="<?php echo $valueCC['coupon_title']; ?>">
 													</div>
 													<div class="rstrnt_des_wrap">
-														<!-- <div class="location_box light_green_bg">
-															<i class="fa fa-map-marker"></i>&nbsp;
-															<?php echo $valueCC['store_name']; ?>
-														</div> -->
 														<div class="restrnt_desp_text_box">
 															<h4 title="<?php echo $valueCC['coupon_title']; ?>"><?php echo strlen($valueCC['coupon_title']) > 70 ? substr($valueCC['title'], 0, 70) . "..." : $valueCC['coupon_title']; ?></h4>
 														</div>
@@ -474,7 +475,8 @@
 						</div>
 						
 						<?php
-						if ($total_coupons_fetched > 0)
+						$pagination_setting = get_settings('deals_pagination');
+						if ($total_coupons_fetched > 0 && $total_coupons_fetched >= $pagination_setting['limit'])
 						{
 						?>
 							<div class="load-more-div">

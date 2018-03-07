@@ -35,21 +35,21 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>First Name&nbsp;<small class="text-danger">*</small></label>
-                                <input type="text" name="first_name" value="<?php echo $user_details['first_name']; ?>" class="form-control" required="">
+                                <input type="text" name="first_name" value="<?php echo $user_details['first_name']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Last Name&nbsp;<small class="text-danger">*</small></label>
-                                <input type="text" name="last_name" value="<?php echo $user_details['last_name']; ?>" class="form-control" required="">
+                                <input type="text" name="last_name" value="<?php echo $user_details['last_name']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="email">Email&nbsp;<small class="text-danger">*</small></label>
-                                <input type="email" name="email" value="<?php echo $user_details['email']; ?>" class="form-control" required="">
+                                <input type="email" name="email" value="<?php echo $user_details['email']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                             </div>
                         </div>
 

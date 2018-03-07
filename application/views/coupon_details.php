@@ -73,7 +73,7 @@
 											</table>
 
 											<?php
-											if (strlen($coupon_details['coupon_description']) > 250)
+											if (strlen(trim($coupon_details['coupon_description'])) > 250)
 											{
 											?>
 												<div class="post_discruiption">
@@ -95,7 +95,14 @@
 											}
 											?>
 
-											<div class="post_note"><?php echo $coupon_details['coupon_fine_print']; ?></div>
+											<?php
+											if (trim($coupon_details['coupon_fine_print']) != '')
+											{
+											?>
+												<div class="post_note"><?php echo $coupon_details['coupon_fine_print']; ?></div>
+											<?php
+											}
+											?>
 
 											<div class="post_menu_button">
 												<?php

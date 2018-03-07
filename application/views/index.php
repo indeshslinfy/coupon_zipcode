@@ -10,11 +10,16 @@
 					<?php
 					foreach ($all_local_coupons as $keyALC => $valueALC)
 					{
+						$cpn_image = base_url($valueALC['store_image']);
+						if ($valueALC['store_image'] == '' || is_null($valueALC['store_image']))
+						{
+							$cpn_image = base_url('assets/img/local-coupon-no-image.jpg');
+						}
 					?>
 						<div class="item">
 							<div class="cpn_adjst_img">
-								<a href="<?php echo base_url('coupon' . '/' . $valueALC['id']); ?>">
-									<img src="<?php echo base_url($valueALC['store_image']); ?>" alt="<?php echo $valueALC['coupon_title']; ?>">
+								<a href="<?php echo base_url('coupon/' . $valueALC['id']); ?>">
+									<img src="<?php echo $cpn_image; ?>" alt="<?php echo $valueALC['coupon_title']; ?>">
 									<div class="hover_div">
 										<div class="hover_text_wrap">
 											<div class="hover_text">
@@ -135,7 +140,7 @@ if (sizeof($coupons['restaurant_dot_com']) > 0)
 			<div class="container">
 				<div class="heading_text_wrap">
 					<h2>Hotel Deals from Restaurant.com</h2>
-					<a href="javascript:void(0);" class="btn ylew_btn pull-right">SEE MORE</a>
+					<a href="<?php echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=' . $restaurant_dot_com_keyword); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
 				</div>
 
 				<div class="row">

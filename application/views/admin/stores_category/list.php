@@ -60,8 +60,8 @@
                                     <td><?php echo $valueAR['status'] == USER_STATUS_ACTIVE ? 'Active' : 'Inactive'; ?></td>
                                     <td>
                                         <a href="<?php echo base_url(ADMIN_PREFIX . '/edit-store-category') . '/' . $valueAR['id']; ?>">Edit</a>
-                                        <span class="vert-hr">&nbsp;|&nbsp;</span>
-                                        <a href="javascript:void(0);" onclick="store_cat_delete(<?php echo $valueAR['id']; ?>);">Delete</a>
+                                        <!-- <span class="vert-hr">&nbsp;|&nbsp;</span> -->
+                                        <!-- <a href="javascript:void(0);" onclick="store_cat_delete(<?php //echo $valueAR['id']; ?>);">Delete</a> -->
                                     </td>
                                 </tr>
                         <?php

@@ -47,9 +47,10 @@ class Home extends CI_Controller
 
 		// RESTAURANT.COM
 		$rdc_keywords = array('Restaurant', 'Hotel', 'Spa');
-		$keyword = $rdc_keywords[rand(1, sizeof($rdc_keywords)-1)];
+		$data['restaurant_dot_com_keyword'] = $rdc_keywords[rand(1, sizeof($rdc_keywords)-1)];
 		$data['coupons']['restaurant_dot_com'] = $this->affiliates->get_deals('restaurant_dot_com',
-																	array('keyword' => $keyword, 'paginate' => array('page' => 1, 'limit' => 4)));
+																	array('keyword' => $data['restaurant_dot_com_keyword'],
+																		'paginate' => array('page' => 1, 'limit' => 4)));
 
 		// GROUPON
 		$_GET['type'] = 'ip';

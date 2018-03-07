@@ -10,7 +10,7 @@
 		<table style="width:100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td style="width:25%;border-right:1px dashed #c3c3c3;vertical-align:top;padding-right: 20px;">
-					<img style="max-width:200px;" src="<?php echo $store_image ? getcwd() . DS . $store_image : $general_settings['company_logo']; ?>" alt="Store Logo">
+					<img style="max-width:200px;" src="<?php echo $store_featured_image ? getcwd() . DS . $store_featured_image : $general_settings['company_logo']; ?>" alt="Store Logo">
 					<p class="redeem_loc"">Redeem at this location:</p>
 					<p style="margin: 0px;font-size: 14px;"><?php echo str_replace(", ,", ", ", $address_line1 . ', ' . $address_line2 . ', ' . $address_line3 . ', ' . $city_name . ', ' . $state_name . ', ' . $country_name . '. ' . $coupon_zipcode); ?></p>
 					<p style="margin: 3px 0 0 0;font-size: 14px;"><?php echo $store_phone; ?></p>

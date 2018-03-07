@@ -78,10 +78,15 @@
 						shuffle($popular_stores);
 						foreach ($popular_stores as $keyPS => $valuePS)
 						{
+							$store_image = base_url($valuePS['store_featured_image']);
+							if ($valuePS['store_featured_image'] == '' || is_null($valuePS['store_featured_image']))
+							{
+								$store_image = base_url('assets/img/local-coupon-no-image.jpg');
+							}
 						?>
 							<a href="<?php echo base_url('coupon/' . $valuePS['coupon_id']); ?>">
 								<div class="popular_coupon_wrap">
-									<img src="<?php echo base_url($valuePS['store_featured_image']); ?>" alt="image">
+									<img src="<?php echo $store_image; ?>" alt="image">
 									<h4><?php echo $valuePS['store_name']; ?></h4>
 								</div>
 							</a>

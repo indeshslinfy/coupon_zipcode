@@ -158,7 +158,7 @@
                 <form class="mt-20 div_flt" action="<?php echo base_url(ADMIN_PREFIX . '/save-ticket') . '/' . $ticket_details['id']; ?>" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to send the message?');">
                     <div class="chat-message">
                         <div class="form-group">
-                            <textarea class="onfocus_move form-control" placeholder="Write message..." name="message" required="required"></textarea>
+                            <textarea class="onfocus_move form-control" placeholder="Write message..." name="message" pattern="^(?!\s*$).+" required="required"></textarea>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Send Message" class="btn btn-success btn-block">

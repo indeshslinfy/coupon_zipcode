@@ -396,11 +396,11 @@ class Stores_model extends CI_model
 			switch ($filters['sort_order'])
 			{
 				case 'az':
-					$records = $records->order_by('s.store_name', 'ASC');
+					$records = $records->order_by('c.coupon_title', 'ASC');
 					break;
 
 				case 'za':
-					$records = $records->order_by('s.store_name', 'DESC');
+					$records = $records->order_by('c.coupon_title', 'DESC');
 					break;
 
 				case 'distance':

@@ -45,7 +45,7 @@
 						<div class="col-sm-6">
                             <div class="form-group">
                                 <label>Category Name&nbsp;<small class="text-danger">*</small></label>
-                                <input type="text" name="store_category_name" value="<?php echo $store_cat_details['store_category_name']; ?>" class="form-control" required="">
+                                <input type="text" name="store_category_name" value="<?php echo $store_cat_details['store_category_name']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                             </div>
                         </div>
 

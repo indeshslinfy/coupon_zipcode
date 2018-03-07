@@ -50,7 +50,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Company Name&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="general_settings[company_name]" value="<?php echo $general_settings['company_name']; ?>" class="form-control" required="">
+                                                <input type="text" name="general_settings[company_name]" value="<?php echo $general_settings['company_name']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
 
@@ -118,14 +118,14 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Admin Email&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="email[admin_email]" value="<?php echo $email['admin_email']; ?>" class="form-control" required="">
+                                                <input type="text" name="email[admin_email]" value="<?php echo $email['admin_email']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Admin Name&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="email[admin_name]" value="<?php echo $email['admin_name']; ?>" class="form-control" required="">
+                                                <input type="text" name="email[admin_name]" value="<?php echo $email['admin_name']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
 
@@ -148,7 +148,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Zipcode Search Radius&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="zipcode_search_radius" value="<?php echo $zipcode_search_radius; ?>" class="form-control" required="">
+                                                <input type="text" name="zipcode_search_radius" value="<?php echo $zipcode_search_radius; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                     </div>
@@ -172,7 +172,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Google Map API Key&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="google_map_key" value="<?php echo $google_map_key; ?>" class="form-control" required="">
+                                                <input type="text" name="google_map_key" value="<?php echo $google_map_key; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                     </div>
@@ -183,13 +183,13 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Groupon Api Key&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="groupon[groupon_id]" value="<?php echo $groupon['groupon_id']; ?>" class="form-control" required="">
+                                                <input type="text" name="groupon[groupon_id]" value="<?php echo $groupon['groupon_id']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Groupon Media ID&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="groupon[media_id]" value="<?php echo $groupon['media_id']; ?>" class="form-control" required="">
+                                                <input type="text" name="groupon[media_id]" value="<?php echo $groupon['media_id']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                     </div>
@@ -200,13 +200,13 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Ebay APP ID&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="ebay[app_id]" value="<?php echo $ebay['app_id']; ?>" class="form-control" required="">
+                                                <input type="text" name="ebay[app_id]" value="<?php echo $ebay['app_id']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Ebay Campaign/Tracking ID&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="ebay[camp_id]" value="<?php echo $ebay['camp_id']; ?>" class="form-control" required="">
+                                                <input type="text" name="ebay[camp_id]" value="<?php echo $ebay['camp_id']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                     </div>
@@ -217,25 +217,25 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>Amazon KEY ID&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="amazon[keyId]" value="<?php echo $amazon['keyId']; ?>" class="form-control" required="">
+                                                <input type="text" name="amazon[keyId]" value="<?php echo $amazon['keyId']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>Amazon Secret Key&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="amazon[secretKey]" value="<?php echo $amazon['secretKey']; ?>" class="form-control" required="">
+                                                <input type="text" name="amazon[secretKey]" value="<?php echo $amazon['secretKey']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>Amazon Associate Id&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="amazon[associateId]" value="<?php echo $amazon['associateId']; ?>" class="form-control" required="">
+                                                <input type="text" name="amazon[associateId]" value="<?php echo $amazon['associateId']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>Amazon Country&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="amazon[country]" value="<?php echo strtoupper($amazon['country']); ?>" class="form-control" required="" readonly>
+                                                <input type="text" name="amazon[country]" value="<?php echo strtoupper($amazon['country']); ?>" class="form-control" pattern="^(?!\s*$).+" required="" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -246,19 +246,19 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>CJ/Devloper ID&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="restaurant_dot_com[cj_id]" value="<?php echo $restaurant_dot_com['cj_id']; ?>" class="form-control" required="">
+                                                <input type="text" name="restaurant_dot_com[cj_id]" value="<?php echo $restaurant_dot_com['cj_id']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Website Id&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="restaurant_dot_com[website_id]" value="<?php echo $restaurant_dot_com['website_id']; ?>" class="form-control" required="">
+                                                <input type="text" name="restaurant_dot_com[website_id]" value="<?php echo $restaurant_dot_com['website_id']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Advertiser ID&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="restaurant_dot_com[advertiser_id]" value="<?php echo strtoupper($restaurant_dot_com['advertiser_id']); ?>" class="form-control" required="">
+                                                <input type="text" name="restaurant_dot_com[advertiser_id]" value="<?php echo strtoupper($restaurant_dot_com['advertiser_id']); ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                     </div>
@@ -269,7 +269,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>Walmart API KEY&nbsp;<small class="text-danger">*</small></label>
-                                                <input type="text" name="walmart[apiKey]" value="<?php echo $walmart['apiKey']; ?>" class="form-control" required="">
+                                                <input type="text" name="walmart[apiKey]" value="<?php echo $walmart['apiKey']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                             </div>
                                         </div>
                                     </div>

@@ -253,7 +253,12 @@ class Coupons extends CI_Controller
 		}
 		else
 		{
-			$_GET['zipcode_id'] = $_GET['location_arr']['zipcode_id'];
+			$_GET['zipcode_id'] = $_GET['store_zipcode'];
+			if ($_GET['zipcode_id'] == '')
+			{
+				$_GET['zipcode_id'] = $_GET['location_arr']['zipcode_id'];
+			}
+
 			$this->load->model(ADMIN_PREFIX . '/stores_model');
 			$data['coupons']['local'] = $this->stores_model->get_local_coupons($_GET);
 			$data['total_coupons_fetched'] = sizeof($data['coupons']['local']);
@@ -365,7 +370,7 @@ class Coupons extends CI_Controller
 	public function list_categories()
 	{
 		$data['title'] = 'Categories';
-		$data['popular_stores'] = popular_stores();
+		$data['popular_stores'] = popular_stores(3);
 
 		$this->load->model(ADMIN_PREFIX . '/stores_category_model');
 		$all_categories = $this->stores_category_model->all_records();

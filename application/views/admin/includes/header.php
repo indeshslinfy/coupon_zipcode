@@ -73,26 +73,26 @@
 							</li>
 
 							<li>
-								<a class="<?php echo $this->uri->segment(2) == 'users' ? 'active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/users'); ?>">
+								<a class="<?php echo ($this->uri->segment(2) == 'users' || $this->uri->segment(2) == 'add-user' || $this->uri->segment(2) == 'edit-user') ? 'active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/users'); ?>">
 									<i class="fa fa-users"></i>
 									<span>Users Management</span>
 								</a>
 							</li>
 
 							<li class="dropdown-submenu">
-								<a class="<?php echo ($this->uri->segment(2) == 'stores' || $this->uri->segment(2) == 'stores-category' ) ? 'active' : ''; ?>" tabindex="-1" href="#" title="Stores Management">
+								<a class="<?php echo ($this->uri->segment(2) == 'stores' || $this->uri->segment(2) == 'stores-category' || $this->uri->segment(2) == 'add-store' || $this->uri->segment(2) == 'edit-store' || $this->uri->segment(2) == 'add-store-category' || $this->uri->segment(2) == 'edit-store-category' || $this->uri->segment(2) == 'store-reviews' ) ? 'active' : ''; ?>" tabindex="-1" href="#" title="Stores Management">
 									<i class="fa fa-building-o"></i>
 									<span>Stores Management</span>
 								</a>
 								<ul class="dropdown-menu">
 									<li>
-										<a class="<?php echo $this->uri->segment(2) == 'stores-category' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores-category'); ?>">
+										<a class="<?php echo ($this->uri->segment(2) == 'stores-category' || $this->uri->segment(2) == 'add-store-category' || $this->uri->segment(2) == 'edit-store-category') ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores-category'); ?>">
 											<i class="fa fa-tags"></i>
 											<span>Categories</span>
 										</a>
 									</li>
 									<li>
-										<a class="<?php echo $this->uri->segment(2) == 'stores' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores'); ?>">
+										<a class="<?php echo ($this->uri->segment(2) == 'stores' || $this->uri->segment(2) == 'add-store' || $this->uri->segment(2) == 'edit-store') ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores'); ?>">
 											<i class="fa fa-building-o"></i>
 											<span>Stores</span>
 										</a>
@@ -107,14 +107,14 @@
 							</li>
 
 							<li>
-								<a class="<?php echo $this->uri->segment(2) == 'coupons' ? 'active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/coupons'); ?>">
+								<a class="<?php echo ($this->uri->segment(2) == 'coupons' || $this->uri->segment(2) == 'add-coupon' || $this->uri->segment(2) == 'edit-coupon') ? 'active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/coupons'); ?>">
 									<i class="fa fa-money"></i>
 									<span>Coupons Management</span>
 								</a>
 							</li>
 
 							<li>
-								<a class="<?php echo $this->uri->segment(2) == 'tickets' ? 'active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/tickets'); ?>">
+								<a class="<?php echo ($this->uri->segment(2) == 'tickets' || $this->uri->segment(2) == 'edit-ticket') ? 'active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/tickets'); ?>">
 									<i class="fa fa-ticket"></i>
 									<span>Tickets Management</span>
 								</a>
@@ -127,60 +127,18 @@
 								</a>
 							</li>
 
-							<!-- <li class="dropdown-submenu">
-								<a class="<?php echo ($this->uri->segment(2) == 'stores' || $this->uri->segment(2) == 'stores-category' ) ? 'active' : ''; ?>" tabindex="-1" href="#" title="Stores Management">
-									<i class="fa fa-building-o"></i>
-									<span>Stores Management</span>
-								</a>
-								<ul class="dropdown-menu">
-									<li class="dropdown-submenu">
-										<a class="<?php echo $this->uri->segment(2) == 'stores-category' ? 'sub-cat-active' : ''; ?>">
-											<i class="fa fa-tags"></i>
-											<span>Categories</span>
-										</a>
-
-										<ul class="submenu_list">
-											<li>
-												<a class="<?php echo $this->uri->segment(2) == 'stores-category' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores-category'); ?>">
-													<i class="fa fa-tags"></i>
-													<span>List All</span>
-												</a>
-											</li>
-											<li>
-												<a class="<?php echo $this->uri->segment(2) == 'featured-categories' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/featured-categories'); ?>">
-													<i class="fa fa-certificate"></i>
-													<span>Featured</span>
-												</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<a class="<?php echo $this->uri->segment(2) == 'stores' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/stores'); ?>">
-											<i class="fa fa-building-o"></i>
-											<span>Stores</span>
-										</a>
-									</li>
-									<li>
-										<a class="<?php echo $this->uri->segment(2) == 'store-reviews' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/store-reviews/') . REVIEW_TYPE_STORE; ?>">
-											<i class="fa fa-building-o"></i>
-											<span>Store Reviews</span>
-										</a>
-									</li>
-								</ul>
-							</li> -->
-
 							<li class="dropdown-submenu">
 								<a class="<?php echo ($this->uri->segment(2) == 'popular-categories' || $this->uri->segment(2) == 'featured-stores' ) ? 'active' : ''; ?>" tabindex="-1" href="#" title="Stores Management">
 									<i class="fa fa-building-o"></i>
 									<span>Featured Management</span>
 								</a>
 								<ul class="dropdown-menu">
-									<li>
+									<!-- <li>
 										<a class="<?php echo $this->uri->segment(2) == 'popular-categories' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/popular-categories'); ?>">
 											<i class="fa fa-certificate"></i>
 											<span>Popular Categories</span>
 										</a>
-									</li>
+									</li> -->
 									<li>
 										<a class="<?php echo $this->uri->segment(2) == 'featured-stores' ? 'sub-cat-active' : ''; ?>" href="<?php echo base_url(ADMIN_PREFIX . '/featured-stores'); ?>">
 											<i class="fa fa-building-o"></i>

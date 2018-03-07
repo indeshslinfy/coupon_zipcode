@@ -98,11 +98,11 @@ class Coupons extends CI_Controller
 		}
 	}
 
-	public function store_delete()
+	public function coupon_delete()
 	{
 		try
 		{
-			$this->coupons_model->store_save(array("deleted_at" => date("Y-m-d H:i:s"), "updated_at" => date('Y-m-d H:i:s')), $this->input->post('id'));
+			$this->coupons_model->coupon_save(array("deleted_at" => date("Y-m-d H:i:s"), "updated_at" => date('Y-m-d H:i:s')), $this->input->post('id'));
 
 			$this->session->set_flashdata('flash_message', 'Coupon deleted successfully.');
 			echo json_encode(array("status" => 1));die;

@@ -6,13 +6,19 @@ if ($total_coupons_fetched > 0)
 	{
 		foreach ($coupons['local'] as $keyCC => $valueCC)
 		{
+			$cpn_image = base_url($valueCC['store_image']);
+			if ($valueCC['store_image'] == '' || is_null($valueCC['store_image']))
+			{
+				$cpn_image = base_url('assets/img/local-coupon-no-image.jpg');
+			}
+
 			echo $cnt == 1 ? '<div class="row coupon_row_wrap">' : '';
 		?>
 			<div class="col-sm-3 cpn_adjst_img">
 				<a data-toggle="tooltip" title="<?php echo $valueCC['coupon_title']; ?>" data-placement="left" href="<?php echo base_url('coupon/') . $valueCC['id']; ?>">
 					<div class="top_rstrnt_deal_wrap">
 						<div class="cat_img_div">
-							<img src="<?php echo base_url($valueCC['store_image']); ?>" alt="<?php echo $valueCC['coupon_title']; ?>">
+							<img src="<?php echo $cpn_image; ?>" alt="<?php echo $valueCC['coupon_title']; ?>">
 						</div>
 						<div class="rstrnt_des_wrap">
 							<div class="restrnt_desp_text_box">

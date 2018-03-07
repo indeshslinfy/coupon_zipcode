@@ -62,16 +62,16 @@
                                         ?>
                                     </select> -->
 
-                                    <input type="text" class="form-control coupon_zipcode" id="coupon_zipcode" required="">
+                                    <input type="text" class="form-control coupon_zipcode" id="coupon_zipcode" pattern="^(?!\s*$).+" required="">
                                     <input type="hidden" name="coupon_zipcode_id" id="coupon_zipcode_id" class="form-control" value="">
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Stores&nbsp;<small class="text-danger">*</small></label>
+                                    <label>Stores&nbsp;<small class="text-danger">*&nbsp;(Based on selected zipcode)</small></label>
                                     <select name="coupon_store_id" class="form-control" required="" id="coupon_store_id">
-                                        <option value="" >--Select Store--</option>
+                                        <option value="">--Select Store--</option>
                                     </select>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Coupon Title&nbsp;<small class="text-danger">*</small></label>
-                                    <input type="text" name="coupon_title" class="form-control" required="">
+                                    <input type="text" name="coupon_title" class="form-control" pattern="^(?!\s*$).+" required="">
                                 </div>
                             </div>
 
