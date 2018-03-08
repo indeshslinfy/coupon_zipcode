@@ -61,7 +61,8 @@ class Stores extends CI_Controller
 		$params = $this->input->post();
 		$insert_arr['attachments']['menu'] = $_FILES['store_menu'];
 		$insert_arr['attachments']['image'] = $_FILES['store_image'];
-		$insert_arr['attachments']['video'] = $params['store_video'];
+		$insert_arr['attachments']['video'] = array_filter($params['store_video']);
+		
 		unset($params['store_video']);
 
 		$insert_arr['address'] = $params['address'];

@@ -377,7 +377,7 @@
                                     <div class="form-group text-right">
                                         <a type="button" class="btn btn-default" href="javascript:void(0);" onclick="navigate_show_tabs('show_media_tab');"><i class="fa fa-caret-left"></i>&nbsp;Back</a>
                                         <a type="button" class="btn btn-default" href="<?php echo base_url(ADMIN_PREFIX . '/stores'); ?>">Cancel</a>
-                                        <a class="btn btn-danger" href="javascript:void(0);" onclick="store_delete(<?php echo $store_details['id']; ?>);">Delete</a>
+                                        <!-- <a class="btn btn-danger" href="javascript:void(0);" onclick="store_delete(<?php //echo $store_details['id']; ?>);">Delete</a> -->
                                         <button type="submit" class="btn btn-success" id="update_store_btn">Update</button>
                                     </div>
                                 </div>

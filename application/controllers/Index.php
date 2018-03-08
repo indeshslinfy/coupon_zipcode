@@ -71,7 +71,7 @@ class Index extends CI_Controller
 						
 						if ($params['ticket_type'] == TICKET_TYPE_CONTACT) 
 						{
-							$params['subject'] = 'Contact Us - ' . $params['subject'];
+							$params['subject'] = 'Contact us - ' . $params['subject'];
 						}
 						else if ($params['ticket_type'] == TICKET_TYPE_ADVERTISE) 
 						{
@@ -117,7 +117,13 @@ class Index extends CI_Controller
 			}
 		}
 
-		$this->load->template('contact_us', array('title' => 'Contact Us'));
+		$page_title = 'Advertise with us';
+		if ($this->uri->segment(1) == 'contact-us')
+		{
+			$page_title = 'Contact us';
+		}
+
+		$this->load->template('contact_us', array('title' => $page_title));
 
 		/*$this->load->helper('captcha');
 		$vals = array('img_path' => plugin_path() . 'captcha/',

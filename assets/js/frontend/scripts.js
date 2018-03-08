@@ -22,7 +22,9 @@ $(document).ready(function()
 		$("#kb_2_1").removeClass('hide');
 	});
 
-	$('.cssload-container').css('display', 'none');
+	// setTimeout(function(){
+	// 	$('.cssload-container').css('display', 'none');
+	// }, 1000);
 	
  	$('#exclusive_coupan_carousel').owlCarousel({
 		loop:true,

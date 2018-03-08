@@ -29,10 +29,10 @@
 			$company_logo = $general_settings['company_logo'];
 		}
 
-		$zipcode_details = zipcode_data_for_cookie(NY_ZIPCODE);
 		$current_location = json_decode($this->input->cookie('user_current_location'), true);
 		if (sizeof($current_location) == 0)
 		{
+			$zipcode_details = zipcode_data_for_cookie(NY_ZIPCODE);
 			$user_logged_in = $this->session->userdata('logged_in');
 			if ($user_logged_in)
 			{
@@ -46,6 +46,8 @@
 
 			set_location_cookie($zipcode_details);
 		}
+
+		$zipcode_details = json_decode($this->input->cookie('user_current_location', true), true);
 	?>
 
 	<title><?php echo isset($title) && $title != "" ? $title . "&nbsp;-&nbsp;" : ""; ?><?php echo $general_settings['company_name']; ?></title>

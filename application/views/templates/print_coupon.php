@@ -3,7 +3,7 @@
 <head>
 	<title><?php echo $coupon_title; ?></title>
 	<link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700" rel="stylesheet">
-	<?php $general_settings = get_settings('general_settings'); ?>
+	<?php $general_settings = get_settings('general_settings'); //print_r(getcwd() . DS . $store_featured_image);die; //print_r(str_replace('\\', '/', base_url($store_featured_image)));die; ?>
 </head>
 <body>
 	<div class="wrapper">
@@ -39,7 +39,7 @@
 							<td style=" width:50%"></td>
 							<td style="text-align: right; width:50%">
 								<br>
-								<span class="coupon_code" style="float:right;width:130px;margin:0;display:block;font-weight: 600;font-size: 15px;"><?php echo $coupon_code; ?></span>
+								<span class="coupon_code" style="float:right;width:auto;margin:0;display:block;font-weight: 600;font-size: 15px;"><?php echo $coupon_code; ?></span>
 							</td>
 						</tr>
 						<tr>

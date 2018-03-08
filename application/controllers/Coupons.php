@@ -378,8 +378,7 @@ class Coupons extends CI_Controller
 		$data['all_categories'] = array();
 		foreach ($all_categories as $keyAC => $valueAC)
 		{
-			$alpha_key = strtoupper($valueAC['store_category_name'][0]);
-			$data['all_categories'][strtoupper($valueAC['store_category_name'][0])][] = $valueAC;
+			$data['all_categories'][strtoupper(trim($valueAC['store_category_name'])[0])][] = $valueAC;
 		}
 
 		$this->load->template('categories', $data);

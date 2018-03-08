@@ -57,7 +57,7 @@ class Stores_model extends CI_model
 				{
 					if (in_array(strtolower(pathinfo($data['basic']['featured_image']['name'], PATHINFO_EXTENSION)), $allowed_extensions))
 					{
-						$uploaded_path = $this->upload_attachment($data['basic']['featured_image'], false, 'featured_image');
+						$uploaded_path = $this->upload_attachment($data['basic']['featured_image'], 010, 'featured_image');
 						if ($uploaded_path)
 						{
 							$data['basic']['store_featured_image'] = $uploaded_path;
@@ -86,15 +86,17 @@ class Stores_model extends CI_model
 				$data['basic']['store_featured_image'] = '\assets/img/local-coupon-no-image.jpg';
 				if (!$data['basic']['featured_image']['error'])
 				{
-					if (in_array(pathinfo(strtolower($data['basic']['featured_image']['name'], PATHINFO_EXTENSION)), $allowed_extensions))
+					if (in_array(strtolower(pathinfo($data['basic']['featured_image']['name'], PATHINFO_EXTENSION)), $allowed_extensions))
 					{
-						$uploaded_path = $this->upload_attachment($data, false, 'featured_image');
+						$uploaded_path = $this->upload_attachment($data['basic']['featured_image'], 010, 'featured_image');
 						if ($uploaded_path)
 						{
 							$data['basic']['store_featured_image'] = $uploaded_path;
 						}
 					}
 				}
+
+				unset($data['basic']['featured_image']);
 
 				// SAVE ADDRESS
 				$data['address']['created_at'] = date('Y-m-d H:i:s');
@@ -223,7 +225,7 @@ class Stores_model extends CI_model
 				break;
 		}
 
-		if ($index)
+		if (trim($index) != 010)
 		{
 			$file_name = time() . "_" .str_replace(array(" ", "(", ")"), "_", $data['name'][$index]);
 			$dest = DS . $folder_name . DS . $file_name;

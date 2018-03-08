@@ -39,6 +39,7 @@ class Featured extends CI_Controller
 	{
 		$params = $this->input->post();
 		$update_arr['updated_at'] = date("Y-m-d H:i:s");
+		$cat_ids = array();
 		if (array_key_exists('add_category', $params))
 		{
 			$cat_ids = $params['add_category'];
@@ -73,6 +74,7 @@ class Featured extends CI_Controller
 	public function update_featured_stores()
 	{
 		$params = $this->input->post();
+		$store_ids = array();
 		$update_arr['updated_at'] = date("Y-m-d H:i:s");
 		if (array_key_exists('add_store', $params))
 		{

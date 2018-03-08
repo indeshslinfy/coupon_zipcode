@@ -44,9 +44,10 @@ class Featured_model extends CI_model
 	public function get_unfeatured_stores()
 	{
 		return $this->db->select('cpn.id, stores.*')
-						->where(array('stores.is_featured' => 0, 'stores.deleted_at' => NULL, 'cpn.deleted_at' => NULL, 'cpn.status' => COUPON_STATUS_ACTIVE))
+						->where(array('stores.is_featured' => 0, 'stores.status' => STORE_STATUS_ACTIVE, 'stores.deleted_at' => NULL, 'cpn.deleted_at' => NULL, 'cpn.status' => COUPON_STATUS_ACTIVE))
 						->join('coupons as cpn', 'stores.id=cpn.coupon_store_id')
 						->order_by('store_name', 'ASC')
+						->group_by('stores.id')
 						->get('stores')
 						->result_array();
 	}

@@ -62,7 +62,7 @@
 
                 <div class="col-md-6 box_shadow_div add_menu_in_list">
                     <form method="POST" action="<?php echo base_url(ADMIN_PREFIX . '/featured/update_featured_stores'); ?>">
-                        <button class="btn btn-success" type="submit">Add To Popular</button>
+                        <button class="btn btn-success" type="submit">Add To Featured</button>
                         <ul>
                         <?php
                         if (sizeof($unfeatured_stores) > 0)

@@ -26,7 +26,6 @@
 								<?php
 								if (sizeof($all_categories) > 0)
 								{
-									$cnt = 1;
 									foreach ($all_categories as $keyAC => $valueAC)
 									{
 									?>
