@@ -173,11 +173,11 @@ class Home extends CI_Controller
 				$zip_dets = get_zipcode_details($login_data['zipcode_id']);
 				if ($zip_dets)
 				{
-					$zipcode_arr = zipcode_data_for_cookie($zip_dets['zipcode']);
+					$zipcode_details = zipcode_data_for_cookie($zip_dets['zipcode']);
 				}
 				else
 				{
-					$zipcode_arr = zipcode_data_for_cookie(NY_ZIPCODE);
+					$zipcode_details = zipcode_data_for_cookie(NY_ZIPCODE);
 				}
 			}
 			else

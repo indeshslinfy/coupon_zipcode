@@ -29,7 +29,23 @@
 			$company_logo = $general_settings['company_logo'];
 		}
 
+		$zipcode_details = zipcode_data_for_cookie(NY_ZIPCODE);
 		$current_location = json_decode($this->input->cookie('user_current_location'), true);
+		if (sizeof($current_location) == 0)
+		{
+			$user_logged_in = $this->session->userdata('logged_in');
+			if ($user_logged_in)
+			{
+				$login_data = $this->session->userdata('user_access');
+				$zip_dets = get_zipcode_details($login_data['zipcode_id']);
+				if ($zip_dets)
+				{
+					$zipcode_details = zipcode_data_for_cookie($zip_dets['zipcode']);
+				}
+			}
+
+			set_location_cookie($zipcode_details);
+		}
 	?>
 
 	<title><?php echo isset($title) && $title != "" ? $title . "&nbsp;-&nbsp;" : ""; ?><?php echo $general_settings['company_name']; ?></title>
@@ -41,14 +57,10 @@
 		$(document).ready(function()
 		{
 			<?php
-			if (sizeof($current_location) == 0)
-			{
+				$loc_html = '<li><a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup"><i class="fa fa-map-marker"></i>&nbsp;Select location<span>' . $zipcode_details["zipcode"] . '</span></a></li>';
 			?>
-				var user_current_location = '<?php print_r(json_encode($current_location)); ?>';
-				getLocation();
-			<?php
-			}
-			?>
+
+			$(".header_location_ul").html('<?php echo $loc_html; ?>');
 		});
 	</script>
 </head>
