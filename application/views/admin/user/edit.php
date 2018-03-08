@@ -1,3 +1,5 @@
+<!-- CDN Date Picker-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
 <section class="wrapper">
     <div class="row">
         <div class="col-lg-12 main-chart">
@@ -56,7 +58,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="dob">D.O.B</label>
-                                <input type="dob" name="dob" value="<?php echo $user_details['dob']; ?>" class="form-control">
+                                <input type="dob" name="dob" value="<?php echo is_null($user_details['dob']) ? '' : date("d-m-Y", strtotime($user_details['dob'])); ?>" class="form-control datepicker">
                             </div>
                         </div>
 
@@ -107,3 +109,11 @@
         </div>
     </div>
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+     $('.datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
+    });
+</script>

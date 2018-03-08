@@ -25,7 +25,7 @@
 								<input type="email" class="form-control" placeholder="Email address*" pattern="^(?!\s*$).+" required="" name="email">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password*" pattern="^(?!\s*$).+" required="" name="password" maxlength="18">
+								<input type="password" class="form-control" placeholder="Password*" pattern="^(?!\s*$).+" required="" name="password">
 							</div>
 							<div class="form-group alert alert-success login_benefits">
 								<span>Login and enjoy super deals inside.</span>
@@ -97,12 +97,12 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Password*" name="password" required="" maxlength="18">
+										<input type="password" class="form-control" placeholder="Password*" name="password" required="" minlength="6">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Confirm Password*" name="confirm_password" required="" maxlength="18">
+										<input type="password" class="form-control" placeholder="Confirm Password*" name="confirm_password" required="" minlength="6">
 									</div>
 								</div>
 							</div>

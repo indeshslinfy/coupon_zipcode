@@ -166,7 +166,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
 <script type="text/javascript">
      $('.datepicker').datepicker({
-        format: 'dd-mm-yyyy'
+        format: 'dd-mm-yyyy',
+        autoclose: true,
     });
 </script>
 <?php echo js('backend/coupons.js'); ?>

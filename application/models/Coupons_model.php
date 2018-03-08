@@ -112,21 +112,22 @@ class Coupons_model extends CI_model
 
 	public function submit_store_review($params)
 	{
-		$where_arr = array("receiver_id" => $params['receiver_id']);
+		$where_arr = array("receiver_id" => $params['receiver_id']); // STORE's ID
 		if ($params['reviewer_id'])
 		{
+			// IF USER LOGGED IN
 			$where_arr['reviewer_id'] = $params['reviewer_id'];
-		}
+			
+			$is_exist = $this->db->where($where_arr)->get('reviews')->row_array();
+			if ($is_exist)
+			{
+				// UPDATE EXISTING
+				$params['updated_at'] = date('Y-m-d H:i:s');
+				$this->db->where(array("id" => $is_exist['id']))->update('reviews', $params);
+				$params['created_at'] = $is_exist['created_at'];
 
-		$is_exist = $this->db->where($where_arr)->get('reviews')->row_array();
-		if ($is_exist)
-		{
-			// UPDATE EXISTING
-			$params['updated_at'] = date('Y-m-d H:i:s');
-			$this->db->where(array("id" => $is_exist['id']))->update('reviews', $params);
-			$params['created_at'] = $is_exist['created_at'];
-
-			return array('status' => 1, 'data' => $params);
+				return array('status' => 1, 'data' => $params);
+			}
 		}
 
 		// ADD NEW

@@ -31,6 +31,12 @@ class User_model extends CI_model
 
 	public function user_save($data, $id=false)
 	{
+		$data['dob'] = NULL;
+		if (trim($data['dob']) != '') 
+		{
+			$data['dob'] = date('Y-m-d H:i:s', strtotime($data['dob']));
+		}
+
 		if ($id)
 		{
 			$this->db->where(array('id' => $id))->update('user', $data);
