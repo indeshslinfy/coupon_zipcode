@@ -422,6 +422,7 @@ ul.sidebar-menu li a.sub-cat-active i{
     padding-bottom: 15px;
     padding-top: 0px;
     width: 100%;
+    overflow:hidden;
 }
 
 a.logo {
@@ -2738,6 +2739,10 @@ div.alert{
     border: 1px solid #cfcfcf;
     margin-bottom: 5px;
     padding: 5px;
+    cursor:pointer;
+}
+.remove_menu_from_list ul li input[type=checkbox] + label:hover{
+  background:#fff;  
 }
 .remove_menu_from_list ul li input[type=checkbox] {
     /*margin-right: 7px;*/
@@ -2758,6 +2763,10 @@ div.alert{
     border: 1px solid #cfcfcf;
     margin-bottom: 5px;
     padding: 5px;
+    cursor:pointer;
+}
+.add_menu_in_list ul li input[type=checkbox] + label:hover{
+    background:#fff;
 }
 .add_menu_in_list ul li input[type=checkbox] {
     /*margin-right: 7px;*/

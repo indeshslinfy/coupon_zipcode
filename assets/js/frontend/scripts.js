@@ -41,7 +41,7 @@ $(document).ready(function()
 			    items:2,
 			    nav:true
 			},
-			800:{
+			900:{
 			    items:3,
 			    nav:true
 			}
