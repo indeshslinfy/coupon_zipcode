@@ -403,7 +403,11 @@ if (!function_exists('get_user_location_data'))
 
 		// NEW YORK BY DEFAULT
 		$zip_dets = get_zipcode_by_name(NY_ZIPCODE);
-		$location_arr = array('lat' => NY_LAT, 'long' => NY_LONG, 'zipcode' => NY_ZIPCODE, 'zipcode_id' => $zip_dets['id']);
+		$location_arr = array('lat' => NY_LAT,
+							'long' => NY_LONG,
+							'zipcode_name' => NY_NAME,
+							'zipcode' => NY_ZIPCODE,
+							'zipcode_id' => $zip_dets['id']);
 
 		$cookie_data = json_decode(get_cookie('user_current_location'));
 		if($cookie_data)
@@ -413,6 +417,7 @@ if (!function_exists('get_user_location_data'))
 			{
 				$location_arr = array('lat' => $zip_dets['latitude'],
 									'long' => $zip_dets['longitude'],
+									'zipcode_name' => $cookie_data->city,
 									'zipcode' => $zip_dets['zipcode'],
 									'zipcode_id' => $zip_dets['id']);
 			}

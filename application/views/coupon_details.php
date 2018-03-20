@@ -148,12 +148,12 @@
 															</a>
 														</li>
 														<li>
-															<a href="https://twitter.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>&via=<?php echo $social_platform['twitter']; ?>&hashtags=CouponZipcode&text=<?php echo $coupon_details['coupon_title']; ?>">
+															<a target="_blank" href="https://twitter.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>&via=<?php echo $social_platform['twitter']; ?>&hashtags=CouponZipcode&text=<?php echo urlencode($coupon_details['coupon_title']); ?>">
 																<i class="fa fa-twitter"></i>
 															</a>
 														</li>
 														<li>
-															<a href="https://plus.google.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>">
+															<a target="_blank" href="https://plus.google.com/share?url=<?php echo base_url('coupon/' . $coupon_details['id']); ?>">
 																<i class="fa fa-google-plus"></i>
 															</a>
 														</li>
@@ -506,7 +506,7 @@
 		var uluru = {lat: <?php echo $coupon_details['store_latitude']; ?>, lng: <?php echo $coupon_details['store_longitude']; ?>};
 
 		var map = new google.maps.Map(document.getElementById('store_map'), {
-			zoom: 10,
+			zoom: 16,
 			center: uluru
 		});
 

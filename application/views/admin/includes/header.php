@@ -6,7 +6,6 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="keyword" content="">
-		<title><?php echo isset($page_title) && $page_title != "" ? $page_title . "&nbsp;-&nbsp;" : ""; ?> Coupon Zipcode Admin</title>
 
 		<?php
 			$general_settings = get_settings('general_settings');
@@ -33,6 +32,8 @@
 			echo js('backend/jquery-3.2.1.min.js');
 		?>
 
+		<title><?php echo isset($page_title) && $page_title != "" ? $page_title . "&nbsp;-&nbsp;" : ""; ?> <?php echo $general_settings['company_name']; ?> Admin</title>
+		
 		<link rel="icon" href="<?php echo base_url($favicon); ?>" >
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 

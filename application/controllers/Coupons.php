@@ -104,7 +104,10 @@ class Coupons extends CI_Controller
 		}
 
 		$_GET['location_arr'] = get_user_location_data();
-		$_GET['store_zipcode'] = $_GET['location_arr']['zipcode_id'];
+		if ($_GET['store_zipcode'] == '')
+		{
+			$_GET['store_zipcode'] = $_GET['location_arr']['zipcode_id'];
+		}
 
 		$pagination_setting = get_settings('deals_pagination');
 		$_GET['paginate']['limit'] = $pagination_setting['limit'];
@@ -254,10 +257,6 @@ class Coupons extends CI_Controller
 		else
 		{
 			$_GET['zipcode_id'] = $_GET['store_zipcode'];
-			if ($_GET['zipcode_id'] == '')
-			{
-				$_GET['zipcode_id'] = $_GET['location_arr']['zipcode_id'];
-			}
 
 			$this->load->model(ADMIN_PREFIX . '/stores_model');
 			$data['coupons']['local'] = $this->stores_model->get_local_coupons($_GET);

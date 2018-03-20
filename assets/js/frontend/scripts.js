@@ -1,6 +1,20 @@
 $(document).ready(function()
 {
+	if (typeof $.cookie('allow_locn_popup') == 'undefined' || $.cookie('allow_locn_popup') == false)
+	{
+		console.log('cookie not set');
+		setTimeout(function()
+		{
+			if (allow_location_popup)
+			{
+				$('#header_location_anch').click();
+			}
+		}, 700);
+	}
+
+	$("body").css('overflow', 'auto');
 	$("body").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
+
 	$(".ticketing_chatbox_wrap").niceScroll({cursorborder:"", cursorcolor:"#2C3E50"});
 
 	var height_calc = $(window).height();
@@ -293,6 +307,7 @@ $("#search_zipcode").click(function()
 				}
 				else
 				{
+					$.cookie('allow_locn_popup', true, { expires: 1, path: '/'});
 					window.location.reload();
 				}
 			}

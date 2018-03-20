@@ -14,6 +14,13 @@ class Stores_model extends CI_model
 						->result_array();
 	}
 
+	public function all_records_list()
+	{
+		return $this->db->where(array('deleted_at' => NULL))
+						->get('stores')
+						->result_array();
+	}
+
 	public function store_edit($store_id)
 	{
 		$store_details = $this->db->select('zip.zipcode as store_zipcode, zip.zipcode as store_zipcode, s.*')
@@ -276,23 +283,19 @@ class Stores_model extends CI_model
 							's.status' => STORE_STATUS_ACTIVE,
 							's.deleted_at' => NULL);
 
-		if (array_key_exists('zipcode_id', $filters))
-		{
-			$where_arr['c.coupon_zipcode_id'] = $filters['zipcode_id'];
-		}
-
 		if (array_key_exists("cat", $filters) && sizeof($filters['cat']) > 0)
 		{
 			$select_str .= ', store_cat.id as store_cat_id, store_cat.store_category_name';
 		}
 
+		$sort_distance = 0;
 		if (isset($filters['sort_distance']) && intval($filters['sort_distance']) > 0)
 		{
 			$sort_distance = intval($filters['sort_distance']);
 		}
 		else
 		{
-			$sort_distance = get_settings('zipcode_search_radius');
+			// $sort_distance = get_settings('zipcode_search_radius');
 		}
 
 		$store_zipcode = 0;
@@ -304,7 +307,7 @@ class Stores_model extends CI_model
 		$near_zips = array();
 		// $nearby_stores = array();
 
-		if ($store_zipcode > 0)
+		if ($store_zipcode > 0 && $sort_distance > 0)
 		{
 			$nearby_zipcodes = get_nearby_zipcodes($store_zipcode, $sort_distance);
 			foreach ($nearby_zipcodes as $keyNZ => $valueNZ)
@@ -317,7 +320,6 @@ class Stores_model extends CI_model
 				// }
 			}
 		}
-		
 		$records = $this->db->select($select_str)->where($where_arr);
 		// if (sizeof($nearby_stores) > 0)
 		// {
@@ -326,7 +328,16 @@ class Stores_model extends CI_model
 
 		if (sizeof($near_zips) > 0)
 		{
+			if (array_key_exists('zipcode_id', $filters))
+			{
+				array_push($near_zips, $filters['zipcode_id']);
+			}
+
 			$records = $records->where_in('c.coupon_zipcode_id', $near_zips);
+		}
+		elseif (array_key_exists('zipcode_id', $filters))
+		{
+			$records = $records->where(array('c.coupon_zipcode_id' => $filters['zipcode_id']));
 		}
 
 		if (array_key_exists('dt', $filters))
@@ -387,11 +398,11 @@ class Stores_model extends CI_model
 			$records = $records->join('(SELECT scat.id, scat.store_category_name FROM stores_category as scat WHERE scat.store_category_slug IN ("' . $cats . '") AND scat.deleted_at IS NULL AND scat.status = 1) as store_cat', 's.store_category_id = store_cat.id');
 		}
 
-		if (array_key_exists('city', $filters) && $filters['city'] != '')
-		{
+		// if (array_key_exists('city', $filters) && $filters['city'] != '')
+		// {
 			// $records = $records->join('(SELECT scat.id, scat.store_category_name FROM address as scat WHERE scat.store_category_slug IN ("' . $cats . '") AND scat.deleted_at IS NULL AND scat.status = 1) as store_cat', 's.store_category_id = store_cat.id');
 			// $records = $records->join('address as adr', 'adr.id = s.store_address_id');
-		}
+		// }
 
 		if (isset($filters['sort_order']))
 		{
@@ -418,9 +429,7 @@ class Stores_model extends CI_model
 		if (array_key_exists('keyword', $filters) && trim($filters['keyword']) != '')
 		{
 			$kywrd = '"%' . $filters['keyword'] . '%"';
-			// print_r("c.coupon_title LIKE " . $kywrd . " OR " . "s.store_name LIKE " . $kywrd);die;
 			$records = $records->where("(c.coupon_title LIKE " . $kywrd . " OR " . "s.store_name LIKE " . $kywrd . ")");
-								// ->or_where();
 		}
 
 		$records = $records->order_by('s.store_name', 'DESC');

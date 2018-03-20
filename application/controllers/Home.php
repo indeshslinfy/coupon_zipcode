@@ -25,15 +25,18 @@ class Home extends CI_Controller
 	 */
 	public function index()
 	{
-		// print_r(get_user_default_zipcode()); die;
 		$location_arr = get_user_location_data();
 
 		// LOCAL COUPONS
 		$this->load->model(ADMIN_PREFIX . '/stores_model');
 		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array('zipcode_id' => $location_arr['zipcode_id'], "sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
+		
+		$data['local_search_zipcode'] = $location_arr['zipcode_id'];
 		if (sizeof($data['all_local_coupons']) == 0) 
 		{
 			$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
+
+			$data['local_search_zipcode'] = '';
 		}
 
 		// FEATURED STORES
@@ -46,19 +49,20 @@ class Home extends CI_Controller
 		$this->load->library('affiliates');
 
 		// RESTAURANT.COM
-		$rdc_keywords = array('Restaurant', 'Hotel', 'Spa');
-		$data['restaurant_dot_com_keyword'] = $rdc_keywords[rand(1, sizeof($rdc_keywords)-1)];
+		// $rdc_keywords = array('Spa', 'Hotel');
+		// $data['restaurant_dot_com_keyword'] = $rdc_keywords[rand(1, sizeof($rdc_keywords)-1)];
+		$data['restaurant_dot_com_keyword'] = 'restaurant';
 		$data['coupons']['restaurant_dot_com'] = $this->affiliates->get_deals('restaurant_dot_com',
 																	array('keyword' => $data['restaurant_dot_com_keyword'],
 																		'paginate' => array('page' => 1, 'limit' => 4)));
 
 		// GROUPON
 		$_GET['type'] = 'ip';
-		$_GET['channel_id'] = 'hotels';
+		$_GET['channel_id'] = $data['groupon_dot_com_keyword'] = 'Hotel';
 		$data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',
-																	array('type' => 'ip',
-																		'channel_id' => 'hotels',
-																		'paginate' => array('offset' => 0, 'limit' => 4)));
+																	array('type' => $_GET['type'],
+																		'channel_id' => $_GET['channel_id'],
+																		'paginate' => array('offset' => 0, 'limit' => 15)));
 
 		// $data['coupons']['groupon'] = $this->affiliates->get_deals('groupon',
 		// 															array('type' => 'latlong',

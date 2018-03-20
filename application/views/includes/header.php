@@ -10,6 +10,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 	<?php
 		echo css('frontend/style.css');
 		echo css('frontend/owl.carousel.css');
@@ -53,20 +54,22 @@
 	<title><?php echo isset($title) && $title != "" ? $title . "&nbsp;-&nbsp;" : ""; ?><?php echo $general_settings['company_name']; ?></title>
 	<link rel="icon" href="<?php echo base_url($favicon); ?>">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<?php echo js('frontend/jquery.cookie.js'); ?>
 	<script type="text/javascript">
+		var allow_location_popup = false;
 		var BASEURL = '<?php echo base_url(); ?>';
 		var NY_LOCN = '<?php echo json_encode(array("lat" => NY_LAT, "long" => NY_LONG, "zipcode" => NY_ZIPCODE)); ?>';
 		$(document).ready(function()
 		{
 			<?php
-				$loc_html = '<li><a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup"><i class="fa fa-map-marker"></i>&nbsp;Select location<span>' . $zipcode_details["zipcode"] . '</span></a></li>';
+				$loc_html = '<li><a id="header_location_anch" href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup"><i class="fa fa-map-marker"></i>&nbsp;Select location<span>' . $zipcode_details["zipcode"] . '</span></a></li>';
 			?>
 
 			$(".header_location_ul").html('<?php echo $loc_html; ?>');
 		});
 	</script>
 </head>
-<body>
+<body style="overflow: hidden;">
 	<div class="container-fluid">
 		<div class="row header_location_bar">
 			<div class="container">
@@ -75,7 +78,7 @@
 						<div class="login_signup_btn_box">
 							<ul class="pull-left header_location_ul">
 								<li>
-									<a href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">
+									<a id="header_location_anch" href="javascript:void(0);" data-toggle="modal" data-target="#select_location_popup">
 										<i class="fa fa-map-marker"></i>&nbsp;Select location&nbsp;
 										<span>
 											<?php
@@ -126,20 +129,26 @@
 			<div class="row topheader">
 				<div class="container">
 					<div class="row">
-						<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+						<div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
 							<a href="<?php echo base_url('/'); ?>">
-								<img src="<?php echo base_url($company_logo); ?>" alt="Coupon Zipcode">
+								<img src="<?php echo base_url($company_logo); ?>" alt="CouponZipcode">
 							</a>
 						</div>
-						<div class="col-xs-8 col-sm-9 col-lg-10 col-md-10 mobile_to_center search_form_wrap">
+						<div class="col-xs-12 col-sm-9 col-lg-10 col-md-10 mobile_to_center search_form_wrap">
 							<form class="form-inline topheader_srch_frm" action="<?php echo base_url('deals'); ?>">
 								<div class="search_form_container">
-									<div class="form-group serach_ct_field city_box">
+									<div class="form-group serach_ct_field">
 										<div class="input_box_wrap">
 											<span><i class="fa fa-search"></i></span>
 											<input type="hidden" name="search_src" value="header">
 											<input type="text" class="form-control top-srch-cat" placeholder="Category" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : ''; ?>" id="top-srch-cat-name">
 											<input type="hidden" id="top-srch-cat" name="cat_name" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : ''; ?>">
+										</div>
+									</div>
+									<div class="form-group city_box">
+										<div class="input_box_wrap">
+											<span>In</span>
+											<input type="text" class="form-control" placeholder="City" name="city_name" value="<?php echo isset($_GET['city_name']) ? $_GET['city_name'] : ''; ?>">
 										</div>
 									</div>
 									<div class="form-group nearby">
@@ -161,7 +170,7 @@
 								</div>
 
 								<!-- <button type="submit" class="btn ylew_btn onhover_button"><i class="fa fa-search"></i></button> -->
-								<button type="button" class="btn ylew_btn onhover_button minwdth_480"><i class="fa fa-search"></i></button>
+								<!-- <button type="button" class="btn ylew_btn onhover_button minwdth_480"><i class="fa fa-search"></i></button> -->
 							</form>
 						</div>
 					</div>
@@ -186,6 +195,7 @@
 									<i class="fa fa-angle-down"></i>
 								</a>
 								<ul class="nav navbar-nav toggle-menu-height">
+									<li><a href="javascript:void(0);">I want to...</a></li>
 									<?php
 									$menu_categories = get_settings('frontend_menu');
 									foreach ($menu_categories as $keyMC => $valueMC)
@@ -197,9 +207,7 @@
 									<?php
 									}
 									?>
-									<li>
-										<a href="<?php echo base_url('category'); ?>">More</a>
-									</li>
+									<!-- <li><a href="<?php //echo base_url('category'); ?>">More</a></li> -->
 								</ul>
 							</div>
 						</nav>

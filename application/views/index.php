@@ -1,46 +1,61 @@
-<div class="row">
-	<section>
-		<div class="container">
-			<div class="heading_text_wrap">
-				<h2>Coupon Zipcode Exclusive</h2>
-				<a href="<?php echo base_url('deals?search_src=search_pg&src=local'); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
-			</div>
-			<div class="row exclusive_coupan">
-				<div id="exclusive_coupan_carousel"  class="owl-carousel">
-					<?php
-					foreach ($all_local_coupons as $keyALC => $valueALC)
+<?php
+if (sizeof($all_local_coupons) > 0)
+{
+?>
+	<div class="row">
+		<section>
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2 class="home_h2">
+						<a href="<?php echo base_url('deals?search_src=search_pg&src=local&store_zipcode=' . $local_search_zipcode); ?>">CouponZipcode Exclusive<?php print_r('&nbsp;near&nbsp;' . $location_arr['zipcode'] . '&nbsp;' . $location_arr['zipcode_name']); ?></a>
+					</h2>
+					<!-- <?php
+					//if ($local_search_zipcode != '')
 					{
-						$cpn_image = base_url($valueALC['store_image']);
-						if ($valueALC['store_image'] == '' || is_null($valueALC['store_image']))
-						{
-							$cpn_image = base_url('assets/img/local-coupon-no-image.jpg');
-						}
 					?>
-						<div class="item">
-							<div class="cpn_adjst_img">
-								<a href="<?php echo base_url('coupon/' . $valueALC['id']); ?>">
-									<img src="<?php echo $cpn_image; ?>" alt="<?php echo $valueALC['coupon_title']; ?>">
-									<div class="hover_div">
-										<div class="hover_text_wrap">
-											<div class="hover_text">
-												<h3><?php echo $valueALC['store_name']; ?>&nbsp;</h3>
-												<h4><?php echo $valueALC['coupon_title']; ?></h4>
-												<h5><?php echo strlen($valueALC['coupon_description']) >= 145 ? substr($valueALC['coupon_description'], 0, 145) . '...' : $valueALC['coupon_description']; ?></h5>
-											</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
+						<a href="<?php //echo base_url('deals?search_src=search_pg&src=local&store_zipcode=' . $local_search_zipcode); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
 					<?php
 					}
-					?>
+					?> -->
 				</div>
-			</div>
-		</div>			
-	</section>
-</div>
-
+				<div class="row exclusive_coupan">
+					<div id="exclusive_coupan_carousel"  class="owl-carousel">
+						<?php
+						foreach ($all_local_coupons as $keyALC => $valueALC)
+						{
+							$cpn_image = base_url($valueALC['store_image']);
+							if ($valueALC['store_image'] == '' || is_null($valueALC['store_image']))
+							{
+								$cpn_image = base_url('assets/img/local-coupon-no-image.jpg');
+							}
+						?>
+							<div class="item">
+								<div class="cpn_adjst_img">
+									<a href="<?php echo base_url('coupon/' . $valueALC['id']); ?>">
+										<img src="<?php echo $cpn_image; ?>" alt="<?php echo $valueALC['coupon_title']; ?>">
+										<div class="hover_div">
+											<div class="hover_text_wrap">
+												<div class="hover_text">
+													<h3><?php echo $valueALC['store_name']; ?>&nbsp;</h3>
+													<h4><?php echo $valueALC['coupon_title']; ?></h4>
+													<h5><?php echo strlen($valueALC['coupon_description']) >= 145 ? substr($valueALC['coupon_description'], 0, 145) . '...' : $valueALC['coupon_description']; ?></h5>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						<?php
+						}
+						?>
+					</div>
+				</div>
+			</div>			
+		</section>
+	</div>
+<?php
+}
+?>
 <!-- GROUPON -->
 <?php
 if (sizeof($coupons['groupon']) > 0)
@@ -50,14 +65,17 @@ if (sizeof($coupons['groupon']) > 0)
 		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
 			<div class="container">
 				<div class="heading_text_wrap">
-					<h2>Vacation Packages Just for You</h2>
-					<a href="<?php echo base_url('deals?search_src=home_pg&src=groupon'); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+					<h2 class="home_h2">
+						<a href="<?php echo base_url('deals?search_src=home_pg&src=groupon'); ?>">Groupon Deals You May Like<?php print_r('&nbsp;near&nbsp;' . $location_arr['zipcode'] . '&nbsp;' . $location_arr['zipcode_name']); ?></a>
+					</h2>
+					<!-- <a href="<?php //echo base_url('deals?search_src=home_pg&src=groupon'); ?>" class="btn ylew_btn pull-right">SEE MORE</a> -->
 				</div>
 
 				<div class="row">
 					<?php
 					// $js_deals_arr = array();
-					foreach ($coupons['groupon']->deals as $keyCL => $valueCL)
+					$coupons['groupon'] = array_slice($coupons['groupon']->deals, -4);
+					foreach ($coupons['groupon'] as $keyCL => $valueCL)
 					{
 						// $js_deals_arr[$valueCL->uuid] = array('title' => $valueCL->title,
 						// 							'short_title' => $valueCL->shortAnnouncementTitle,
@@ -136,11 +154,13 @@ if (sizeof($coupons['restaurant_dot_com']) > 0)
 {
 ?>
 	<div class="row">
-		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
+		<section class="top_rstrnt_deal top_deal_adjst_span">
 			<div class="container">
 				<div class="heading_text_wrap">
-					<h2>Hotel Deals from Restaurant.com</h2>
-					<a href="<?php echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=' . $restaurant_dot_com_keyword); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+					<h2 class="home_h2">
+						<a href="<?php echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=' . $restaurant_dot_com_keyword); ?>">Restaurant.com deals you may like<?php print_r('&nbsp;near&nbsp;' . $location_arr['zipcode'] . '&nbsp;' . $location_arr['zipcode_name']); ?></a>
+						</h2>
+					<!-- <a href="<?php //echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=' . $restaurant_dot_com_keyword); ?>" class="btn ylew_btn pull-right">SEE MORE</a> -->
 				</div>
 
 				<div class="row">
@@ -167,7 +187,7 @@ if (sizeof($coupons['restaurant_dot_com']) > 0)
 									</div>
 									<div class="rstrnt_des_wrap">
 										<div class="restrnt_desp_text_box">
-											<h4><?php echo $valueCC['name']; ?></h4>
+											<h3><?php echo $valueCC['name']; ?></h3>
 											<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
 										</div>
 									</div>
@@ -236,20 +256,23 @@ if (sizeof($coupons['restaurant_dot_com']) > 0)
 // }
 ?> -->
 
-<!-- EBAY -->
+<!-- EBAY & AMAZON -->
 <?php
 $coupons['amazon'] = array_slice($coupons['amazon'], 6);
 if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending']) > 0)
 {
 ?>
 	<div class="row">
-		<section class="top_rstrnt_deal gery_bg section_with_pdd_btm">
+		<section class="top_rstrnt_deal gery_bg">
 			<div class="container">
 				<div class="heading_text_wrap">
-					<h2>Gifts for Her</h2>
-					<a href="<?php echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=amazon&price_range%5B%5D=&price_range%5B%5D=&keyword=gifts+for+her&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a>
+					<h2 class="home_h2">
+						<a href="<?php echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=amazon&price_range%5B%5D=&price_range%5B%5D=&keyword=gifts+for+her&sort_order=&sort_distance=&sort_zipcode='); ?>">Things To Buy</a>
+					</h2>
+					<!-- <a href="<?php //echo base_url('deals?search_src=search_pg&cat_name=&store_zipcode=&src=amazon&price_range%5B%5D=&price_range%5B%5D=&keyword=gifts+for+her&sort_order=&sort_distance=&sort_zipcode='); ?>" class="btn ylew_btn pull-right">SEE MORE</a> -->
 				</div>
 
+				<!-- AMAZON -->
 				<div class="row">
 					<div class="latest_deals">
 						<div id="latest_deals_slider_ltr"  class="owl-carousel">
@@ -262,12 +285,12 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 										<div class="top_rstrnt_deal_wrap">
 											<div class="adjst_img_wrap_height">
 												<div class="ajst_img_box">
-													<img src="<?php echo $valueCL['mediumImage']; ?>" alt="<?php echo $valueCL['asin']; ?>">
+													<img src="<?php echo $valueCL['mediumImage'] == '' ? base_url('assets/img/amazon-dot-com.jpg') : $valueCL['mediumImage']; ?>" alt="<?php echo $valueCL['asin']; ?>">
 												</div>
 											</div>
 											<div class="rstrnt_des_wrap">
 												<div class="restrnt_desp_text_box">
-													<h3 title="<?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?>"><?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?></h3>
+													<h3 style="direction: ltr;" title="<?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?>"><?php echo strlen($valueCL['title']) > 55 ? substr($valueCL['title'], 0, 55) . "..." : $valueCL['title']; ?></h3>
 												</div>
 											</div>
 										</div>
@@ -281,6 +304,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 					</div>
 				</div>
 
+				<!-- EBAY -->
 				<div class="row">
 					<div class="latest_deals">
 						<div id="latest_deals_slider_rtl"  class="owl-carousel">
@@ -298,7 +322,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 										<div class="top_rstrnt_deal_wrap">
 											<div class="adjst_img_wrap_height">
 												<div class="ajst_img_box">
-													<img src="<?php echo $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
+													<img src="<?php echo $valueCL['galleryURL'] == '' ? base_url('assets/img/ebay-dot-com.jpg') : $valueCL['galleryURL']; ?>" alt="<?php echo $valueCL['itemId']; ?>">
 												</div>
 											</div>
 											<div class="rstrnt_des_wrap">
@@ -323,6 +347,264 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 }
 ?>
 
+<!-- SPA (GROUPON & RESTAURANT.COM) -->
+<?php
+if (sizeof($coupons['spa']['groupon']) > 0 || sizeof($coupons['spa']['restaurant_dot_com']) > 0)
+{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal top_deal_adjst_span">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2 class="home_h2">
+						<a href="<?php echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=spa'); ?>">Spa Deals for You<?php print_r('&nbsp;near&nbsp;' . $location_arr['zipcode'] . '&nbsp;' . $location_arr['zipcode_name']); ?></a>
+					</h2>
+					<!-- <a href="<?php //echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=spa'); ?>" class="btn ylew_btn pull-right">SEE MORE</a> -->
+				</div>
+
+				<div class="row">
+					<?php
+					$coupons['spa']['groupon'] = array_slice($coupons['spa']['groupon']->deals, -2);
+					foreach (@$coupons['spa']['groupon'] as $keyCL => $valueCL)
+					{
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a target="_blank" href="<?php echo $valueCL->dealUrl; ?>" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 55 ? substr($valueCL->title, 0, 55) . "..." : $valueCL->title; ?></h3>
+										</div>
+									</div>
+								</div>
+								<span><?php echo img('powered-by-groupon.png'); ?></span>
+							</a>
+						</div>
+					<?php
+					}
+
+					foreach ($coupons['spa']['restaurant_dot_com'] as $keyCC => $valueCC)
+					{
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<?php
+											if (is_array($valueCC['image-url']))
+											{
+												echo img('restaurant-dot-com.png');
+											}
+											else
+											{
+												echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
+											}
+											?>
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3><?php echo $valueCC['name']; ?></h3>
+											<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					<?php
+					}
+					?>
+				</div>
+			</div>
+		</section>
+	</div>
+<?php
+}
+?>
+
+<!-- THINGS TO DO (GROUPON) -->
+<?php
+if (sizeof($coupons['things_to_do']['groupon']))
+{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2 class="home_h2">
+						<a href="<?php echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&cat%5B%5D=things-to-do'); ?>">Things To Do<?php print_r('&nbsp;near&nbsp;' . $location_arr['zipcode'] . '&nbsp;' . $location_arr['zipcode_name']); ?></a>
+					</h2>
+					<!-- <a href="<?php //echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=spa'); ?>" class="btn ylew_btn pull-right">SEE MORE</a> -->
+				</div>
+
+				<div class="row">
+					<?php
+					foreach (@$coupons['things_to_do']['groupon']->deals as $keyCL => $valueCL)
+					{
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a target="_blank" href="<?php echo $valueCL->dealUrl; ?>" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 55 ? substr($valueCL->title, 0, 55) . "..." : $valueCL->title; ?></h3>
+										</div>
+									</div>
+								</div>
+								<span><?php echo img('powered-by-groupon.png'); ?></span>
+							</a>
+						</div>
+					<?php
+					}
+					?>
+				</div>
+			</div>
+		</section>
+	</div>
+<?php
+}
+?>
+
+<!-- FOOD (GROUPON & RESTAURANT.COM) -->
+<?php
+if (sizeof($coupons['food']['groupon']) > 0 || sizeof($coupons['food']['restaurant_dot_com']) > 0)
+{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal top_deal_adjst_span">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2 class="home_h2">
+						<a href="<?php echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=spa'); ?>">What to eat<?php print_r('&nbsp;near&nbsp;' . $location_arr['zipcode'] . '&nbsp;' . $location_arr['zipcode_name']); ?></a>
+					</h2>
+					<!-- <a href="<?php //echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=spa'); ?>" class="btn ylew_btn pull-right">SEE MORE</a> -->
+				</div>
+
+				<div class="row">
+					<?php
+					foreach (@$coupons['food']['groupon']->deals as $keyCL => $valueCL)
+					{
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a target="_blank" href="<?php echo $valueCL->dealUrl; ?>" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 55 ? substr($valueCL->title, 0, 55) . "..." : $valueCL->title; ?></h3>
+										</div>
+									</div>
+								</div>
+								<span><?php echo img('powered-by-groupon.png'); ?></span>
+							</a>
+						</div>
+					<?php
+					}
+
+					foreach ($coupons['food']['restaurant_dot_com'] as $keyCC => $valueCC)
+					{
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['name']; ?>" href="<?php echo $valueCC['buy-url']; ?>">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<?php
+											if (is_array($valueCC['image-url']))
+											{
+												echo img('restaurant-dot-com.png');
+											}
+											else
+											{
+												echo '<img src="' . $valueCC['image-url'] . '" alt="' . $valueCC['ad-id'] .'">';
+											}
+											?>
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3><?php echo $valueCC['name']; ?></h3>
+											<p>&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					<?php
+					}
+					?>
+				</div>
+			</div>
+		</section>
+	</div>
+<?php
+}
+?>
+
+<!-- HEALTH AND FITNESS (GROUPON & RESTAURANT.COM) -->
+<?php
+if (sizeof($coupons['health_and_fitness']['groupon']))
+{
+?>
+	<div class="row">
+		<section class="top_rstrnt_deal gery_bg top_deal_adjst_span section_with_pdd_btm">
+			<div class="container">
+				<div class="heading_text_wrap">
+					<h2 class="home_h2">
+						<a href="<?php echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=spa'); ?>">Health and Fitness<?php print_r('&nbsp;near&nbsp;' . $location_arr['zipcode'] . '&nbsp;' . $location_arr['zipcode_name']); ?></a>
+					</h2>
+					<!-- <a href="<?php //echo base_url('deals?search_src=home_pg&src=restaurant_dot_com&keyword=spa'); ?>" class="btn ylew_btn pull-right">SEE MORE</a> -->
+				</div>
+
+				<div class="row">
+					<?php
+					foreach (@$coupons['health_and_fitness']['groupon']->deals as $keyCL => $valueCL)
+					{
+					?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<a target="_blank" href="<?php echo $valueCL->dealUrl; ?>" onclick="group_deal_popup(this, '<?php echo $valueCL->uuid; ?>');">
+								<div class="top_rstrnt_deal_wrap">
+									<div class="adjst_img_wrap_height">
+										<div class="ajst_img_box">
+											<img src="<?php echo $valueCL->grid4ImageUrl; ?>" alt="<?php echo $valueCL->shortAnnouncementTitle; ?>">
+										</div>
+									</div>
+									<div class="rstrnt_des_wrap">
+										<div class="restrnt_desp_text_box">
+											<h3 title="<?php echo $valueCL->title; ?>"><?php echo strlen($valueCL->title) > 55 ? substr($valueCL->title, 0, 55) . "..." : $valueCL->title; ?></h3>
+										</div>
+									</div>
+								</div>
+								<span><?php echo img('powered-by-groupon.png'); ?></span>
+							</a>
+						</div>
+					<?php
+					}
+					?>
+				</div>
+			</div>
+		</section>
+	</div>
+<?php
+}
+?>
+
+<!-- NEWSLETTER & FEATURED STORES -->
 <div class="row">
 	<section class="top_rstrnt_deal">
 		<div class="container">
@@ -333,7 +615,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 					</div>
 					<div class="col-xs-12 col-sm-10 news_letter_content_wrap">
 						<h3>Newsletter</h3>
-						<p>Subscribe to our newsletter to find out more about Coupon Zipcode.</p>
+						<p>Subscribe to our newsletter to find out more about CouponZipcode.</p>
 						<form class="form-inline">
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="Name" id="nl_name">
@@ -352,7 +634,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 			{
 			?>
 				<div class="heading_text_wrap">
-					<h2>Featured Stores</h2>
+					<h2 class="home_h2">Featured Stores<?php print_r('&nbsp;near&nbsp;' . $location_arr['zipcode'] . '&nbsp;' . $location_arr['zipcode_name']); ?></h2>
 				</div>
 
 				<div class="deals_event">
@@ -439,6 +721,7 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php //echo get_settings('google_map_key'); ?>"></script> -->
 
 <script type="text/javascript">
+	var allow_location_popup = true;
 	// function group_deal_popup(ele, uuid)
 	// {
 	// 	$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').hide();
@@ -494,10 +777,10 @@ if (sizeof($coupons['amazon']) > 0 || sizeof($coupons['ebay']['items']['trending
 	// 	});
 	// }
 
-	function toggle_copy_input()
-	{
-		$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').toggle();
-	}
+	// function toggle_copy_input()
+	// {
+	// 	$('#groupon_deal_popup .socil_link_wrap .copy_deal_item').toggle();
+	// }
 
 	// function render_deals()
 	// {

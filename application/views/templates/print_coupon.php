@@ -3,14 +3,14 @@
 <head>
 	<title><?php echo $coupon_title; ?></title>
 	<link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700" rel="stylesheet">
-	<?php $general_settings = get_settings('general_settings'); //print_r(getcwd() . DS . $store_featured_image);die; //print_r(str_replace('\\', '/', base_url($store_featured_image)));die; ?>
+	<?php $general_settings = get_settings('general_settings'); ?>
 </head>
 <body>
 	<div class="wrapper">
 		<table style="width:100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td style="width:25%;border-right:1px dashed #c3c3c3;vertical-align:top;padding-right: 20px;">
-					<img style="max-width:200px;" src="<?php echo $store_featured_image ? getcwd() . DS . $store_featured_image : $general_settings['company_logo']; ?>" alt="Store Logo">
+					<img style="max-width:200px;" src="<?php echo $store_featured_image ? getcwd() . DS . str_replace('\\', '/', $store_featured_image) : @$general_settings['company_logo']; ?>" alt="Store Logo">
 					<p class="redeem_loc"">Redeem at this location:</p>
 					<p style="margin: 0px;font-size: 14px;"><?php echo str_replace(", ,", ", ", $address_line1 . ', ' . $address_line2 . ', ' . $address_line3 . ', ' . $city_name . ', ' . $state_name . ', ' . $country_name . '. ' . $coupon_zipcode); ?></p>
 					<p style="margin: 3px 0 0 0;font-size: 14px;"><?php echo $store_phone; ?></p>
@@ -46,10 +46,17 @@
 							<td>&nbsp;<br><br><br></td>
 							<td>&nbsp;</td>
 						</tr>
-						<tr>
-							<td colspan="2" style="padding: 10px 15px; border: 2px dashed #226f06;font-size: 13px;font-weight: 600;color: #3c4044;"><?php echo $coupon_fine_print; ?></td>
-							<td></td>
-						</tr>
+						<?php
+						if ($coupon_fine_print != '')
+						{
+						?>
+							<tr>
+								<td colspan="2" style="padding: 10px 15px; border: 2px dashed #226f06;font-size: 13px;font-weight: 600;color: #3c4044;"><?php echo $coupon_fine_print; ?></td>
+								<td></td>
+							</tr>
+						<?php
+						}
+						?>
 						<tr>
 							<td>&nbsp;<br><br><br></td>
 							<td>&nbsp;</td>

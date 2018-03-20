@@ -43,7 +43,7 @@
                         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                     </div> -->
 
-                    <a href="<?php echo base_url('admin/dashboard'); ?>" class="logo">Coupon Zipcode<small> Admin</small></a>
+                    <a href="<?php echo base_url('admin/dashboard'); ?>" class="logo"><?php echo $general_settings['company_name']; ?><small> Admin</small></a>
 
                     <div class="top-menu">
                         <ul class="nav pull-right top-menu">
@@ -96,7 +96,7 @@
         </section>
         <footer class="site-footer">
             <div class="col-xs-12">
-                <span class="pull-left">&#169;&nbsp;2018&nbsp;Coupon Zipcode</span>
+                <span class="pull-left">&#169;&nbsp;2018&nbsp;<?php echo $general_settings['company_name']; ?></span>
                 <span class="pull-right">
                     <small>Designed by:&nbsp;</small>
                     <a href="http://www.slinfy.com" target="_blank">Solitaire Infosys</a>

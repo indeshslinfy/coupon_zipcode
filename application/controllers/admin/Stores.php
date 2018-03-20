@@ -22,7 +22,7 @@ class Stores extends CI_Controller
 	public function index()
 	{
 		$data['page_title'] = 'Stores Management';
-		$data['all_records'] = $this->stores_model->all_records();
+		$data['all_records'] = $this->stores_model->all_records_list();
 
 		$this->load->admin_template('stores/list', $data);
 	}

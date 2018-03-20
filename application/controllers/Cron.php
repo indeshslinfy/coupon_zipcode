@@ -22,13 +22,15 @@ class Cron extends CI_Controller {
 	{
 		$current_date = date('Y-m-d H:i:s');
 
- 		$previous_date = date('Y-m-d', (strtotime('-100 days', strtotime($current_date))));
- 		$strt_date = $previous_date . " 00:00:00";
- 		$end_date = $previous_date . " 23:59:59";
+ 		// $previous_date = date('Y-m-d', (strtotime('-100 days', strtotime($current_date))));
+ 		// $strt_date = $previous_date . " 00:00:00";
+ 		// $end_date = $previous_date . " 23:59:59";
 
- 		$this->db->where(array('status !=' => COUPON_STATUS_EXPIRED,
- 							'coupon_end_date >=' => $strt_date ,
- 							'coupon_end_date <=' => $end_date));
+ 		// $this->db->where(array('status !=' => COUPON_STATUS_EXPIRED,
+ 		// 					'coupon_end_date >=' => $strt_date ,
+ 		// 					'coupon_end_date <=' => $end_date));
+
+ 		$this->db->where(array('coupon_end_date <' => date('Y-m-d') . ' 00:00:00'));
  		
  		$this->db->update('coupons', array('coupon_publish' => 0,
  											'status' => COUPON_STATUS_EXPIRED,

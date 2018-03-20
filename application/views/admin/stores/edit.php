@@ -54,14 +54,14 @@
                     <form class="mt-20" action="<?php echo base_url(ADMIN_PREFIX . '/save-store') . '/' . $store_details['id']; ?>" method="POST" enctype="multipart/form-data">
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="show_basic_tab">
-        						<div class="col-sm-6">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Store Name&nbsp;<small class="text-danger">*</small></label>
                                         <input type="text" name="store_name" value="<?php echo $store_details['store_name']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
                                     </div>
                                 </div>
-        						
-        						<div class="col-sm-6">
+                                
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Phone&nbsp;<small class="text-danger">*</small></label>
                                         <input type="text" name="store_phone" value="<?php echo $store_details['store_phone']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
@@ -99,8 +99,8 @@
                                         </select>
                                     </div>
                                 </div>
-        						
-        						<div class="col-sm-6">
+                                
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="store_type">Type&nbsp;<small class="text-danger">*</small></label>
                                         <input type="text" name="store_type" value="<?php echo $store_details['store_type']; ?>" class="form-control" pattern="^(?!\s*$).+" required="">
@@ -275,18 +275,32 @@
                             <div class="tab-pane fade" id="show_media_tab">
                                 <div class="col-sm-12">
                                     <?php
-                                    foreach ($store_details['store_videos'] as $keySV => $valueSV)
+                                    if (sizeof($store_details['store_videos']) > 0)
+                                    {
+                                        foreach ($store_details['store_videos'] as $keySV => $valueSV)
+                                        {
+                                    ?>
+                                            <div class="col-sm-6 row">
+                                                <div class="form-group">
+                                                    <label>Video URL&nbsp;&nbsp;<small>(YouTube URL)</small></label>
+                                                    <input type="text" name="store_video[]" value="<?php echo $valueSV['attachment_path']; ?>" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <iframe width="350" height="200" src="<?php echo $valueSV['attachment_path']; ?>"></iframe> 
+                                            </div>
+                                    <?php
+                                        }
+                                    }
+                                    else
                                     {
                                     ?>
                                         <div class="col-sm-6 row">
                                             <div class="form-group">
                                                 <label>Video URL&nbsp;&nbsp;<small>(YouTube URL)</small></label>
-                                                <input type="text" name="store_video[]" value="<?php echo $valueSV['attachment_path']; ?>" class="form-control">
+                                                <input type="text" name="store_video[]" class="form-control">
                                             </div>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <iframe width="350" height="200" src="<?php echo $valueSV['attachment_path']; ?>"></iframe> 
                                         </div>
                                     <?php
                                     }

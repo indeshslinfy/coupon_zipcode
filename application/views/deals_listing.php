@@ -22,7 +22,7 @@ if ($total_coupons_fetched > 0)
 						</div>
 						<div class="rstrnt_des_wrap">
 							<div class="restrnt_desp_text_box">
-								<h4 title="<?php echo $valueCC['coupon_title']; ?>"><?php echo strlen($valueCC['coupon_title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['coupon_title']; ?></h4>
+								<h3 title="<?php echo $valueCC['coupon_title']; ?>"><?php echo strlen($valueCC['coupon_title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['coupon_title']; ?></h3>
 							</div>
 						</div>
 					</div>
@@ -55,7 +55,7 @@ if ($total_coupons_fetched > 0)
 						</div>
 						<div class="rstrnt_des_wrap">
 							<div class="restrnt_desp_text_box">
-								<h4><?php echo $valueCC['name']; ?></h4>
+								<h3><?php echo $valueCC['name']; ?></h3>
 								<p>Price:&nbsp;&#36;<?php echo is_array($valueCC['sale-price']) ? $valueCC['price'] : $valueCC['sale-price']; ?></p>
 							</div>
 						</div>
@@ -78,7 +78,7 @@ if ($total_coupons_fetched > 0)
 						</div>
 						<div class="rstrnt_des_wrap">
 							<div class="restrnt_desp_text_box">
-								<h4><?php echo $valueCC->announcementTitle; ?></h4>
+								<h3><?php echo $valueCC->announcementTitle; ?></h3>
 							</div>
 						</div>
 					</div>
@@ -109,7 +109,7 @@ if ($total_coupons_fetched > 0)
 						</div>
 						<div class="rstrnt_des_wrap">
 							<div class="restrnt_desp_text_box">
-								<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
+								<h3><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h3>
 							</div>
 						</div>
 					</div>
@@ -127,12 +127,12 @@ if ($total_coupons_fetched > 0)
 				<a target="_blank" data-toggle="tooltip" title="<?php echo $valueCC['title']; ?>" href="<?php echo $valueCC['url']; ?>">
 					<div class="top_rstrnt_deal_wrap">
 						<div class="cat_img_div">
-							<img src="<?php echo $valueCC['largeImage']; ?>" alt="<?php echo $valueCC['asin']; ?>">
+							<img src="<?php echo $valueCC['largeImage'] == '' ? base_url('assets/img/amazon-dot-com.jpg') : $valueCC['largeImage']; ?>" alt="<?php echo $valueCC['asin']; ?>">
 							<span><?php echo img('powered-by-amazon.jpg'); ?></span>
 						</div>
 						<div class="rstrnt_des_wrap">
 							<div class="restrnt_desp_text_box">
-								<h4><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h4>
+								<h3><?php echo strlen($valueCC['title']) > 36 ? substr($valueCC['title'], 0, 37) . "..." : $valueCC['title']; ?></h3>
 								<?php
 								$price_str = 'Get Price NOW';
 								if ($valueCC['rrp'] != 0.00)

@@ -52,9 +52,9 @@ class Coupons extends CI_Controller
 		$insert_arr = $this->input->post();
 		$insert_arr['coupon_start_date'] = date('Y-m-d H:i:s', strtotime($insert_arr['coupon_start_date']));
 		$insert_arr['coupon_end_date'] = date('Y-m-d H:i:s', strtotime($insert_arr['coupon_end_date']));
-		$insert_arr['status'] = COUPON_STATUS_INACTIVE;
-		if ($insert_arr['coupon_publish'] == '1')
-		{
+		
+		// if ($insert_arr['coupon_publish'] == '1')
+		// {
 			if (strtotime($insert_arr['coupon_start_date']) > strtotime(date("Y-m-d H:i:s")))
 			{
 				$insert_arr['status'] = COUPON_STATUS_FUTURE;
@@ -67,6 +67,19 @@ class Coupons extends CI_Controller
 			{
 				$insert_arr['status'] = COUPON_STATUS_ACTIVE;
 			}
+			else
+			{
+				$insert_arr['status'] = COUPON_STATUS_INACTIVE;
+			}
+		// }
+		// else
+		// {
+		// 	$data['status'] = COUPON_STATUS_EXPIRED;
+		// }
+
+		if ($insert_arr['status'] == COUPON_STATUS_EXPIRED)
+		{
+			$insert_arr['coupon_publish'] = '0';
 		}
 
 		if ($this->uri->segment(3))
@@ -80,7 +93,6 @@ class Coupons extends CI_Controller
 		{
 			/***SAVE NEW***/
 			$insert_arr['created_at'] = date('Y-m-d H:i:s');
-			// print_r($insert_arr); die;
 			$insert_id = $this->coupons_model->coupon_save($insert_arr);
 			$this->session->set_flashdata('flash_message', 'Coupon saved successfully.');
 		}
