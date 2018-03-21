@@ -25,26 +25,26 @@ class Home extends CI_Controller
 	 */
 	public function index()
 	{
-		$location_arr = get_user_location_data();
+		$data['location_arr'] = $location_arr = get_user_location_data();
 
 		// LOCAL COUPONS
 		$this->load->model(ADMIN_PREFIX . '/stores_model');
 		$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array('zipcode_id' => $location_arr['zipcode_id'], "sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
 		
 		$data['local_search_zipcode'] = $location_arr['zipcode_id'];
-		if (sizeof($data['all_local_coupons']) == 0) 
-		{
-			$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
+		// if (sizeof($data['all_local_coupons']) == 0) 
+		// {
+		// 	$data['all_local_coupons'] = $this->stores_model->get_local_coupons(array("sort_by" => "c.created_at", "sort_order" => "DESC", "paginate" => array("limit" => 10, "offset" => 0)));
 
-			$data['local_search_zipcode'] = '';
-		}
+		// 	$data['local_search_zipcode'] = '';
+		// }
 
 		// FEATURED STORES
 		$data['featured_stores'] = get_featured_stores(4, $location_arr['zipcode_id']);
-		if (sizeof($data['featured_stores']) == 0) 
-		{
-			$data['featured_stores'] = get_featured_stores(4);
-		}
+		// if (sizeof($data['featured_stores']) == 0) 
+		// {
+		// 	$data['featured_stores'] = get_featured_stores(4);
+		// }
 
 		$this->load->library('affiliates');
 
@@ -93,6 +93,38 @@ class Home extends CI_Controller
 																'keyword' => $valentine_keyword));
 		$data['coupons']['ebay']['items']['trending'] = $ebay_deals['ack'] == 'Success' ? $ebay_deals['searchResult']['item'] : array();
 		$data['coupons']['ebay']['valentine_keyword'] = $valentine_keyword;
+
+		// SPA DEALS [GROUPON & RESTAURANT.COM]
+		$data['coupons']['spa']['groupon'] = $this->affiliates->get_deals('groupon',
+																	array('type' => 'category',
+																		'type_val' => 'beauty-and-spas',
+																		'paginate' => array('offset' => 0, 'limit' => 9)));
+
+		$data['coupons']['spa']['restaurant_dot_com'] = $this->affiliates->get_deals('restaurant_dot_com',
+																	array('keyword' => 'spa',
+																		'paginate' => array('page' => 1, 'limit' => 2)));
+
+		// THINGS TO DO [GROUPON]
+		$data['coupons']['things_to_do']['groupon'] = $this->affiliates->get_deals('groupon',
+																	array('type' => 'category',
+																		'type_val' => 'things-to-do',
+																		'paginate' => array('offset' => 0, 'limit' => 4)));
+
+		// HEALTH AND FITNESS [GROUPON]
+		$data['coupons']['health_and_fitness']['groupon'] = $this->affiliates->get_deals('groupon',
+																	array('type' => 'category',
+																		'type_val' => 'health-and-fitness',
+																		'paginate' => array('offset' => 0, 'limit' => 4)));
+
+		// FOOD DEALS [GROUPON & RESTAURANT.COM]
+		$data['coupons']['food']['groupon'] = $this->affiliates->get_deals('groupon',
+																	array('type' => 'category',
+																		'type_val' => 'food-and-drink',
+																		'paginate' => array('offset' => 0, 'limit' => 2)));
+
+		$data['coupons']['food']['restaurant_dot_com'] = $this->affiliates->get_deals('restaurant_dot_com',
+																	array('keyword' => 'american drink',
+																		'paginate' => array('page' => 1, 'limit' => 2)));
 
 		// AMAZON
 		$data['coupons']['amazon'] = $this->affiliates->get_deals('amazon', array('keyword' => 'gifts for her', 'type_val' => 'All', 'paginate' => array('limit' => 10, 'page' => 1)));
@@ -200,5 +232,23 @@ class Home extends CI_Controller
 		set_location_cookie($zipcode_details);
 
 		echo json_encode(array("status" => 1, "data" => $zipcode_details)); die;
+	}
+
+	public function zap()
+	{
+		$json = file_get_contents('php://input');
+		$params = json_decode($json, true);
+
+		// $this->db->insert('zap', array("idx" => $params['message_id_text'],
+		// 								"name" => $params['first_name_text'],
+		// 								'make' => $params['make_text'],
+		// 								'model' => $params['model_text']));
+
+		$this->db->insert('zap', array("idx" => $params['message_id_text'],
+										"name" => $params['first_name_text'],
+										'make' => $params['received_at_text'],
+										'model' => $params['email_address_text']));
+
+		return true;
 	}
 }

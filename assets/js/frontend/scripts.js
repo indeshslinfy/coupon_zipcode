@@ -245,13 +245,19 @@ function bind_zipcode_reg_autocomplete()
 		$(".store_register_zipcode").easyAutocomplete(autocomp_options);
 	}
 
-function getLocation() 
+function getLocation(src) 
 {
 	$('.currnt_loc_btn').html('Please wait...');
 	$('.currnt_loc_btn').attr('disabled', 'disabled');
 	
+	if (typeof(src) != 'undefined' && src == 'header')
+	{
+		$.cookie('allow_locn_popup', true, { expires: 1, path: '/'});
+	}
+	
 	navigator.geolocation.getCurrentPosition(
 		function(success) {
+
 			navigator.geolocation.getCurrentPosition(showPosition);
 		},
 		function(failure) {

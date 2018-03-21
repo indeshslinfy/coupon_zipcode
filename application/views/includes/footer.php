@@ -88,7 +88,7 @@
 			        		</div>
 			        		<div class="form-group">
 			        			<span class="optional_text">or</span>
-			        			<a href="javascript:void(0);" onclick="getLocation();" class="btn ylew_btn currnt_loc_btn">Use My Current Location</a>
+			        			<a href="javascript:void(0);" onclick="getLocation('header');" class="btn ylew_btn currnt_loc_btn">Use My Current Location</a>
 			        		</div>
 			        	</div>
 					</form>
