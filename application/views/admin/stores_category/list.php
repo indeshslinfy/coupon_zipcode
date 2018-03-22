@@ -32,7 +32,9 @@
             ?>
 
             <div class="content_title">
-                <h2><small>Stores Category</small>&nbsp;<a href="<?php echo base_url(ADMIN_PREFIX . '/add-store-category'); ?>" class="btn btn-success pull-right">Add New</a></h2>
+                <h2><small>Stores Category</small>
+                    <!-- &nbsp;<a href="<?php //echo base_url(ADMIN_PREFIX . '/add-store-category'); ?>" class="btn btn-success pull-right">Add New</a> -->
+                </h2>
             </div>
 
             <div class="table-responsive min-height-400">          

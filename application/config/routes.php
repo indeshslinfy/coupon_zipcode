@@ -285,3 +285,7 @@ $route[ADMIN_PREFIX . '/save-settings'] = ADMIN_PREFIX . '/settings/save_setting
 $route[ADMIN_PREFIX . '/featured-stores'] = ADMIN_PREFIX . '/featured/featured_stores';
 
 $route[ADMIN_PREFIX . '/popular-categories'] = ADMIN_PREFIX . '/featured/featured_categories';
+
+/*TEMP*/
+$route['category2/(:any)'] = 'coupons/list_deals2';
+$route['deals2'] = 'coupons/list_deals2';

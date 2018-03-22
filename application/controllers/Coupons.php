@@ -28,6 +28,260 @@ class Coupons extends CI_Controller
 		$this->load->model('/coupons_model');
 	}
 
+	public function list_deals2()
+	{
+		$this->load->library('affiliates');
+
+		$data['title'] = 'Deals';
+		$data['total_coupons_fetched'] = 0;
+
+		$this->load->model(ADMIN_PREFIX . '/stores_category_model');
+		$data['all_categories']['local'] = $this->stores_category_model->all_records();
+		$data['all_categories']['groupon'] = affiliate_categories(CATEGORY_SRC_GROUPON);
+		$data['all_categories']['ebay'] = affiliate_categories(CATEGORY_SRC_EBAY);
+		$data['all_categories']['amazon'] = affiliate_categories(CATEGORY_SRC_AMAZON);
+
+		// 'CATEGORY PAGE' SEARCH
+		if ($this->uri->segment(1) == 'category')
+		{
+			$data['title'] = slug_to_readable($this->uri->segment(2));
+			$_GET['cat'] = array($this->uri->segment(2));
+			$data['category_name'] = $data['title'];
+		}
+
+		// 'HEADER' PAGE SEARCH
+		if (array_key_exists('cat_name', $_GET) && $_GET['cat_name'] != '')
+		{
+			$cat_slugs = $this->stores_category_model->get_store_category_slugs_by_keyword($_GET['cat_name']);
+			$_GET['cat'] = $cat_slugs;
+			unset($_GET['cat_name']);
+		}
+
+		if (array_key_exists('city_name', $_GET) && $_GET['city_name'] != '')
+		{
+			$_GET['city'] = get_cities_ids_by_keyword($_GET['city_name']);
+		}
+		else
+		{
+			$_GET['city'] = '';
+		}
+		
+		if (array_key_exists('store_zipcode', $_GET) && $_GET['store_zipcode'] != '')
+		{
+			$_GET['store_zipcode'] = $_GET['store_zipcode'];
+		}
+		else
+		{
+			$_GET['store_zipcode'] = '';
+		}
+
+		if (array_key_exists('sort_distance', $_GET) && $_GET['sort_distance'] != '')
+		{
+			$_GET['sort_distance'] = $_GET['sort_distance'];
+		}
+		else
+		{
+			$_GET['sort_distance'] = '';
+		}
+
+		if (!array_key_exists('src', $_GET))
+		{
+			$_GET['src'] = 'local';
+		}
+		$_GET['src'] = (array)$_GET['src'];
+
+		if (!array_key_exists('cat', $_GET))
+		{
+			$_GET['cat'] = array();
+		}
+
+		if (!isset($_GET['paginate']['page']))
+		{
+			$_GET['paginate']['page'] = 1;
+		}
+		else if ($_GET['paginate']['page'] < 1)
+		{
+			$_GET['paginate']['page'] = 1;
+		}
+
+		$_GET['location_arr'] = get_user_location_data();
+		if ($_GET['store_zipcode'] == '')
+		{
+			$_GET['store_zipcode'] = $_GET['location_arr']['zipcode_id'];
+		}
+
+		$pagination_setting = get_settings('deals_pagination');
+		$_GET['paginate']['limit'] = $pagination_setting['limit'];
+		$_GET['paginate']['offset'] = max(0, ($_GET['paginate']['page'] - 1) * $_GET['paginate']['limit']);
+
+		unset($_GET['search_src']);
+		$data['total_coupons_fetched'] = 0;
+		foreach ($_GET['src'] as $keyS => $valueS)
+		{
+			if ($valueS == 'restaurant_dot_com')
+			{
+				$data['coupons']['restaurant_dot_com'] = $this->affiliates->get_deals($valueS, $_GET);
+				$data['total_coupons_fetched'] = $data['total_coupons_fetched'] + sizeof($data['coupons']['restaurant_dot_com']);
+			}
+
+			if ($valueS == 'groupon')
+			{
+				if (isset($_GET['cat']) && $_GET['cat'] != '')
+				{
+					if (!is_array($_GET['cat']))
+					{
+						$_GET['cat'] = (array)$_GET['cat'];
+					}
+
+					if (sizeof($_GET['cat']) > 0)
+					{
+						$groupon_deals = array();
+						foreach ($_GET['cat'] as $keyCAT => $valueCAT)
+						{
+							$_GET['type'] = 'category';
+							$_GET['type_val'] = $valueCAT;
+							$deals = $this->affiliates->get_deals($valueS, $_GET);
+							if (sizeof($deals) > 0)
+							{
+								$groupon_deals = array_merge($groupon_deals, $deals->deals);
+							}
+						}
+					}
+					else
+					{
+						$_GET['type'] = 'ip';
+						$_GET['channel_id'] = 'hotels';
+
+						$deals = $this->affiliates->get_deals($valueS, $_GET);
+						$groupon_deals = @$deals->deals;
+					}
+				}
+				else
+				{
+					$_GET['type'] = 'ip';
+					$_GET['channel_id'] = 'hotels';
+
+					$deals = $this->affiliates->get_deals($valueS, $_GET);
+					$groupon_deals = @$deals->deals;
+				}
+
+				$data['coupons']['groupon'] = $groupon_deals;
+				$data['total_coupons_fetched'] = $data['total_coupons_fetched'] + sizeof($data['coupons']['groupon']);
+			}
+
+			if ($valueS == 'ebay')
+			{
+				if (isset($_GET['cat']) && $_GET['cat'] != '')
+				{
+					$_GET['currency'] = 'USD';
+					if (!is_array($_GET['cat']))
+					{
+						$_GET['cat'] = (array)$_GET['cat'];
+					}
+
+					$ebay_deals = array();
+					if ((sizeof($_GET['cat']) > 0) && (array_key_exists('keyword', $_GET) && $_GET['keyword'] != ''))
+					{
+						$_GET['type'] = 'advanced';
+						$_GET['type_val'] = $_GET['keyword'];
+
+						// ADVANCED SEARCH - both category and keyword
+						$deals = $this->affiliates->get_deals($valueS, $_GET);
+						if ($deals['ack'] == 'Success')
+						{
+							$ebay_deals = $deals['searchResult']['item'];
+						}
+					}
+					elseif (sizeof($_GET['cat']) > 0)
+					{
+						$_GET['type'] = 'category';
+						foreach ($_GET['cat'] as $keyCAT => $valueCAT)
+						{
+							$_GET['type_val'] = $valueCAT;
+							$deals = $this->affiliates->get_deals($valueS, $_GET);
+							if ($deals['ack'] == 'Success')
+							{
+								$ebay_deals = array_merge($ebay_deals, $deals['searchResult']['item']);
+							}
+						}
+					}
+					elseif (array_key_exists('keyword', $_GET) && $_GET['keyword'] != '')
+					{
+						$_GET['type'] = 'keyword';
+						$_GET['type_val'] = $_GET['keyword'];
+						$deals = $this->affiliates->get_deals($valueS, $_GET);
+						if ($deals['ack'] == 'Success')
+						{
+							$ebay_deals = $deals['searchResult']['item'];
+						}
+					}
+					else
+					{
+						$_GET['type'] = '';
+						$_GET['type_val'] = '';
+						$deals = $this->affiliates->get_deals($valueS, $_GET);
+						if ($deals['ack'] == 'Success')
+						{
+							$ebay_deals = $deals['searchResult']['item'];
+						}
+					}
+					
+					$data['coupons']['ebay'] = $ebay_deals;
+					$data['total_coupons_fetched'] = $data['total_coupons_fetched'] + sizeof($data['coupons']['ebay']);
+				}
+			}
+
+			if ($valueS == 'amazon')
+			{
+				$_GET['type'] = 'category';
+							
+				$amazon_deals = array();
+				if (sizeof($_GET['cat']) > 0)
+				{
+					foreach ($_GET['cat'] as $keyCAT => $valueCAT)
+					{
+						$_GET['type_val'] = $valueCAT;
+						$deals = $this->affiliates->get_deals($valueS, $_GET);
+						if (is_array($deals) && sizeof($deals) > 0)
+						{
+							$amazon_deals = array_merge($amazon_deals, $deals);
+						}
+					}
+				}
+				else
+				{
+					$_GET['type_val'] = 'All';
+					$deals = $this->affiliates->get_deals($valueS, $_GET);
+					if (is_array($deals) && sizeof($deals) > 0)
+					{
+						$amazon_deals = array_merge($amazon_deals, $deals);
+					}
+				}
+
+				$data['coupons']['amazon'] = $amazon_deals;
+				$data['total_coupons_fetched'] = $data['total_coupons_fetched'] + sizeof($data['coupons']['amazon']);
+			}
+			
+			if ($valueS == 'local')
+			{
+				$_GET['zipcode_id'] = $_GET['store_zipcode'];
+
+				$this->load->model(ADMIN_PREFIX . '/stores_model');
+				$data['coupons']['local'] = $this->stores_model->get_local_coupons($_GET);
+				$data['total_coupons_fetched'] = $data['total_coupons_fetched'] + sizeof($data['coupons']['local']);
+			}
+		}
+
+		if (array_key_exists('is_ajax', $_GET))
+		{
+			echo json_encode($this->load->view('deals_listing2', $data, true));
+		}
+		else
+		{
+			$this->load->template('category_deals2', $data);
+		}
+	}
+
 	public function list_deals()
 	{
 		$this->load->library('affiliates');

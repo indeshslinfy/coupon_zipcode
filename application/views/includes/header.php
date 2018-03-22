@@ -54,7 +54,9 @@
 	<title><?php echo isset($title) && $title != "" ? $title . "&nbsp;-&nbsp;" : ""; ?><?php echo $general_settings['company_name']; ?></title>
 	<link rel="icon" href="<?php echo base_url($favicon); ?>">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
 	<?php echo js('frontend/jquery.cookie.js'); ?>
+	
 	<script type="text/javascript">
 		var allow_location_popup = false;
 		var BASEURL = '<?php echo base_url(); ?>';
@@ -125,7 +127,6 @@
 			</div>
 		</div>
 		<header>
-
 			<div class="row topheader">
 				<div class="container">
 					<div class="row">
