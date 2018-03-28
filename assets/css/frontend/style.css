@@ -1677,6 +1677,10 @@ button,
     box-sizing: border-box;
     z-index: 1
 }
+/*.sorting-div {
+    position: relative;
+    width:100%;
+}*/
 .section_main {
     position: relative;
     float: left;
@@ -3129,4 +3133,84 @@ span.menu_icon_down {
 	.navigation_bar .navbar-default li:first-child a{
 		padding:10px 15px !important;
 	}
+}
+
+
+/*----------------23-03-2018------------*/
+.filters-tab{
+    float: left;
+    width: 100%;
+}
+.filters-tab .nav-tabs{
+	border:none;
+}
+.filters-tab .nav-tabs li{
+	float:none;
+	display:inline-block;
+	margin:0px 0px 5px;
+}
+.filters-tab .nav-tabs li a{
+	color:#999;
+	border:none;
+	box-shadow:inset 0px 0px 3px #dac2c2;
+	transition: all ease .25s;
+}
+.filters-tab .nav-tabs li a:hover,
+.filters-tab .nav-tabs li a:focus{
+	background:#f5f1f1;
+	color:#233141;
+	transform: translateY(-2px);
+}
+.filters-tab .nav-tabs li.active a{
+	border:none;
+	color:#233141;
+	background:#f5f1f1;
+	transform: translateY(-2px);
+}
+.filters-tab .tab-content{
+	float:left;
+	width:100%;
+	min-height:183px;
+	padding:0px 0px 15px;
+	background:#fcfcfc;
+	margin-bottom:20px;
+	box-shadow: inset 0px 0px 7px #f6f6f6;
+}
+.filters-tab .tab-content ul li{
+	position:relative;
+}
+.filters-tab .tab-content h5{
+    padding: 10px 0px;
+}
+#groupon_filter .filters-ul li{
+	float:left;
+	width:33.3%;
+}
+.filters-ul.hidez li{
+	float:left;
+	width:32.3%;
+}
+#coupon_filter .filters-ul.hidez li{
+	float:left;
+	width:50%;
+}
+#range_filters_ul li{
+	float:left;
+	width:48%;
+}
+#range_filters_ul li:first-child{
+	margin-right:2%;
+}
+.filter_dt_div.hidez li{
+	display: inline-block;
+}
+hr{
+    float: left;
+    width: 100%;
+}
+#coupon_filter .filter_dt_div.hidez,
+#coupon_filter .filter_rvws_div.hidez{
+	float:left;
+	width:50%;
+
 }

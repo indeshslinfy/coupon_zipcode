@@ -23,6 +23,12 @@
 	.newsletter_wrap .news_letter_content_wrap { padding-top: 14px;}
 	/*---------index-page-css-end-------------*/
 }
+@media (min-width:768px) and (max-width:992px){
+	#amazon_filter .filter_keyword_div,
+	#amazon_filter .filter_condition_div,
+	#amazon_filter .filter_range_div.hidez,
+	#amazon_filter .filter_min_discount_div{float:left;width:50%;}
+}
 @media screen and (max-width:991px){
 	/*---------index-page-css-------------*/
 	section{padding:20px 0px 20px;}
@@ -52,6 +58,10 @@
 	.coupon_post:after {display:none;}
 	.post_coupon_detail{padding-right:30px;}
 	.post_coupon_listing{padding-right:0px;}
+	/*---28-03-2018----------*/
+	.tab-pane ul{max-height:190px; overflow:auto;}
+	#groupon_filter .filters-ul li,
+	.filters-ul.hidez li{width:50%;}
 }
 @media screen and (max-width:767px){
 	/*---------index-page-css-------------*/
@@ -133,6 +143,11 @@
 	.search_form_container .btn { padding: 15px 8px; line-height: 1px;}
 	.signup_wrap .easy-autocomplete{width:100% !important;}
 	.reply_btn_div{vertical-align:middle;}
+	.filters-tab .nav-tabs{padding:0px 15px;}
+	.filters-tab .nav-tabs li a{padding: 5px 10px;}
+	.filters-ul.hidez li,
+	#groupon_filter .filters-ul li{width:50%;}
+	
 }
 @media screen and (max-width:591px){
 	.post_detail table thead, 
@@ -191,13 +206,15 @@
 	.sorting-div-inner .easy-autocomplete{width:100% !important; display:inherit;}
 	.topheader .col-xs-4{width:100%;}
 	.topheader .col-xs-8{width:100%;}
-	.maxwdth_479{float:right;display: block;}
+	.maxwdth_479{float:right;display:none;}
 	.minwdth_480{display:none;}
 	.topheader .search_form_wrap{position:relative;padding:0px 15px;/* height:0px;visibility: hidden;*/}
 	.topheader .search_form_wrap.adjstheight{height:auto;transition:height 1s;visibility: visible;}
 	.topheader_srch_frm.searchform{padding-right:0px;}
 	.topheader_srch_frm .form-group{transition: opacity .00025s;}
 	.city_box,.nearby{width: 41%;}
+	.filters-ul.hidez li,
+	#groupon_filter .filters-ul li{width:100%;}
 }
 @media screen and (max-width:419px){
 	.share_with_socila_media{margin-right: 31px;overflow: visible;margin-left: 0px;}

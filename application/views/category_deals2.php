@@ -17,26 +17,15 @@
 
 			<div class="row">
 				<div class="section_main">
-					<div class="col-sm-3 col-md-2 left-pane">
-						<div class="filters_header text-center">
-							<h4>Filters
-								<a class="pull-right filter_toggle visible-xs" href="javascript:void(0);"><i class="fa fa-filter"></i></a>
-							</h4>
-						</div>
-
-						<div class="filter_inner_wrap">
-							<div class="selected_filters_div"></div>
-							<form action="<?php echo base_url() . 'deals2'; ?>" id="deal_search_form">
-								<div class="filter_btns_div">
-									<input type="hidden" name="search_src" value="search_pg">
-									<input type="hidden" class="form-control" name="cat_name" value="<?php echo isset($_GET['cat_name']) ? $_GET['cat_name'] : ''; ?>">
-									&nbsp;<button type="button" class="btn default_btn" style="width: 46%;" onclick="clear_filters(this, 'all');">Clear All</button>
-									<button class="btn green_btn text-center" style="width: 46%;">Apply</button>&nbsp;
-									<hr>
-								</div>
-
-								<div class="filter_src_div">
-									<h5 class="filter_heading">Source</h5>
+					<form action="<?php echo base_url() . 'deals2'; ?>" id="deal_search_form">
+						<div class="col-xs-12 col-sm-3 col-md-2 left-pane">
+							<div class="filters_header text-center">
+								<h4>Filters
+									<a class="pull-right filter_toggle visible-xs" href="javascript:void(0);"><i class="fa fa-filter"></i></a>
+								</h4>
+							</div> 
+							<div class="filter_src_div">
+								<h5 class="filter_heading">Source</h5>
 									<ul class="filters-ul" id="src_filters_ul">
 										<li>
 											<input type="checkbox" name="src[]" value="local" <?php echo isset($_GET['src']) && in_array('local', $_GET['src']) ? 'checked' : ''; ?>>&nbsp;
@@ -61,242 +50,347 @@
 									</ul>
 									<hr>
 								</div>
-
-								<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hide' : ''; ?>">
-									<h5 class="filter_heading">
-										Search by Keyword
-										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
-									</h5>
-									<ul class="filters-ul filter-clearable">
-										<li>
-											<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
-										</li>
-									</ul>
-									<hr>
-								</div>
-
-								<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hide' : ''; ?>">
-									<h5 class="filter_heading">
-										Price Range (&#36;)
-										<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
-									</h5>
-									<small class="text-danger cat_require hide">Select at least 1 category</small>
-									<ul class="filters-ul filter-clearable" id="range_filters_ul">
-										<li>
-											Min&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]">
-										</li>
-										<li>
-											Max&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][1] : ''; ?>" class="form-control" name="price_range[]">
-										</li>
-									</ul>
-									<hr>
-								</div>
-
-								<div class="filter_min_discount_div">
-									<h5 class="filter_heading">
-										Min. Discount
-										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['min_discount']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
-									</h5>
-									<small class="text-danger cat_require hide">Select at least 1 category</small>
-
-									<ul class="filters-ul filter-clearable" id="min_discount_filters_ul">
-										<li>
-											<input type="radio" name="min_discount" value="10" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '10' ? 'checked' : ''; ?>>&nbsp;
-											<span>10% and up</span>
-										</li>
-										<li>
-											<input type="radio" name="min_discount" value="25" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '25' ? 'checked' : ''; ?>>&nbsp;
-											<span>25% and up</span>
-										</li>
-										<li>
-											<input type="radio" name="min_discount" value="35" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '35' ? 'checked' : ''; ?>>&nbsp;
-											<span>35% and up</span>
-										</li>
-										<li>
-											<input type="radio" name="min_discount" value="50" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '50' ? 'checked' : ''; ?>>&nbsp;
-											<span>50% and up</span>
-										</li>
-									</ul>
-									<hr>
-								</div>
-
-								<div class="filter_condition_div">
-									<h5 class="filter_heading">
-										Condition
-										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['condition']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
-									</h5>
-									<small class="text-danger cat_require hide">Select at least 1 category</small>
-									
-									<ul class="filters-ul filter-clearable" id="condition_filters_ul">
-										<li>
-											<input type="radio" name="condition" value="New" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'New' ? 'checked' : ''; ?>>&nbsp;
-											<span>New</span>
-										</li>
-										<li>
-											<input type="radio" name="condition" value="Used" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Used' ? 'checked' : ''; ?>>&nbsp;
-											<span>Used</span>
-										</li>
-										<li>
-											<input type="radio" name="condition" value="Collectible" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Collectible' ? 'checked' : ''; ?>>&nbsp;
-											<span>Collectible</span>
-										</li>
-										<li>
-											<input type="radio" name="condition" value="Refurbished" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Refurbished' ? 'checked' : ''; ?>>&nbsp;
-											<span>Refurbished</span>
-										</li>
-									</ul>
-									<hr>
-								</div>
-
-								<div class="filter_dt_div <?php echo isset($_GET['src']) && $_GET['src'] != 'local' ? 'hide' : ''; ?>">
-									<h5 class="filter_heading">
-										Date Added
-										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['dt']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
-									</h5>
-									<ul class="filters-ul filter-clearable">
-										<li>
-											<input type="radio" name="dt" value="today" <?php echo isset($_GET['dt']) && $_GET['dt'] == 'today' ? 'checked' : ''; ?>>&nbsp;
-											<span>Today</span>
-										</li>
-										<li>
-											<input type="radio" name="dt" value="week" <?php echo isset($_GET['dt']) && $_GET['dt'] == 'week' ? 'checked' : ''; ?>>&nbsp;
-											<span>This Week</span>
-										</li>
-									</ul>
-									<hr>
-								</div>
-
-								<div class="filter_rvws_div <?php echo isset($_GET['src']) && $_GET['src'] != 'local' ? 'hide' : ''; ?>">
-									<h5 class="filter_heading">
-										CZ Rating
-										<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['rt']) ? '' : 'hide'; ?>" onclick="clear_filters(this);">Clear</a>
-									</h5>
-									<ul class="filters-ul filter-clearable">
-										<li>
-											<input type="radio" name="rt" value="5" <?php echo isset($_GET['rt']) && $_GET['rt'] == '5' ? 'checked' : ''; ?>>&nbsp;
-											<span>
-												<div class="review_rating_read" id="review_rating_5"></div>
-											</span>
-										</li>
-										<li>
-											<input type="radio" name="rt" value="4" <?php echo isset($_GET['rt']) && $_GET['rt'] == '4' ? 'checked' : ''; ?>>&nbsp;
-											<span>
-												<div class="review_rating_read" id="review_rating_4"></div>
-											</span>
-										</li>
-										<li>
-											<input type="radio" name="rt" value="3" <?php echo isset($_GET['rt']) && $_GET['rt'] == '3' ? 'checked' : ''; ?>>&nbsp;
-											<span>
-												<div class="review_rating_read" id="review_rating_3"></div>
-											</span>
-										</li>
-									</ul>
-									<hr>
-								</div>
-
-								<div class="filter_cat_div">
-									<h5 class="filter_heading">Categories</h5>
-									<?php
-									foreach ($all_categories as $keyAC => $valueAC)
-									{
-									?>
-										<ul class="filters-ul hide" id="<?php echo $keyAC . '_cat_ul'; ?>">
-											<?php
-											foreach ($valueAC as $keySub => $valueSub)
-											{
-												$cls_str = '';
-												if ($keySub > 4)
-												{
-													$cls_str = 'hid_ul';
-												}
-
-												$src_cat_str = 'local-cat';
-												$cat_val = $valueSub['store_category_slug'];
-												if (isset($valueSub['category_source']))
-												{
-													if ($valueSub['category_source'] == CATEGORY_SRC_EBAY)
-													{
-														$src_cat_str = 'ebay-cat';
-														$cat_val = $valueSub['category_uid'];
-													}
-													elseif ($valueSub['category_source'] == CATEGORY_SRC_GROUPON)
-													{
-														$src_cat_str = 'groupon-cat';
-														$cat_val = $valueSub['store_category_slug'];
-													}
-													elseif ($valueSub['category_source'] == CATEGORY_SRC_AMAZON)
-													{
-														$src_cat_str = 'amazon-cat';
-														$cat_val = $valueSub['store_category_slug'];
-													}
-												}
-											?>
-												<li class="<?php echo $cls_str; ?>" data-src="<?php echo $src_cat_str; ?>">
-													<input type="checkbox" name="cat[]" value="<?php echo $cat_val; ?>" <?php echo isset($_GET['cat']) && in_array($cat_val, $_GET['cat']) ? 'checked' : ''; ?>>&nbsp;
-													<span><?php echo $valueSub['store_category_name']; ?></span>
-												</li>
-											<?php
-											}
-											?>
-										</ul>
-									<?php
-									}
-									?>
-									<hr>
-								</div>
-								
 								<div class="filter_btns_div">
-									&nbsp;<button type="button" class="btn default_btn" style="width: 46%;" onclick="clear_filters(this, 'all');">Clear All</button>
-									<button class="btn green_btn text-center" style="width: 46%;">Apply</button>&nbsp;
-								</div>
+								&nbsp;<button type="button" class="btn default_btn" style="width: 46%;" onclick="clear_filters(this, 'all');">Clear All</button>
+								<button class="btn green_btn text-center" style="width: 46%;">Apply</button>&nbsp;
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-9 col-md-10">
+							<div class="filters-tab">
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a href="#coupon_filter" aria-controls="coupon_filter" role="tab" data-toggle="tab">CouponZipcode</a></li>
+									<li role="presentation"><a href="#restuarant_filter" aria-controls="restuarant_filter" role="tab" data-toggle="tab">Restaurant.com</a></li>
+									<li role="presentation"><a href="#groupon_filter" aria-controls="groupon_filter" role="tab" data-toggle="tab">Groupon</a></li>
+									<li role="presentation"><a href="#ebay_filter" aria-controls="ebay_filter" role="tab" data-toggle="tab">Ebay</a></li>
+									<li role="presentation"><a href="#amazon_filter" aria-controls="amazon_filter" role="tab" data-toggle="tab">Amazon</a></li>
+								</ul>
 
-								<div class="form-inline sorting-div">
-									<div class="sorting-div-inner">
-										<div id="sorting_div_inner">
-											<div class="form-group">
-												<h4>Sort By</h4>
-												<select class="form-control" name="sort_order">
-													<option value="">--Select--</option>
-													<option value="az" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'az' ? 'selected' : ''; ?>>A-Z</option>
-													<option value="za" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'za' ? 'selected' : ''; ?>>Z-A</option>
-													<!-- <option value="distance" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'distance' ? 'selected' : ''; ?>>Distance</option> -->
-												</select>
-											</div>
-
-											<div class="form-group">
-												<h4>Within</h4>
-												<select class="form-control" name="sort_distance">
-													<option value="">--Select Distance--</option>
-													<option value="1" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '1' ? 'selected' : ''; ?>>1 Mile</option>
-													<option value="3" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '3' ? 'selected' : ''; ?>>3 Miles</option>
-													<option value="5" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '5' ? 'selected' : ''; ?>>5 Miles</option>
-													<option value="10" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '10' ? 'selected' : ''; ?>>10 Miles</option>
-													<option value="15" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '15' ? 'selected' : ''; ?>>15 Miles</option>
-													<option value="20" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '20' ? 'selected' : ''; ?>>20 Miles</option>
-													<option value="25" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '25' ? 'selected' : ''; ?>>25 Miles</option>
-													<option value="30" <?php echo isset($_GET['sort_distance']) && $_GET['sort_distance'] == '30' ? 'selected' : ''; ?>>30 Miles</option>
-												</select>
-											</div>
-
-											<div class="form-group">
-												<h4>of</h4>
-												<input type="text" class="form-control cat-srch-zipcode" placeholder="Zipcode" value="<?php echo isset($_GET['store_zipcode']) ? get_zipcode_name($_GET['store_zipcode']) : ''; ?>">
-												<input type="hidden" name="store_zipcode" class="store_zipcode_id_hidden" value="<?php echo isset($_GET['store_zipcode']) ? $_GET['store_zipcode'] : ''; ?>">
-											</div>
-
-											<div class="form-group">
-												<input type="submit" name="sort_btn" class="btn ylew_btn" value="REFINE">
+								<div class="tab-content">
+									<!-- COUPON ZIPCODE -->
+									<div role="tabpanel" class="tab-pane active" id="coupon_filter">
+										<!-- CATEGORIES -->
+										<div class="col-xs-12 col-sm-6 col-md-3">
+											<div class="filter_cat_div">
+												<h5 class="filter_heading">Categories</h5>
+												<ul class="filters-ul hidez" id="<?php echo 'local_cat_ul'; ?>">
+													<?php
+													foreach ($all_categories['local'] as $keySub => $valueSub)
+													{
+														$cls_str = $keySub > 4 ? 'hid_ulz' : '';
+													?>
+														<li class="<?php echo $cls_str; ?>" data-src="local-cat">
+															<input type="checkbox" name="cat[]" value="<?php echo $valueSub['store_category_slug']; ?>" <?php echo isset($_GET['cat']) && in_array($valueSub['store_category_slug'], $_GET['cat']) ? 'checked' : ''; ?>>&nbsp;
+															<span><?php echo $valueSub['store_category_name']; ?></span>
+														</li>
+													<?php
+													}
+													?>
+												</ul>
 											</div>
 										</div>
 
-										<div id="sorting_inner_affiliate" class="text-center hide"></div>
+										<!-- KEYWORD -->
+										<div class="col-xs-12 col-sm-6 col-md-3">
+											<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hidez' : ''; ?>">
+												<h5 class="filter_heading">
+													Search by Keyword
+													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+												</h5>
+												<ul class="filters-ul filter-clearable">
+													<li>
+														<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
+													</li>
+												</ul>
+											</div>
+										</div>
+
+										<!-- <div class="col-xs-12 col-sm-6 col-md-3">
+										</div> -->
+
+										<div class="col-xs-12 col-sm-12 col-md-6">
+											<div class="filter_dt_div <?php echo isset($_GET['src']) && $_GET['src'] != 'local' ? 'hidez' : ''; ?>">
+										<!-- DATE ADDED -->
+												<h5 class="filter_heading">
+													Date Added
+													<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['dt']) ? '' : 'hidez'; ?>" onclick="clear_filters(this);">Clear</a>
+												</h5>
+												<ul class="filters-ul filter-clearable">
+													<li>
+														<input type="radio" name="dt" value="today" <?php echo isset($_GET['dt']) && $_GET['dt'] == 'today' ? 'checked' : ''; ?>>&nbsp;
+														<span>Today</span>
+													</li>
+													<li>
+														<input type="radio" name="dt" value="week" <?php echo isset($_GET['dt']) && $_GET['dt'] == 'week' ? 'checked' : ''; ?>>&nbsp;
+														<span>This Week</span>
+													</li>
+												</ul>
+											</div>
+										<!-- RATING -->
+											<div class="filter_rvws_div <?php echo isset($_GET['src']) && $_GET['src'] != 'local' ? 'hidez' : ''; ?>">
+												<h5 class="filter_heading">
+													CZ Rating
+													<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['rt']) ? '' : 'hidez'; ?>" onclick="clear_filters(this);">Clear</a>
+												</h5>
+												<ul class="filters-ul filter-clearable">
+													<li>
+														<input type="radio" name="rt" value="5" <?php echo isset($_GET['rt']) && $_GET['rt'] == '5' ? 'checked' : ''; ?>>&nbsp;
+														<span>
+															<div class="review_rating_read" id="review_rating_5"></div>
+														</span>
+													</li>
+													<li>
+														<input type="radio" name="rt" value="4" <?php echo isset($_GET['rt']) && $_GET['rt'] == '4' ? 'checked' : ''; ?>>&nbsp;
+														<span>
+															<div class="review_rating_read" id="review_rating_4"></div>
+														</span>
+													</li>
+													<li>
+														<input type="radio" name="rt" value="3" <?php echo isset($_GET['rt']) && $_GET['rt'] == '3' ? 'checked' : ''; ?>>&nbsp;
+														<span>
+															<div class="review_rating_read" id="review_rating_3"></div>
+														</span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<!-- RESTAURANT.COM -->
+									<div role="tabpanel" class="tab-pane" id="restuarant_filter">
+										<!-- KEYWORD -->
+										<div class="col-xs-12 col-sm-6 col-md-4">
+											<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hidez' : ''; ?>">
+												<h5 class="filter_heading">
+													Search by Keyword
+													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+												</h5>
+												<ul class="filters-ul filter-clearable">
+													<li>
+														<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
+													</li>
+												</ul>
+											</div>
+										</div>
+
+										<!-- PRICE RANGE -->
+										<div class="col-xs-12 col-sm-6 col-md-5">
+											<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hidez' : ''; ?>">
+												<h5 class="filter_heading">
+													Price Range (&#36;)
+													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+													<small class="text-danger cat_require hidez">Select at least 1 category</small>
+												</h5>
+												<ul class="filters-ul filter-clearable" id="range_filters_ul">
+													<li>Min&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]"></li>
+													<li>Max&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][1] : ''; ?>" class="form-control" name="price_range[]"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<!-- GROUPON -->
+									<div role="tabpanel" class="tab-pane" id="groupon_filter">
+										<!-- CATEGORY -->
+										<div class="col-xs-12">
+											<div class="filter_cat_div">
+												<h5 class="filter_heading">Categories</h5>
+												<ul class="filters-ul hidez" id="<?php echo 'groupon_cat_ul'; ?>">
+													<?php
+													foreach ($all_categories['groupon'] as $keySub => $valueSub)
+													{
+														$cls_str = $keySub > 4 ? 'hid_ulz' : '';
+													?>
+														<li class="<?php echo $cls_str; ?>" data-src="groupon-cat">
+															<input type="checkbox" name="cat[]" value="<?php echo $valueSub['store_category_slug']; ?>" <?php echo isset($_GET['cat']) && in_array($valueSub['store_category_slug'], $_GET['cat']) ? 'checked' : ''; ?>>&nbsp;
+															<span><?php echo $valueSub['store_category_name']; ?></span>
+														</li>
+													<?php
+													}
+													?>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<!-- EBAY -->
+									<div role="tabpanel" class="tab-pane" id="ebay_filter">
+										<!-- CATEGORY -->
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<div class="filter_cat_div">
+												<h5 class="filter_heading">Categories</h5>
+												<ul class="filters-ul hidez" id="<?php echo 'groupon_cat_ul'; ?>">
+													<?php
+													foreach ($all_categories['ebay'] as $keySub => $valueSub)
+													{
+														$cls_str = $keySub > 4 ? 'hid_ulz' : '';
+													?>
+														<li class="<?php echo $cls_str; ?>" data-src="ebay-cat">
+															<input type="checkbox" name="cat[]" value="<?php echo $valueSub['store_category_slug']; ?>" <?php echo isset($_GET['cat']) && in_array($valueSub['store_category_slug'], $_GET['cat']) ? 'checked' : ''; ?>>&nbsp;
+															<span><?php echo $valueSub['store_category_name']; ?></span>
+														</li>
+													<?php
+													}
+													?>
+												</ul>
+											</div>
+										</div>
+
+										<!-- KEYWORD -->
+										<div class="col-xs-12 col-sm-6 col-md-5">
+											<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hidez' : ''; ?>">
+												<h5 class="filter_heading">
+													Search by Keyword
+													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+												</h5>
+												<ul class="filters-ul filter-clearable">
+													<li>
+														<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
+													</li>
+												</ul>
+											</div>
+										</div>
+
+										<!-- PRICE RANGE -->
+										<div class="col-xs-12 col-sm-6 col-md-7">
+											<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hidez' : ''; ?>">
+												<h5 class="filter_heading">
+													Price Range (&#36;)
+													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+													<small class="text-danger cat_require hidez">Select at least 1 category</small>
+												</h5>
+												<ul class="filters-ul filter-clearable" id="range_filters_ul">
+													<li>
+														Min&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]">
+													</li>
+													<li>
+														Max&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][1] : ''; ?>" class="form-control" name="price_range[]">
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<!-- AMAZON -->
+									<div role="tabpanel" class="tab-pane" id="amazon_filter">
+										<!-- CATEGORY -->
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<div class="filter_cat_div">
+												<h5 class="filter_heading">Categories</h5>
+												<ul class="filters-ul hidez" id="<?php echo 'amazon_cat_ul'; ?>">
+													<?php
+													foreach ($all_categories['amazon'] as $keySub => $valueSub)
+													{
+														$cls_str = $keySub > 4 ? 'hid_ulz' : '';
+													?>
+														<li class="<?php echo $cls_str; ?>" data-src="amazon-cat">
+															<input type="checkbox" name="cat[]" value="<?php echo $valueSub['store_category_slug']; ?>" <?php echo isset($_GET['cat']) && in_array($valueSub['store_category_slug'], $_GET['cat']) ? 'checked' : ''; ?>>&nbsp;
+															<span><?php echo $valueSub['store_category_name']; ?></span>
+														</li>
+													<?php
+													}
+													?>
+												</ul>
+											</div>
+										</div>
+
+										<!-- KEYWORD & CONDITION -->
+										<div class="col-xs-12 col-sm-12 col-md-5">
+											<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hidez' : ''; ?>">
+												<h5 class="filter_heading">
+													Search by Keyword
+													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+												</h5>
+												<ul class="filters-ul filter-clearable">
+													<li>
+														<input type="text" class="form-control" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
+													</li>
+												</ul>
+												<hr>
+											</div>
+
+											<div class="filter_condition_div">
+												<h5 class="filter_heading">
+													Condition
+													<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['condition']) ? '' : 'hidez'; ?>" onclick="clear_filters(this);">Clear</a>
+													<small class="text-danger cat_require hidez">Select at least 1 category</small>
+												</h5>
+												
+												<ul class="filters-ul filter-clearable" id="condition_filters_ul">
+													<li>
+														<input type="radio" name="condition" value="New" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'New' ? 'checked' : ''; ?>>&nbsp;
+														<span>New</span>
+													</li>
+													<li>
+														<input type="radio" name="condition" value="Used" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Used' ? 'checked' : ''; ?>>&nbsp;
+														<span>Used</span>
+													</li>
+													<li>
+														<input type="radio" name="condition" value="Collectible" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Collectible' ? 'checked' : ''; ?>>&nbsp;
+														<span>Collectible</span>
+													</li>
+													<li>
+														<input type="radio" name="condition" value="Refurbished" <?php echo isset($_GET['condition']) && $_GET['condition'] == 'Refurbished' ? 'checked' : ''; ?>>&nbsp;
+														<span>Refurbished</span>
+													</li>
+												</ul>
+												<hr>
+											</div>
+										</div>
+
+										<!-- PRICE RANGE & MIN-MAX DISCOUNT -->
+										<div class="col-xs-12 col-sm-12 col-md-7">
+											<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hidez' : ''; ?>">
+												<h5 class="filter_heading">
+													Price Range (&#36;)
+													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
+													<small class="text-danger cat_require hidez">Select at least 1 category</small>
+												</h5>
+												<ul class="filters-ul filter-clearable" id="range_filters_ul">
+													<li>
+														Min&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]">
+													</li>
+													<li>
+														Max&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][1] : ''; ?>" class="form-control" name="price_range[]">
+													</li>
+												</ul>
+												<hr>
+											</div>
+
+											<div class="filter_min_discount_div">
+												<h5 class="filter_heading">
+													Min. Discount
+													<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['min_discount']) ? '' : 'hidez'; ?>" onclick="clear_filters(this);">Clear</a>
+													<small class="text-danger cat_require hidez">Select at least 1 category</small>
+												</h5>
+
+												<ul class="filters-ul filter-clearable" id="min_discount_filters_ul">
+													<li>
+														<input type="radio" name="min_discount" value="10" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '10' ? 'checked' : ''; ?>>&nbsp;
+														<span>10% and up</span>
+													</li>
+													<li>
+														<input type="radio" name="min_discount" value="25" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '25' ? 'checked' : ''; ?>>&nbsp;
+														<span>25% and up</span>
+													</li>
+													<li>
+														<input type="radio" name="min_discount" value="35" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '35' ? 'checked' : ''; ?>>&nbsp;
+														<span>35% and up</span>
+													</li>
+													<li>
+														<input type="radio" name="min_discount" value="50" <?php echo isset($_GET['min_discount']) && $_GET['min_discount'] == '50' ? 'checked' : ''; ?>>&nbsp;
+														<span>50% and up</span>
+													</li>
+												</ul>
+												<hr>
+											</div>
+										</div>
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
-					</div>
-
-					<div class="col-sm-9 col-md-10 right-pane">
+					</form>
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 right-pane">
 						<div class="exclusive_coupan cat_coupons">
 							<div class="coupon_row_wrap">
 							<?php
@@ -547,104 +641,107 @@ function render_selected_filters()
 	$(".filters-ul li input[type=checkbox]:checked").parent('li').children('span').html();
 }
 
-function toggle_filters(ele)
-{
-	var selected_src = $(".filters-ul").find($('input[name^=src]:checked'));
-	$('#sorting_inner_affiliate').html("<h4>" + selected_src.siblings('span').html() + "</h4>");
-	
-	$('.cat_require').addClass('hide');
+function toggle_filters(ele){
 
-	$('#sorting_inner_affiliate').addClass('hide');
-	$('#sorting_div_inner').addClass('hide');
-	$(".filter_range_div").addClass('hide');
-	$(".filter_min_discount_div").addClass('hide');
-	$(".filter_condition_div").addClass('hide');
-
-	$('.filter_cat_div').removeClass('hide');
-	$('.filter_cat_div ul').children('li').addClass('hide');
-	$(".filter_cat_div .filters-ul").addClass('hide');
-	$(".filter_cat_div .filters-ul li").addClass('hide');
-	$('#' + selected_src.val() + '_cat_ul').removeClass('hide');
-	$('.filter_cat_div ul li').children('input').removeAttr('name');
-
-	if (selected_src.val() == 'local')
-	{
-		$('#sorting_div_inner').removeClass('hide');
-		$('.filter_keyword_div').removeClass('hide');
-
-		$('.filter_dt_div').removeClass('hide');
-		$('.filter_dt_div').find('input[type=radio]').attr('name', $('.filter_dt_div').find('input[type=radio]').attr('data-name'));
-		$('.filter_dt_div').find('input[type=radio]').removeAttr('data-name');
-
-		$('.filter_rvws_div').removeClass('hide');
-		$('.filter_rvws_div').find('input[type=radio]').attr('name', $('.filter_rvws_div').find('input[type=radio]').attr('data-name'));
-		$('.filter_rvws_div').find('input[type=radio]').removeAttr('data-name');
-
-		$('.filter_cat_div ul').children('li[data-src=local-cat]').removeClass('hide');
-		$('.filter_cat_div ul li[data-src=local-cat]').children('input').attr('name', 'cat[]');
-	}
-	else
-	{
-		$('#sorting_inner_affiliate').removeClass('hide');
-
-		if (selected_src.val() == 'restaurant_dot_com')
-		{
-			$('.filter_cat_div').addClass('hide');
-			$('.filter_range_div').removeClass('hide');
-			$('.filter_keyword_div').removeClass('hide');
-			
-			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
-			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
-		}
-		else if (selected_src.val() == 'groupon')
-		{
-			$('.filter_keyword_div').addClass('hide');
-
-			$('.filter_cat_div ul').children('li[data-src=groupon-cat]').removeClass('hide');
-			$('.filter_cat_div ul li[data-src=groupon-cat]').children('input').attr('name', 'cat[]');
-		}
-		else if (selected_src.val() == 'ebay')
-		{
-			$('.filter_range_div').removeClass('hide');
-			$('.filter_keyword_div').removeClass('hide');
-
-			$('.filter_cat_div ul').children('li[data-src=ebay-cat]').removeClass('hide');
-			$('.filter_cat_div ul li[data-src=ebay-cat]').children('input').attr('name', 'cat[]');
-		}
-		else if (selected_src.val() == 'amazon')
-		{
-			$(".filter_range_div").removeClass('hide');
-			$(".filter_min_discount_div").removeClass('hide');
-			$(".filter_condition_div").removeClass('hide');
-
-			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
-			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
-
-			if ($('li[data-src=amazon-cat]').find($('input[name="cat[]"]:checked')).length == 0)
-			{
-				$('.cat_require').removeClass('hide');
-			}
-		}
-
-		$('.filter_dt_div').addClass('hide');
-		$('.filter_dt_div').find('input[type=radio]').attr('data-name', $('.filter_dt_div').find('input[type=radio]').attr('name'));
-		$('.filter_dt_div').find('input[type=radio]').removeAttr('name');
-
-		$('.filter_rvws_div').addClass('hide');
-		$('.filter_rvws_div').find('input[type=radio]').attr('data-name', $('.filter_rvws_div').find('input[type=radio]').attr('name'));
-		$('.filter_rvws_div').find('input[type=radio]').removeAttr('name');
-	}
-
-	$(".filter_cat_div .filters-ul").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
-	$(".filter_cat_div .filters-ul").getNiceScroll().resize();
-	$("body").getNiceScroll().resize();
 }
+// function toggle_filters(ele)
+// {
+// 	var selected_src = $(".filters-ul").find($('input[name^=src]:checked'));
+// 	$('#sorting_inner_affiliate').html("<h4>" + selected_src.siblings('span').html() + "</h4>");
+	
+// 	$('.cat_require').addClass('hide');
+
+// 	$('#sorting_inner_affiliate').addClass('hide');
+// 	$('#sorting_div_inner').addClass('hide');
+// 	$(".filter_range_div").addClass('hide');
+// 	$(".filter_min_discount_div").addClass('hide');
+// 	$(".filter_condition_div").addClass('hide');
+
+// 	$('.filter_cat_div').removeClass('hide');
+// 	$('.filter_cat_div ul').children('li').addClass('hide');
+// 	$(".filter_cat_div .filters-ul").addClass('hide');
+// 	$(".filter_cat_div .filters-ul li").addClass('hide');
+// 	$('#' + selected_src.val() + '_cat_ul').removeClass('hide');
+// 	$('.filter_cat_div ul li').children('input').removeAttr('name');
+
+// 	if (selected_src.val() == 'local')
+// 	{
+// 		$('#sorting_div_inner').removeClass('hide');
+// 		$('.filter_keyword_div').removeClass('hide');
+
+// 		$('.filter_dt_div').removeClass('hide');
+// 		$('.filter_dt_div').find('input[type=radio]').attr('name', $('.filter_dt_div').find('input[type=radio]').attr('data-name'));
+// 		$('.filter_dt_div').find('input[type=radio]').removeAttr('data-name');
+
+// 		$('.filter_rvws_div').removeClass('hide');
+// 		$('.filter_rvws_div').find('input[type=radio]').attr('name', $('.filter_rvws_div').find('input[type=radio]').attr('data-name'));
+// 		$('.filter_rvws_div').find('input[type=radio]').removeAttr('data-name');
+
+// 		$('.filter_cat_div ul').children('li[data-src=local-cat]').removeClass('hide');
+// 		$('.filter_cat_div ul li[data-src=local-cat]').children('input').attr('name', 'cat[]');
+// 	}
+// 	else
+// 	{
+// 		$('#sorting_inner_affiliate').removeClass('hide');
+
+// 		if (selected_src.val() == 'restaurant_dot_com')
+// 		{
+// 			$('.filter_cat_div').addClass('hide');
+// 			$('.filter_range_div').removeClass('hide');
+// 			$('.filter_keyword_div').removeClass('hide');
+			
+// 			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
+// 			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
+// 		}
+// 		else if (selected_src.val() == 'groupon')
+// 		{
+// 			$('.filter_keyword_div').addClass('hide');
+
+// 			$('.filter_cat_div ul').children('li[data-src=groupon-cat]').removeClass('hide');
+// 			$('.filter_cat_div ul li[data-src=groupon-cat]').children('input').attr('name', 'cat[]');
+// 		}
+// 		else if (selected_src.val() == 'ebay')
+// 		{
+// 			$('.filter_range_div').removeClass('hide');
+// 			$('.filter_keyword_div').removeClass('hide');
+
+// 			$('.filter_cat_div ul').children('li[data-src=ebay-cat]').removeClass('hide');
+// 			$('.filter_cat_div ul li[data-src=ebay-cat]').children('input').attr('name', 'cat[]');
+// 		}
+// 		else if (selected_src.val() == 'amazon')
+// 		{
+// 			$(".filter_range_div").removeClass('hide');
+// 			$(".filter_min_discount_div").removeClass('hide');
+// 			$(".filter_condition_div").removeClass('hide');
+
+// 			$('.filter_cat_div ul').children('li[data-src=amazon-cat]').removeClass('hide');
+// 			$('.filter_cat_div ul li[data-src=amazon-cat]').children('input').attr('name', 'cat[]');
+
+// 			if ($('li[data-src=amazon-cat]').find($('input[name="cat[]"]:checked')).length == 0)
+// 			{
+// 				$('.cat_require').removeClass('hide');
+// 			}
+// 		}
+
+// 		$('.filter_dt_div').addClass('hide');
+// 		$('.filter_dt_div').find('input[type=radio]').attr('data-name', $('.filter_dt_div').find('input[type=radio]').attr('name'));
+// 		$('.filter_dt_div').find('input[type=radio]').removeAttr('name');
+
+// 		$('.filter_rvws_div').addClass('hide');
+// 		$('.filter_rvws_div').find('input[type=radio]').attr('data-name', $('.filter_rvws_div').find('input[type=radio]').attr('name'));
+// 		$('.filter_rvws_div').find('input[type=radio]').removeAttr('name');
+// 	}
+
+// 	$(".filter_cat_div .filters-ul").niceScroll({cursorborder:"", cursorcolor:"#1A5006"});
+// 	$(".filter_cat_div .filters-ul").getNiceScroll().resize();
+// 	$("body").getNiceScroll().resize();
+// }
 
 function clear_filters(ele, target)
 {
 	if (typeof(target) == 'undefined')
 	{
-		$(ele).addClass('hide');
+		$(ele).addClass('hidez');
 		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input[type=text], input[type=number]').val('');
 		$(ele).parent('.filter_heading').siblings('ul.filters-ul').find('input[type=checkbox]:checked, input[type=radio]:checked').prop('checked', false);
 	}
