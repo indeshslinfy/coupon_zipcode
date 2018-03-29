@@ -28,6 +28,9 @@
 	#amazon_filter .filter_condition_div,
 	#amazon_filter .filter_range_div.hidez,
 	#amazon_filter .filter_min_discount_div{float:left;width:50%;}
+	#amazon_filter .filter_condition_div{margin-top:18px;}
+	#amazon_filter .filter_range_div.hidez,
+	#amazon_filter .filter_keyword_div{padding-right: 15px;}
 }
 @media screen and (max-width:991px){
 	/*---------index-page-css-------------*/

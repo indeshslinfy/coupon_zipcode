@@ -177,8 +177,8 @@
 											<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hidez' : ''; ?>">
 												<h5 class="filter_heading">
 													Price Range (&#36;)
+													<small class="text-danger cat_require hidez">(Select at least 1 category)</small>
 													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
-													<small class="text-danger cat_require hidez">Select at least 1 category</small>
 												</h5>
 												<ul class="filters-ul filter-clearable" id="range_filters_ul">
 													<li>Min&nbsp;<input min="0" type="number" value="<?php echo isset($_GET['price_range']) ? @$_GET['price_range'][0] : ''; ?>" class="form-control" name="price_range[]"></li>
@@ -236,7 +236,7 @@
 										</div>
 
 										<!-- KEYWORD -->
-										<div class="col-xs-12 col-sm-6 col-md-5">
+										<div class="col-xs-12 col-sm-6 col-md-4">
 											<div class="filter_keyword_div <?php echo isset($_GET['src']) && $_GET['src'] == 'groupon' ? 'hidez' : ''; ?>">
 												<h5 class="filter_heading">
 													Search by Keyword
@@ -251,12 +251,12 @@
 										</div>
 
 										<!-- PRICE RANGE -->
-										<div class="col-xs-12 col-sm-6 col-md-7">
+										<div class="col-xs-12 col-sm-6 col-md-8">
 											<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hidez' : ''; ?>">
 												<h5 class="filter_heading">
 													Price Range (&#36;)
+													<small class="text-danger cat_require hidez">(Select at least 1 category)</small>
 													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
-													<small class="text-danger cat_require hidez">Select at least 1 category</small>
 												</h5>
 												<ul class="filters-ul filter-clearable" id="range_filters_ul">
 													<li>
@@ -311,8 +311,8 @@
 											<div class="filter_condition_div">
 												<h5 class="filter_heading">
 													Condition
+													<small class="text-danger cat_require hidez">(Select at least 1 category)</small>
 													<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['condition']) ? '' : 'hidez'; ?>" onclick="clear_filters(this);">Clear</a>
-													<small class="text-danger cat_require hidez">Select at least 1 category</small>
 												</h5>
 												
 												<ul class="filters-ul filter-clearable" id="condition_filters_ul">
@@ -342,8 +342,8 @@
 											<div class="filter_range_div <?php echo isset($_GET['src']) && $_GET['src'] != 'groupon' ? 'hidez' : ''; ?>">
 												<h5 class="filter_heading">
 													Price Range (&#36;)
+													<small class="text-danger cat_require hidez">(Select at least 1 category)</small>
 													<a href="javascript:void(0);" class="clear-filter" onclick="clear_filters(this);" style="opacity: 0">Clear</a>
-													<small class="text-danger cat_require hidez">Select at least 1 category</small>
 												</h5>
 												<ul class="filters-ul filter-clearable" id="range_filters_ul">
 													<li>
@@ -359,8 +359,8 @@
 											<div class="filter_min_discount_div">
 												<h5 class="filter_heading">
 													Min. Discount
+													<small class="text-danger cat_require hidez">(Select at least 1 category)</small>
 													<a href="javascript:void(0);" class="clear-filter <?php echo isset($_GET['min_discount']) ? '' : 'hidez'; ?>" onclick="clear_filters(this);">Clear</a>
-													<small class="text-danger cat_require hidez">Select at least 1 category</small>
 												</h5>
 
 												<ul class="filters-ul filter-clearable" id="min_discount_filters_ul">

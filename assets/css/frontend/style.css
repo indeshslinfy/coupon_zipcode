@@ -3180,6 +3180,7 @@ span.menu_icon_down {
 	position:relative;
 }
 .filters-tab .tab-content h5{
+	font-weight:600;
     padding: 10px 0px;
 }
 #groupon_filter .filters-ul li{
@@ -3213,4 +3214,8 @@ hr{
 	float:left;
 	width:50%;
 
+}
+#ebay_filter .filter_keyword_div,
+#amazon_filter .filter_keyword_div{
+	margin-top:18px;
 }
